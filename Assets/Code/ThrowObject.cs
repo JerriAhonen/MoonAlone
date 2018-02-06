@@ -14,9 +14,8 @@ public class ThrowObject : MonoBehaviour {
     private bool _isPickuppable = false;
 
     private string _pickUpButton = "Fire1";
-    private string _throwButton = "Fire2";
     
-    private Transform _carriedObject;
+    private Transform _pickuppableObject;
 
     [SerializeField]
     private float _throwForce;
@@ -28,41 +27,46 @@ public class ThrowObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-        bool pickUp = Input.GetButton(_pickUpButton);       // Which buttons should these be?
-        bool throwIt = Input.GetButton(_throwButton);
+        bool pickUp = Input.GetButton(_pickUpButton);
 
-        if (_isPickuppable && pickUp) {
-            PickUp(_carriedObject);
+        if (_pickuppableObject != null) {
+            if (_isPickuppable && pickUp) {
+                PickUp(_pickuppableObject);
+            }
+
+            if (Input.GetButtonUp(_pickUpButton)) {
+                _isCarried = true;
+            }
+
+            if (_isCarried && pickUp) {
+                Throw(_pickuppableObject);
+            }
         }
-
-        if (_isCarried && throwIt) {
-            Throw(_carriedObject);
-        }
-	}
-
+    }
+    
+    // If the player collides with a pick up layer object
     private void OnCollisionEnter(Collision collision) {        // Clips through object at first for some reason, FIX IT
         
         if (collision.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {        // Whole thing changed to use .distance so collision detection can be skipped?
 
             _isPickuppable = true;
 
-            _carriedObject = collision.gameObject.transform;
+            _pickuppableObject = collision.gameObject.transform;
         }
     }
 
+    // Picks up an object to be carried.
+    private void PickUp(Transform pickuppableObject) {      // Dude can pick things up with his ass! Make a separate collider for hand?
+        pickuppableObject.parent = transform;
 
-    private void PickUp(Transform carriedObject) {
-        carriedObject.parent = transform;
-
-        carriedObject.position = _pickUpPoint.position;
+        pickuppableObject.position = _pickUpPoint.position;
         
-        carriedObject.GetComponent<Rigidbody>().isKinematic = true;
+        pickuppableObject.GetComponent<Rigidbody>().isKinematic = true;
 
         _isPickuppable = false;
-
-        _isCarried = true;
     }
 
+    // Throws the carried object.
     private void Throw(Transform carriedObject) {
         Rigidbody rigidbody = carriedObject.gameObject.GetComponent<Rigidbody>();
         
@@ -70,8 +74,12 @@ public class ThrowObject : MonoBehaviour {
 
         carriedObject.parent = null;
 
-        rigidbody.AddForce(transform.forward.normalized * _throwForce, ForceMode.Impulse);     // CHANGE THIS to use something other than rigidbody + addforce, some sort of vector calc needed
-        
+        rigidbody.AddForce(transform.forward.normalized * _throwForce, ForceMode.Impulse);     
+        // CHANGE THIS to use something other than rigidbody + addforce, some sort of vector calc needed
+        // direction has to be taken from the player
+
+        carriedObject = null;
+
         _isCarried = false;
     }
 }
