@@ -321,6 +321,7 @@ MonoBehaviour:
   _pickUpLayer: PickUp
   _pickUpPoint: {fileID: 1686635800}
   _throwForce: 25
+  _groundLevel: 0.25
 --- !u!1 &1362861116
 GameObject:
   m_ObjectHideFlags: 0

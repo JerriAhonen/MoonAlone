@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowObject : MonoBehaviour {
+public class ObjectInteraction : MonoBehaviour {
 
     [SerializeField]
     private string _pickUpLayer;
@@ -14,11 +14,15 @@ public class ThrowObject : MonoBehaviour {
     private bool _isPickuppable = false;
 
     private string _pickUpButton = "Fire1";
+    private string _dropButton = "Fire2";
     
     private Transform _pickuppableObject;
 
     [SerializeField]
-    private float _throwForce;
+    private float _throwForce = 25;
+
+    [SerializeField]
+    private float _groundLevel = 0.25f;
 
 	// Use this for initialization
 	void Start() {
@@ -28,6 +32,7 @@ public class ThrowObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
         bool pickUp = Input.GetButton(_pickUpButton);
+        bool drop = Input.GetButton(_dropButton);
 
         if (_pickuppableObject != null) {
             if (_isPickuppable && pickUp) {
@@ -40,6 +45,10 @@ public class ThrowObject : MonoBehaviour {
 
             if (_isCarried && pickUp) {
                 Throw(_pickuppableObject);
+            }
+
+            if (_isCarried && drop) {
+                Drop(_pickuppableObject);
             }
         }
     }
@@ -68,7 +77,7 @@ public class ThrowObject : MonoBehaviour {
 
     // Throws the carried object.
     private void Throw(Transform carriedObject) {
-        Rigidbody rigidbody = carriedObject.gameObject.GetComponent<Rigidbody>();
+        Rigidbody rigidbody = carriedObject.GetComponent<Rigidbody>();
         
         rigidbody.isKinematic = false;
 
@@ -77,6 +86,21 @@ public class ThrowObject : MonoBehaviour {
         rigidbody.AddForce(transform.forward.normalized * _throwForce, ForceMode.Impulse);     
         // CHANGE THIS to use something other than rigidbody + addforce, some sort of vector calc needed
         // direction has to be taken from the player
+
+        carriedObject = null;
+
+        _isCarried = false;
+    }
+
+    // Drops the carried object.
+    private void Drop(Transform carriedObject) {
+        Rigidbody rigidbody = carriedObject.GetComponent<Rigidbody>();
+
+        rigidbody.isKinematic = false;
+
+        carriedObject.parent = null;
+
+        carriedObject.position = new Vector3 (carriedObject.position.x, _groundLevel, carriedObject.position.z);
 
         carriedObject = null;
 
