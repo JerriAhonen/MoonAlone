@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour {
     
     public GameObject chicken;
     public int chickenCount;
+    float chickenOffset;
 
     public List<GameObject> tower = new List<GameObject>();
     
@@ -27,20 +28,26 @@ public class Tower : MonoBehaviour {
 
             tower.Remove(removedChicken);
             chickenCount--;
-
             
             Destroy(removedChicken.gameObject);
         }
-            //TODO
             MoveChickensWithPlayer();
     }
-
-    //TODO: Make Chickens move.
+    
     public void MoveChickensWithPlayer()
     {
+        //Start the offset from 0;
+        chickenOffset = 0;
+
         foreach (var chicken in tower)
         {
-            chicken.transform.position = new Vector3(transform.position.x, chicken.transform.position.y, transform.position.z);
+            Vector3 chickenPos = new Vector3(transform.position.x, chicken.transform.position.y, transform.position.z);
+
+            //Adding slight tilt to tower
+            chickenPos -= transform.forward * chickenOffset;
+            chicken.transform.position = chickenPos;
+
+            chickenOffset += 0.1f;
         }
     }
 }
