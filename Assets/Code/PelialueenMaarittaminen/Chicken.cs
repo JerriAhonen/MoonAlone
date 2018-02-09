@@ -18,5 +18,6 @@ public class Chicken : MonoBehaviour {
     public void Move(Vector3 dir)
     {
         transform.Translate(dir);
+        
     }
 }

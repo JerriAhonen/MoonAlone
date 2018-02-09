@@ -33,7 +33,7 @@ public class MouseAimCamera : MonoBehaviour {
         //offset = target.transform.position - transform.position;
     }
 
-    void LateUpdate()
+    private void Update()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
@@ -46,16 +46,10 @@ public class MouseAimCamera : MonoBehaviour {
         Quaternion localRotation = Quaternion.Euler(rotY, rotX, 0.0f);
         transform.rotation = localRotation;
 
-        //float horizontal = Input.GetAxis("Mouse X") * sensitivityX;
-        //target.transform.Rotate(0, horizontal, 0);
+    }
 
-        //float vertical = Input.GetAxis("Mouse Y") * sensitivityX;
-        //transform.Rotate(vertical, 0, 0);
-
-        //float desiredAngle = target.transform.eulerAngles.y;
-        //Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        //transform.position = target.transform.position - (rotation * offset);
-
-        //transform.LookAt(target.transform);
+    void LateUpdate()
+    {
+        
     }
 }

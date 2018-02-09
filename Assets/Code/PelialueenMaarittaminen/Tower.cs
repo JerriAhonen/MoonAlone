@@ -12,18 +12,27 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             Vector3 pos = transform.position + ((transform.up * chickenCount) + new Vector3(0, 1.5f, 0));
             
-            Instantiate(chicken, pos, Quaternion.identity);
+            GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;
             
-            tower.Add(chicken);
+            tower.Add(cloneChicken);
             chickenCount = tower.Count;
-            
         }
-        //TODO
-        MoveChickensWithPlayer();
+        if (Input.GetButtonDown("Fire1") && chickenCount > 0)
+        {
+            GameObject removedChicken = tower[chickenCount - 1].gameObject;
+
+            tower.Remove(removedChicken);
+            chickenCount--;
+
+            
+            Destroy(removedChicken.gameObject);
+        }
+            //TODO
+            MoveChickensWithPlayer();
     }
 
     //TODO: Make Chickens move.
@@ -31,8 +40,7 @@ public class Tower : MonoBehaviour {
     {
         foreach (var chicken in tower)
         {
-            chicken.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            //chicken.Move();
+            chicken.transform.position = new Vector3(transform.position.x, chicken.transform.position.y, transform.position.z);
         }
     }
 }
