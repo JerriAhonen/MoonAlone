@@ -17,14 +17,32 @@ public class Player1 : MonoBehaviour {
 
     public CharacterController controller;
 
+    public string _pickUpLayer;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        tower = GetComponent<Tower>();
     }
 
     void Update()
     {
         Move();
+
+        bool pickUp = Input.GetButtonDown("Fire2");
+        bool throwIt = Input.GetButtonDown("Fire1");
+        
+        if (pickUp && (chicken != null)) {
+            tower.AddChicken();
+    
+            Destroy(chicken);
+        } else {    // prevents player from picking up a chicken after colliding with it
+            chicken = null;
+        }
+
+        if (throwIt && (tower.chickenCount > 0)) {
+            Throw(tower.RemoveChicken());
+        }
     }
 
     void Move()
@@ -64,6 +82,19 @@ public class Player1 : MonoBehaviour {
     {
         float step = turningSpeed * Time.deltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movement), step);
+    }
+
+    // If player hits something on the pick up layer, do things.
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
+
+            chicken = hit.gameObject;
+        }
+    }
+
+    // Throws the chicken from the tower.
+    void Throw(GameObject chicken) {
+        //TODO
     }
 }
 

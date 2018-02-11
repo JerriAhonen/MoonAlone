@@ -619,8 +619,9 @@ MonoBehaviour:
   jumpForce: 10
   verticalVelocity: 0
   tower: {fileID: 1764856643}
-  chicken: {fileID: 1233399295068086, guid: a1df65f955335b84db1123462c02dc78, type: 2}
+  chicken: {fileID: 0}
   controller: {fileID: 0}
+  _pickUpLayer: PickUp
 --- !u!23 &1764856639
 MeshRenderer:
   m_ObjectHideFlags: 0
