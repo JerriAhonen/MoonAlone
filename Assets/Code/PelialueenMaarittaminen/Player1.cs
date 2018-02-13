@@ -19,6 +19,10 @@ public class Player1 : MonoBehaviour {
 
     public string _pickUpLayer;
 
+    public float throwSpeed = 7f;
+    public GameObject thrownChicken;
+    public bool isThrown = false;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -41,7 +45,13 @@ public class Player1 : MonoBehaviour {
         }
 
         if (throwIt && (tower.chickenCount > 0)) {
-            Throw(tower.RemoveChicken());
+            thrownChicken = tower.RemoveChicken();
+
+            isThrown = true;
+        }
+
+        if (isThrown && (thrownChicken != null)) {
+            Throw(thrownChicken);
         }
     }
 
@@ -94,7 +104,15 @@ public class Player1 : MonoBehaviour {
 
     // Throws the chicken from the tower.
     void Throw(GameObject chicken) {
-        //TODO
+        Quaternion facedRotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+
+        //Quaternion limitedRotation = Quaternion.Lerp(transform.rotation, facedRotation, 5f * Time.deltaTime);
+
+        chicken.transform.rotation = facedRotation;
+
+        chicken.transform.position += (chicken.transform.forward * throwSpeed * Time.deltaTime);
+
+        // Add upward climb and downward drag and stop at ground level
     }
 }
 
