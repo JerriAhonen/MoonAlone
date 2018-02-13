@@ -14,7 +14,12 @@ public class Chicken : MonoBehaviour {
 
         //TODO: Possibly Instatiate the chickens here.
     }
-    
+
+    private void Update()
+    {
+        
+    }
+
     public void Move(Vector3 dir)
     {
         transform.Translate(dir);

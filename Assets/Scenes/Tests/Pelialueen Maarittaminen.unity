@@ -760,6 +760,14 @@ MonoBehaviour:
   chicken: {fileID: 0}
   controller: {fileID: 0}
   _pickUpLayer: PickUp
+  throwSpeed: 7
+  thrownChicken: {fileID: 0}
+  isThrown: 0
+  horizontal: Horizontal_P1
+  vertical: Vertical_P1
+  fire1Button: Fire1_P1
+  fire2Button: Fire2_P1
+  jumpButton: Jump_P1
 --- !u!23 &1764856639
 MeshRenderer:
   m_ObjectHideFlags: 0

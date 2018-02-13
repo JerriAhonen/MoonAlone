@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 1413295459}
   - component: {fileID: 1413295463}
   - component: {fileID: 1413295464}
+  - component: {fileID: 1413295465}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Untagged
@@ -499,6 +500,20 @@ MonoBehaviour:
   fire1Button: Fire1_P2
   fire2Button: Fire2_P2
   jumpButton: Jump_P2
+--- !u!114 &1413295465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413295458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955136a708403c745861c0c119002ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chicken: {fileID: 1233399295068086, guid: a1df65f955335b84db1123462c02dc78, type: 2}
+  chickenCount: 0
+  tower: []
 --- !u!1 &1581662027
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +610,7 @@ GameObject:
   - component: {fileID: 1716538647}
   - component: {fileID: 1716538646}
   - component: {fileID: 1716538645}
+  - component: {fileID: 1716538649}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -668,6 +684,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1716538649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1716538644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1764856637
 GameObject:
   m_ObjectHideFlags: 0
