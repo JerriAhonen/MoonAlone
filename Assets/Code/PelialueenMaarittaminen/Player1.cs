@@ -23,6 +23,12 @@ public class Player1 : MonoBehaviour {
     public GameObject thrownChicken;
     public bool isThrown = false;
 
+    public string horizontal = "Horizontal_P1";
+    public string vertical = "Vertical_P1";
+    public string fire1Button = "Fire1_P1";
+    public string fire2Button = "Fire2_P1";
+    public string jumpButton = "Jump_P1";
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -33,8 +39,8 @@ public class Player1 : MonoBehaviour {
     {
         Move();
 
-        bool pickUp = Input.GetButtonDown("Fire2");
-        bool throwIt = Input.GetButtonDown("Fire1");
+        bool pickUp = Input.GetButtonDown(fire2Button);
+        bool throwIt = Input.GetButtonDown(fire1Button);
         
         if (pickUp && (chicken != null)) {
             tower.AddChicken();
@@ -57,9 +63,9 @@ public class Player1 : MonoBehaviour {
 
     void Move()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        bool jump = Input.GetButtonDown("Jump");
+        float moveHorizontal = Input.GetAxis(horizontal);
+        float moveVertical = Input.GetAxis(vertical);
+        bool jump = Input.GetButtonDown(jumpButton);
 
         if (controller.isGrounded)
         {
