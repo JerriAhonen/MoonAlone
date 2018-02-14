@@ -19,9 +19,10 @@ public class Player1 : MonoBehaviour {
 
     public string _pickUpLayer;
 
-    public float throwSpeed = 7f;
+    public float throwSpeed = 10f;
     public GameObject thrownChicken;
     public bool isThrown = false;
+    public bool isRising = true;
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
@@ -108,17 +109,32 @@ public class Player1 : MonoBehaviour {
         }
     }
 
-    // Throws the chicken from the tower.
+    // Throws the chicken from the tower. HAS NOT REACHED ITS FINAL FORM!
     void Throw(GameObject chicken) {
-        Quaternion facedRotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
 
-        //Quaternion limitedRotation = Quaternion.Lerp(transform.rotation, facedRotation, 5f * Time.deltaTime);
+        //Quaternion throwRotation = Quaternion.Slerp(transform.rotation, frontFacing, 5f * Time.deltaTime);
 
-        chicken.transform.rotation = facedRotation;
+        chicken.transform.rotation = frontFacing;
 
         chicken.transform.position += (chicken.transform.forward * throwSpeed * Time.deltaTime);
 
-        // Add upward climb and downward drag and stop at ground level
+        if ((chicken.transform.position.y < 6f) && isRising) {
+            
+            chicken.transform.position += (chicken.transform.up * throwSpeed * Time.deltaTime);
+        }
+
+        if (chicken.transform.position.y > 5f) {
+            isRising = false;
+        }
+
+        if (!isRising) {
+            chicken.transform.position -= (chicken.transform.up * throwSpeed * Time.deltaTime);
+        }
+
+        if (chicken.transform.position.y < 1f) {
+            isThrown = false;
+            isRising = true;
+        }
     }
 }
-

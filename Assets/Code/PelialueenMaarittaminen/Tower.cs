@@ -40,7 +40,14 @@ public class Tower : MonoBehaviour {
         tower.Remove(removedChicken);
         chickenCount--;
 
-        return removedChicken.gameObject;
+        // NICE TO HAVE: RE-SORT TOWER SO THE CHICKENS DROP DOWN ONE INDEX WITH SUITABLE BOUNCE
+
+        //Create a clone of the removed chicken at first chicken position so the tower doesn't have to be re-sorted.
+        GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+
+        Destroy(removedChicken);
+
+        return cloneChicken;
     }
 
     public void MoveChickensWithPlayer()
