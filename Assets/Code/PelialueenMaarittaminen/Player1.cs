@@ -33,6 +33,7 @@ public class Player1 : MonoBehaviour {
 
     void Update()
     {
+        //Player movement.
         Move();
 
         bool pickUp = Input.GetButtonDown(fire2Button);
@@ -63,7 +64,10 @@ public class Player1 : MonoBehaviour {
 
             if (jump)
             {
-                verticalVelocity = jumpForce;
+                if (tower.chickenCount > 5)
+                    Debug.Log("Cannot Jump, too many chicken!");
+                else
+                    verticalVelocity = jumpForce;
             }
         }
         else
