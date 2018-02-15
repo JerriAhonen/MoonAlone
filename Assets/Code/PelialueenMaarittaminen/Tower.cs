@@ -44,6 +44,9 @@ public class Tower : MonoBehaviour {
 
         //Create a clone of the removed chicken at first chicken position so the tower doesn't have to be re-sorted.
         GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        
+        // Turn clone chicken to face the direction the player is facing so that it is thrown in the right direction.
+        cloneChicken.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
 
         Destroy(removedChicken);
 

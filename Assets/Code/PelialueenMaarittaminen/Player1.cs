@@ -111,11 +111,11 @@ public class Player1 : MonoBehaviour {
 
     // Throws the chicken from the tower. HAS NOT REACHED ITS FINAL FORM!
     void Throw(GameObject chicken) {
-        Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
+        //Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
 
         //Quaternion throwRotation = Quaternion.Slerp(transform.rotation, frontFacing, 5f * Time.deltaTime);
 
-        chicken.transform.rotation = frontFacing;
+        //chicken.transform.rotation = frontFacing;
 
         chicken.transform.position += (chicken.transform.forward * throwSpeed * Time.deltaTime);
 
