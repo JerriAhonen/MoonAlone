@@ -35,7 +35,7 @@ public class Tower : MonoBehaviour {
     }
 
     // Removes a chicken from the tower, returns the removed chicken object.
-    public GameObject RemoveChicken() {
+    public void RemoveChicken() {
         GameObject removedChicken = tower[chickenCount - 1].gameObject;
 
         //Remove parent link before Removing.
@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour {
 
         Destroy(removedChicken);
 
-        return cloneChicken;
+        cloneChicken.GetComponent<Chicken>().SetThrow();
     }
 
     public void MoveChickensWithPlayer()
