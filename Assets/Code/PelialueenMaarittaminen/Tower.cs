@@ -31,7 +31,7 @@ public class Tower : MonoBehaviour {
     }
 
     // Removes a chicken from the tower, returns the removed chicken object.
-    public GameObject RemoveChicken() {
+    public void RemoveChicken() {
         GameObject removedChicken = tower[chickenCount - 1].gameObject;
 
         //Remove parent link before Removing.
@@ -43,14 +43,14 @@ public class Tower : MonoBehaviour {
         // NICE TO HAVE: RE-SORT TOWER SO THE CHICKENS DROP DOWN ONE INDEX WITH SUITABLE BOUNCE
 
         //Create a clone of the removed chicken at first chicken position so the tower doesn't have to be re-sorted.
-        GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 2f, 0), Quaternion.identity);
         
         // Turn clone chicken to face the direction the player is facing so that it is thrown in the right direction.
         cloneChicken.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
 
         Destroy(removedChicken);
 
-        return cloneChicken;
+        cloneChicken.GetComponent<Chicken>().SetThrow();
     }
 
     public void MoveChickensWithPlayer()
