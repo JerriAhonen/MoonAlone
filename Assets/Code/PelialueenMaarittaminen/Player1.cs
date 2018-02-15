@@ -19,6 +19,11 @@ public class Player1 : MonoBehaviour {
 
     public string _pickUpLayer;
 
+    public float throwSpeed = 10f;
+    public GameObject thrownChicken;
+    public bool isThrown = false;
+    public bool isRising = true;
+
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
     public string fire1Button = "Fire1_P1";
@@ -47,7 +52,13 @@ public class Player1 : MonoBehaviour {
         }
 
         if (throwIt && (tower.chickenCount > 0)) {
-            tower.RemoveChicken();
+            thrownChicken = tower.RemoveChicken();
+
+            isThrown = true;
+        }
+
+        if (isThrown && (thrownChicken != null)) {
+            Throw(thrownChicken);
         }
     }
 
@@ -95,6 +106,35 @@ public class Player1 : MonoBehaviour {
         if (hit.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
 
             chicken = hit.gameObject;
+        }
+    }
+
+    // Throws the chicken from the tower. HAS NOT REACHED ITS FINAL FORM!
+    void Throw(GameObject chicken) {
+        //Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
+
+        //Quaternion throwRotation = Quaternion.Slerp(transform.rotation, frontFacing, 5f * Time.deltaTime);
+
+        //chicken.transform.rotation = frontFacing;
+
+        chicken.transform.position += (chicken.transform.forward * throwSpeed * Time.deltaTime);
+
+        if ((chicken.transform.position.y < 6f) && isRising) {
+            
+            chicken.transform.position += (chicken.transform.up * throwSpeed * Time.deltaTime);
+        }
+
+        if (chicken.transform.position.y > 5f) {
+            isRising = false;
+        }
+
+        if (!isRising) {
+            chicken.transform.position -= (chicken.transform.up * throwSpeed * Time.deltaTime);
+        }
+
+        if (chicken.transform.position.y < 1f) {
+            isThrown = false;
+            isRising = true;
         }
     }
 }
