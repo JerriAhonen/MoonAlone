@@ -97,6 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberInTower: 0
   yPos: 0
+  wanderDistance: 5
+  isMoving: 0
+  isInTower: 0
 --- !u!135 &135933508462948328
 SphereCollider:
   m_ObjectHideFlags: 1

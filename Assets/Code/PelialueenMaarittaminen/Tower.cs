@@ -26,6 +26,10 @@ public class Tower : MonoBehaviour {
         //Parent it to the player so it moves with the player.
         cloneChicken.transform.parent = transform;
 
+        //Tell the chicken it is in a tower.
+        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
+        chickenController.IsInTower = true;
+
         tower.Add(cloneChicken);
         chickenCount = tower.Count;
     }
@@ -44,7 +48,11 @@ public class Tower : MonoBehaviour {
 
         //Create a clone of the removed chicken at first chicken position so the tower doesn't have to be re-sorted.
         GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
-        
+
+        //Tell the chicken it is not in a tower.
+        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
+        chickenController.IsInTower = false;
+
         // Turn clone chicken to face the direction the player is facing so that it is thrown in the right direction.
         cloneChicken.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
 
