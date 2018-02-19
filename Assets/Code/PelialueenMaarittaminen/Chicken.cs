@@ -45,21 +45,9 @@ public class Chicken : MonoBehaviour
 
     private void Update()
     {
-        //Vector3 curPos = transform.position;
-        //if (curPos == lastPos)
-        //{
-        //    isMoving = false;
-        //    lastPos = curPos;
-        //}
-        //else
-        //    isMoving = true;
-
-        //if (!isMoving)
-        //    Wander(wanderDistance);
-
         time += Time.deltaTime;
 
-        if (!isInTower)
+        if (!isInTower && !isThrown)
         {
 
             if (time > movementTimer)
