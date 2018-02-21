@@ -18,7 +18,7 @@ public class EggTimer : MonoBehaviour {
 
         Rotate();
 
-        Debug.Log(time);
+        //Debug.Log(time);
 	}
 
     void Rotate()

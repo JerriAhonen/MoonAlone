@@ -16,6 +16,7 @@ public class Player1 : MonoBehaviour {
     public GameObject chicken;
 
     public CharacterController controller;
+    public MeshRenderer renderer;
 
     public string _pickUpLayer;
 
@@ -28,6 +29,7 @@ public class Player1 : MonoBehaviour {
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        renderer = GetComponent<MeshRenderer>();
         tower = GetComponent<Tower>();
     }
 
