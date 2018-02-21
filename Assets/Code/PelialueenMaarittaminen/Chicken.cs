@@ -118,4 +118,12 @@ public class Chicken : MonoBehaviour
         isThrown = true;
         isRising = true;
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.GetComponent<Chicken>() != null) {
+            if (collision.gameObject.GetComponent<Chicken>().isInTower && !isInTower) {
+                collision.gameObject.GetComponentInParent<Tower>().Scatter();
+            }
+        }
+    }
 }

@@ -77,4 +77,10 @@ public class Tower : MonoBehaviour {
             chickenOffset += 0.1f;
         }
     }
+
+    public void Scatter() {
+        foreach (var chicken in tower) {
+            RemoveChicken();
+        }
+    }
 }
