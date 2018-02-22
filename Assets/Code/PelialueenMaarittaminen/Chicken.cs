@@ -24,11 +24,12 @@ public class Chicken : MonoBehaviour
 
     private Vector3 newPos = Vector3.zero;
 
-    public float throwSpeed = 20f;
+    public float throwDistance = 8f;
+    public float throwHeight = 5f;
 
     public bool isThrown = false;
-
     public bool isRising = false;
+    public string _pickUpLayer;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -81,12 +82,13 @@ public class Chicken : MonoBehaviour
         float x = Random.Range(-max, max);
         float z = Random.Range(-max, max);
         
-        if(transform.position.x + x > -20f && transform.position.x + x < 20f && transform.position.z + z > -12 && transform.position.z + z < 12)
+        if (transform.position.x + x > -20f && transform.position.x + x < 20f && transform.position.z + z > -12 && transform.position.z + z < 12)
         {
             newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
         }
     }
 
+    // The chicken flies through the air.
     void Fly() {
         //Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
 
@@ -94,35 +96,42 @@ public class Chicken : MonoBehaviour
 
         //chicken.transform.rotation = frontFacing;
 
-        transform.position += (transform.forward * Time.deltaTime);
+        transform.position += (transform.forward * throwDistance * Time.deltaTime);
+        transform.position += (transform.up * throwHeight * Time.deltaTime);
 
-        if((transform.position.y < 5f) && isRising) {
+        //if((transform.position.y < 5f) && isRising) {
 
-            transform.position += (transform.up * Time.deltaTime);
-        }
+        //    transform.position += (transform.up * Time.deltaTime);
+        //}
 
-        if(transform.position.y > 4f) {
-            isRising = false;
-        }
+        //if(transform.position.y > 4f) {
+        //    isRising = false;
+        //}
 
-        if(!isRising) {
-            transform.position -= (transform.up * Time.deltaTime);
-        }
+        //if(!isRising) {
+        //    transform.position -= (transform.up * Time.deltaTime);
+        //}
 
-        if(transform.position.y < 1f) {
+        if (transform.position.y < 1f) {
             isThrown = false;
         }
     }
 
+    // Set the parameters for throw.
     public void SetThrow() {
         isThrown = true;
         isRising = true;
+        throwDistance = 8f;
+        throwHeight = 5f;
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.GetComponent<Chicken>() != null) {
-            if (collision.gameObject.GetComponent<Chicken>().isInTower && !isInTower) {
-                collision.gameObject.GetComponentInParent<Tower>().Scatter();
+        // If a tower chicken collides with a thrown chicken, scatter chickens.
+        if (isInTower) {
+            if (collision.gameObject.GetComponent<Chicken>() != null) {
+                if (collision.gameObject.GetComponent<Chicken>().isThrown) {
+                    GetComponentInParent<Tower>().Scatter();        // CAUSES NULL REFERENCE EXCEPTION WHEN THROWEES CHICKENS GET THROWN BACK TOWARDS THROWER
+                }
             }
         }
     }

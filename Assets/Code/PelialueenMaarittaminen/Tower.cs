@@ -26,6 +26,9 @@ public class Tower : MonoBehaviour {
         //Parent it to the player so it moves with the player.
         cloneChicken.transform.parent = transform;
 
+        //cloneChicken.GetComponent<Rigidbody>().detectCollisions = false;
+        cloneChicken.GetComponent<Rigidbody>().useGravity = false;
+
         //Tell the chicken it is in a tower.
         Chicken chickenController = cloneChicken.GetComponent<Chicken>();
         chickenController.IsInTower = true;
@@ -34,8 +37,10 @@ public class Tower : MonoBehaviour {
         chickenCount = tower.Count;
     }
 
-    // Removes a chicken from the tower, returns the removed chicken object.
-    public void RemoveChicken() {
+    // Throws a chicken from the tower, removing it from the tower list and 
+    // setting it up for flight in the Chicken script. The throw direction is
+    // given as a parameter.
+    public void ThrowChicken(Vector3 throwDirection) {
         GameObject removedChicken = tower[chickenCount - 1].gameObject;
 
         //Remove parent link before Removing.
@@ -46,17 +51,23 @@ public class Tower : MonoBehaviour {
 
         // NICE TO HAVE: RE-SORT TOWER SO THE CHICKENS DROP DOWN ONE INDEX WITH SUITABLE BOUNCE
 
-        //Create a clone of the removed chicken at first chicken position so the tower doesn't have to be re-sorted.
-        GameObject cloneChicken = Instantiate(chicken, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        // Create a clone of the removed chicken at a position slightly in front
+        // of the first chicken.
+        GameObject cloneChicken = Instantiate(chicken, 
+            transform.position + transform.forward * 1.5f + new Vector3(0f, 1.5f, 0), 
+            Quaternion.identity);
 
-        //Tell the chicken it is not in a tower.
+        // Tell the chicken it is not in a tower.
         Chicken chickenController = cloneChicken.GetComponent<Chicken>();
         chickenController.IsInTower = false;
 
-        // Turn clone chicken to face the direction the player is facing so that it is thrown in the right direction.
-        cloneChicken.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        // Turn clone chicken to face the direction the player is facing so that
+        // it is thrown in the right direction.
+        cloneChicken.transform.rotation = Quaternion.LookRotation(throwDirection, Vector3.up);
 
         Destroy(removedChicken);
+        
+        cloneChicken.GetComponent<Rigidbody>().useGravity = true;
 
         cloneChicken.GetComponent<Chicken>().SetThrow();
     }
@@ -78,9 +89,12 @@ public class Tower : MonoBehaviour {
         }
     }
 
+    // Scatter the chickens on impact, removing them from the tower one by one 
+    // starting from the top.
     public void Scatter() {
-        foreach (var chicken in tower) {
-            RemoveChicken();
+        // foreach-loop would cause an InvalidOperationException!
+        for (int index = chickenCount - 1; index >= 0; index--) {
+            ThrowChicken(tower[index].transform.forward);
         }
     }
 }

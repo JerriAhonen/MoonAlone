@@ -50,7 +50,7 @@ public class Player1 : MonoBehaviour {
         }
 
         if (throwIt && (tower.chickenCount > 0)) {
-            tower.RemoveChicken();
+            tower.ThrowChicken(transform.forward);
         }
     }
 

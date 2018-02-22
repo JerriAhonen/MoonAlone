@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1079,11 +1079,8 @@ MonoBehaviour:
   tower: {fileID: 0}
   chicken: {fileID: 0}
   controller: {fileID: 0}
-  _pickUpLayer: 
-  throwSpeed: 7
-  thrownChicken: {fileID: 0}
-  isThrown: 0
-  isRising: 0
+  renderer: {fileID: 0}
+  _pickUpLayer: PickUp
   horizontal: Horizontal_P2
   vertical: Vertical_P2
   fire1Button: Fire1_P2
@@ -1577,11 +1574,8 @@ MonoBehaviour:
   tower: {fileID: 0}
   chicken: {fileID: 0}
   controller: {fileID: 0}
+  renderer: {fileID: 0}
   _pickUpLayer: PickUp
-  throwSpeed: 7
-  thrownChicken: {fileID: 0}
-  isThrown: 0
-  isRising: 1
   horizontal: Horizontal_P1
   vertical: Vertical_P1
   fire1Button: Fire1_P1
