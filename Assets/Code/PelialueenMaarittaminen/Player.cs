@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour {
+public class Player : MonoBehaviour {
 
     public float movementSpeed = 5.0f;
     public float turningSpeed = 800.0f;
-    public float gravity = 14.0f;
-    public float jumpForce = 10.0f;
+    public float gravity = 16.0f;
+    public float jumpForce = 8.0f;
     public float verticalVelocity;
 
     private Vector3 movement;

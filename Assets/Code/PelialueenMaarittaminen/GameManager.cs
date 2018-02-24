@@ -7,15 +7,53 @@ public class GameManager : MonoBehaviour {
     //TODO: Make this work
     public bool[] chosenCharacters = new bool[6];
 
+    public GameObject[] players = new GameObject[4];
+    public CharacterSelection[] cs = new CharacterSelection[4];
+    public GameObject[] spawnPoints = new GameObject[4];
+
+    public Camera camera;
+    public Transform cameraPosMainMenu;
+    public Transform cameraPosCharacterSelection;
+    public Transform cameraPosGameplay;
+
     public int readyCount;
     public int noPlayerCount = 4;
+    
+    public bool gameStarted;
+
+    private void Start()
+    {
+        camera.GetComponent<CameraController>().MoveCamera(cameraPosCharacterSelection);
+
+        //Disable all player controls during character selection.
+        foreach (var player in players)
+        {
+            player.GetComponent<Player>().enabled = false;
+        }
+    }
 
     private void Update()
     {
-        if(readyCount >= 2 && noPlayerCount == (4 - readyCount))
+        if (!gameStarted)
         {
-            Debug.Log("Start Game!");
+            if (readyCount >= 2 && noPlayerCount == (4 - readyCount))
+            {
+                //Debug.Log("Start Game!");
+                StartGame(readyCount);
+                gameStarted = true;
+            }
         }
+    }
+
+    void StartGame(int playerCount)
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            players[i].transform.position = spawnPoints[i].transform.position; 
+            players[i].GetComponent<Player>().enabled = true;
+        }
+
+        camera.GetComponent<CameraController>().MoveCamera(cameraPosGameplay);
     }
 
     

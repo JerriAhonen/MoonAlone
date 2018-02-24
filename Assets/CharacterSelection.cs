@@ -12,8 +12,10 @@ public class CharacterSelection : MonoBehaviour {
     public float selectionCooldown;
     private float cooldown;
     private bool characterConfirmed = false;
+    public int selectedCharacter;
 
     public GameManager gameManager;
+    
 
     private void Start()
     {
@@ -24,9 +26,11 @@ public class CharacterSelection : MonoBehaviour {
         for (int i = 0; i < transform.childCount; i++)
             characterList[i] = transform.GetChild(i).gameObject;
 
+        //Set all the models to nonActive (not visible)
         foreach (GameObject go in characterList)
             go.SetActive(false);
 
+        //Set the first model to Active (visible)
         if (characterList[0])
             characterList[0].SetActive(true);
     }
@@ -67,6 +71,18 @@ public class CharacterSelection : MonoBehaviour {
             if (confirm)
                 Confirm();
         }
+
+        if (gameManager.gameStarted && characterConfirmed)
+        {
+            index = characterList.Length - 1;
+            characterList[index].SetActive(false);
+        }
+        else if (gameManager.gameStarted && !characterConfirmed)
+        {
+            //Set all the models to nonActive (not visible)
+            foreach (GameObject go in characterList)
+                go.SetActive(false);
+        }
     }
 
     public void ToggleUp()
@@ -105,6 +121,7 @@ public class CharacterSelection : MonoBehaviour {
 
     public void Confirm()
     {
+        selectedCharacter = index;
         
         index = characterList.Length - 1;
         characterList[index].SetActive(true);
@@ -113,5 +130,10 @@ public class CharacterSelection : MonoBehaviour {
 
         gameManager.readyCount++;
         gameManager.noPlayerCount--;
+    }
+
+    public GameObject getSelectedCharacter()
+    {
+        return characterList[selectedCharacter];
     }
 }
