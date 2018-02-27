@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
     
     public bool gameStarted;
 
+    public int NumOfPlayersNeededToStartGame_DEBUG;
+
     private void Start()
     {
         camera.GetComponent<CameraController>().MoveCamera(cameraPosCharacterSelection);
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour {
     {
         if (!gameStarted)
         {
-            if (readyCount >= 2 && noPlayerCount == (4 - readyCount))
+            if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
             {
                 //Debug.Log("Start Game!");
                 StartGame(readyCount);

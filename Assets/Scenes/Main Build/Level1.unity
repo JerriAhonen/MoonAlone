@@ -2404,6 +2404,7 @@ MonoBehaviour:
   readyCount: 0
   noPlayerCount: 4
   gameStarted: 0
+  NumOfPlayersNeededToStartGame_DEBUG: 1
 --- !u!4 &757404727
 Transform:
   m_ObjectHideFlags: 0
