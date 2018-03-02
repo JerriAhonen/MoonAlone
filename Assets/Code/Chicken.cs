@@ -130,7 +130,9 @@ public class Chicken : MonoBehaviour
         if (isInTower) {
             if (collision.gameObject.GetComponent<Chicken>() != null) {
                 if (collision.gameObject.GetComponent<Chicken>().isThrown) {
-                    GetComponentInParent<Tower>().Scatter();        // CAUSES NULL REFERENCE EXCEPTION WHEN THROWEES CHICKENS GET THROWN BACK TOWARDS THROWER
+                    if (GetComponentInParent<Tower>() != null) {
+                        GetComponentInParent<Tower>().Scatter();
+                    }
                 }
             }
         }
