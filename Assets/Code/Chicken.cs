@@ -11,6 +11,8 @@ public class Chicken : MonoBehaviour
     public bool isMoving;
     public bool isInTower;
 
+	public Animator animControl;
+
     public bool IsInTower {
         set
         {
@@ -42,6 +44,7 @@ public class Chicken : MonoBehaviour
     private void Start()
     {
         newPos = transform.position;
+		animControl = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -59,11 +62,16 @@ public class Chicken : MonoBehaviour
             }
 
             Wander(newPos);
+			animControl.SetInteger ("AnimParam", 0);
         }
 
         if (isThrown) {
             Fly();
+			animControl.SetInteger ("AnimParam", 1);
         }
+
+		if (isInTower)
+			animControl.SetInteger ("AnimParam", 2);
     }
 
     public void Move(Vector3 dir)
