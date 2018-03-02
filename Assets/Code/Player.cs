@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     public GameObject chicken;
 
     public CharacterController controller;
+	public Animator animControl;
     public MeshRenderer renderer;
 
     public string _pickUpLayer;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         renderer = GetComponent<MeshRenderer>();
         tower = GetComponent<Tower>();
+		animControl = gameObject.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour {
 
         if (throwIt && (tower.chickenCount > 0)) {
             tower.ThrowChicken(transform.forward);
+			animControl.SetInteger ("AnimParam", 3);
         }
     }
 
@@ -58,18 +61,32 @@ public class Player : MonoBehaviour {
     {
         float moveHorizontal = Input.GetAxis(horizontal);
         float moveVertical = Input.GetAxis(vertical);
+
+		//Idle = 0
+		//Run = 1
+		//Jump = 2
+
+		if (moveHorizontal == 0 && moveVertical == 0)
+			animControl.SetInteger ("AnimParam", 0);
+		else
+			animControl.SetInteger ("AnimParam", 1);
+
+
         bool jump = Input.GetButtonDown(jumpButton);
 
-        if (controller.isGrounded)
+		if (controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
 
             if (jump)
             {
-                if (tower.chickenCount > 5)
-                    Debug.Log("Cannot Jump, too many chicken!");
-                else
-                    verticalVelocity = jumpForce;
+				if (tower.chickenCount > 5) {
+					verticalVelocity = jumpForce / 4f;
+					Debug.Log ("Cannot Jump, too many chicken!");
+				} else {
+					verticalVelocity = jumpForce;
+					animControl.SetInteger ("AnimParam", 2);
+				}
             }
         }
         else
