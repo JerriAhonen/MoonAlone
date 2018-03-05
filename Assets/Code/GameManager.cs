@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	//Punanen
+	//Sinen
+	//Vihree
+	//turkoosi / vaaleanpunainen
+
+
     //TODO: Make this work
     public bool[] chosenCharacters = new bool[6];
 

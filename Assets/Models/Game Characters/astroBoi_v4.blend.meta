@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c89677871bf406242a145775d8f28294
-timeCreated: 1519988770
+guid: e783dd01d91bab74998482bb2f7e8196
+timeCreated: 1520236655
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -126,27 +126,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: aed1817fe8e889942acede60ac0c7eb4, type: 2}
+    second: {fileID: 2100000, guid: 9ab8d56cc731ee848b0cde57a062b2b0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_001
-    second: {fileID: 2100000, guid: dfaa8b407d8cb864193347422d3aec36, type: 2}
+    second: {fileID: 2100000, guid: 2e34eabd2fceb5648904fad1cb623af0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_003
-    second: {fileID: 2100000, guid: 919ce8e6a2fd3da4aa198524e9ba7044, type: 2}
+    second: {fileID: 2100000, guid: 7f73d66b5e33968439031f837ff3f601, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_004
-    second: {fileID: 2100000, guid: c0647ccbd11b93d469feafb355a3240a, type: 2}
+    second: {fileID: 2100000, guid: 9edc535aa677ad047abdb2c45e8ca0bd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_005
-    second: {fileID: 2100000, guid: d69465fc6adf8cf45a6414f2f433f756, type: 2}
+    second: {fileID: 2100000, guid: 7afb9b68a0c27594b86228c9ce65cfab, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -156,7 +156,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yellow
-    second: {fileID: 2100000, guid: bed878a2797e6554cadf976fefd58f5c, type: 2}
+    second: {fileID: 2100000, guid: b3c5b856a501c2a4d8fcdb471639aa51, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -206,7 +206,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Idle
-      takeName: ArmatureAction_003
+      takeName: Default Take
       firstFrame: 50
       lastFrame: 82
       wrapMode: 0
