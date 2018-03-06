@@ -1192,7 +1192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_RootOrder
@@ -1840,7 +1840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_RootOrder
@@ -2424,7 +2424,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: bed878a2797e6554cadf976fefd58f5c, type: 2}
     - target: {fileID: 100004, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_RootOrder
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   noPlayerCount: 4
   timerText: {fileID: 1428448317}
   winnerText: {fileID: 2005503113}
-  setTimer: 60
+  setTimer: 10
   timeLeft: 0
   roundNum: 0
   winningScore: 0
@@ -4357,7 +4357,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
       propertyPath: m_RootOrder

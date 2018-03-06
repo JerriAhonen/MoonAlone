@@ -77,11 +77,10 @@ public class Player : MonoBehaviour {
 		//Jump = 2
 
 		if (moveHorizontal == 0 && moveVertical == 0)
-                animControl.SetInteger ("AnimParam", 0);
+            animControl.SetInteger ("AnimParam", 0);
 		else
             animControl.SetInteger ("AnimParam", 1);
-
-
+        
         bool jump = Input.GetButtonDown(jumpButton);
 
 		if (controller.isGrounded)

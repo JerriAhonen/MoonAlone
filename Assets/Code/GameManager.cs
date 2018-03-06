@@ -95,18 +95,18 @@ public class GameManager : MonoBehaviour {
                 int playerNum = 0;
                 int playerScore = 0;
 
-                int i = 1;                                                          // Start counting from P1
+                int i = 0;                                                          
                 foreach (var player in players)
                 {
                     if(player.activeSelf == true)                                   // Check if player active
                     {
+                        i++;                                                        // Start counting from P1
                         playerScore = player.GetComponentInChildren<Tower>().chickenCount;
                         if (playerScore > winningScore)
                         {
                             winningScore = playerScore;
                             playerNum = i;
                         }
-                        i++;
                     }
                 }
 

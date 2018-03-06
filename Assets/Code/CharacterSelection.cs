@@ -108,7 +108,7 @@ public class CharacterSelection : MonoBehaviour {
 
         //Set the index to be free, so other players can choose it.
         gameManager.chosenCharacters[index] = false;
-
+        
         index++;
         if (index == characterList.Length - 1)
             index = 0;
@@ -122,12 +122,12 @@ public class CharacterSelection : MonoBehaviour {
     public void Confirm()
     {
         selectedCharacter = index;
-        
+
         index = characterList.Length - 1;
         characterList[index].SetActive(true);
 
         characterConfirmed = true;
-
+        
         gameManager.readyCount++;
         gameManager.noPlayerCount--;
     }
