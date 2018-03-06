@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114333011337897208
 MonoBehaviour:
@@ -116,9 +116,12 @@ MonoBehaviour:
   wanderDistance: 5
   isMoving: 0
   isInTower: 0
-  throwSpeed: 0
+  animControl: {fileID: 0}
+  throwDistance: 0
+  throwHeight: 0
   isThrown: 0
   isRising: 0
+  _pickUpLayer: 
 --- !u!135 &135933508462948328
 SphereCollider:
   m_ObjectHideFlags: 1

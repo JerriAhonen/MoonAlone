@@ -20,25 +20,24 @@ public class Chicken : MonoBehaviour
         }
     }
 
-
     private float time;
     private float movementTimer = 5;
 
     private Vector3 newPos = Vector3.zero;
 
-    public float throwDistance = 8f;
+    public float throwSpeed = 8f;
     public float throwHeight = 5f;
 
     public bool isThrown = false;
-    public bool isRising = false;
-    public string _pickUpLayer;
+    public bool isFalling = false;
+    public string _pickUpLayer = "PickUp";
 
     public Chicken(int numberInTower, float yPos)
     {
         this.numberInTower = numberInTower;
         this.yPos = yPos;
 
-        //TODO: Possibly Instatiate the chickens here.
+        //TODO: Possibly Instantiate the chickens here.
     }
 
     private void Start()
@@ -65,7 +64,7 @@ public class Chicken : MonoBehaviour
 			animControl.SetInteger ("AnimParam", 0);
         }
 
-        if (isThrown) {
+        if (isThrown || isFalling) {
             Fly();
 			animControl.SetInteger ("AnimParam", 1);
         }
@@ -98,39 +97,28 @@ public class Chicken : MonoBehaviour
 
     // The chicken flies through the air.
     void Fly() {
-        //Quaternion frontFacing = Quaternion.LookRotation(transform.forward, Vector3.up);
-
-        //Quaternion throwRotation = Quaternion.Slerp(transform.rotation, frontFacing, 5f * Time.deltaTime);
-
-        //chicken.transform.rotation = frontFacing;
-
-        transform.position += (transform.forward * throwDistance * Time.deltaTime);
+        transform.position += (transform.forward * throwSpeed * Time.deltaTime);
         transform.position += (transform.up * throwHeight * Time.deltaTime);
-
-        //if((transform.position.y < 5f) && isRising) {
-
-        //    transform.position += (transform.up * Time.deltaTime);
-        //}
-
-        //if(transform.position.y > 4f) {
-        //    isRising = false;
-        //}
-
-        //if(!isRising) {
-        //    transform.position -= (transform.up * Time.deltaTime);
-        //}
-
-        if (transform.position.y < 1f) {
+        
+        if (transform.position.y < 0.1f) {
             isThrown = false;
+            isFalling = false;
         }
     }
 
-    // Set the parameters for throw.
-    public void SetThrow() {
-        isThrown = true;
-        isRising = true;
-        throwDistance = 8f;
-        throwHeight = 5f;
+    // Set the parameters for flight (throw / fall).
+    public void SetFlight(bool toBeThrown) {
+        if (toBeThrown) {
+            // TODO: Make throw faster
+            isThrown = true;
+            throwSpeed = 8f;
+            throwHeight = 5f;
+        } else {
+            // TODO: Make falling look like falling instead of an explosion, doesn't really use Fly() as much as just Rigidbodies being Rigidbodies at the moment.
+            isFalling = true;
+            throwSpeed = 0f;
+            throwHeight = 0f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {

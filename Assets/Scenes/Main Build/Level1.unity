@@ -1475,6 +1475,8 @@ MonoBehaviour:
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
   chickenCount: 0
   tower: []
+  _towerLayer: Tower
+  _pickUpLayer: PickUp
 --- !u!114 &442676355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2821,7 +2823,7 @@ MonoBehaviour:
   noPlayerCount: 4
   timerText: {fileID: 1428448317}
   winnerText: {fileID: 2005503113}
-  setTimer: 10
+  setTimer: 60
   timeLeft: 0
   roundNum: 0
   winningScore: 0
@@ -3752,6 +3754,8 @@ MonoBehaviour:
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
   chickenCount: 0
   tower: []
+  _towerLayer: Tower
+  _pickUpLayer: PickUp
 --- !u!114 &1210143192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4249,6 +4253,8 @@ MonoBehaviour:
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
   chickenCount: 0
   tower: []
+  _towerLayer: Tower
+  _pickUpLayer: PickUp
 --- !u!114 &1323039838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5887,6 +5893,8 @@ MonoBehaviour:
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
   chickenCount: 0
   tower: []
+  _towerLayer: Tower
+  _pickUpLayer: PickUp
 --- !u!114 &1685252554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7856,7 +7864,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.97
+      value: -5.65
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7864,7 +7872,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.6401978
+      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7905,6 +7913,11 @@ Prefab:
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
       value: spaceChicken_animations (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 54427903428241716, guid: 7a42a85b345dd6141a848c3b36506c22,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}

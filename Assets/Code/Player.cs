@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 	public Animator animControl;
     public MeshRenderer renderer;
 
-    public string _pickUpLayer;
+    public string _pickUpLayer = "PickUp";
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
@@ -62,8 +62,8 @@ public class Player : MonoBehaviour {
 
         if (throwIt && (tower.chickenCount > 0))
         {
-            tower.ThrowChicken(transform.forward);
-                animControl.SetInteger("AnimParam", 3);
+            tower.RemoveChicken(transform.forward, true);
+                //animControl.SetInteger("AnimParam", 3);
         }
     }
 
@@ -76,10 +76,10 @@ public class Player : MonoBehaviour {
 		//Run = 1
 		//Jump = 2
 
-		if (moveHorizontal == 0 && moveVertical == 0)
-            animControl.SetInteger ("AnimParam", 0);
-		else
-            animControl.SetInteger ("AnimParam", 1);
+		//if (moveHorizontal == 0 && moveVertical == 0)
+  //          animControl.SetInteger ("AnimParam", 0);
+		//else
+  //          animControl.SetInteger ("AnimParam", 1);
         
         bool jump = Input.GetButtonDown(jumpButton);
 
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour {
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
 					verticalVelocity = jumpForce;
-                        animControl.SetInteger ("AnimParam", 2);
+                        //animControl.SetInteger ("AnimParam", 2);
 				}
             }
         }
