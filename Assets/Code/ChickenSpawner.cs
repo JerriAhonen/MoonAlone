@@ -6,6 +6,7 @@ public class ChickenSpawner : MonoBehaviour {
 
     public GameObject[] spawnerRoute = new GameObject[4];
     public GameObject prefabToSpawn;
+    public GameManager gm;
     public float spawnTimer;
     private float timer;
     public float speed;
@@ -39,7 +40,7 @@ public class ChickenSpawner : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
         timer -= Time.deltaTime;
 
-        if(timer < 0)
+        if(timer < 0 && gm.gameStarted)
         {
             SpawnChicken();
             timer = spawnTimer;

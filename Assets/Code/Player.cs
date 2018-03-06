@@ -37,23 +37,33 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        //Player movement.
-        Move();
+        // Check if the Player GameObject is active.
+        //if (animControl.gameObject.activeInHierarchy)
+
+        // This don't work, ei tuu virheitä mut enemmä animaatioita menee rikki.
+        //if (animControl.gameObject.activeSelf)
+
+            //Player movement.
+            Move();
 
         bool pickUp = Input.GetButtonDown(fire2Button);
         bool throwIt = Input.GetButtonDown(fire1Button);
-        
-        if (pickUp && (chicken != null)) {
+
+        if (pickUp && (chicken != null))
+        {
             tower.AddChicken();
-    
+
             Destroy(chicken);
-        } else {    // prevents player from picking up a chicken after colliding with it
+        }
+        else
+        {    // prevents player from picking up a chicken after colliding with it
             chicken = null;
         }
 
-        if (throwIt && (tower.chickenCount > 0)) {
+        if (throwIt && (tower.chickenCount > 0))
+        {
             tower.ThrowChicken(transform.forward);
-			animControl.SetInteger ("AnimParam", 3);
+                animControl.SetInteger("AnimParam", 3);
         }
     }
 
@@ -67,9 +77,9 @@ public class Player : MonoBehaviour {
 		//Jump = 2
 
 		if (moveHorizontal == 0 && moveVertical == 0)
-			animControl.SetInteger ("AnimParam", 0);
+                animControl.SetInteger ("AnimParam", 0);
 		else
-			animControl.SetInteger ("AnimParam", 1);
+            animControl.SetInteger ("AnimParam", 1);
 
 
         bool jump = Input.GetButtonDown(jumpButton);
@@ -85,7 +95,7 @@ public class Player : MonoBehaviour {
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
 					verticalVelocity = jumpForce;
-					animControl.SetInteger ("AnimParam", 2);
+                        animControl.SetInteger ("AnimParam", 2);
 				}
             }
         }
