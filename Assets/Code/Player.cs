@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public float movementSpeed = 5.0f;
+    public float movementSpeed = 7.0f;
     public float turningSpeed = 800.0f;
     public float gravity = 16.0f;
     public float jumpForce = 8.0f;
@@ -37,86 +37,71 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        // Check if the Player GameObject is active.
-        //if (animControl.gameObject.activeInHierarchy)
+        Move();                                                                 // Player movement.
 
-        // This don't work, ei tuu virheitä mut enemmä animaatioita menee rikki.
-        //if (animControl.gameObject.activeSelf)
-
-            //Player movement.
-            Move();
-
-        bool pickUp = Input.GetButtonDown(fire2Button);
-        bool throwIt = Input.GetButtonDown(fire1Button);
+        bool pickUp = Input.GetButtonDown(fire2Button);                         // Pick up Input
+        bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
 
         if (pickUp && (chicken != null))
         {
-            tower.AddChicken();
-
-            Destroy(chicken);
+            tower.AddChicken();                                                 // Adds chicken to Tower
+            Destroy(chicken);                                                   // Destroys picked up chicken from scene
         }
         else
-        {    // prevents player from picking up a chicken after colliding with it
-            chicken = null;
+        {   
+            chicken = null;                                                     // Prevents player from picking up chicken after colliding with it
         }
 
-        if (throwIt && (tower.chickenCount > 0))
+        if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
-            tower.RemoveChicken(transform.forward, true);
-            if(animControl != null)
-                animControl.SetInteger("AnimParam", 3);
+            tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
+            PlayAnimation(3);                                                   // Play's Throw Animation
         }
     }
 
     void Move()
     {
-        float moveHorizontal = Input.GetAxis(horizontal);
-        float moveVertical = Input.GetAxis(vertical);
+        float moveHorizontal = Input.GetAxis(horizontal);                       // Horizontal Input
+        float moveVertical = Input.GetAxis(vertical);                           // Vertical Input
+        bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
-        //Idle = 0
-        //Run = 1
-        //Jump = 2
-
-        if (moveHorizontal == 0 && moveVertical == 0)
-            if (animControl != null)
-                animControl.SetInteger("AnimParam", 0);
-        else if (animControl != null)
-                animControl.SetInteger("AnimParam", 1);
-
-        bool jump = Input.GetButtonDown(jumpButton);
-
+        if (moveHorizontal == 0 && moveVertical == 0)                           // If player not moving
+            PlayAnimation(0);                                                   // Play's Idle animation
+        else
+            PlayAnimation(1);                                                   // Play's Run animation
+        
 		if (controller.isGrounded)
         {
-            verticalVelocity = -gravity * Time.deltaTime;
+            verticalVelocity = -gravity * Time.deltaTime;                       // Always decrease verticalVelocity
 
             if (jump)
             {
-				if (tower.chickenCount > 5) {
-					verticalVelocity = jumpForce / 4f;
+				if (tower.chickenCount > 5) {                                   // Check if not too many chickens
+					verticalVelocity = jumpForce / 4f;                          // Decrease jump height
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
 					verticalVelocity = jumpForce;
-                    if (animControl != null)
-                        animControl.SetInteger ("AnimParam", 2);
+                    PlayAnimation(2);                                           // Play Jump animation
 				}
             }
         }
         else
         {
-            verticalVelocity -= gravity * Time.deltaTime;
+            verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
         }
 
-        Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);
+        Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
 
-        movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        movement = new Vector3(moveHorizontal, 0.0f, moveVertical);             // Get the movement Vector3
+        movement = Vector3.ClampMagnitude(movement, 1.0f);                      // Eliminate faster diagonal movement
 
         //Only Update the player's rotation if he's moving. This way we keep the rotation.
         if (moveHorizontal != 0 || moveVertical != 0)
         {
             Rotate();
         }
-        controller.Move(movement * movementSpeed * Time.deltaTime);
-        controller.Move(verticalMovement * Time.deltaTime);
+        controller.Move(movement * movementSpeed * Time.deltaTime);             // Move player on X and Z
+        controller.Move(verticalMovement * Time.deltaTime);                     // Move player on Y
     }
 
     void Rotate()
@@ -132,4 +117,14 @@ public class Player : MonoBehaviour {
             chicken = hit.gameObject;
         }
     }
+
+    public void PlayAnimation(int param)                                        // Changes current animation
+    {
+        if (animControl != null)
+            animControl.SetInteger("AnimParam", param);                         // Set AnimParam to param 
+    }
 }
+                                                                                // Idle = 0
+                                                                                // Run = 1
+                                                                                // Jump = 2
+                                                                                // Throw = 3 

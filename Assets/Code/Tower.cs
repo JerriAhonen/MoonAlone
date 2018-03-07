@@ -22,7 +22,10 @@ public class Tower : MonoBehaviour {
     // Adds a chicken to the tower.
     public void AddChicken() {
         //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
-        Vector3 pos = transform.position + ((transform.up * chickenCount) + new Vector3(0, 1.5f, 0));
+        Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 1.0f, 0));
+
+        // Possibility to put all chickens face the same way
+        // Quaternion forward = Quaternion.LookRotation(transform.forward);
 
         //Instantiate a clone of the chicken prefab, so we can Destroy() it later.
         GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;

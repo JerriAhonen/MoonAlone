@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-    
+public class TestGameManager : MonoBehaviour
+{
+
     //TODO: Make this work
     public bool[] chosenCharacters = new bool[6];                               // List of taken players during char selection
 
     public GameObject[] players = new GameObject[4];                            // List of all players
     public CharacterSelection[] cs = new CharacterSelection[4];                 // List of all character selectors
     public GameObject[] spawnPoints = new GameObject[4];                        // List of player spawn points
-    public bool[] scenes = new bool[5];                                         // <- Not yet in use
+    public bool[] scenes = new bool[5];
 
     public Camera camera;                                                       // The Main Camera
     public Transform cameraPosMainMenu;                                         // Pos of camera during menu
@@ -31,8 +32,8 @@ public class GameManager : MonoBehaviour {
     public int timeLeft;                                                        // Time displayed on timer
     public int roundNum;                                                        // Number of current round
 
-    public int winningScore = -1;                                                    // Highest score after round
-    
+    public int winningScore;                                                    // Highest score after round
+
     public bool gameStarted;                                                    // Is the round started
     public bool gameFinished;                                                   // Is the round finished
 
@@ -47,11 +48,83 @@ public class GameManager : MonoBehaviour {
 
         timer = setTimer;
 
-        scenes[0] = true;                                                       // Set the scene to Main Menu <- Not yet in use
+        scenes[0] = true;                                                       // Set the scene to Main Menu
     }
 
     private void Update()
     {
+        /*
+        if (scenes[0])
+        {
+             MAIN MENU
+
+             DisablePlayerControls();
+             camera.GetComponent<CameraController>().MoveCamera( cameraPosMAINMENU );
+
+             if ( press play )
+             ChangeScene(1);
+
+             If ( press quit )
+             Quit();
+        }
+
+        if (scenes[1])
+        {
+             CHARACTER SELECTION
+
+             camera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
+             Add animators (?)
+
+             if ( all playing players ready )
+             ChangeScene[2];
+
+             if ( press back )
+             ChangeScene[0];
+        }
+
+        if (scenes[2])
+        {
+             ROUND
+
+             camera.GetComponent<CameraController>().MoveCamera( cameraPosGameplay );
+
+             CountDown(3)     <- Count down before match starts. 3 seconds.
+             add animators (?)
+
+             Game logic until timer runs out
+             DisablePlayerControls();
+             ChangeScene[3];
+        }
+
+        if (scenes[3])
+        {
+             ROUND SCORE
+
+             Display round score (who won? who 2nd 3rd and 4th)
+             timer like 5 seconds
+             if ( rounds = loppu)
+             ChangeScene[4];
+             else ChangeScene[2];
+
+        }
+
+        if (scenes[4])
+        {
+             GAME OVER
+
+             camera.GetComponent<CameraController>().MoveCamera( cameraPosGAMEOVER );
+             Display who won
+
+             if ( press main menu )
+             ChangeScene[0]
+             if ( press play again )
+             ChangeScene[2]
+        }
+        */
+
+
+
+
         // Logic for when CHARACTER SELECTION RUNNING
         if (!gameStarted)
         {
@@ -66,7 +139,7 @@ public class GameManager : MonoBehaviour {
 
                 // Deactivate all players that are not needed
                 // TODO: Clean this up.
-                if (readyCount < 4)
+                if (readyCount < 4)                                                 // Add animators to all needed models
                 {
                     switch (noPlayerCount)
                     {
@@ -95,24 +168,23 @@ public class GameManager : MonoBehaviour {
         // Logic for when GAME RUNNING
         else
         {
-            if(timer >= 0.0f && !gameFinished)
+            if (timer >= 0.0f && !gameFinished)
             {
                 timer -= Time.deltaTime;
                 timeLeft = System.Convert.ToInt32(timer % 60);                      // Convert float to int to get seconds
-                if(timeLeft < 5)
-                    timerText.text = timeLeft.ToString();
+                timerText.text = timeLeft.ToString();
             }
-            
+
             // Winning condition = the player with the most chickens when timeLeft = 0.
             if (timeLeft == 0)
             {
                 int playerNum = 0;
                 int playerScore = 0;
 
-                int i = 0;                                                          
+                int i = 0;
                 foreach (var player in players)                                     // Go through all players
                 {
-                    if(player.activeSelf == true)                                   // Check if player active
+                    if (player.activeSelf == true)                                   // Check if player active
                     {
                         i++;                                                        // Start counting from P1
                         playerScore = player.GetComponentInChildren<Tower>().chickenCount;
@@ -125,7 +197,7 @@ public class GameManager : MonoBehaviour {
                 }
 
                 gameFinished = true;                                                // Set the round to finished
-                
+
                 DisablePlayerControls();                                            // Stop the players from moving
                 timer = setTimer;                                                   // Reset the timer for next round
                 timeLeft = System.Convert.ToInt32(timer % 60);                      // Reset TimeLeft
@@ -151,12 +223,12 @@ public class GameManager : MonoBehaviour {
     {
         foreach (var player in players)
         {
-            player.GetComponent<Player>().enabled = false;                          
+            player.GetComponent<Player>().enabled = false;
         }
     }
 
     // Adds an Animator, AnimationController and an Avatar to the player
-    public void AddAnimator(int index)                                              
+    public void AddAnimator(int index)
     {
         // Finds the selected model through cs (CharacterSelector) and add's the Animator component to it.
         Animator animator = cs[index].transform.GetChild(cs[index].selectedCharacter).gameObject.AddComponent<Animator>() as Animator;
@@ -164,17 +236,32 @@ public class GameManager : MonoBehaviour {
         animator.avatar = avatar;
     }
 
-    public void ChangeScene(int from, int to)                                       // Changes the scene boolean <- Not yet in use
+    public void ChangeScene(int from, int to)                                       // Changes the scene boolean
     {
         // bool mainMenu;          // 0
         // bool characterSelect;   // 1
         // bool round;             // 2
         // bool roundScore;        // 3
         // bool gameOver;          // 4
-        
+
         scenes[from] = false;
         scenes[to] = true;
     }
 
 
 }
+
+
+//public void AddAnimator(int index)                                              // Adds an Animator and AnimationController to the player
+//{
+//    GameObject go = players[index].gameObject;                                  // Reference to player
+//    go = go.transform.GetChild(0).gameObject;                                   // Reference to characterSelector
+//    for (int i = 0; i < go.transform.childCount; i++)                           // Go through all childs
+//    {
+//        if (go.transform.GetChild(i).gameObject.activeSelf)                     // Check if child is active
+//        {
+//            Animator animator = go.transform.GetChild(i).gameObject.AddComponent<Animator>() as Animator;
+//            animator.runtimeAnimatorController = runtimeAnimatorController;
+//        }
+//    }
+//}
