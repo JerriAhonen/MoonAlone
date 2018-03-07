@@ -32,6 +32,8 @@ public class Chicken : MonoBehaviour
     public bool isFalling = false;
     public string _pickUpLayer = "PickUp";
 
+    public GameObject mainCamera;
+
     public Chicken(int numberInTower, float yPos)
     {
         this.numberInTower = numberInTower;
@@ -44,6 +46,7 @@ public class Chicken : MonoBehaviour
     {
         newPos = transform.position;
 		animControl = gameObject.GetComponent<Animator>();
+        mainCamera = GameObject.Find("Main Camera");
     }
 
     private void Update()
@@ -109,6 +112,9 @@ public class Chicken : MonoBehaviour
     // Set the parameters for flight (throw / fall).
     public void SetFlight(bool toBeThrown) {
         if (toBeThrown) {
+            mainCamera = GameObject.Find("Main Camera");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
+
             // TODO: Make throw faster
             isThrown = true;
             throwSpeed = 8f;
@@ -127,6 +133,9 @@ public class Chicken : MonoBehaviour
             if (collision.gameObject.GetComponent<Chicken>() != null) {
                 if (collision.gameObject.GetComponent<Chicken>().isThrown) {
                     if (GetComponentInParent<Tower>() != null) {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
+                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit2", transform.position);
+
                         GetComponentInParent<Tower>().Scatter();
                     }
                 }

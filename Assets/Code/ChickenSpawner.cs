@@ -14,10 +14,13 @@ public class ChickenSpawner : MonoBehaviour {
     
     Vector3 newDestination;
 
+    public GameObject mainCamera;
+
     // Use this for initialization
     void Start () {
         newDestination = spawnerRoute[0].transform.position;
         timer = spawnTimer;
+        mainCamera = GameObject.Find("Main Camera");
     }
 	
 	// Update is called once per frame
@@ -50,5 +53,7 @@ public class ChickenSpawner : MonoBehaviour {
     void SpawnChicken()
     {
         GameObject cloneChicken = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Spawn", mainCamera.transform.position);
     }
 }

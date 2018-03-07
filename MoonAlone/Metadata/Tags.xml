@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="MasterTagFolder" id="{05166b17-8f5d-45f9-b27f-b683a3b59c79}">
+        <property name="name">
+            <value>Master</value>
+        </property>
+        <relationship name="items">
+            <destination>{4c554da7-ee1b-43c8-b04d-53f4c42f2eea}</destination>
+            <destination>{9aa14cda-d307-4b5f-9a3c-09ce5ad8331b}</destination>
+            <destination>{2b8e751b-dc98-4d56-967c-464f15df9ab5}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{4c554da7-ee1b-43c8-b04d-53f4c42f2eea}">
+        <property name="name">
+            <value>chicken</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{9aa14cda-d307-4b5f-9a3c-09ce5ad8331b}">
+        <property name="name">
+            <value>player</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{2b8e751b-dc98-4d56-967c-464f15df9ab5}">
+        <property name="name">
+            <value>other</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+</objects>

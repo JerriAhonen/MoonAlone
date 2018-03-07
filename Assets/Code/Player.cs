@@ -27,12 +27,15 @@ public class Player : MonoBehaviour {
     public string fire2Button = "Fire2_P1";
     public string jumpButton = "Jump_P1";
 
+    public GameObject mainCamera;
+    
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         renderer = GetComponent<MeshRenderer>();
         tower = GetComponent<Tower>();
 		animControl = gameObject.GetComponentInChildren<Animator>();
+        mainCamera = GameObject.Find("Main Camera");
     }
 
     void Update()
@@ -44,6 +47,10 @@ public class Player : MonoBehaviour {
 
         if (pickUp && (chicken != null))
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp2", mainCamera.transform.position);
+
             tower.AddChicken();                                                 // Adds chicken to Tower
             Destroy(chicken);                                                   // Destroys picked up chicken from scene
         }
@@ -54,6 +61,9 @@ public class Player : MonoBehaviour {
 
         if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw1", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw2", mainCamera.transform.position);
+
             tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
             PlayAnimation(3);                                                   // Play's Throw Animation
         }
@@ -80,7 +90,9 @@ public class Player : MonoBehaviour {
 					verticalVelocity = jumpForce / 4f;                          // Decrease jump height
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
-					verticalVelocity = jumpForce;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
+
+                    verticalVelocity = jumpForce;
                     PlayAnimation(2);                                           // Play Jump animation
 				}
             }
