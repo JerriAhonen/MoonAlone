@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour {
     public Transform cameraPosCharacterSelection;                               // Pos of camera during char selection
     public Transform cameraPosGameplay;                                         // Pos of camera during round
 
+    public RuntimeAnimatorController runtimeAnimatorController;                 // Player Animation controller
+    public Avatar avatar;                                                       // Player Avatar
+
     public int readyCount;                                                      // Num of players ready
     public int noPlayerCount = 4;                                               // Num of players not playing
 
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour {
                 //Debug.Log("Start Game!");
                 StartGame(readyCount);
                 gameStarted = true;
+                gameFinished = false;
 
                 timerText.text = "";
                 winnerText.text = "";
@@ -65,15 +69,21 @@ public class GameManager : MonoBehaviour {
                     {
                         case 1:
                             players[3].SetActive(false);
+                            AddAnimator(2);
+                            AddAnimator(1);
+                            AddAnimator(0);
                             break;
                         case 2:
                             players[3].SetActive(false);
                             players[2].SetActive(false);
+                            AddAnimator(1);
+                            AddAnimator(0);
                             break;
                         case 3:
                             players[3].SetActive(false);
                             players[2].SetActive(false);
                             players[1].SetActive(false);
+                            AddAnimator(0);
                             break;
                     }
                 }
@@ -82,7 +92,7 @@ public class GameManager : MonoBehaviour {
         // Logic for when GAME RUNNING
         else
         {
-            if(timer >= 0.0f)
+            if(timer >= 0.0f && !gameFinished)
             {
                 timer -= Time.deltaTime;
                 timeLeft = System.Convert.ToInt32(timer % 60);                      // Convert float to int to get seconds
@@ -96,13 +106,13 @@ public class GameManager : MonoBehaviour {
                 int playerScore = 0;
 
                 int i = 0;                                                          
-                foreach (var player in players)
+                foreach (var player in players)                                     // Go through all players
                 {
                     if(player.activeSelf == true)                                   // Check if player active
                     {
                         i++;                                                        // Start counting from P1
                         playerScore = player.GetComponentInChildren<Tower>().chickenCount;
-                        if (playerScore > winningScore)
+                        if (playerScore > winningScore)                             // Find highest chicken count
                         {
                             winningScore = playerScore;
                             playerNum = i;
@@ -110,6 +120,8 @@ public class GameManager : MonoBehaviour {
                     }
                 }
 
+                gameFinished = true;                                                // Set the round to finished
+                
                 DisablePlayerControls();                                            // Stop the players from moving
                 timer = setTimer;                                                   // Reset the timer for next round
 
@@ -138,4 +150,27 @@ public class GameManager : MonoBehaviour {
             player.GetComponent<Player>().enabled = false;                          // Disable player GameObject
         }
     }
+
+    public void AddAnimator(int index)                                              // Adds an Animator and AnimationController to the player
+    {
+
+        Animator animator = cs[index].transform.GetChild(cs[index].selectedCharacter).gameObject.AddComponent<Animator>() as Animator;
+        animator.runtimeAnimatorController = runtimeAnimatorController;
+        animator.avatar = avatar;
+    }
 }
+
+
+//public void AddAnimator(int index)                                              // Adds an Animator and AnimationController to the player
+//{
+//    GameObject go = players[index].gameObject;                                  // Reference to player
+//    go = go.transform.GetChild(0).gameObject;                                   // Reference to characterSelector
+//    for (int i = 0; i < go.transform.childCount; i++)                           // Go through all childs
+//    {
+//        if (go.transform.GetChild(i).gameObject.activeSelf)                     // Check if child is active
+//        {
+//            Animator animator = go.transform.GetChild(i).gameObject.AddComponent<Animator>() as Animator;
+//            animator.runtimeAnimatorController = runtimeAnimatorController;
+//        }
+//    }
+//}

@@ -74,8 +74,7 @@ public class CharacterSelection : MonoBehaviour {
 
         if (gameManager.gameStarted && characterConfirmed)
         {
-            index = characterList.Length - 1;
-            characterList[index].SetActive(false);
+            DisableReadyCube();
         }
         else if (gameManager.gameStarted && !characterConfirmed)
         {
@@ -135,5 +134,11 @@ public class CharacterSelection : MonoBehaviour {
     public GameObject getSelectedCharacter()
     {
         return characterList[selectedCharacter];
+    }
+
+    public void DisableReadyCube()
+    {
+        index = characterList.Length - 1;
+        characterList[index].SetActive(false);
     }
 }

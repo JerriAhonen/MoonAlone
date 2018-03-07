@@ -63,7 +63,8 @@ public class Player : MonoBehaviour {
         if (throwIt && (tower.chickenCount > 0))
         {
             tower.RemoveChicken(transform.forward, true);
-                //animControl.SetInteger("AnimParam", 3);
+            if(animControl != null)
+                animControl.SetInteger("AnimParam", 3);
         }
     }
 
@@ -72,15 +73,16 @@ public class Player : MonoBehaviour {
         float moveHorizontal = Input.GetAxis(horizontal);
         float moveVertical = Input.GetAxis(vertical);
 
-		//Idle = 0
-		//Run = 1
-		//Jump = 2
+        //Idle = 0
+        //Run = 1
+        //Jump = 2
 
-		//if (moveHorizontal == 0 && moveVertical == 0)
-  //          animControl.SetInteger ("AnimParam", 0);
-		//else
-  //          animControl.SetInteger ("AnimParam", 1);
-        
+        if (moveHorizontal == 0 && moveVertical == 0)
+            if (animControl != null)
+                animControl.SetInteger("AnimParam", 0);
+        else if (animControl != null)
+                animControl.SetInteger("AnimParam", 1);
+
         bool jump = Input.GetButtonDown(jumpButton);
 
 		if (controller.isGrounded)
@@ -94,7 +96,8 @@ public class Player : MonoBehaviour {
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
 					verticalVelocity = jumpForce;
-                        //animControl.SetInteger ("AnimParam", 2);
+                    if (animControl != null)
+                        animControl.SetInteger ("AnimParam", 2);
 				}
             }
         }
