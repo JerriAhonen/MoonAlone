@@ -1345,9 +1345,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.8016682
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0.00016307831, z: 0}
 --- !u!143 &442676353
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1358,7 +1358,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -1408,6 +1408,7 @@ MonoBehaviour:
   fire1Button: Fire1_P1
   fire2Button: Fire2_P1
   jumpButton: Jump_P1
+  mainCamera: {fileID: 0}
 --- !u!1 &471407087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,7 +1765,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 550880758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 706716114}
@@ -1878,7 +1879,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 603073116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1762852745}
@@ -2183,7 +2184,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 707749671}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2032449148}
@@ -2340,7 +2341,7 @@ MonoBehaviour:
   winningScore: 0
   gameStarted: 0
   gameFinished: 0
-  NumOfPlayersNeededToStartGame_DEBUG: 2
+  NumOfPlayersNeededToStartGame_DEBUG: 1
 --- !u!4 &757404727
 Transform:
   m_ObjectHideFlags: 0
@@ -2599,7 +2600,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894248068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1910705242}
@@ -3388,7 +3389,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1210143186}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.24, y: 0, z: 0}
+  m_LocalPosition: {x: 1.24, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 707749673}
@@ -3439,9 +3440,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.8016682
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0.00016307831, z: 0}
 --- !u!143 &1210143190
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3452,7 +3453,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -3502,6 +3503,7 @@ MonoBehaviour:
   fire1Button: Fire1_P3
   fire2Button: Fire2_P3
   jumpButton: Jump_P3
+  mainCamera: {fileID: 0}
 --- !u!1 &1227345215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3925,7 +3927,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1323039832}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.46, y: 0, z: 0}
+  m_LocalPosition: {x: 3.46, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 550880760}
@@ -3976,9 +3978,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.8016682
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0.00016307831, z: 0}
 --- !u!143 &1323039836
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3989,7 +3991,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -4039,6 +4041,7 @@ MonoBehaviour:
   fire1Button: Fire1_P4
   fire2Button: Fire2_P4
   jumpButton: Jump_P4
+  mainCamera: {fileID: 0}
 --- !u!1 &1338723029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5327,9 +5330,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.8016682
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0.00016307831, z: 0}
 --- !u!143 &1685252552
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5340,7 +5343,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -5390,6 +5393,7 @@ MonoBehaviour:
   fire1Button: Fire1_P2
   fire2Button: Fire2_P2
   jumpButton: Jump_P2
+  mainCamera: {fileID: 0}
 --- !u!4 &1692724838 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4486681652251942, guid: 34a8aa074b31893449f1c0dfe6c8d097,
@@ -6532,6 +6536,7 @@ MonoBehaviour:
   spawnTimer: 4
   speed: 10
   i: 0
+  mainCamera: {fileID: 0}
 --- !u!4 &2026261651
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114465218518228730}
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   EditorEvents:
   - {fileID: 114658815383821970}
   - {fileID: 114234653727953412}
@@ -26,9 +26,9 @@ MonoBehaviour:
   - {fileID: 114316559137203264}
   - {fileID: 114255118363951656}
   - {fileID: 114486440144163714}
-  MasterBankRef: {fileID: 114154493496906832}
+  MasterBankRef: {fileID: 114264288899621272}
   StringsBankRef: {fileID: 114465218518228730}
-  stringsBankWriteTime: 636560623603308244
+  stringsBankWriteTime: 636560950534068185
   cacheVersion: 2
 --- !u!114 &114018696959544370
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Jump
   guid: 6dd0315d139a514f8fbbcf3b721b6e96
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -84,7 +84,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Throw1
   guid: 1b507ceab8741f448d9761c4aa250d9f
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -106,7 +106,7 @@ MonoBehaviour:
   Path: event:/Other Sounds/Spawn
   guid: 2a8fe1cca3b9fd4dae70c63b9c92742c
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   Path: event:/Other Sounds/PickUp1
   guid: 122a851a375ebb4d8a330de767d26f2f
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   Path: event:/Chicken Sounds/ChickenCluckSeries
   guid: f2d08bdbbfc7c1408f9eecd2694fbfb1
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -158,6 +158,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1380
+--- !u!114 &114264288899621272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\c5jeraho\Documents\Spring2018\MoonAlone\Build\Desktop\Master Bank.bank
+  lastModified: 636560950534068185
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 201888
+  Exists: 1
 --- !u!114 &114316559137203264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +190,7 @@ MonoBehaviour:
   Path: event:/Chicken Sounds/ChickenPickUpSuprise
   guid: e3f66ad4fb252b4a82c850ea2ab99b3e
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -194,7 +212,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Hit1
   guid: 916ac37211869a4b89b09f451713c251
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -214,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: MoonAlone\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636560623603308244
+  lastModified: 636560950534068185
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -234,7 +252,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Hit2
   guid: 51e4a5444a4420449e503d2d18dbc92b
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -256,7 +274,7 @@ MonoBehaviour:
   Path: event:/Chicken Sounds/ChickenThrowScream
   guid: f8f131634ea0e04abcc5879a7f819632
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -278,7 +296,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Throw2
   guid: a7aaefd3c7ee734792bbe6d107da4bed
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -300,7 +318,7 @@ MonoBehaviour:
   Path: event:/Other Sounds/PickUp2
   guid: 08de53f62b74cf49876e3b960ad131ec
   Banks:
-  - {fileID: 114154493496906832}
+  - {fileID: 114264288899621272}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

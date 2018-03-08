@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1a5b7fe5bb47fe145a95e34bcc56604a
-timeCreated: 1519660688
+guid: 1be6cef243fd2404b88a338b406d8a73
+timeCreated: 1520502798
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -9,21 +9,20 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
+    4300000: Sphere
     7400000: Default Take
     9500000: //RootNode
-    11100000: //RootNode
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 4c841b044de6d55458e426f6f5d07597, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_001
     second: {fileID: 2100000, guid: 55b9b6fdc0f5c584daa5667114525ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: 63f599cbf1411564c8dd8a37ccf71cda, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,15 +34,14 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Hips' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5

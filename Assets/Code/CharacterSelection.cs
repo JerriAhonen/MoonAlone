@@ -120,15 +120,17 @@ public class CharacterSelection : MonoBehaviour {
 
     public void Confirm()
     {
-        selectedCharacter = index;
+		if (index != 0) {								// Can't choose "no player" as character
+			selectedCharacter = index;
 
-        index = characterList.Length - 1;
-        characterList[index].SetActive(true);
+			index = characterList.Length - 1;
+			characterList[index].SetActive(true);
 
-        characterConfirmed = true;
-        
-        gameManager.readyCount++;
-        gameManager.noPlayerCount--;
+			characterConfirmed = true;
+
+			gameManager.readyCount++;
+			gameManager.noPlayerCount--;
+		}
     }
 
     public GameObject getSelectedCharacter()

@@ -113,7 +113,7 @@ public class Chicken : MonoBehaviour
     public void SetFlight(bool toBeThrown) {
         if (toBeThrown) {
             mainCamera = GameObject.Find("Main Camera");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
 
             // TODO: Make throw faster
             isThrown = true;
@@ -134,7 +134,7 @@ public class Chicken : MonoBehaviour
                 if (collision.gameObject.GetComponent<Chicken>().isThrown) {
                     if (GetComponentInParent<Tower>() != null) {
                         FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
-                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit2", transform.position);
+                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit2", mainCamera.transform.position);
 
                         GetComponentInParent<Tower>().Scatter();
                     }
