@@ -1,18 +1,34 @@
 fileFormatVersion: 2
-guid: 1a5b7fe5bb47fe145a95e34bcc56604a
-timeCreated: 1519660688
+guid: f8ed93cb4ab175042abb3a5ea75ad269
+timeCreated: 1520502842
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube
+    100000: Circle
+    100002: Cube
+    100004: Cylinder
+    100006: //RootNode
+    100008: Sphere
+    400000: Circle
+    400002: Cube
+    400004: Cylinder
+    400006: //RootNode
+    400008: Sphere
+    2300000: Circle
+    2300002: Cube
+    2300004: Cylinder
+    2300006: Sphere
+    3300000: Circle
+    3300002: Cube
+    3300004: Cylinder
+    3300006: Sphere
+    4300000: Cylinder
+    4300002: Circle
+    4300004: Sphere
+    4300006: Cube
     7400000: Default Take
     9500000: //RootNode
-    11100000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -24,6 +40,36 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material_001
     second: {fileID: 2100000, guid: 55b9b6fdc0f5c584daa5667114525ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: 63f599cbf1411564c8dd8a37ccf71cda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_003
+    second: {fileID: 2100000, guid: 5b1837275d06b044a84bd26833f7ea60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_004
+    second: {fileID: 2100000, guid: e83fde6ca67d3094793fa29d24be8203, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_005
+    second: {fileID: 2100000, guid: 562945a4d18b6334696c6b8df27bac2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_006
+    second: {fileID: 2100000, guid: 455bbc30acd47a34b8cc5db8c10dde1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_007
+    second: {fileID: 2100000, guid: 34f26792498effd439cb5670663fa84c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,15 +81,14 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Hips' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5

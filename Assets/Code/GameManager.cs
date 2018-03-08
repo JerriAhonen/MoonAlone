@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour {
                 {
                     switch (noPlayerCount)
                     {
+						
                         case 1:
                             players[3].SetActive(false);
                             AddAnimator(2);
@@ -98,8 +99,8 @@ public class GameManager : MonoBehaviour {
             if(timer >= 0.0f && !gameFinished)
             {
                 timer -= Time.deltaTime;
-                timeLeft = System.Convert.ToInt32(timer % 60);                      // Convert float to int to get seconds
-                if(timeLeft < 5)
+                timeLeft = System.Convert.ToInt32(timer);                      // Convert float to int to get seconds
+        		//if(timeLeft < 5)													// Set when the timer shows
                     timerText.text = timeLeft.ToString();
             }
             

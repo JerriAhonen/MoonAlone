@@ -45,10 +45,12 @@ public class Player : MonoBehaviour {
         bool pickUp = Input.GetButtonDown(fire2Button);                         // Pick up Input
         bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
 
-        if (pickUp && (chicken != null))
+        if (/*pickUp && */(chicken != null))
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
+			// this is the one
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+            
+			//FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp2", mainCamera.transform.position);
 
             tower.AddChicken();                                                 // Adds chicken to Tower
@@ -61,11 +63,13 @@ public class Player : MonoBehaviour {
 
         if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw1", mainCamera.transform.position);
+			//totally new
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw1", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw2", mainCamera.transform.position);
 
             tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
             PlayAnimation(3);                                                   // Play's Throw Animation
+			Debug.Log("Set animation Throw");
         }
     }
 
@@ -75,10 +79,16 @@ public class Player : MonoBehaviour {
         float moveVertical = Input.GetAxis(vertical);                           // Vertical Input
         bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
-        if (moveHorizontal == 0 && moveVertical == 0)                           // If player not moving
-            PlayAnimation(0);                                                   // Play's Idle animation
-        else
-            PlayAnimation(1);                                                   // Play's Run animation
+		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
+            PlayAnimation (0);                                                   // Play's Idle animation
+			Debug.Log("Set animation Idle");
+		}
+		else 
+		{
+			PlayAnimation(1);                                                   // Play's Run animation
+			//Debug.Log("Set animation Run");
+		}
+        
         
 		if (controller.isGrounded)
         {
@@ -90,10 +100,11 @@ public class Player : MonoBehaviour {
 					verticalVelocity = jumpForce / 4f;                          // Decrease jump height
 					Debug.Log ("Cannot Jump, too many chicken!");
 				} else {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
 
                     verticalVelocity = jumpForce;
                     PlayAnimation(2);                                           // Play Jump animation
+					Debug.Log("Set animation Jump");
 				}
             }
         }
