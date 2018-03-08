@@ -8,6 +8,10 @@
             <destination>{4c554da7-ee1b-43c8-b04d-53f4c42f2eea}</destination>
             <destination>{9aa14cda-d307-4b5f-9a3c-09ce5ad8331b}</destination>
             <destination>{2b8e751b-dc98-4d56-967c-464f15df9ab5}</destination>
+            <destination>{f9669921-1fe6-4d44-9a66-bcdd7a83a5b9}</destination>
+            <destination>{fa041343-826b-4692-b9d2-5ca7acf7eeba}</destination>
+            <destination>{b72ff46f-f112-4156-96cf-3330a6761266}</destination>
+            <destination>{554e7487-ff5f-4675-829b-62dcc69e448c}</destination>
         </relationship>
     </object>
     <object class="Tag" id="{4c554da7-ee1b-43c8-b04d-53f4c42f2eea}">
@@ -29,6 +33,38 @@
     <object class="Tag" id="{2b8e751b-dc98-4d56-967c-464f15df9ab5}">
         <property name="name">
             <value>other</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{f9669921-1fe6-4d44-9a66-bcdd7a83a5b9}">
+        <property name="name">
+            <value>pickup</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{fa041343-826b-4692-b9d2-5ca7acf7eeba}">
+        <property name="name">
+            <value>spawn</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{b72ff46f-f112-4156-96cf-3330a6761266}">
+        <property name="name">
+            <value>offmap</value>
+        </property>
+        <relationship name="folder">
+            <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>
+        </relationship>
+    </object>
+    <object class="Tag" id="{554e7487-ff5f-4675-829b-62dcc69e448c}">
+        <property name="name">
+            <value>jump</value>
         </property>
         <relationship name="folder">
             <destination>{05166b17-8f5d-45f9-b27f-b683a3b59c79}</destination>

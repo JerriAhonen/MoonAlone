@@ -4,7 +4,6 @@
         <property name="name">
             <value>ChickenCluckSeries</value>
         </property>
-        <property name="note"/>
         <property name="outputFormat">
             <value>2</value>
         </property>
@@ -107,9 +106,6 @@
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{96108d28-3f8c-48ea-9224-686ae2c93284}">
-        <property name="volume">
-            <value>-2</value>
-        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>

@@ -4,6 +4,9 @@
         <relationship name="projectSettings">
             <destination>{e39260b7-25c4-45eb-b96f-db4972c432fe}</destination>
         </relationship>
+        <relationship name="changelist">
+            <destination>{ab9988ac-d6a6-496e-87c2-d711accb2954}</destination>
+        </relationship>
         <relationship name="profilerSessionFolder">
             <destination>{5fb5b2dd-78de-4011-93dd-8ee2e32abe55}</destination>
         </relationship>
@@ -13,4 +16,5 @@
             <destination>{c4b2025f-b62a-41e8-b315-c2ea10712db9}</destination>
         </relationship>
     </object>
+    <object class="WorkspaceChangelist" id="{ab9988ac-d6a6-496e-87c2-d711accb2954}"/>
 </objects>
