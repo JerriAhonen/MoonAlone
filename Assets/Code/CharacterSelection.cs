@@ -15,7 +15,8 @@ public class CharacterSelection : MonoBehaviour {
     public int selectedCharacter;
 
     public GameManager gameManager;
-    
+    public Animator animator;
+
 
     private void Start()
     {
@@ -75,6 +76,8 @@ public class CharacterSelection : MonoBehaviour {
         if (gameManager.gameStarted && characterConfirmed)
         {
             DisableReadyCube();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
         }
         else if (gameManager.gameStarted && !characterConfirmed)
         {
@@ -89,44 +92,46 @@ public class CharacterSelection : MonoBehaviour {
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
-        gameManager.chosenCharacters[index] = false;
+        //gameManager.chosenCharacters[index] = false;
 
         index--;
         if (index < 0)
             index = characterList.Length - 2;
 
         //Set the index to be taken, so other players can't choose it.
-        gameManager.chosenCharacters[index] = true;
+        //gameManager.chosenCharacters[index] = true;
 
         characterList[index].SetActive(true);
     }
-
+    
     public void ToggleDown()
     {
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
-        gameManager.chosenCharacters[index] = false;
-        
+        //gameManager.chosenCharacters[index] = false;
+
         index++;
         if (index == characterList.Length - 1)
             index = 0;
 
         //Set the index to be taken, so other players can't choose it.
-        gameManager.chosenCharacters[index] = true;
+        //gameManager.chosenCharacters[index] = true;
 
         characterList[index].SetActive(true);
     }
-
+    
     public void Confirm()
     {
-		if (index != 0) {								// Can't choose "no player" as character
+		if (index != 0 && !gameManager.chosenCharacters[index]) {								// Can't choose "no player" as character
 			selectedCharacter = index;
+            gameManager.chosenCharacters[index] = true;
 
-			index = characterList.Length - 1;
+            index = characterList.Length - 1;
 			characterList[index].SetActive(true);
 
 			characterConfirmed = true;
+
 
 			gameManager.readyCount++;
 			gameManager.noPlayerCount--;

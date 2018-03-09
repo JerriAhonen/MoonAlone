@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     public float gravity = 16.0f;
     public float jumpForce = 8.0f;
     public float verticalVelocity;
+    public float downwardsFallMultiplier;
+    public int currentAnimationParam = 0;
 
     private Vector3 movement;
 
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour {
     public CharacterController controller;
 	public Animator animControl;
     public MeshRenderer renderer;
+    public CharacterSelection cs;
 
     public string _pickUpLayer = "PickUp";
 
@@ -40,36 +43,46 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        Move();                                                                 // Player movement.
+        if (animControl == null)
+        {
+            animControl = cs.animator;
+            Debug.Log("animControl = " + animControl);
+        }
+        
+        Move();                                                                 // Player movement
+        Throw();                                                                // Player throw
+        
+    }
 
+    void Throw()
+    {
         bool pickUp = Input.GetButtonDown(fire2Button);                         // Pick up Input
         bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
 
         if (/*pickUp && */(chicken != null))
         {
-			// this is the one
+            // this is the one
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
-            
-			//FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
+
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp2", mainCamera.transform.position);
 
             tower.AddChicken();                                                 // Adds chicken to Tower
             Destroy(chicken);                                                   // Destroys picked up chicken from scene
         }
         else
-        {   
+        {
             chicken = null;                                                     // Prevents player from picking up chicken after colliding with it
         }
 
         if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
-			//totally new
+            //totally new
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw1", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw2", mainCamera.transform.position);
 
             tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
             PlayAnimation(3);                                                   // Play's Throw Animation
-			Debug.Log("Set animation Throw");
         }
     }
 
@@ -81,37 +94,13 @@ public class Player : MonoBehaviour {
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
             PlayAnimation (0);                                                   // Play's Idle animation
-			Debug.Log("Set animation Idle");
 		}
 		else 
 		{
 			PlayAnimation(1);                                                   // Play's Run animation
-			//Debug.Log("Set animation Run");
 		}
         
-        
-		if (controller.isGrounded)
-        {
-            verticalVelocity = -gravity * Time.deltaTime;                       // Always decrease verticalVelocity
-
-            if (jump)
-            {
-				if (tower.chickenCount > 5) {                                   // Check if not too many chickens
-					verticalVelocity = jumpForce / 4f;                          // Decrease jump height
-					Debug.Log ("Cannot Jump, too many chicken!");
-				} else {
-                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
-
-                    verticalVelocity = jumpForce;
-                    PlayAnimation(2);                                           // Play Jump animation
-					Debug.Log("Set animation Jump");
-				}
-            }
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
-        }
+        Jump(jump);                                                             // New Jump() Method
 
         Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
 
@@ -125,6 +114,35 @@ public class Player : MonoBehaviour {
         }
         controller.Move(movement * movementSpeed * Time.deltaTime);             // Move player on X and Z
         controller.Move(verticalMovement * Time.deltaTime);                     // Move player on Y
+    }
+
+    void Jump(bool jump)
+    {
+        if (jump && controller.isGrounded)
+        {
+            if (tower.chickenCount > 5)                                         // Check if not too many chickens
+            {
+                verticalVelocity = jumpForce / 4f;                              // Decrease jump height
+                Debug.Log("Cannot Jump, too many chicken!");
+            }
+            else
+            {
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
+
+                verticalVelocity = jumpForce;
+                PlayAnimation(2);                                               // Play Jump animation
+            }
+        }
+
+        if(verticalVelocity > -50)                                              // No need to go smaller than this
+        {
+            verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
+
+            if (verticalVelocity < 0)                                           // Fall faster than go up
+            {
+                verticalVelocity -= gravity * downwardsFallMultiplier * Time.deltaTime;
+            }
+        }
     }
 
     void Rotate()
@@ -143,8 +161,28 @@ public class Player : MonoBehaviour {
 
     public void PlayAnimation(int param)                                        // Changes current animation
     {
-        if (animControl != null)
-            animControl.SetInteger("AnimParam", param);                         // Set AnimParam to param 
+        if (animControl != null && param != currentAnimationParam)
+        {
+            animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param 
+            currentAnimationParam = param;
+
+            switch (param)
+            {
+                case 0:
+                    Debug.Log("Set animation Idle");
+                    break;
+                case 1:
+                    Debug.Log("Set animation Run");
+                    break;
+                case 2:
+                    Debug.Log("Set animation Jump");
+                    break;
+                case 3:
+                    Debug.Log("Set animation Throw");
+                    break;
+                
+            }
+        }
     }
 }
                                                                                 // Idle = 0

@@ -52,68 +52,27 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        // Logic for when CHARACTER SELECTION RUNNING
-        if (!gameStarted)
-        {
-            if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
-            {
-                StartGame(readyCount);
-                gameStarted = true;
-                gameFinished = false;
-
-                timerText.text = "";
-                winnerText.text = "";
-
-                // Deactivate all players that are not needed
-                // TODO: Clean this up.
-                if (readyCount < 4)
-                {
-                    switch (noPlayerCount)
-                    {
-						
-                        case 1:
-                            players[3].SetActive(false);
-                            AddAnimator(2);
-                            AddAnimator(1);
-                            AddAnimator(0);
-                            break;
-                        case 2:
-                            players[3].SetActive(false);
-                            players[2].SetActive(false);
-                            AddAnimator(1);
-                            AddAnimator(0);
-                            break;
-                        case 3:
-                            players[3].SetActive(false);
-                            players[2].SetActive(false);
-                            players[1].SetActive(false);
-                            AddAnimator(0);
-                            break;
-                    }
-                }
-            }
-        }
         // Logic for when GAME RUNNING
-        else
+        if (gameStarted)
         {
-            if(timer >= 0.0f && !gameFinished)
+            if (timer >= 0.0f && !gameFinished)
             {
                 timer -= Time.deltaTime;
                 timeLeft = System.Convert.ToInt32(timer);                      // Convert float to int to get seconds
-        		//if(timeLeft < 5)													// Set when the timer shows
-                    timerText.text = timeLeft.ToString();
+                                                                               //if(timeLeft < 5)													// Set when the timer shows
+                timerText.text = timeLeft.ToString();
             }
-            
+
             // Winning condition = the player with the most chickens when timeLeft = 0.
             if (timeLeft == 0)
             {
                 int playerNum = 0;
                 int playerScore = 0;
 
-                int i = 0;                                                          
+                int i = 0;
                 foreach (var player in players)                                     // Go through all players
                 {
-                    if(player.activeSelf == true)                                   // Check if player active
+                    if (player.activeSelf == true)                                   // Check if player active
                     {
                         i++;                                                        // Start counting from P1
                         playerScore = player.GetComponentInChildren<Tower>().chickenCount;
@@ -126,13 +85,58 @@ public class GameManager : MonoBehaviour {
                 }
 
                 gameFinished = true;                                                // Set the round to finished
-                
+
                 DisablePlayerControls();                                            // Stop the players from moving
                 timer = setTimer;                                                   // Reset the timer for next round
                 timeLeft = System.Convert.ToInt32(timer % 60);                      // Reset TimeLeft
 
                 timerText.text = "Time's up!";
                 winnerText.text = "Player " + playerNum + " wins with " + winningScore + " chickens!";
+            }
+        }
+        
+        // Logic for when CHARACTER SELECTION RUNNING
+        else
+        {
+            if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
+            {
+                StartGame(readyCount);
+                gameStarted = true;
+                gameFinished = false;
+
+                timerText.text = "";
+                winnerText.text = "";
+
+                // Deactivate all players that are not needed
+                // TODO: Clean this up.
+
+                switch (noPlayerCount)
+                {
+                    case 0:
+                        AddAnimator(3);
+                        AddAnimator(2);
+                        AddAnimator(1);
+                        AddAnimator(0);
+                        break;
+                    case 1:
+                        players[3].SetActive(false);
+                        AddAnimator(2);
+                        AddAnimator(1);
+                        AddAnimator(0);
+                        break;
+                    case 2:
+                        players[3].SetActive(false);
+                        players[2].SetActive(false);
+                        AddAnimator(1);
+                        AddAnimator(0);
+                        break;
+                    case 3:
+                        players[3].SetActive(false);
+                        players[2].SetActive(false);
+                        players[1].SetActive(false);
+                        AddAnimator(0);
+                        break;
+                }
             }
         }
     }
@@ -176,6 +180,4 @@ public class GameManager : MonoBehaviour {
         scenes[from] = false;
         scenes[to] = true;
     }
-
-
 }

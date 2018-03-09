@@ -8,6 +8,7 @@ public class Chicken : MonoBehaviour
     public float numberInTower;
     public float yPos;
     public float wanderDistance;
+    public float turningSpeed;
     public bool isMoving;
     public bool isInTower;
 
@@ -63,6 +64,7 @@ public class Chicken : MonoBehaviour
                 movementTimer = Random.Range(5, 10);
             }
 
+            //Rotate(newPos);
             Wander(newPos);
 			animControl.SetInteger ("AnimParam", 0);
         }
@@ -85,6 +87,13 @@ public class Chicken : MonoBehaviour
     public void Wander(Vector3 movement)
     {
         transform.position = Vector3.MoveTowards(transform.position, movement, 0.5f * Time.deltaTime);
+    }
+
+    // Make this work
+    void Rotate(Vector3 movement)
+    {
+        float step = turningSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movement.normalized), step);
     }
 
     private void CalculateRandomLocation(float max)
