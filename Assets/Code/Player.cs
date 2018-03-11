@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public float jumpForce = 8.0f;
     public float verticalVelocity;
     public float downwardsFallMultiplier;
-    public int currentAnimationParam = 0;
+    private int currentAnimationParam = 0;
 
     private Vector3 movement;
 
