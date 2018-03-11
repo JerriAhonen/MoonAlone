@@ -1,5 +1,36 @@
-Library/
-.vs/
-*.csproj
+# Unity generated
 Temp/
+Library/
+obj/
+
+# Visual Studio / MonoDevelop generated
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
 *.sln
+*.user
+*.unityproj
+*.booproj
+
+.vs/
+.vscode/
+
+*.cache
+*Resharper*
+*.orig
+*.orig.*
+*sln*
+.idea/
+
+# FMOD
+Assets/FMODStudioCache.asset
+Assets/FMODStudioCache.asset.meta
+fmod_editor.log
+fmod.log
+MoonAlone/.user/
+MoonAlone/.unsaved/
+MoonAlone/.cache/
+MoonAlone/.restore/

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     private Transform targetTransform;
-    private bool cameraMoved = false;
+    public bool cameraMoved = false;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour {
         {
             transform.position = Vector3.Slerp(transform.position, targetTransform.position, Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetTransform.rotation, Time.deltaTime);
+            
         }
     }
 
