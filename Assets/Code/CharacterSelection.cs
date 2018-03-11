@@ -16,8 +16,7 @@ public class CharacterSelection : MonoBehaviour {
 
     public GameManager gameManager;
     public Animator animator;
-
-
+    
     private void Start()
     {
         gameManager = GetComponentInParent<GameManager>();
@@ -76,6 +75,8 @@ public class CharacterSelection : MonoBehaviour {
         if (gameManager.gameStarted && characterConfirmed)
         {
             DisableReadyCube();
+
+            // Set the animator so Player.cs can get it.
             if (animator == null)
                 animator = GetComponentInChildren<Animator>();
         }
@@ -123,7 +124,8 @@ public class CharacterSelection : MonoBehaviour {
     
     public void Confirm()
     {
-		if (index != 0 && !gameManager.chosenCharacters[index]) {								// Can't choose "no player" as character
+        // Can't choose "no player" as character. Can't choose character that has already been chose.
+        if (index != 0 && !gameManager.chosenCharacters[index]) {
 			selectedCharacter = index;
             gameManager.chosenCharacters[index] = true;
 

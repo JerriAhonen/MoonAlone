@@ -46,12 +46,11 @@ public class Player : MonoBehaviour {
         if (animControl == null)
         {
             animControl = cs.animator;
-            Debug.Log("animControl = " + animControl);
+            //Debug.Log("animControl = " + animControl);
         }
         
         Move();                                                                 // Player movement
         Throw();                                                                // Player throw
-        
     }
 
     void Throw()

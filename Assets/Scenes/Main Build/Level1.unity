@@ -2422,7 +2422,7 @@ MonoBehaviour:
   winningScore: 0
   gameStarted: 0
   gameFinished: 0
-  NumOfPlayersNeededToStartGame_DEBUG: 2
+  NumOfPlayersNeededToStartGame_DEBUG: 1
 --- !u!4 &757404727
 Transform:
   m_ObjectHideFlags: 0
@@ -5321,6 +5321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e08c59eec8c33a4ea88967aa013f728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMoved: 0
 --- !u!81 &1654744385
 AudioListener:
   m_ObjectHideFlags: 0
