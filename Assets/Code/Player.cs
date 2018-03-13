@@ -55,16 +55,11 @@ public class Player : MonoBehaviour {
 
     void Throw()
     {
-        bool pickUp = Input.GetButtonDown(fire2Button);                         // Pick up Input
         bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
 
-        if (/*pickUp && */(chicken != null))
+        if (chicken != null)
         {
-            // this is the one
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
-
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp1", mainCamera.transform.position);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/PickUp2", mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
 
             tower.AddChicken();                                                 // Adds chicken to Tower
             Destroy(chicken);                                                   // Destroys picked up chicken from scene
@@ -76,9 +71,7 @@ public class Player : MonoBehaviour {
 
         if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
-            //totally new
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw1", mainCamera.transform.position);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw2", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
             tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
             PlayAnimation(3);                                                   // Play's Throw Animation
@@ -126,7 +119,7 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
 
                 verticalVelocity = jumpForce;
                 PlayAnimation(2);                                               // Play Jump animation
@@ -153,8 +146,16 @@ public class Player : MonoBehaviour {
     // If player hits something on the pick up layer, do things.
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         if (hit.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
-
-            chicken = hit.gameObject;
+            
+            // If the hit object is a chicken and it is not thrown or falling, set that object for pick up.
+            if (hit.gameObject.GetComponent<Chicken>() != null) {
+                if (!hit.gameObject.GetComponent<Chicken>().isThrown 
+                        && 
+                    !hit.gameObject.GetComponent<Chicken>().isFalling) {
+                        chicken = hit.gameObject;
+                }
+            }
+            
         }
     }
 

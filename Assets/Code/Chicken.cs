@@ -54,7 +54,7 @@ public class Chicken : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (!isInTower && !isThrown)
+        if (!isInTower && !isThrown && !isFalling)
         {
 
             if (time > movementTimer)
@@ -122,8 +122,6 @@ public class Chicken : MonoBehaviour
     public void SetFlight(bool toBeThrown) {
         if (toBeThrown) {
             mainCamera = GameObject.Find("Main Camera");
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
-
             // TODO: Make throw faster
             isThrown = true;
             throwSpeed = 8f;
@@ -142,8 +140,7 @@ public class Chicken : MonoBehaviour
             if (collision.gameObject.GetComponent<Chicken>() != null) {
                 if (collision.gameObject.GetComponent<Chicken>().isThrown) {
                     if (GetComponentInParent<Tower>() != null) {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
-                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit2", mainCamera.transform.position);
+                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/HITTOBE!", mainCamera.transform.position);
 
                         GetComponentInParent<Tower>().Scatter();
                     }
@@ -151,4 +148,7 @@ public class Chicken : MonoBehaviour
             }
         }
     }
+
+    // Played when chicken is thrown off map, logic missing
+    //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
 }
