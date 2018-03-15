@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour {
     
+    private Player player;
     public GameObject chicken;
     public int chickenCount;
     float chickenOffset;
@@ -13,10 +14,30 @@ public class Tower : MonoBehaviour {
     public string _towerLayer = "Tower";
     public string _pickUpLayer = "PickUp";
 
+    public bool doSidewaysWobble;
+    public float chickenOffsetZMultiplier = 0;   //Front - Back axis
+    public float chickenOffsetZMultiplierAdder;
+    public float chickenOffsetXMultiplier = 0;   //Right - Left axis
+    public float chickenOffsetXMultiplierAdder;
+
+    float timer = 0;
+
+    public float maxTilt = 1;
+    public float oldRot;
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        player = GetComponent<Player>();    
+    }
+
     // Update is called once per frame
     void Update () {
-
-        MoveChickensWithPlayer();
+        TowerTilt();
+        //MoveChickensWithPlayer();
     }
     
     // Adds a chicken to the tower.
@@ -89,21 +110,94 @@ public class Tower : MonoBehaviour {
         cloneChicken.GetComponent<Chicken>().SetFlight(toBeThrown);
     }
 
-    public void MoveChickensWithPlayer()
-    {
-        //Start the offset from 0;
-        chickenOffset = 0;
+    // public void MoveChickensWithPlayer()
+    // {
+    //     //Start the offset from 0;
+    //     chickenOffset = 0;
 
-        foreach (var chicken in tower)
+    //     foreach (var chicken in tower)
+    //     {
+    //         Vector3 chickenPos = new Vector3(transform.position.x, 
+    //                                             chicken.transform.position.y, 
+    //                                             transform.position.z);
+
+    //         //Adding slight tilt to tower
+    //         chickenPos -= transform.forward * chickenOffset;
+    //         chicken.transform.position = chickenPos;
+
+    //         chickenOffset += 0.1f;
+    //     }
+    // }
+
+    public void TowerTilt(){
+        
+        
+
+        for (int i = 0; i < tower.Count; i++)
         {
-            Vector3 chickenPos = new Vector3(transform.position.x, chicken.transform.position.y, transform.position.z);
 
-            //Adding slight tilt to tower
-            chickenPos -= transform.forward * chickenOffset;
+            GameObject chicken = tower[i];
+
+            
+
+            Vector3 chickenPos = new Vector3(transform.position.x, 
+                                                chicken.transform.position.y, 
+                                                transform.position.z);
+
+            if (player.isMoving) {           // If the player is moving, add tilt to the tower.
+                if(timer < maxTilt){        // increase tilt until maximum
+                    timer += Time.deltaTime;
+                    chickenOffsetZMultiplier += chickenOffsetZMultiplierAdder;
+
+                    // Sideways movement
+                    if (doSidewaysWobble) {
+                        if (oldRot < transform.rotation.eulerAngles.y) {    //Agle ++
+
+                            chickenOffsetXMultiplier += chickenOffsetXMultiplierAdder;
+
+                        } else if (oldRot > transform.rotation.eulerAngles.y) { //Angle --
+                            
+                            chickenOffsetXMultiplier -= chickenOffsetXMultiplierAdder;
+                        }
+                    }
+                }
+            } 
+            else {                    // If the player stops, bring the tower back to straight
+                if(timer > 0){          // Bring the timer back to zero
+                    timer -= Time.deltaTime;
+                    chickenOffsetZMultiplier -= chickenOffsetZMultiplierAdder;
+
+
+
+                    if (doSidewaysWobble){
+                        if (chickenOffsetXMultiplier > 0)
+                            chickenOffsetXMultiplier -= chickenOffsetXMultiplierAdder;
+                        else if (chickenOffsetXMultiplier < 0)
+                            chickenOffsetXMultiplier += chickenOffsetXMultiplierAdder;
+                    }
+                    
+                } else {
+                    timer = 0;
+                    chickenOffsetZMultiplier = 0;
+                    chickenOffsetXMultiplier = 0;
+                }
+            }
+
+            // Bumch of maths to make the chicken tilt incremental the higher the chicken is.
+            chickenPos -= transform.forward * i * 
+                (chickenOffsetZMultiplier + i * (chickenOffsetZMultiplier / 10));
+
+            if (doSidewaysWobble){
+                chickenPos += transform.right * i *
+                    (chickenOffsetXMultiplier + i * (chickenOffsetXMultiplier / 10));
+            }
+            
+
+
             chicken.transform.position = chickenPos;
-
-            chickenOffset += 0.1f;
         }
+
+        oldRot = transform.rotation.eulerAngles.y;
     }
 
     // Scatter the chickens on impact, removing them from the tower one by one 
