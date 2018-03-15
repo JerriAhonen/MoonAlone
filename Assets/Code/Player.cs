@@ -23,6 +23,10 @@ public class Player : MonoBehaviour {
     public CharacterSelection cs;
 
     public string _pickUpLayer = "PickUp";
+    public string _playerLayer = "Player";
+
+    private GameObject _enemy;
+    private Vector3 throwDirection;
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
@@ -57,6 +61,7 @@ public class Player : MonoBehaviour {
     {
         bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
 
+        // If a pickuppable chicken has collided with the player.
         if (chicken != null)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
@@ -64,17 +69,28 @@ public class Player : MonoBehaviour {
             tower.AddChicken();                                                 // Adds chicken to Tower
             Destroy(chicken);                                                   // Destroys picked up chicken from scene
         }
-        else
-        {
-            chicken = null;                                                     // Prevents player from picking up chicken after colliding with it
-        }
+        // Probably not needed anymore after autopickup was added.
+        // else
+        // {
+        //     chicken = null;                                                     // Prevents player from picking up chicken after colliding with it
+        // }
 
         if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
         {
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
-            tower.RemoveChicken(transform.forward, true);                       // Removes chicken from tower, Instantiates new and Throws it
-            PlayAnimation(3);                                                   // Play's Throw Animation
+            // If an enemy has triggered the aim collider, throw at the enemy 
+            // and "forget" the enemy from autoaim. Else throw forward.
+            if (_enemy != null) {
+                throwDirection = _enemy.transform.position - transform.position;
+
+                _enemy = null;
+            } else {
+                throwDirection = transform.forward;
+            }
+
+            tower.RemoveChicken(throwDirection, true);                       // Removes chicken from tower, Instantiates new and Throws it
+            PlayAnimation(3);                                                   // Plays Throw Animation
         }
     }
 
@@ -156,6 +172,20 @@ public class Player : MonoBehaviour {
                 }
             }
             
+        }
+    }
+
+    // If another player triggers the aim collider, remember the enemy for autoaim.
+    private void OnTriggerStay(Collider collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+            _enemy = collision.gameObject;
+        }
+    }
+
+    // If another player exits the aim collider, drop the enemy from autoaim.
+    private void OnTriggerExit(Collider collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+            _enemy = null;
         }
     }
 
