@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1354,6 +1354,7 @@ GameObject:
   - component: {fileID: 442676353}
   - component: {fileID: 442676352}
   - component: {fileID: 442676351}
+  - component: {fileID: 442676356}
   m_Layer: 8
   m_Name: P1
   m_TagString: Untagged
@@ -1487,12 +1488,25 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 603073117}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P1
   vertical: Vertical_P1
   fire1Button: Fire1_P1
   fire2Button: Fire2_P1
   jumpButton: Jump_P1
   mainCamera: {fileID: 0}
+--- !u!65 &442676356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442676349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1 &471407087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,6 +3478,7 @@ GameObject:
   - component: {fileID: 1210143190}
   - component: {fileID: 1210143189}
   - component: {fileID: 1210143188}
+  - component: {fileID: 1210143193}
   m_Layer: 8
   m_Name: P3
   m_TagString: Untagged
@@ -3597,12 +3612,25 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
   fire1Button: Fire1_P3
   fire2Button: Fire2_P3
   jumpButton: Jump_P3
   mainCamera: {fileID: 0}
+--- !u!65 &1210143193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210143186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1 &1227345215
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,6 +4040,7 @@ GameObject:
   - component: {fileID: 1323039836}
   - component: {fileID: 1323039835}
   - component: {fileID: 1323039834}
+  - component: {fileID: 1323039839}
   m_Layer: 8
   m_Name: P4
   m_TagString: Untagged
@@ -4145,12 +4174,25 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
   fire1Button: Fire1_P4
   fire2Button: Fire2_P4
   jumpButton: Jump_P4
   mainCamera: {fileID: 0}
+--- !u!65 &1323039839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1323039832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1 &1338723029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,6 +5550,7 @@ GameObject:
   - component: {fileID: 1685252552}
   - component: {fileID: 1685252551}
   - component: {fileID: 1685252550}
+  - component: {fileID: 1685252555}
   m_Layer: 8
   m_Name: P2
   m_TagString: Untagged
@@ -5641,12 +5684,25 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
   fire1Button: Fire1_P2
   fire2Button: Fire2_P2
   jumpButton: Jump_P2
   mainCamera: {fileID: 0}
+--- !u!65 &1685252555
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1685252548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!4 &1692724838 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4486681652251942, guid: 34a8aa074b31893449f1c0dfe6c8d097,
