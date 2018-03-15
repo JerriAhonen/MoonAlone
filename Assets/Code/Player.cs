@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     public float verticalVelocity;
     public float downwardsFallMultiplier;
     private int currentAnimationParam = 0;
+    public bool isMoving;
+
 
     private Vector3 movement;
 
@@ -102,10 +104,12 @@ public class Player : MonoBehaviour {
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
             PlayAnimation (0);                                                   // Play's Idle animation
+            isMoving = false;
 		}
 		else 
 		{
 			PlayAnimation(1);                                                   // Play's Run animation
+            isMoving = true;
 		}
         
         Jump(jump);                                                             // New Jump() Method
