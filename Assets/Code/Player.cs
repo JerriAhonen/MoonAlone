@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     public string _pickUpLayer = "PickUp";
     public string _playerLayer = "Player";
 
+    private float _throwTimer;
     private GameObject _enemy;
     private Vector3 throwDirection;
 
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
+        
+        _throwTimer += Time.deltaTime;
 
         // If a pickuppable chicken has collided with the player.
         if (chicken != null)
@@ -71,13 +74,10 @@ public class Player : MonoBehaviour {
             tower.AddChicken();                                                 // Adds chicken to Tower
             Destroy(chicken);                                                   // Destroys picked up chicken from scene
         }
-        // Probably not needed anymore after autopickup was added.
-        // else
-        // {
-        //     chicken = null;                                                     // Prevents player from picking up chicken after colliding with it
-        // }
 
-        if (throwIt && (tower.chickenCount > 0))                                // Check if there are chickens to throw
+        // If the throw button has been pressed, there are chickens in the tower 
+        // and it has been over a second since the last throw, throw a chicken.
+        if (throwIt && (tower.chickenCount > 0) && _throwTimer > 1f)                // Check if there are chickens to throw
         {
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
@@ -92,7 +92,9 @@ public class Player : MonoBehaviour {
             }
 
             tower.RemoveChicken(throwDirection, true);                       // Removes chicken from tower, Instantiates new and Throws it
-            PlayAnimation(3);                                                   // Plays Throw Animation
+            PlayAnimation(3);                                                // Plays Throw Animation
+
+            _throwTimer = 0f;
         }
     }
 
