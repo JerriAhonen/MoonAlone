@@ -27,9 +27,11 @@ public class Player : MonoBehaviour {
     public string _pickUpLayer = "PickUp";
     public string _playerLayer = "Player";
 
-    private float _throwTimer;
+    private float _pressTime = 0;
+    private float _throwTimer = 0;
+    private bool _throwFar = false;
     private GameObject _enemy;
-    private Vector3 throwDirection;
+    private Vector3 _throwDirection;
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
@@ -62,8 +64,25 @@ public class Player : MonoBehaviour {
 
     void Throw()
     {
-        bool throwIt = Input.GetButtonDown(fire1Button);                        // Throw Input
+        // Initialize press time with the moment in time the fire button was pressed down.
+        if (Input.GetButtonDown(fire1Button)) {
+            _pressTime = Time.time;
+        }
+
+        bool throwIt = Input.GetButtonUp(fire1Button);                        // Throw Input
         
+        // Calculate how long the fire button was pressed.
+        if (throwIt){
+            _pressTime = Time.time - _pressTime;
+
+            // If the press time was long, throw far.
+            if (_pressTime > 0.2f) {
+                _throwFar = true;
+            } else {
+                _throwFar = false;
+            }
+        }
+
         _throwTimer += Time.deltaTime;
 
         // If a pickuppable chicken has collided with the player.
@@ -77,23 +96,24 @@ public class Player : MonoBehaviour {
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (throwIt && (tower.chickenCount > 0) && _throwTimer > 1f)                // Check if there are chickens to throw
+        if (throwIt && (tower.chickenCount > 0) && (_throwTimer > 1f))                // Check if there are chickens to throw
         {
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
             // If an enemy has triggered the aim collider, throw at the enemy 
             // and "forget" the enemy from autoaim. Else throw forward.
             if (_enemy != null) {
-                throwDirection = _enemy.transform.position - transform.position;
+                _throwDirection = _enemy.transform.position - transform.position;
 
                 _enemy = null;
             } else {
-                throwDirection = transform.forward;
+                _throwDirection = transform.forward;
             }
 
-            tower.RemoveChicken(throwDirection, true);                       // Removes chicken from tower, Instantiates new and Throws it
+            tower.RemoveChicken(_throwDirection, true, _throwFar);           // Removes chicken from tower, Instantiates new and Throws it
             PlayAnimation(3);                                                // Plays Throw Animation
 
+            // Reset throw timer.
             _throwTimer = 0f;
         }
     }

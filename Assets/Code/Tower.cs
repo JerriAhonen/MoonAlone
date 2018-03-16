@@ -75,7 +75,7 @@ public class Tower : MonoBehaviour {
     // Throws a chicken from the tower, removing it from the tower list and 
     // setting it up for flight in the Chicken script. The throw direction is
     // given as a parameter.
-    public void RemoveChicken(Vector3 flightDirection, bool toBeThrown) {
+    public void RemoveChicken(Vector3 flightDirection, bool toBeThrown, bool flyFar) {
         GameObject removedChicken = tower[chickenCount - 1].gameObject;
 
         // Remove parent link before Removing.
@@ -107,7 +107,7 @@ public class Tower : MonoBehaviour {
 
         cloneChicken.GetComponent<Rigidbody>().useGravity = true;
         
-        cloneChicken.GetComponent<Chicken>().SetFlight(toBeThrown);
+        cloneChicken.GetComponent<Chicken>().SetFlight(toBeThrown, flyFar);
     }
 
     // public void MoveChickensWithPlayer()
@@ -205,7 +205,7 @@ public class Tower : MonoBehaviour {
     public void Scatter() {
         // foreach-loop would cause an InvalidOperationException!
         for (int index = chickenCount - 1; index >= 0; index--) {
-            RemoveChicken(tower[index].transform.forward, false);
+            RemoveChicken(tower[index].transform.forward, false, false);
         }
     }
 }

@@ -119,13 +119,20 @@ public class Chicken : MonoBehaviour
     }
 
     // Set the parameters for flight (throw / fall).
-    public void SetFlight(bool toBeThrown) {
+    public void SetFlight(bool toBeThrown, bool flyFar) {
         if (toBeThrown) {
             mainCamera = GameObject.Find("Main Camera");
             // TODO: Make throw faster
             isThrown = true;
-            throwSpeed = 8f;
-            throwHeight = 5f;
+            
+            if (flyFar) {
+                throwSpeed = 8f;
+                throwHeight = 5f;
+            } else {
+                throwSpeed = 5f;
+                throwHeight = 3f;
+            }
+            
         } else {
             // TODO: Make falling look like falling instead of an explosion, doesn't really use Fly() as much as just Rigidbodies being Rigidbodies at the moment.
             isFalling = true;
