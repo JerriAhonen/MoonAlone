@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     public float downwardsFallMultiplier;
     private int currentAnimationParam = 0;
     public bool isMoving;
+    public int score;
 
 
     private Vector3 movement;

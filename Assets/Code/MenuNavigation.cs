@@ -17,7 +17,8 @@ public class MenuNavigation : MonoBehaviour {
     private float cooldown;
     private bool axisInUse = false;
     public string confirmButton;
-    private bool optionConfirmed = false;
+    public bool optionConfirmed = false;
+    public int optionIndex;
 
     public Transform cameraPosMenu;
     public Transform cameraPosCharSel;
@@ -100,7 +101,8 @@ public class MenuNavigation : MonoBehaviour {
     public void Confirm()
     {
         optionConfirmed = true;
-        camera.GetComponent<CameraController>().MoveCamera(cameraPosCharSel);      // Move camera to Char Sel view
+        optionIndex = index;
+        //camera.GetComponent<CameraController>().MoveCamera(cameraPosCharSel);      // Move camera to Char Sel view
     }
 
     public void EnterMainMenu()

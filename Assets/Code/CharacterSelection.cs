@@ -140,6 +140,29 @@ public class CharacterSelection : MonoBehaviour {
 		}
     }
 
+    public void UnConfirm()
+    {
+        for (int i = 0; i < gameManager.chosenCharacters.Length; i++)
+        {
+            gameManager.chosenCharacters[i]= false;
+        }
+
+        //Set all the models to nonActive (not visible)
+        foreach (GameObject go in characterList)
+            go.SetActive(false);
+
+        //Set the first model to Active (visible)
+        if (characterList[0])
+            characterList[0].SetActive(true);
+
+        characterConfirmed = false;
+
+        gameManager.readyCount--;
+        gameManager.noPlayerCount++;
+
+        index = 0;
+    }
+
     public GameObject getSelectedCharacter()
     {
         return characterList[selectedCharacter];

@@ -1483,7 +1483,6 @@ MonoBehaviour:
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
   isMoving: 0
-  score: 0
   tower: {fileID: 442676354}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -2471,7 +2470,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 757404725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb6d289ae2a0c3d4a9bf49f05a137a19, type: 3}
   m_Name: 
@@ -2482,8 +2481,6 @@ MonoBehaviour:
   toggleAxis: 
   selectionCooldown: 0
   confirmButton: 
-  optionConfirmed: 0
-  optionIndex: 0
   cameraPosMenu: {fileID: 0}
   cameraPosCharSel: {fileID: 0}
 --- !u!1001 &793692008
@@ -3632,7 +3629,6 @@ MonoBehaviour:
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
   isMoving: 0
-  score: 0
   tower: {fileID: 1210143191}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -4197,7 +4193,6 @@ MonoBehaviour:
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
   isMoving: 0
-  score: 0
   tower: {fileID: 1323039837}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -5710,7 +5705,6 @@ MonoBehaviour:
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
   isMoving: 0
-  score: 0
   tower: {fileID: 1685252553}
   chicken: {fileID: 0}
   controller: {fileID: 0}

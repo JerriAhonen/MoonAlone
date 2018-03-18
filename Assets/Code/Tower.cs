@@ -23,6 +23,8 @@ public class Tower : MonoBehaviour {
     float timer = 0;
 
     public float maxTilt = 1;
+    public float wobbleDistanceSetter;
+    public float wobbleDistance;
     public float oldRot;
 
     /// <summary>
@@ -31,7 +33,8 @@ public class Tower : MonoBehaviour {
     /// </summary>
     void Start()
     {
-        player = GetComponent<Player>();    
+        player = GetComponent<Player>();
+        wobbleDistance = wobbleDistanceSetter;    
     }
 
     // Update is called once per frame
@@ -138,8 +141,6 @@ public class Tower : MonoBehaviour {
 
             GameObject chicken = tower[i];
 
-            
-
             Vector3 chickenPos = new Vector3(transform.position.x, 
                                                 chicken.transform.position.y, 
                                                 transform.position.z);
@@ -166,7 +167,7 @@ public class Tower : MonoBehaviour {
                 if(timer > 0){          // Bring the timer back to zero
                     timer -= Time.deltaTime;
                     chickenOffsetZMultiplier -= chickenOffsetZMultiplierAdder;
-
+                    
 
 
                     if (doSidewaysWobble){
@@ -176,7 +177,8 @@ public class Tower : MonoBehaviour {
                             chickenOffsetXMultiplier += chickenOffsetXMultiplierAdder;
                     }
                     
-                } else {
+                } else {        
+                    
                     timer = 0;
                     chickenOffsetZMultiplier = 0;
                     chickenOffsetXMultiplier = 0;
