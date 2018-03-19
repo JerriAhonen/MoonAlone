@@ -12,6 +12,7 @@ public class TestGameManager : MonoBehaviour
     public CharacterSelection[] cs = new CharacterSelection[4];                 // List of all character selectors
     public GameObject[] spawnPoints = new GameObject[4];                        // List of player spawn points
     public bool[] scenes = new bool[5];
+    public int[] playerScores = new int[4];
 
     public Camera camera;                                                       // The Main Camera
     public Transform cameraPosMainMenu;                                         // Pos of camera during menu
@@ -59,6 +60,11 @@ public class TestGameManager : MonoBehaviour
         timer = setTimer;
 
         scenes[0] = true;                                                       // Set the scene to Main Menu
+
+        foreach (var cs in cs)
+        {
+            cs.enabled = false;
+        }
     }
 
     private void Update()
@@ -74,6 +80,10 @@ public class TestGameManager : MonoBehaviour
             if ( menuNavigation.optionConfirmed ){
                 switch (menuNavigation.optionIndex){
                     case 0:    // Case option 1 = Character Selection
+
+                        // TODO: Round Amount Selection
+
+
                         ChangeScene(1);    // Scene 1 = Character Selection
                         menuNavigation.enabled = false;
                         break;
@@ -93,6 +103,11 @@ public class TestGameManager : MonoBehaviour
         if (scenes[1])
         {
             // CHARACTER SELECTION
+
+            foreach (var cs in cs)
+            {
+                cs.enabled = true;
+            }
 
             camera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
             //Add animators (?)
@@ -186,99 +201,14 @@ public class TestGameManager : MonoBehaviour
 
             camera.GetComponent<CameraController>().MoveCamera( cameraPosGameOver );
             // Display who won
-
-            // GameOver();
+            CountDownTimer(10, false);
+            GameOver();
+            
             //  if ( press main menu )
             //  ChangeScene[0]
             //  if ( press play again )
             //  ChangeScene[2]
         }
-
-
-
-
-        // Logic for when CHARACTER SELECTION RUNNING
-        /* 
-        if (!gameStarted)
-        {
-            if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
-            {
-                StartGame(readyCount);
-                gameStarted = true;
-                gameFinished = false;
-
-                timerText.text = "";
-                winnerText.text = "";
-
-                // Deactivate all players that are not needed
-                // TODO: Clean this up.
-                if (readyCount < 4)                                                 // Add animators to all needed models
-                {
-                    switch (noPlayerCount)
-                    {
-                        case 1:
-                            players[3].SetActive(false);
-                            AddAnimator(2);
-                            AddAnimator(1);
-                            AddAnimator(0);
-                            break;
-                        case 2:
-                            players[3].SetActive(false);
-                            players[2].SetActive(false);
-                            AddAnimator(1);
-                            AddAnimator(0);
-                            break;
-                        case 3:
-                            players[3].SetActive(false);
-                            players[2].SetActive(false);
-                            players[1].SetActive(false);
-                            AddAnimator(0);
-                            break;
-                    }
-                }
-            }
-        }
-        // Logic for when GAME RUNNING
-        else
-        {
-            if (timer >= 0.0f && !gameFinished)
-            {
-                timer -= Time.deltaTime;
-                timeLeft = System.Convert.ToInt32(timer % 60);                      // Convert float to int to get seconds
-                timerText.text = timeLeft.ToString();
-            }
-
-            // Winning condition = the player with the most chickens when timeLeft = 0.
-            if (timeLeft == 0)
-            {
-                int playerNum = 0;
-                int playerScore = 0;
-
-                int i = 0;
-                foreach (var player in players)                                     // Go through all players
-                {
-                    if (player.activeSelf == true)                                   // Check if player active
-                    {
-                        i++;                                                        // Start counting from P1
-                        playerScore = player.GetComponentInChildren<Tower>().chickenCount;
-                        if (playerScore > winningScore)                             // Find highest chicken count
-                        {
-                            winningScore = playerScore;
-                            playerNum = i;
-                        }
-                    }
-                }
-
-                gameFinished = true;                                                // Set the round to finished
-
-                DisablePlayerControls();                                            // Stop the players from moving
-                timer = setTimer;                                                   // Reset the timer for next round
-                timeLeft = System.Convert.ToInt32(timer % 60);                      // Reset TimeLeft
-
-                timerText.text = "Time's up!";
-                winnerText.text = "Player " + playerNum + " wins with " + winningScore + " chickens!";
-            }
-        }*/
     }
 
     void StartGame(int playerCount)                                                 // Player position and scripts and camera
@@ -290,6 +220,12 @@ public class TestGameManager : MonoBehaviour
         }
 
         camera.GetComponent<CameraController>().MoveCamera(cameraPosRound);      // Move camera to Game view
+    }
+
+    public void GameOver() {
+        // TODO: Display winners in gameOver Screen
+
+        ChangeScene(0);
     }
 
     private void DisablePlayerControls()                                            // Disable player GameObject
@@ -382,53 +318,46 @@ public class TestGameManager : MonoBehaviour
     public void RoundOver() {
         GetRoundScore();
 
-
+        // TODO: Display Score
     }
 
     public void GetRoundScore(){
-        int playerNum = 0;
-        int playerScore = 0;
 
-        float[] scores = new float[readyCount];
+        int[] scores = new int[4];
 
-        int i = 0;
-        foreach (var player in players)                                     // Go through all players
+        // Fill scores[] with players' chicken counts
+        for (int i = 0; i < players.Length; i++)
         {
-            if (player.activeSelf == true)                                   // Check if player active
-            {                                                     // Start counting from P1
-                playerScore = player.GetComponentInChildren<Tower>().chickenCount;
-                
-                scores[i] = playerScore;
-                i++;
-            }
+            if (players[i].activeSelf)
+                scores[i] = players[i].GetComponent<Tower>().chickenCount;
         }
 
-        System.Array.Sort(scores);
+        System.Array.Sort(scores);  //Sort the array from smallest to highest
 
-        i = 0;
-        for (int j = 0; j < players.Length; j++)
+        for (int i = 0; i < players.Length; i++)
         {
-            if (scores[0] == players[j].GetComponentInChildren<Tower>().chickenCount){
-                playerNum = i;
+            if (players[i].activeSelf) {
+                //If the player has 0 chickens, score = 0
+                if ( players[i].GetComponent<Tower>().chickenCount == 0) {
+                    players[i].GetComponent<Player>().score = 0;
+                }
+                // Else, give score according to ranking and player count
+                else if (players[i].GetComponent<Tower>().chickenCount == scores[3]) {
+                    players[i].GetComponent<Player>().score = readyCount - 1;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[2]) {
+                    players[i].GetComponent<Player>().score = readyCount - 2;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[1]) {
+                    players[i].GetComponent<Player>().score = readyCount - 3;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[0]) {
+                    players[i].GetComponent<Player>().score = readyCount - 4;
+                }
             }
-            i++;
         }
-
-        players[playerNum].GetComponent<Player>().score = playerScore;
+        
+        //Add round score to playerscore
+        for (int i = 0; i < playerScores.Length; i++)
+        {
+            playerScores[i] += players[i].GetComponent<Player>().score;
+        }
     }
 }
-
-
-//public void AddAnimator(int index)                                              // Adds an Animator and AnimationController to the player
-//{
-//    GameObject go = players[index].gameObject;                                  // Reference to player
-//    go = go.transform.GetChild(0).gameObject;                                   // Reference to characterSelector
-//    for (int i = 0; i < go.transform.childCount; i++)                           // Go through all childs
-//    {
-//        if (go.transform.GetChild(i).gameObject.activeSelf)                     // Check if child is active
-//        {
-//            Animator animator = go.transform.GetChild(i).gameObject.AddComponent<Animator>() as Animator;
-//            animator.runtimeAnimatorController = runtimeAnimatorController;
-//        }
-//    }
-//}

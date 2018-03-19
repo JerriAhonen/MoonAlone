@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] spawnPoints = new GameObject[4];                        // List of player spawn points
     public bool[] scenes = new bool[5];                                         // <- Not yet in use
 
+    public int[] playerScores = new int[4];
+
     public Camera camera;                                                       // The Main Camera
     public Transform cameraPosMainMenu;                                         // Pos of camera during menu
     public Transform cameraPosCharacterSelection;                               // Pos of camera during char selection
@@ -66,23 +68,25 @@ public class GameManager : MonoBehaviour {
             // Winning condition = the player with the most chickens when timeLeft = 0.
             if (timeLeft == 0)
             {
-                int playerNum = 0;
-                int playerScore = 0;
+                // int playerNum = 0;
+                // int playerScore = 0;
 
-                int i = 0;
-                foreach (var player in players)                                     // Go through all players
-                {
-                    if (player.activeSelf == true)                                   // Check if player active
-                    {
-                        i++;                                                        // Start counting from P1
-                        playerScore = player.GetComponentInChildren<Tower>().chickenCount;
-                        if (playerScore > winningScore)                             // Find highest chicken count
-                        {
-                            winningScore = playerScore;
-                            playerNum = i;
-                        }
-                    }
-                }
+                // int i = 0;
+                // foreach (var player in players)                                     // Go through all players
+                // {
+                //     if (player.activeSelf == true)                                   // Check if player active
+                //     {
+                //         i++;                                                        // Start counting from P1
+                //         playerScore = player.GetComponentInChildren<Tower>().chickenCount;
+                //         if (playerScore > winningScore)                             // Find highest chicken count
+                //         {
+                //             winningScore = playerScore;
+                //             playerNum = i;
+                //         }
+                //     }
+                // }
+
+                GetRoundScore();
 
                 gameFinished = true;                                                // Set the round to finished
 
@@ -91,7 +95,7 @@ public class GameManager : MonoBehaviour {
                 timeLeft = System.Convert.ToInt32(timer % 60);                      // Reset TimeLeft
 
                 timerText.text = "Time's up!";
-                winnerText.text = "Player " + playerNum + " wins with " + winningScore + " chickens!";
+                //winnerText.text = "Player " + playerNum + " wins with " + winningScore + " chickens!";
             }
         }
         
@@ -139,6 +143,43 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void GetRoundScore(){
+        int[] scores = new int[4];
+
+        // Fill scores[] with players' chicken counts
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].activeSelf)
+                scores[i] = players[i].GetComponent<Tower>().chickenCount;
+        }
+
+        System.Array.Sort(scores);
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].activeSelf) {
+                if ( players[i].GetComponent<Tower>().chickenCount == 0) {
+                    players[i].GetComponent<Player>().score = 0;
+                }
+                else if (players[i].GetComponent<Tower>().chickenCount == scores[3]) {
+                    players[i].GetComponent<Player>().score = readyCount - 1;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[2]) {
+                    players[i].GetComponent<Player>().score = readyCount - 2;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[1]) {
+                    players[i].GetComponent<Player>().score = readyCount - 3;
+                } else if (players[i].GetComponent<Tower>().chickenCount == scores[0]) {
+                    players[i].GetComponent<Player>().score = readyCount - 4;
+                }
+            }
+        }
+        
+        for (int i = 0; i < playerScores.Length; i++)
+        {
+            playerScores[i] += players[i].GetComponent<Player>().score;
+        }
+
     }
 
     void StartGame(int playerCount)                                                 // Player position and scripts and camera

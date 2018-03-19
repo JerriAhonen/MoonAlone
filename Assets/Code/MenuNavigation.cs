@@ -32,7 +32,7 @@ public class MenuNavigation : MonoBehaviour {
 
         buttons[index].transform.position = buttons[index].transform.position - Vector3.forward / 2;
 
-        camera.GetComponent<CameraController>().MoveCamera(cameraPosMenu);      // Move camera to Menu view
+        //camera.GetComponent<CameraController>().MoveCamera(cameraPosMenu);      // Move camera to Menu view
     }
 	
 	// Update is called once per frame
