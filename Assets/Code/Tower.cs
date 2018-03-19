@@ -108,7 +108,7 @@ public class Tower : MonoBehaviour {
         // Change chicken's layer back to the pick up layer before throw.
         cloneChicken.layer = LayerMask.NameToLayer(_pickUpLayer);
 
-        cloneChicken.GetComponent<Rigidbody>().useGravity = true;
+        cloneChicken.GetComponent<Rigidbody>().useGravity = false;
         
         cloneChicken.GetComponent<Chicken>().SetFlight(toBeThrown, flyFar);
     }

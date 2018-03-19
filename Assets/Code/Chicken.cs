@@ -26,7 +26,10 @@ public class Chicken : MonoBehaviour
 
     private Vector3 newPos = Vector3.zero;
 
-    public float throwSpeed = 8f;
+    public float gravity = 16.0f;
+    public float verticalVelocity;
+    public float downwardsFallMultiplier;
+    public float throwForce = 8f;
     public float throwHeight = 5f;
 
     public bool isThrown = false;
@@ -109,8 +112,23 @@ public class Chicken : MonoBehaviour
 
     // The chicken flies through the air.
     void Fly() {
-        transform.position += (transform.forward * throwSpeed * Time.deltaTime);
+        verticalVelocity = throwForce;
+        
+        if (verticalVelocity > -50) {                                           // No need to go smaller than this
+            verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
+
+            if (verticalVelocity < 0) {                                         // Fall faster than go up
+                verticalVelocity -= gravity * downwardsFallMultiplier * Time.deltaTime;
+            }
+        }
+
+        Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
+
         transform.position += (transform.up * throwHeight * Time.deltaTime);
+        transform.position -= (transform.up * gravity * Time.deltaTime);
+
+        transform.position += (transform.forward * throwForce * Time.deltaTime);
+        transform.position += verticalMovement * Time.deltaTime;
         
         if (transform.position.y < 0.1f) {
             isThrown = false;
@@ -126,17 +144,19 @@ public class Chicken : MonoBehaviour
             isThrown = true;
             
             if (flyFar) {
-                throwSpeed = 8f;
+                throwForce = 8f;
                 throwHeight = 5f;
+                gravity = 16f;
             } else {
-                throwSpeed = 5f;
+                throwForce = 5f;
                 throwHeight = 3f;
+                gravity = 16f;
             }
             
         } else {
             // TODO: Make falling look like falling instead of an explosion, doesn't really use Fly() as much as just Rigidbodies being Rigidbodies at the moment.
             isFalling = true;
-            throwSpeed = 0f;
+            throwForce = 0f;
             throwHeight = 0f;
         }
     }
@@ -155,7 +175,4 @@ public class Chicken : MonoBehaviour
             }
         }
     }
-
-    // Played when chicken is thrown off map, logic missing
-    //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
 }
