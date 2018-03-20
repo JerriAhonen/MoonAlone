@@ -22,7 +22,7 @@ public class TestGameManager : MonoBehaviour
     public RuntimeAnimatorController runtimeAnimatorController;                 // Player Animation controller
     public Avatar avatar;                                                       // Player Avatar
 
-    private MenuNavigation menuNavigation;
+    public MenuNavigation menuNavigation;
 
     public string cancelButton = "Fire2_P1";
 
@@ -51,7 +51,7 @@ public class TestGameManager : MonoBehaviour
     private void Start()
     {
         camera.GetComponent<CameraController>().MoveCamera(cameraPosMainMenu);  // Start from the main menu
-        menuNavigation = GetComponent<MenuNavigation>();
+
         menuNavigation.enabled = true;
 
         // Disable all player controls during character selection.
@@ -61,10 +61,7 @@ public class TestGameManager : MonoBehaviour
 
         scenes[0] = true;                                                       // Set the scene to Main Menu
 
-        foreach (var cs in cs)
-        {
-            cs.enabled = false;
-        }
+        EnableOrDisableCS(false);                                               // Disable cs
     }
 
     private void Update()
@@ -76,6 +73,7 @@ public class TestGameManager : MonoBehaviour
             DisablePlayerControls();
             camera.GetComponent<CameraController>().MoveCamera( cameraPosMainMenu );
             menuNavigation.enabled = true;
+            EnableOrDisableCS(false);
 
             if ( menuNavigation.optionConfirmed ){
                 switch (menuNavigation.optionIndex){
@@ -104,28 +102,28 @@ public class TestGameManager : MonoBehaviour
         {
             // CHARACTER SELECTION
 
-            foreach (var cs in cs)
-            {
-                cs.enabled = true;
-            }
+            EnableOrDisableCS(true);
 
             camera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
             //Add animators (?)
 
             if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
             {
-                // Redo character selection
-                if (CountDownTimer(3, true)) {
+                // // Redo character selection
+                // if (CountDownTimer(3, true)) {
                     
-                    for (int i = 0; i < cs.Length; i++)
-                    {
-                        cs[i].UnConfirm();  //Undo character confirmation on all players.
-                    }
-                //Start round
-                } else {
-                    ChangeScene(2);
-                    AddAnimatorsToPlayers(readyCount);  //Add animators to players
-                }
+                //     for (int i = 0; i < cs.Length; i++)
+                //     {
+                //         cs[i].UnConfirm();  //Undo character confirmation on all players.
+                //     }
+                // //Start round
+                // } else {
+                //     ChangeScene(2);
+                //     AddAnimatorsToPlayers(readyCount);  //Add animators to players
+                // }
+
+                ChangeScene(2);
+                //     AddAnimatorsToPlayers(readyCount);  //Add animators to players
             }
 
             // Return to the main menu
@@ -219,7 +217,7 @@ public class TestGameManager : MonoBehaviour
             players[i].GetComponent<Player>().enabled = true;                       // Enable Player script
         }
 
-        camera.GetComponent<CameraController>().MoveCamera(cameraPosRound);      // Move camera to Game view
+        //camera.GetComponent<CameraController>().MoveCamera(cameraPosRound);      // Move camera to Game view
     }
 
     public void GameOver() {
@@ -234,6 +232,22 @@ public class TestGameManager : MonoBehaviour
         {
             player.GetComponent<Player>().enabled = false;
         }
+    }
+
+    private void EnableOrDisableCS(bool enable) {
+        
+        if(enable) {
+            foreach (var cs in cs)
+            {
+                cs.enabled = true;
+            }
+        } else {
+            foreach (var cs in cs)
+            {
+                cs.enabled = false;
+            }
+        }
+        
     }
 
     public void AddAnimatorsToPlayers(int numOfPlayers){

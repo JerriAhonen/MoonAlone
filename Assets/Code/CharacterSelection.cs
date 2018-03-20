@@ -14,12 +14,12 @@ public class CharacterSelection : MonoBehaviour {
     private bool characterConfirmed = false;
     public int selectedCharacter;
 
-    public GameManager gameManager;
+    public TestGameManager gameManager;
     public Animator animator;
     
     private void Start()
     {
-        gameManager = GetComponentInParent<GameManager>();
+        gameManager = GetComponentInParent<TestGameManager>();
 
         characterList = new GameObject[transform.childCount];
 
@@ -72,7 +72,7 @@ public class CharacterSelection : MonoBehaviour {
                 Confirm();
         }
 
-        if (gameManager.gameStarted && characterConfirmed)
+        if (gameManager.roundStarted && characterConfirmed)
         {
             DisableReadyCube();
 
@@ -80,7 +80,7 @@ public class CharacterSelection : MonoBehaviour {
             if (animator == null)
                 animator = GetComponentInChildren<Animator>();
         }
-        else if (gameManager.gameStarted && !characterConfirmed)
+        else if (gameManager.roundStarted && !characterConfirmed)
         {
             //Set all the models to nonActive (not visible)
             foreach (GameObject go in characterList)

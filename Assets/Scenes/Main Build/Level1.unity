@@ -2479,7 +2479,6 @@ GameObject:
   - component: {fileID: 757404727}
   - component: {fileID: 757404729}
   - component: {fileID: 757404726}
-  - component: {fileID: 757404728}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2551,27 +2550,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &757404728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 757404725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6d289ae2a0c3d4a9bf49f05a137a19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 1654744383}
-  buttons: []
-  index: 0
-  toggleAxis: Vertical_P1
-  selectionCooldown: 0
-  confirmButton: Jump_P1
-  optionConfirmed: 0
-  optionIndex: 0
-  cameraPosMenu: {fileID: 0}
-  cameraPosCharSel: {fileID: 0}
 --- !u!114 &757404729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2609,6 +2587,7 @@ MonoBehaviour:
   runtimeAnimatorController: {fileID: 9100000, guid: f9c8924338e19ba4893b6e23c1d6ba76,
     type: 2}
   avatar: {fileID: 9000000, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
+  menuNavigation: {fileID: 2026414774}
   cancelButton: Fire2_P1
   readyCount: 0
   noPlayerCount: 4
@@ -7242,7 +7221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2026414774
 MonoBehaviour:
   m_ObjectHideFlags: 0
