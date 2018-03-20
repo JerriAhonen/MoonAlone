@@ -38,8 +38,6 @@ public class TestGameManager : MonoBehaviour
     public int numberOfRounds;                                                  // How many rounds are played
     public int roundNum;                                                        // Number of current round
 
-    public int winningScore;                                                    // Highest score after round
-
     public bool roundStarted;                                                    // Is the round started
     public bool roundFinished;                                                   // Is the round finished
 
@@ -123,7 +121,8 @@ public class TestGameManager : MonoBehaviour
                 // }
 
                 ChangeScene(2);
-                //     AddAnimatorsToPlayers(readyCount);  //Add animators to players
+                EnableOrDisableCS(false);
+                AddAnimatorsToPlayers(readyCount);  //Add animators to players
             }
 
             // Return to the main menu

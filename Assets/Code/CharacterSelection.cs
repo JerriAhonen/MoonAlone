@@ -14,13 +14,17 @@ public class CharacterSelection : MonoBehaviour {
     private bool characterConfirmed = false;
     public int selectedCharacter;
 
-    public TestGameManager gameManager;
+    public TestGameManager testGameManager;
+    public GameManager gameManager;
     public Animator animator;
+
+    private bool confirm;
     
     private void Start()
     {
-        gameManager = GetComponentInParent<TestGameManager>();
-
+        testGameManager = GetComponentInParent<TestGameManager>();
+        gameManager = GetComponentInParent<GameManager>();
+        
         characterList = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -67,12 +71,15 @@ public class CharacterSelection : MonoBehaviour {
             if (cooldown < 0.0f)
                 axisInUse = false;
 
-            bool confirm = Input.GetButtonDown(confirmButton);
-            if (confirm)
+            confirm = Input.GetButtonDown(confirmButton);
+            if (confirm) {
+                Debug.Log("Confirm button pressed.");
                 Confirm();
+
+            }
         }
 
-        if (gameManager.roundStarted && characterConfirmed)
+        if (testGameManager.roundStarted && characterConfirmed)
         {
             DisableReadyCube();
 
@@ -80,7 +87,7 @@ public class CharacterSelection : MonoBehaviour {
             if (animator == null)
                 animator = GetComponentInChildren<Animator>();
         }
-        else if (gameManager.roundStarted && !characterConfirmed)
+        else if (testGameManager.roundStarted && !characterConfirmed)
         {
             //Set all the models to nonActive (not visible)
             foreach (GameObject go in characterList)
@@ -125,26 +132,26 @@ public class CharacterSelection : MonoBehaviour {
     public void Confirm()
     {
         // Can't choose "no player" as character. Can't choose character that has already been chose.
-        if (index != 0 && !gameManager.chosenCharacters[index]) {
+        Debug.Log("Character Confirmed");
+        if (index != 0 && !testGameManager.chosenCharacters[index]) {
 			selectedCharacter = index;
-            gameManager.chosenCharacters[index] = true;
+            testGameManager.chosenCharacters[index] = true;
 
             index = characterList.Length - 1;
 			characterList[index].SetActive(true);
 
 			characterConfirmed = true;
 
-
-			gameManager.readyCount++;
-			gameManager.noPlayerCount--;
+			testGameManager.readyCount++;
+			testGameManager.noPlayerCount--;
 		}
     }
 
     public void UnConfirm()
     {
-        for (int i = 0; i < gameManager.chosenCharacters.Length; i++)
+        for (int i = 0; i < testGameManager.chosenCharacters.Length; i++)
         {
-            gameManager.chosenCharacters[i]= false;
+            testGameManager.chosenCharacters[i]= false;
         }
 
         //Set all the models to nonActive (not visible)
@@ -156,9 +163,10 @@ public class CharacterSelection : MonoBehaviour {
             characterList[0].SetActive(true);
 
         characterConfirmed = false;
+        confirm = false;
 
-        gameManager.readyCount--;
-        gameManager.noPlayerCount++;
+        testGameManager.readyCount--;
+        testGameManager.noPlayerCount++;
 
         index = 0;
     }

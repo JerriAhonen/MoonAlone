@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour {
 
     public int winningScore = -1;                                                    // Highest score after round
     
-    public bool gameStarted;                                                    // Is the round started
-    public bool gameFinished;                                                   // Is the round finished
+    public bool roundStarted;                                                    // Is the round started
+    public bool roundFinished;                                                   // Is the round finished
 
     public int NumOfPlayersNeededToStartGame_DEBUG;                             // Debug value for how many players needed to start game
 
@@ -55,9 +55,9 @@ public class GameManager : MonoBehaviour {
     private void Update()
     {
         // Logic for when GAME RUNNING
-        if (gameStarted)
+        if (roundStarted)
         {
-            if (timer >= 0.0f && !gameFinished)
+            if (timer >= 0.0f && !roundFinished)
             {
                 timer -= Time.deltaTime;
                 timeLeft = System.Convert.ToInt32(timer);                      // Convert float to int to get seconds
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour {
 
                 GetRoundScore();
 
-                gameFinished = true;                                                // Set the round to finished
+                roundFinished = true;                                                // Set the round to finished
 
                 DisablePlayerControls();                                            // Stop the players from moving
                 timer = setTimer;                                                   // Reset the timer for next round
@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour {
             if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
             {
                 StartGame(readyCount);
-                gameStarted = true;
-                gameFinished = false;
+                roundStarted = true;
+                roundFinished = false;
 
                 timerText.text = "";
                 winnerText.text = "";

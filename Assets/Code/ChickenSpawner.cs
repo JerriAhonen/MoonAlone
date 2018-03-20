@@ -43,7 +43,7 @@ public class ChickenSpawner : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
         timer -= Time.deltaTime;
 
-        if(timer < 0 && gm.gameStarted)
+        if(timer < 0 && gm.roundStarted)
         {
             SpawnChicken();
             timer = spawnTimer;
