@@ -2532,7 +2532,7 @@ MonoBehaviour:
   noPlayerCount: 4
   timerText: {fileID: 1428448317}
   winnerText: {fileID: 2005503113}
-  setTimer: 10
+  setTimer: 60
   timeLeft: 0
   roundNum: 0
   winningScore: 0
