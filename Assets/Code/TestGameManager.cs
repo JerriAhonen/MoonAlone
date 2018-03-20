@@ -59,6 +59,11 @@ public class TestGameManager : MonoBehaviour
 
         scenes[0] = true;                                                       // Set the scene to Main Menu
 
+        foreach (var cs in cs)
+        {
+            cs.UseTestGameManager = true;
+        }
+
         EnableOrDisableCS(false);                                               // Disable cs
     }
 
@@ -79,9 +84,9 @@ public class TestGameManager : MonoBehaviour
 
                         // TODO: Round Amount Selection
 
-
-                        ChangeScene(1);    // Scene 1 = Character Selection
                         menuNavigation.enabled = false;
+                        ChangeScene(1);    // Scene 1 = Character Selection
+                        
                         break;
                     case 1:
                         //Enter Options

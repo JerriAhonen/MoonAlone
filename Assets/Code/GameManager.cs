@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour {
 
         timer = setTimer;
 
+        foreach (var cs in cs)
+        {
+            cs.UseTestGameManager = false;
+        }
+
         scenes[0] = true;                                                       // Set the scene to Main Menu <- Not yet in use
     }
 

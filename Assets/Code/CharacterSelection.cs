@@ -18,13 +18,14 @@ public class CharacterSelection : MonoBehaviour {
     public GameManager gameManager;
     public Animator animator;
 
-    private bool confirm;
+    public bool UseTestGameManager;
+
     
     private void Start()
     {
         testGameManager = GetComponentInParent<TestGameManager>();
         gameManager = GetComponentInParent<GameManager>();
-        
+
         characterList = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -71,28 +72,50 @@ public class CharacterSelection : MonoBehaviour {
             if (cooldown < 0.0f)
                 axisInUse = false;
 
-            confirm = Input.GetButtonDown(confirmButton);
-            if (confirm) {
+            if (Input.GetButtonDown(confirmButton)) {
                 Debug.Log("Confirm button pressed.");
-                Confirm();
+                if (UseTestGameManager)
+                    TestConfirm();
+                else 
+                    Confirm();
 
             }
         }
 
-        if (testGameManager.roundStarted && characterConfirmed)
-        {
-            DisableReadyCube();
+        if (UseTestGameManager) {
+            if (testGameManager.roundStarted && characterConfirmed)
+                {
+                    DisableReadyCube();
 
-            // Set the animator so Player.cs can get it.
-            if (animator == null)
-                animator = GetComponentInChildren<Animator>();
+                    // Set the animator so Player.cs can get it.
+                    if (animator == null)
+                        animator = GetComponentInChildren<Animator>();
+                }
+                else if (testGameManager.roundStarted && !characterConfirmed)
+                {
+                    //Set all the models to nonActive (not visible)
+                    foreach (GameObject go in characterList)
+                        go.SetActive(false);
+                }
+        } else {
+            if (gameManager.roundStarted && characterConfirmed)
+            {
+                DisableReadyCube();
+
+                // Set the animator so Player.cs can get it.
+                if (animator == null)
+                    animator = GetComponentInChildren<Animator>();
+            }
+            else if (gameManager.roundStarted && !characterConfirmed)
+            {
+                //Set all the models to nonActive (not visible)
+                foreach (GameObject go in characterList)
+                    go.SetActive(false);
+            }
         }
-        else if (testGameManager.roundStarted && !characterConfirmed)
-        {
-            //Set all the models to nonActive (not visible)
-            foreach (GameObject go in characterList)
-                go.SetActive(false);
-        }
+        
+
+
     }
 
     public void ToggleUp()
@@ -133,6 +156,24 @@ public class CharacterSelection : MonoBehaviour {
     {
         // Can't choose "no player" as character. Can't choose character that has already been chose.
         Debug.Log("Character Confirmed");
+        if (index != 0 && !gameManager.chosenCharacters[index]) {
+			selectedCharacter = index;
+            gameManager.chosenCharacters[index] = true;
+
+            index = characterList.Length - 1;
+			characterList[index].SetActive(true);
+
+			characterConfirmed = true;
+
+			gameManager.readyCount++;
+			gameManager.noPlayerCount--;
+		}
+    }
+
+    public void TestConfirm()
+    {
+        // Can't choose "no player" as character. Can't choose character that has already been chose.
+        Debug.Log("Character Confirmed");
         if (index != 0 && !testGameManager.chosenCharacters[index]) {
 			selectedCharacter = index;
             testGameManager.chosenCharacters[index] = true;
@@ -163,7 +204,6 @@ public class CharacterSelection : MonoBehaviour {
             characterList[0].SetActive(true);
 
         characterConfirmed = false;
-        confirm = false;
 
         testGameManager.readyCount--;
         testGameManager.noPlayerCount++;
