@@ -1624,6 +1624,15 @@ MonoBehaviour:
   tower: []
   _towerLayer: Tower
   _pickUpLayer: PickUp
+  doSidewaysWobble: 0
+  chickenOffsetZMultiplier: 0
+  chickenOffsetZMultiplierAdder: 0
+  chickenOffsetXMultiplier: 0
+  chickenOffsetXMultiplierAdder: 0
+  maxTilt: 1
+  wobbleDistanceSetter: 0
+  wobbleDistance: 0
+  oldRot: 0
 --- !u!114 &442676355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1650,8 @@ MonoBehaviour:
   jumpForce: 5
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
+  isMoving: 0
+  score: 0
   tower: {fileID: 442676354}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -1648,6 +1659,7 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 603073117}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P1
   vertical: Vertical_P1
   fire1Button: Fire1_P1
@@ -1712,13 +1724,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 471407087}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.54, y: 10.73, z: 0}
+  m_LocalRotation: {x: 0.64592427, y: 0, z: 0, w: 0.76340157}
+  m_LocalPosition: {x: 0.54, y: 14.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80.47, y: 0, z: 0}
 --- !u!1 &477267590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,8 +2014,10 @@ MonoBehaviour:
   confirmButton: Jump_P4
   selectionCooldown: 0.3
   selectedCharacter: 0
+  testGameManager: {fileID: 0}
   gameManager: {fileID: 0}
   animator: {fileID: 0}
+  UseTestGameManager: 0
 --- !u!4 &550880760
 Transform:
   m_ObjectHideFlags: 0
@@ -2118,8 +2132,10 @@ MonoBehaviour:
   confirmButton: Jump_P1
   selectionCooldown: 0.3
   selectedCharacter: 0
+  testGameManager: {fileID: 0}
   gameManager: {fileID: 0}
   animator: {fileID: 0}
+  UseTestGameManager: 0
 --- !u!4 &603073118
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,8 +2567,10 @@ MonoBehaviour:
   confirmButton: Jump_P3
   selectionCooldown: 0.3
   selectedCharacter: 0
+  testGameManager: {fileID: 0}
   gameManager: {fileID: 0}
   animator: {fileID: 0}
+  UseTestGameManager: 0
 --- !u!4 &707749673
 Transform:
   m_ObjectHideFlags: 0
@@ -2700,6 +2718,7 @@ MonoBehaviour:
   - {fileID: 890169282}
   - {fileID: 330553806}
   scenes: 0000000000
+  playerScores: 00000000000000000000000000000000
   camera: {fileID: 1654744383}
   cameraPosMainMenu: {fileID: 1996224351}
   cameraPosCharacterSelection: {fileID: 1996224351}
@@ -2715,8 +2734,8 @@ MonoBehaviour:
   timeLeft: 0
   roundNum: 0
   winningScore: 0
-  gameStarted: 0
-  gameFinished: 0
+  roundStarted: 0
+  roundFinished: 0
   NumOfPlayersNeededToStartGame_DEBUG: 1
 --- !u!4 &757404727
 Transform:
@@ -2825,7 +2844,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 792887279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.18, y: 1.61, z: -1.465}
+  m_LocalPosition: {x: 17.18, y: 1.88, z: -1.465}
   m_LocalScale: {x: 1, y: 2.54, z: 1}
   m_Children:
   - {fileID: 806753240}
@@ -3132,8 +3151,10 @@ MonoBehaviour:
   confirmButton: Jump_P2
   selectionCooldown: 0.3
   selectedCharacter: 0
+  testGameManager: {fileID: 0}
   gameManager: {fileID: 0}
   animator: {fileID: 0}
+  UseTestGameManager: 0
 --- !u!4 &894248070
 Transform:
   m_ObjectHideFlags: 0
@@ -3873,19 +3894,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4086,6 +4107,15 @@ MonoBehaviour:
   tower: []
   _towerLayer: Tower
   _pickUpLayer: PickUp
+  doSidewaysWobble: 0
+  chickenOffsetZMultiplier: 0
+  chickenOffsetZMultiplierAdder: 0
+  chickenOffsetXMultiplier: 0
+  chickenOffsetXMultiplierAdder: 0
+  maxTilt: 1
+  wobbleDistanceSetter: 0
+  wobbleDistance: 0
+  oldRot: 0
 --- !u!114 &1210143192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4103,6 +4133,8 @@ MonoBehaviour:
   jumpForce: 5
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
+  isMoving: 0
+  score: 0
   tower: {fileID: 1210143191}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -4110,6 +4142,7 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
   fire1Button: Fire1_P3
@@ -4691,6 +4724,15 @@ MonoBehaviour:
   tower: []
   _towerLayer: Tower
   _pickUpLayer: PickUp
+  doSidewaysWobble: 0
+  chickenOffsetZMultiplier: 0
+  chickenOffsetZMultiplierAdder: 0
+  chickenOffsetXMultiplier: 0
+  chickenOffsetXMultiplierAdder: 0
+  maxTilt: 1
+  wobbleDistanceSetter: 0
+  wobbleDistance: 0
+  oldRot: 0
 --- !u!114 &1323039838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,6 +4750,8 @@ MonoBehaviour:
   jumpForce: 5
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
+  isMoving: 0
+  score: 0
   tower: {fileID: 1323039837}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -4715,6 +4759,7 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
   fire1Button: Fire1_P4
@@ -6131,6 +6176,15 @@ MonoBehaviour:
   tower: []
   _towerLayer: Tower
   _pickUpLayer: PickUp
+  doSidewaysWobble: 0
+  chickenOffsetZMultiplier: 0
+  chickenOffsetZMultiplierAdder: 0
+  chickenOffsetXMultiplier: 0
+  chickenOffsetXMultiplierAdder: 0
+  maxTilt: 1
+  wobbleDistanceSetter: 0
+  wobbleDistance: 0
+  oldRot: 0
 --- !u!114 &1685252554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6148,6 +6202,8 @@ MonoBehaviour:
   jumpForce: 5
   verticalVelocity: 0
   downwardsFallMultiplier: 2.5
+  isMoving: 0
+  score: 0
   tower: {fileID: 1685252553}
   chicken: {fileID: 0}
   controller: {fileID: 0}
@@ -6155,6 +6211,7 @@ MonoBehaviour:
   renderer: {fileID: 0}
   cs: {fileID: 0}
   _pickUpLayer: PickUp
+  _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
   fire1Button: Fire1_P2
@@ -6772,19 +6829,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
