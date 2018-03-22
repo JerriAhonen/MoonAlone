@@ -109,9 +109,10 @@ public class TestGameManager : MonoBehaviour
 
             camera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
             //Add animators (?)
-
+            Debug.Log("CS not ready.");
             if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
             {
+                Debug.Log("CS ready.");
                 // // Redo character selection
                 // if (CountDownTimer(3, true)) {
                     
@@ -126,13 +127,16 @@ public class TestGameManager : MonoBehaviour
                 // }
 
                 ChangeScene(2);
-                EnableOrDisableCS(false);
-                AddAnimatorsToPlayers(readyCount);  //Add animators to players
+                //EnableOrDisableCS(false);
+                //AddAnimatorsToPlayers(readyCount);  //Add animators to players
             }
 
             // Return to the main menu
-            if (Input.GetButtonDown(cancelButton))
+            if (Input.GetButtonDown(cancelButton)) {
+                Debug.Log("Back to mainmenu");
                 ChangeScene(0);
+            }
+                
         }
 
         if (scenes[2])
@@ -141,7 +145,7 @@ public class TestGameManager : MonoBehaviour
 
             camera.GetComponent<CameraController>().MoveCamera( cameraPosRound );
             
-            CountDownTimer(3, false);           //Timer before round start, no cancelling
+            //CountDownTimer(3, false);           //Timer before round start, no cancelling
             StartGame(readyCount);
             
             roundStarted = true;
@@ -211,6 +215,10 @@ public class TestGameManager : MonoBehaviour
             //  if ( press play again )
             //  ChangeScene[2]
         }
+    }
+
+    public void CanStartGame() {
+
     }
 
     void StartGame(int playerCount)                                                 // Player position and scripts and camera
