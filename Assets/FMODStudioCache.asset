@@ -12,127 +12,25 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114813743423927316}
-  - {fileID: 114290551502013840}
+  - {fileID: 114445160839935404}
+  - {fileID: 114406949286646152}
   EditorEvents:
-  - {fileID: 114548386212611016}
-  - {fileID: 114942152098319934}
-  - {fileID: 114754417355644662}
-  - {fileID: 114673578877372298}
-  - {fileID: 114474823310844422}
-  - {fileID: 114634078610301046}
-  - {fileID: 114421603947935136}
-  - {fileID: 114600287144979436}
-  - {fileID: 114215384758330360}
-  - {fileID: 114827205604939442}
-  - {fileID: 114978569047743932}
-  MasterBankRef: {fileID: 114290551502013840}
-  StringsBankRef: {fileID: 114813743423927316}
-  stringsBankWriteTime: 636560950534068185
+  - {fileID: 114057996755625642}
+  - {fileID: 114893847355836336}
+  - {fileID: 114758927192132736}
+  - {fileID: 114146045488097374}
+  - {fileID: 114122690593043542}
+  - {fileID: 114111641359804046}
+  - {fileID: 114358346067125634}
+  - {fileID: 114484867380782478}
+  - {fileID: 114341535565058508}
+  - {fileID: 114771040483097914}
+  - {fileID: 114380380102817990}
+  MasterBankRef: {fileID: 114406949286646152}
+  StringsBankRef: {fileID: 114445160839935404}
+  stringsBankWriteTime: 636560623603308244
   cacheVersion: 2
---- !u!114 &114215384758330360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Chicken Sounds/ChickenPickUpSuprise
-  guid: e3f66ad4fb252b4a82c850ea2ab99b3e
-  Banks:
-  - {fileID: 114290551502013840}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1300
---- !u!114 &114289681913003528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: D:\MoonAlone\MoonAlone\Build\Desktop\Master Bank.bank
-  lastModified: 636560969752124974
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 201888
-  Exists: 1
---- !u!114 &114290551502013840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: C:\Users\c5jeraho\Documents\Spring2018\MoonAlone\Build\Desktop\Master Bank.bank
-  lastModified: 636560950534068185
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 201888
-  Exists: 1
---- !u!114 &114421603947935136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Player Sounds/Hit1
-  guid: 916ac37211869a4b89b09f451713c251
-  Banks:
-  - {fileID: 114290551502013840}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 750
---- !u!114 &114474823310844422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Player Sounds/Hit2
-  guid: 51e4a5444a4420449e503d2d18dbc92b
-  Banks:
-  - {fileID: 114290551502013840}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1120
---- !u!114 &114548386212611016
+--- !u!114 &114057996755625642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -146,7 +44,7 @@ MonoBehaviour:
   Path: event:/Other Sounds/PickUp2
   guid: 08de53f62b74cf49876e3b960ad131ec
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -154,29 +52,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 570
---- !u!114 &114600287144979436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Player Sounds/Throw2
-  guid: a7aaefd3c7ee734792bbe6d107da4bed
-  Banks:
-  - {fileID: 114290551502013840}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1700
---- !u!114 &114634078610301046
+--- !u!114 &114111641359804046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -190,7 +66,7 @@ MonoBehaviour:
   Path: event:/Player Sounds/Jump
   guid: 6dd0315d139a514f8fbbcf3b721b6e96
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -198,7 +74,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 850
---- !u!114 &114673578877372298
+--- !u!114 &114122690593043542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Player Sounds/Hit2
+  guid: 51e4a5444a4420449e503d2d18dbc92b
+  Banks:
+  - {fileID: 114406949286646152}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1120
+--- !u!114 &114146045488097374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -212,7 +110,7 @@ MonoBehaviour:
   Path: event:/Other Sounds/Spawn
   guid: 2a8fe1cca3b9fd4dae70c63b9c92742c
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -220,7 +118,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 770
---- !u!114 &114754417355644662
+--- !u!114 &114341535565058508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -231,36 +129,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: event:/Player Sounds/Throw1
-  guid: 1b507ceab8741f448d9761c4aa250d9f
+  Path: event:/Chicken Sounds/ChickenPickUpSuprise
+  guid: e3f66ad4fb252b4a82c850ea2ab99b3e
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
---- !u!114 &114813743423927316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: MoonAlone\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636560950534068185
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1218
-  Exists: 1
---- !u!114 &114827205604939442
+  Length: 1300
+--- !u!114 &114358346067125634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -271,59 +151,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: event:/Chicken Sounds/ChickenCluckSeries
-  guid: f2d08bdbbfc7c1408f9eecd2694fbfb1
+  Path: event:/Player Sounds/Hit1
+  guid: 916ac37211869a4b89b09f451713c251
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1380
---- !u!114 &114865544658672692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: /Users/pirre/Pictures/FILES/HenHassle/MoonAlone/MoonAlone/Build/Desktop/Master
-    Bank.bank
-  lastModified: 636563958230000000
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 201888
-  Exists: 1
---- !u!114 &114942152098319934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Other Sounds/PickUp1
-  guid: 122a851a375ebb4d8a330de767d26f2f
-  Banks:
-  - {fileID: 114290551502013840}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 730
---- !u!114 &114978569047743932
+  Length: 750
+--- !u!114 &114380380102817990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -337,7 +176,7 @@ MonoBehaviour:
   Path: event:/Chicken Sounds/ChickenThrowScream
   guid: f8f131634ea0e04abcc5879a7f819632
   Banks:
-  - {fileID: 114290551502013840}
+  - {fileID: 114406949286646152}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -345,3 +184,127 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1950
+--- !u!114 &114406949286646152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Suvi\Documents\Repos\MoonAlone\MoonAlone\Build\Desktop\Master Bank.bank
+  lastModified: 636560623603283228
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 201888
+  Exists: 1
+--- !u!114 &114445160839935404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: MoonAlone\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636560623603308244
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1218
+  Exists: 1
+--- !u!114 &114484867380782478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Player Sounds/Throw2
+  guid: a7aaefd3c7ee734792bbe6d107da4bed
+  Banks:
+  - {fileID: 114406949286646152}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1700
+--- !u!114 &114758927192132736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Player Sounds/Throw1
+  guid: 1b507ceab8741f448d9761c4aa250d9f
+  Banks:
+  - {fileID: 114406949286646152}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &114771040483097914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Chicken Sounds/ChickenCluckSeries
+  guid: f2d08bdbbfc7c1408f9eecd2694fbfb1
+  Banks:
+  - {fileID: 114406949286646152}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1380
+--- !u!114 &114893847355836336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Other Sounds/PickUp1
+  guid: 122a851a375ebb4d8a330de767d26f2f
+  Banks:
+  - {fileID: 114406949286646152}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 730

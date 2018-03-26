@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
     private bool _throwFar = false;
     private GameObject _enemy;
     private Vector3 _throwDirection;
+    private bool _animFinished = false;
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour {
         if (throwIt && (tower.chickenCount > 0) && (_throwTimer > 1f))                // Check if there are chickens to throw
         {
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
-
+            
             // If an enemy has triggered the aim collider, throw at the enemy 
             // and "forget" the enemy from autoaim. Else throw forward.
             if (_enemy != null) {
@@ -111,13 +112,40 @@ public class Player : MonoBehaviour {
                 _throwDirection = transform.forward;
             }
 
-            tower.RemoveChicken(_throwDirection, true, _throwFar);           // Removes chicken from tower, Instantiates new and Throws it
-            PlayAnimation(3);                                                // Plays Throw Animation
+            float animTimer = 0;
+            
+            float animLength = PlayAnimation(3);
 
+            Debug.Log("Anim in throw length " + animLength);
+
+            while (animTimer < animLength) {                            // DOES NOT DELAY THROW FOR SOME REASON EVEN WHEN DEBUG SHOWS IT DOES THE WHOLE WHILE?!!?!?
+                animTimer += Time.deltaTime;
+            }
+            
+            tower.RemoveChicken(_throwDirection, true, _throwFar);          // Removes chicken from tower, Instantiates new and Throws it
+            
             // Reset throw timer.
             _throwTimer = 0f;
         }
     }
+
+    // DOES NOT FUCKING WORK
+    //
+    //IEnumerator WaitAnimEnd(int animParam) {
+    //    _animFinished = false;
+
+    //    Debug.Log("Anim " + currentAnimationParam);
+    //    Debug.Log("Anim time " + animControl.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+    //    while (currentAnimationParam == 3
+    //                &&
+    //                animControl.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) {
+    //        //Wait every frame until animation has finished
+    //        yield return null;
+    //    }
+
+    //    _animFinished = true;
+    //}
 
     void Move()
     {
@@ -131,7 +159,7 @@ public class Player : MonoBehaviour {
 		}
 		else 
 		{
-			PlayAnimation(1);                                                   // Play's Run animation
+			PlayAnimation(1);                                                   // Plays Run animation
             isMoving = true;
 		}
         
@@ -169,7 +197,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if(verticalVelocity > -50)                                              // No need to go smaller than this
+        if (verticalVelocity > -50)                                              // No need to go smaller than this
         {
             verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
 
@@ -216,11 +244,17 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void PlayAnimation(int param)                                        // Changes current animation
+    public float PlayAnimation(int param)                                        // Changes current animation
     {
+        float animLength = 0;
+
         if (animControl != null && param != currentAnimationParam)
         {
-            animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param 
+            animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
+
+            // To get accurate current clip length
+            animLength = animControl.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+            
             currentAnimationParam = param;
 
             switch (param)
@@ -240,6 +274,8 @@ public class Player : MonoBehaviour {
                 
             }
         }
+
+        return animLength;
     }
 }
                                                                                 // Idle = 0
