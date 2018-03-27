@@ -25,8 +25,12 @@ public class Chicken : MonoBehaviour
 
     private Vector3 newPos = Vector3.zero;
 
-    public float gravity;
+    private float _gravity;
+    private float _launchAngle;
+    private float _v0;
     private float _flyTime;
+    private Vector3 _verticalTrajectory;
+    private Vector3 _horizontalTrajectory;
     public bool isThrown = false;
     public bool isFalling = false;
     public string _pickUpLayer = "PickUp";
@@ -46,6 +50,9 @@ public class Chicken : MonoBehaviour
         newPos = transform.position;
 		animControl = gameObject.GetComponent<Animator>();
         mainCamera = GameObject.Find("Main Camera");
+
+        _gravity = 80f;
+        _launchAngle = 30f;
     }
 
     private void Update()
@@ -105,18 +112,15 @@ public class Chicken : MonoBehaviour
         }
     }
 
-    float launchAngle;
-    float v0;
-
-    Vector3 trajectory;
-
     // The chicken flies through the air.
     void Fly() {
-        trajectory.y = v0 * Mathf.Sin(launchAngle * Mathf.Deg2Rad) - gravity * _flyTime;
+        // Set flight's vertical trajectory.
+        _verticalTrajectory.y = _v0 * Mathf.Sin(_launchAngle * Mathf.Deg2Rad) - _gravity * _flyTime;
         
         _flyTime += Time.deltaTime;
 
-        transform.position += transform.forward + trajectory;
+        transform.position += _verticalTrajectory * Time.deltaTime;
+        transform.position += _horizontalTrajectory * Time.deltaTime;
         
         if (transform.position.y < 0.1f) {
              isThrown = false;
@@ -127,23 +131,23 @@ public class Chicken : MonoBehaviour
 
     // Set the parameters for flight (throw / fall).
     public void SetFlight(bool toBeThrown, bool flyFar) {
-        launchAngle = 15f;
-        gravity = 20f;
-        v0 = 2f;
-        
         if (toBeThrown) {
-            mainCamera = GameObject.Find("Main Camera");
-            // TODO: Make throw faster
-            isThrown = true;
-            
             if (flyFar) {
+                _v0 = 22f;
             } else {
+                _v0 = 16f;
             }
-            
+
+            isThrown = true;
         } else {
             // TODO: Make falling look like falling instead of an explosion, doesn't really use Fly() as much as just Rigidbodies being Rigidbodies at the moment.
             isFalling = true;
         }
+
+        _flyTime = 0;
+        
+        // Set flight's horizontal trajectory.
+        _horizontalTrajectory = transform.forward * _v0 * Mathf.Cos(_launchAngle * Mathf.Deg2Rad);
     }
 
     private void OnCollisionEnter(Collision collision) {
