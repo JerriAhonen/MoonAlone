@@ -67,14 +67,15 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fire1Button)) {
+        if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button)) {
             _pressTime = Time.time;
         }
 
-        bool throwIt = Input.GetButtonUp(fire1Button);                        // Throw Input
+        // Throw input.
+        bool _throwIt = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button);
         
         // Calculate how long the fire button was pressed.
-        if (throwIt){
+        if (_throwIt){
             _pressTime = Time.time - _pressTime;
 
             // If the press time was long, throw far.
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour {
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (throwIt && (tower.chickenCount > 0) && (_throwTimer > 1f))                // Check if there are chickens to throw
+        if (_throwIt && (tower.chickenCount > 0) && (_throwTimer > 1f))                // Check if there are chickens to throw
         {
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
             
@@ -122,7 +123,8 @@ public class Player : MonoBehaviour {
                 animTimer += Time.deltaTime;
             }
             
-            tower.RemoveChicken(_throwDirection, true, _throwFar);          // Removes chicken from tower, Instantiates new and Throws it
+            // Remove chicken from the tower to be thrown.
+            tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
             
             // Reset throw timer.
             _throwTimer = 0f;
@@ -244,7 +246,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public float PlayAnimation(int param)                                        // Changes current animation
+    public float PlayAnimation(int param)                                   // Changes current animation
     {
         float animLength = 0;
 

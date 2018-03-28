@@ -5513,7 +5513,7 @@ MonoBehaviour:
   winningScore: 0
   roundStarted: 0
   roundFinished: 0
-  NumOfPlayersNeededToStartGame_DEBUG: 1
+  NumOfPlayersNeededToStartGame_DEBUG: 2
 --- !u!4 &757404727
 Transform:
   m_ObjectHideFlags: 0

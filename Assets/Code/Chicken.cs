@@ -25,9 +25,10 @@ public class Chicken : MonoBehaviour
 
     private Vector3 newPos = Vector3.zero;
 
+    private GameObject _originatingPlayer;
     private float _gravity;
     private float _launchAngle;
-    private float _v0;
+    private float _launchVelocity;
     private float _flyTime;
     private Vector3 _verticalTrajectory;
     private Vector3 _horizontalTrajectory;
@@ -51,8 +52,7 @@ public class Chicken : MonoBehaviour
 		animControl = gameObject.GetComponent<Animator>();
         mainCamera = GameObject.Find("Main Camera");
 
-        _gravity = 80f;
-        _launchAngle = 30f;
+        
     }
 
     private void Update()
@@ -112,86 +112,79 @@ public class Chicken : MonoBehaviour
         }
     }
 
-    // The chicken flies through the air.
+    // The chicken flies through the air either when thrown or falling.
     void Fly() {
-        // Set flight's vertical trajectory.
-        _verticalTrajectory.y = _v0 * Mathf.Sin(_launchAngle * Mathf.Deg2Rad) - _gravity * _flyTime;
-        
+        // Set flight's vertical trajectory. Gravity affects the vertical trajectory at every point in fly time.
+        _verticalTrajectory.y = _launchVelocity * Mathf.Sin(_launchAngle * Mathf.Deg2Rad) - _gravity * _flyTime;
+        // Time spent in flight always increases.
         _flyTime += Time.deltaTime;
 
         transform.position += _verticalTrajectory * Time.deltaTime;
         transform.position += _horizontalTrajectory * Time.deltaTime;
         
+        // If the chicken is on the ground, flight booleans return to false and fly time goes back to zero.
         if (transform.position.y < 0.1f) {
-             isThrown = false;
-             isFalling = false;
-             _flyTime = 0;
+            isThrown = false;
+            isFalling = false;
+            _flyTime = 0;
+            
+            // Unity gravity is turned back on for easy walk about and bouncing.
+            transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 
-    // Set the parameters for flight (throw / fall).
-    public void SetFlight(bool toBeThrown, bool flyFar) {
+    // Set the parameters for flight either when thrown or falling.
+    public void SetFlight(bool toBeThrown, bool flyFar, GameObject originatingPlayer) {
+        // Remember who threw you or whose tower you fell from.
+        _originatingPlayer = originatingPlayer;
+        
+        // NOTE! Rocket launch curved trajectory chickens can be achieved by using minus gravity!
+        _gravity = 50f;
+        
         if (toBeThrown) {
+            _launchAngle = 30f;
+            
             if (flyFar) {
-                _v0 = 22f;
+                _launchVelocity = 17f;
             } else {
-                _v0 = 16f;
+                _launchVelocity = 11f;
             }
 
             isThrown = true;
         } else {
-            // TODO: Make falling look like falling instead of an explosion, doesn't really use Fly() as much as just Rigidbodies being Rigidbodies at the moment.
+            _launchAngle = 10f;
+            _launchVelocity = 2f;
+
+            // Introduce more angular drag so that Unity Ridigbody physics don't make the chickens go apeshit.
+            // Trying to make the Rigidbodies NOT react with their own forces proved difficult.
+            transform.gameObject.GetComponent<Rigidbody>().drag = 3f;
+
             isFalling = true;
         }
 
+        // Reset fly time just in case.
         _flyTime = 0;
         
-        // Set flight's horizontal trajectory.
-        _horizontalTrajectory = transform.forward * _v0 * Mathf.Cos(_launchAngle * Mathf.Deg2Rad);
+        // Set flight's horizontal trajectory. The horizontal trajectory stays constant through flight.
+        _horizontalTrajectory = transform.forward * _launchVelocity * Mathf.Cos(_launchAngle * Mathf.Deg2Rad);
     }
 
     private void OnCollisionEnter(Collision collision) {
-        // If a tower chicken collides with a thrown chicken, scatter chickens.
+        // If a tower chicken collides with a thrown chicken and the thrown chicken
+        // did not originate from the player whose tower the chicken is in, scatter 
+        // chickens.
         if (isInTower) {
             if (collision.gameObject.GetComponent<Chicken>() != null) {
-                if (collision.gameObject.GetComponent<Chicken>().isThrown) {
+                Chicken collidingChicken = collision.gameObject.GetComponent<Chicken>();
+
+                if (collidingChicken.isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
                         //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/HITTOBE!", mainCamera.transform.position);
 
-                        GetComponentInParent<Tower>().Scatter();
+                        GetComponentInParent<Tower>().Scatter(_originatingPlayer);
                     }
                 }
             }
         }
     }
-
-    // THE CHICKEN LAUNCH FLIGHT:
-    //
-    // void Fly() {
-    //     _flyTime += Time.deltaTime;
-        
-    //     if (verticalVelocity > -50) {                                           // No need to go smaller than this
-    //         verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
-
-    //         if (verticalVelocity > 0) {                                         // Fall faster than go up
-    //             verticalVelocity += gravity * upwardsMultiplier * Time.deltaTime;
-    //         }
-    //     }
-
-    //     Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
-
-    //     transform.position += (transform.forward * throwForce * Time.deltaTime);
-
-    //     if (_flyTime < 0.1f) {
-    //         transform.position += (verticalMovement * Time.deltaTime);
-    //     } else {
-    //         transform.position -= (verticalMovement * Time.deltaTime);
-    //     }
-        
-    //     if (transform.position.y < 0.1f) {
-    //         isThrown = false;
-    //         isFalling = false;
-    //         _flyTime = 0;
-    //     }
-    // }
 }
