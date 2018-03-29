@@ -153,7 +153,7 @@ public class Chicken : MonoBehaviour
             isThrown = true;
         } else {
             _launchAngle = 10f;
-            _launchVelocity = 2f;
+            _launchVelocity = 8f;
 
             // Introduce more angular drag so that Unity Ridigbody physics don't make the chickens go apeshit.
             // Trying to make the Rigidbodies NOT react with their own forces proved difficult.

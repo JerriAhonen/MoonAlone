@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     public string _playerLayer = "Player";
 
     private float _pressTime = 0;
+    private float _animTimer;
     private float _throwTimer = 0;
     private bool _throwFar = false;
     private GameObject _enemy;
@@ -78,6 +79,8 @@ public class Player : MonoBehaviour {
         if (_throwIt){
             _pressTime = Time.time - _pressTime;
 
+            //_animTimer = 0;
+
             // If the press time was long, throw far.
             if (_pressTime > 0.2f) {
                 _throwFar = true;
@@ -112,42 +115,23 @@ public class Player : MonoBehaviour {
             } else {
                 _throwDirection = transform.forward;
             }
-
-            float animTimer = 0;
             
             float animLength = PlayAnimation(3);
-
-            Debug.Log("Anim in throw length " + animLength);
-
-            while (animTimer < animLength) {                            // DOES NOT DELAY THROW FOR SOME REASON EVEN WHEN DEBUG SHOWS IT DOES THE WHOLE WHILE?!!?!?
-                animTimer += Time.deltaTime;
-            }
             
-            // Remove chicken from the tower to be thrown.
-            tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
-            
-            // Reset throw timer.
-            _throwTimer = 0f;
+            StartCoroutine(ThrowChicken(animLength));
         }
     }
 
-    // DOES NOT FUCKING WORK
-    //
-    //IEnumerator WaitAnimEnd(int animParam) {
-    //    _animFinished = false;
+    // Throw chicken after waiting for the animation to pass a certain point.
+    IEnumerator ThrowChicken(float length) {
+        yield return new WaitForSeconds(length / 5f);
 
-    //    Debug.Log("Anim " + currentAnimationParam);
-    //    Debug.Log("Anim time " + animControl.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        // Remove chicken from the tower to be thrown.
+        tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
 
-    //    while (currentAnimationParam == 3
-    //                &&
-    //                animControl.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) {
-    //        //Wait every frame until animation has finished
-    //        yield return null;
-    //    }
-
-    //    _animFinished = true;
-    //}
+        // Reset throw timer.
+        _throwTimer = 0f;
+    }
 
     void Move()
     {
@@ -246,6 +230,7 @@ public class Player : MonoBehaviour {
         }
     }
 
+    // Play animation and return the animation length.
     public float PlayAnimation(int param)                                   // Changes current animation
     {
         float animLength = 0;
@@ -254,7 +239,7 @@ public class Player : MonoBehaviour {
         {
             animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
 
-            // To get accurate current clip length
+            // To get accurate current clip length. (Not that accurate though...)
             animLength = animControl.GetCurrentAnimatorClipInfo(0)[0].clip.length;
             
             currentAnimationParam = param;
