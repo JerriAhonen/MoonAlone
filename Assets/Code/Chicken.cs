@@ -34,9 +34,12 @@ public class Chicken : MonoBehaviour
     private Vector3 _horizontalTrajectory;
     public bool isThrown = false;
     public bool isFalling = false;
-    public string _pickUpLayer = "PickUp";
+    private string _groundLayer;
+    private bool _isGrounded = false;
 
     public GameObject mainCamera;
+    private ParticleSystem _particles;
+    private bool _isEmitting;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -52,11 +55,18 @@ public class Chicken : MonoBehaviour
 		animControl = gameObject.GetComponent<Animator>();
         mainCamera = GameObject.Find("Main Camera");
 
-        
+        _groundLayer = "Ground";
+
+        _particles = GetComponentInChildren<ParticleSystem>();
+
+        _isEmitting = false;
     }
 
     private void Update()
     {
+        var trail = _particles.emission;
+        trail.enabled = _isEmitting;
+        
         time += Time.deltaTime;
 
         if (!isInTower && !isThrown && !isFalling)
@@ -75,12 +85,32 @@ public class Chicken : MonoBehaviour
         }
 
         if (isThrown || isFalling) {
+            if (!_isEmitting) {
+                _isEmitting = true;
+            }
+            
             Fly();
 			animControl.SetInteger ("AnimParam", 1);
         }
 
-		if (isInTower)
+		if (isInTower) {
 			animControl.SetInteger ("AnimParam", 2);
+        }
+
+        if (_isGrounded) {
+            isThrown = false;
+            isFalling = false;
+            _flyTime = 0;
+            
+            // Unity gravity is turned back on for easy walk about and bouncing.
+            transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            
+            if (_isEmitting) {
+                _isEmitting = false;
+            }
+            
+            _isGrounded = false;
+        }
     }
 
     public void Move(Vector3 dir)
@@ -121,16 +151,6 @@ public class Chicken : MonoBehaviour
 
         transform.position += _verticalTrajectory * Time.deltaTime;
         transform.position += _horizontalTrajectory * Time.deltaTime;
-        
-        // If the chicken is on the ground, flight booleans return to false and fly time goes back to zero.
-        if (transform.position.y < 0.1f) {
-            isThrown = false;
-            isFalling = false;
-            _flyTime = 0;
-            
-            // Unity gravity is turned back on for easy walk about and bouncing.
-            transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
-        }
     }
 
     // Set the parameters for flight either when thrown or falling.
@@ -184,6 +204,13 @@ public class Chicken : MonoBehaviour
                         GetComponentInParent<Tower>().Scatter(_originatingPlayer);
                     }
                 }
+            }
+        }
+
+        // If the chicken is falling or thrown and it collides with the ground, it is grounded.
+        if (isFalling || isThrown) {
+            if (collision.gameObject.layer == LayerMask.NameToLayer(_groundLayer)) {
+                _isGrounded = true;
             }
         }
     }

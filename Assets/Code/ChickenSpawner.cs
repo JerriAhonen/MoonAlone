@@ -54,6 +54,8 @@ public class ChickenSpawner : MonoBehaviour {
     {
         GameObject cloneChicken = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
 
+        cloneChicken.GetComponent<Chicken>().isFalling = true;
+
         FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Spawn", mainCamera.transform.position);
     }
 }
