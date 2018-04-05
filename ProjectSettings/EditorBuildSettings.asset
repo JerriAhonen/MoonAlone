@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Tests/Pelialueen Maarittaminen 1.unity
-    guid: 865dd48f72b3a194bb77d4c99c09de20
-  - enabled: 1
-    path: Assets/Scenes/Tests/CharacterSelection.unity
-    guid: c0c438e499b2dfb48a3d515833b47d37
+    path: Assets/Scenes/Main Build/Level1.unity
+    guid: 6f98d0b8c1bbaa04a923a8ecfe8269b1
