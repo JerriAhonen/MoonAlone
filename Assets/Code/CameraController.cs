@@ -16,8 +16,10 @@ public class CameraController : MonoBehaviour {
 	void Update () {
         if (cameraMoved)
         {
-            transform.position = Vector3.Slerp(transform.position, targetTransform.position, Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetTransform.rotation, Time.deltaTime);
+            transform.position = Vector3.Slerp(transform.position, 
+                targetTransform.position, Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, 
+                targetTransform.rotation, Time.deltaTime);
             
         }
     }

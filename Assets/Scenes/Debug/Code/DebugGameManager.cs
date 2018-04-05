@@ -6,7 +6,15 @@ public class DebugGameManager : MonoBehaviour {
 
 
 	public bool[] scenes = new bool[5];
-	public int currentScene = 0;
+	private int currentScene = 0;
+
+	public Camera camera;
+	private Transform targetTransform;
+	public Transform MMcamPos;
+	public Transform CScamPos;
+	public Transform RcamPos;
+	public Transform RScamPos;
+	public Transform GOcamPos;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,18 +22,11 @@ public class DebugGameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space)) {
-                Debug.Log("Switch scene");
-				currentScene++;
-				if (currentScene == scenes.Length) {
-					currentScene = 0;
-				}
-				
-                ChangeScene(currentScene);
-            }
+		ChangeSceneWithSpace();
+
 	}
 
-	public void ChangeScene(int newScene)                                       // Changes the scene boolean
+	public void ChangeScene(int newScene)	// Works.
     {
         // bool mainMenu;          // 0
         // bool characterSelect;   // 1
@@ -35,11 +36,44 @@ public class DebugGameManager : MonoBehaviour {
 
         for (int i = 0; i < scenes.Length; i++)
         {
-            if (scenes[i] == true)
                 scenes[i] = false;
         }
 
         scenes[newScene] = true;
 		Debug.Log("Current scene = " + newScene);
+
+		//Update the camera transform location when changing scenes
+		switch (newScene) {
+			case 0:
+				targetTransform = MMcamPos;
+				break;
+			case 1:
+				targetTransform = CScamPos;
+				break;
+			case 2:
+				targetTransform = RcamPos;
+				break;
+			case 3:
+				targetTransform = RScamPos;
+				break;
+			case 4:
+				targetTransform = GOcamPos;
+				break;
+		}
+		//Move the camera to the new location for each scene
+		camera.GetComponent<CameraController>().MoveCamera( targetTransform );	// Works.
+		
     }
+
+	private void ChangeSceneWithSpace() {
+		if (Input.GetKeyDown(KeyCode.Space)) {
+                Debug.Log("Switch scene");
+				currentScene++;
+				if (currentScene == scenes.Length) {
+					currentScene = 0;
+				}
+				
+                ChangeScene(currentScene);
+        }
+	}
 }
