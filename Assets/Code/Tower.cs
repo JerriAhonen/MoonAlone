@@ -113,7 +113,7 @@ public class Tower : MonoBehaviour {
 
         cloneChicken.GetComponent<Rigidbody>().useGravity = false;
         
-        cloneChicken.GetComponent<Chicken>().SetFlight(toBeThrown, flyFar, originatingPlayer);
+        chickenController.SetFlight(toBeThrown, flyFar, originatingPlayer);
     }
 
     // public void MoveChickensWithPlayer()
