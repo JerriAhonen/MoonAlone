@@ -360,7 +360,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1566459884676502
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -695,14 +695,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856093599825542}
-  m_LocalRotation: {x: 0, y: -0.61414754, z: 0, w: 0.7891913}
-  m_LocalPosition: {x: 5.11, y: -2.9312085e-17, z: 2.6401978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.65, y: -2.9312085e-17, z: 2.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4776898850314880}
   - {fileID: 4728236076447272}
   - {fileID: 4810008524624336}
   - {fileID: 4315379939999502}
+  - {fileID: 4624533916677554}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -75.78, z: 0}
@@ -840,8 +841,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4624533916677554}
+  m_Children: []
   m_Father: {fileID: 4124733739052976}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -870,7 +870,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565357929379890}
-  m_LocalRotation: {x: 0.64032304, y: -0.013319072, z: 0.7663802, w: -0.04970466}
+  m_LocalRotation: {x: 0.640323, y: -0.01331907, z: 0.7663801, w: -0.049704652}
   m_LocalPosition: {x: -0.23371053, y: 0.000000013969839, z: -0.000000015703726}
   m_LocalScale: {x: 0.9999998, y: 1, z: 1}
   m_Children: []
@@ -1015,11 +1015,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566459884676502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3399999, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_LocalPosition: {x: 0.33999994, y: 0.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4315379939999502}
-  m_RootOrder: 0
+  m_Father: {fileID: 4124733739052976}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4657857698309514
 Transform:
@@ -1223,7 +1223,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!95 &95021020045424246
 Animator:
   serializedVersion: 3
@@ -1261,6 +1261,8 @@ MonoBehaviour:
   animControl: {fileID: 0}
   isThrown: 0
   isFalling: 0
+  _groundLayer: 
+  _isGrounded: 0
   mainCamera: {fileID: 0}
 --- !u!135 &135331234438409476
 SphereCollider:
@@ -1448,7 +1450,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -1496,7 +1498,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1622305698
+  randomSeed: -1738543861
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2051,7 +2053,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -4765,7 +4767,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -4813,7 +4815,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2044646859
+  randomSeed: -258194128
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5368,7 +5370,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2

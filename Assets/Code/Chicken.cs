@@ -34,12 +34,12 @@ public class Chicken : MonoBehaviour
     private Vector3 _horizontalTrajectory;
     public bool isThrown = false;
     public bool isFalling = false;
-    private string _groundLayer;
-    private bool _isGrounded = false;
+    public string _groundLayer;
+    public bool _isGrounded = false;
 
     public GameObject mainCamera;
-    private ParticleSystem _particles;
-    private bool _isEmitting;
+    private ParticleSystem _featherParticles;
+    private ParticleSystem _trailParticles;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -57,16 +57,12 @@ public class Chicken : MonoBehaviour
 
         _groundLayer = "Ground";
 
-        _particles = GetComponentInChildren<ParticleSystem>();
-
-        _isEmitting = false;
+        _featherParticles = this.transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
+        _trailParticles = this.transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
     }
 
     private void Update()
     {
-        var trail = _particles.emission;
-        trail.enabled = _isEmitting;
-        
         time += Time.deltaTime;
 
         if (!isInTower && !isThrown && !isFalling)
@@ -85,10 +81,11 @@ public class Chicken : MonoBehaviour
         }
 
         if (isThrown || isFalling) {
-            if (!_isEmitting) {
-                _isEmitting = true;
+            if (_featherParticles.isStopped || _trailParticles.isStopped) {
+                _featherParticles.Play();
+                _trailParticles.Play();
             }
-            
+
             Fly();
 			animControl.SetInteger ("AnimParam", 1);
         }
@@ -98,18 +95,23 @@ public class Chicken : MonoBehaviour
         }
 
         if (_isGrounded) {
-            isThrown = false;
-            isFalling = false;
+            if (isThrown) {
+                isThrown = false;
+            }
+            
+            if (isFalling) {
+                isFalling = false;
+            }
+            
             _flyTime = 0;
             
             // Unity gravity is turned back on for easy walk about and bouncing.
             transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
             
-            if (_isEmitting) {
-                _isEmitting = false;
-            }
-            
             _isGrounded = false;
+
+            _featherParticles.Stop();
+            _trailParticles.Stop();
         }
     }
 
