@@ -11,13 +11,21 @@ namespace SpaceHenHassle
         public bool[] scenes = new bool[5];
         private int currentScene = 0;
 
+        public int numOfPlayers;
+
+        private bool timerFinished;
+
         public Camera MainCamera;
-        private CameraControllerTest cm;
+        private CameraControllerTest cc;
+        private CSManagerTest csm;
 
         // Use this for initialization
         void Start()
         {
-            cm = MainCamera.GetComponent<CameraControllerTest>();
+            cc = MainCamera.GetComponent<CameraControllerTest>();
+            csm = GetComponent<CSManagerTest>();
+
+            scenes[0] = true;
         }
 
         // Update is called once per frame
@@ -25,6 +33,31 @@ namespace SpaceHenHassle
         {
             ChangeSceneWithC();
 
+            if (scenes[0])
+            {
+                StartCooldownTimer(10);
+                csm.EnableCharacterSelection(false, numOfPlayers);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {    // Insert mainmenu option 1 here.
+                    //StartCooldownTimer(10);
+                    //if (timerFinished)
+                        ChangeScene(1);
+                }
+                // Ask number of players
+            }
+            else if (scenes[1])
+            {
+                csm.EnableCharacterSelection(true, numOfPlayers);
+
+                if (csm.ready)
+                {
+                    csm.EnableCharacterSelection(false, numOfPlayers);
+                    
+                    ChangeScene(2);
+                }
+
+            }
 
 
 
@@ -77,9 +110,10 @@ namespace SpaceHenHassle
         }
 
         // Move Camera
+        // Communicates with the Main Camera's component "cc"
         public void MoveCamera(int sceneNum)
         {   // Works 6.4.
-            cm.MoveCamera(sceneNum);
+            cc.MoveCamera(sceneNum);
         }
 
         private void ChangeSceneWithC()
@@ -94,6 +128,17 @@ namespace SpaceHenHassle
                 }
                 ChangeScene(currentScene);
             }
+        }
+
+        private void StartCooldownTimer(float cooldownTime)
+        {
+            timerFinished = false;
+            while (cooldownTime > 0)
+            {
+                cooldownTime -= Time.deltaTime;
+                Debug.Log("CooldownTimer: " + cooldownTime.ToString("f0"));
+            }
+            timerFinished = true;
         }
     }
 

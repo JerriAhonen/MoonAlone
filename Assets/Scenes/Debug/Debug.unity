@@ -375,13 +375,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 781645811}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 855697308}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1680419891}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &855697307
 GameObject:
@@ -534,7 +534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 22.242, y: 0, z: 0}
 --- !u!1001 &1225291651
 Prefab:
@@ -839,7 +839,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 781645812}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -854,10 +855,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf98696d384d0940ba1d0df414fd659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cs1: {fileID: 855697309}
-  cs2: {fileID: 0}
-  cs3: {fileID: 0}
-  cs4: {fileID: 0}
+  ready: 0
+  cs:
+  - {fileID: 855697309}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1680419893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenes: 0000000000
-  MainCamera: {fileID: 0}
+  numOfPlayers: 1
+  MainCamera: {fileID: 1472203458}
 --- !u!1 &1725760451
 GameObject:
   m_ObjectHideFlags: 0

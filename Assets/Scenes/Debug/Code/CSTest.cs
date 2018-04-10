@@ -8,7 +8,7 @@ namespace SpaceHenHassle
     {
 
         //private GameManagerDebug gameManager;
-        //private CSManagerDebug csManager;
+        private CSManagerTest csm;
         private GameObject[] characterList;
         private int index;
         public string toggleAxis;
@@ -23,7 +23,7 @@ namespace SpaceHenHassle
         void Start()
         {
             //gameManager = GetComponentInParent<GameManagerDebug>();
-            //csManager = GetComponentInParent<CSManagerDebug>();
+            csm = GetComponentInParent<CSManagerTest>();
 
             characterList = new GameObject[transform.childCount];
 
@@ -128,6 +128,10 @@ namespace SpaceHenHassle
                 characterList[index].SetActive(true);
 
                 characterConfirmed = true;
+                Debug.Log("number of players ready: " + csm.numOfReady);
+                csm.numOfReady++;
+                Debug.Log("number of players ready: " + csm.numOfReady);
+                Debug.Log("SetcsToReady();");
 
                 //gameManager.readyCount++;
                 //gameManager.noPlayerCount--;
