@@ -35,6 +35,7 @@ public class Chicken : MonoBehaviour
     public bool isThrown = false;
     public bool isFalling = false;
     public string _groundLayer;
+    public string _pickUpLayer;
     public bool _isGrounded = false;
 
     public GameObject mainCamera;
@@ -56,6 +57,7 @@ public class Chicken : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
 
         _groundLayer = "Ground";
+        _pickUpLayer = "PickUp";
 
         _featherParticles = this.transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = this.transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
@@ -100,7 +102,7 @@ public class Chicken : MonoBehaviour
             _flyTime = 0;
             
             // Unity gravity is turned back on for easy walk about and bouncing.
-            transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().useGravity = true;
 
             _featherParticles.Stop();
             _trailParticles.Stop();
@@ -179,7 +181,7 @@ public class Chicken : MonoBehaviour
 
             // Introduce more angular drag so that Unity Ridigbody physics don't make the chickens go apeshit.
             // Trying to make the Rigidbodies NOT react with their own forces proved difficult.
-            transform.gameObject.GetComponent<Rigidbody>().drag = 3f;
+            GetComponent<Rigidbody>().drag = 3f;
 
             isFalling = true;
         }
@@ -196,8 +198,10 @@ public class Chicken : MonoBehaviour
         // did not originate from the player whose tower the chicken is in, scatter 
         // chickens.
         if (isInTower) {
-            if (collision.gameObject.GetComponent<Chicken>() != null) {
-                Chicken collidingChicken = collision.gameObject.GetComponent<Chicken>();
+            GameObject collisionObject = collision.gameObject;
+
+            if (collisionObject.GetComponent<Chicken>() != null) {
+                Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
 
                 if (collidingChicken.isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
@@ -209,9 +213,16 @@ public class Chicken : MonoBehaviour
             }
         }
 
-        // If the chicken is falling or thrown and it collides with the ground, it is grounded.
         if (isFalling || isThrown) {
-            if (collision.gameObject.layer == LayerMask.NameToLayer(_groundLayer)) {
+            GameObject collisionObject = collision.gameObject;
+
+            if (collisionObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
+                // Introduce drag so chickens don't bounce as much.
+                GetComponent<Rigidbody>().drag = 2f;
+                collisionObject.GetComponent<Rigidbody>().drag = 2f;
+            }
+            
+            if (collisionObject.layer == LayerMask.NameToLayer(_groundLayer)) {
                 _isGrounded = true;
             }
         }
