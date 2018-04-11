@@ -86,7 +86,6 @@ public class Chicken : MonoBehaviour
                 _trailParticles.Play();
             }
 
-            Fly();
 			animControl.SetInteger ("AnimParam", 1);
         }
 
@@ -95,23 +94,24 @@ public class Chicken : MonoBehaviour
         }
 
         if (_isGrounded) {
-            if (isThrown) {
-                isThrown = false;
-            }
-            
-            if (isFalling) {
-                isFalling = false;
-            }
-            
+            isThrown = false;
+            isFalling = false;
+
             _flyTime = 0;
             
             // Unity gravity is turned back on for easy walk about and bouncing.
             transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
-            
-            _isGrounded = false;
 
             _featherParticles.Stop();
             _trailParticles.Stop();
+
+            _isGrounded = false;
+        }
+    }
+
+    private void FixedUpdate() {
+        if (isThrown || isFalling) {
+            Fly();
         }
     }
 
