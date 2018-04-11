@@ -217,16 +217,20 @@ public class Player : MonoBehaviour {
     }
 
     // If another player triggers the aim collider, remember the enemy for autoaim.
-    private void OnTriggerStay(Collider collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
-            _enemy = collision.gameObject;
+    private void OnTriggerStay(Collider collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+            if (!(collider is BoxCollider)) {
+                _enemy = collider.gameObject;
+            }
         }
     }
 
     // If another player exits the aim collider, drop the enemy from autoaim.
-    private void OnTriggerExit(Collider collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
-            _enemy = null;
+    private void OnTriggerExit(Collider collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+            if (_enemy != null) {
+                _enemy = null;
+            }
         }
     }
 
