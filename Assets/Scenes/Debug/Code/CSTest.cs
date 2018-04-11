@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceHenHassle
-{
     public class CSTest : MonoBehaviour
     {
 
@@ -139,5 +137,4 @@ namespace SpaceHenHassle
         }
     }
 
-}
 

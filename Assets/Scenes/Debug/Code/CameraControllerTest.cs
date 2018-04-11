@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace SpaceHenHassle
-{
     public class CameraControllerTest : MonoBehaviour
     {
 
@@ -58,6 +55,5 @@ namespace SpaceHenHassle
                     break;
             }
         }
-    }
 }
 

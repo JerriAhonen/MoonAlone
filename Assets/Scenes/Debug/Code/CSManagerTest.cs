@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace SpaceHenHassle
-{
     public class CSManagerTest : MonoBehaviour
     {
         [SerializeField]
@@ -60,7 +57,7 @@ namespace SpaceHenHassle
         }
     }
 
-}
+
 
 
 
