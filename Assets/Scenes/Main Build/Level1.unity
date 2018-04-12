@@ -3289,7 +3289,8 @@ MonoBehaviour:
   vertical: Vertical_P1
   fire1Button: Fire1_P1
   fire2Button: Fire2_P1
-  jumpButton: Jump_P1
+  fire3Button: Fire3_P1
+  fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
 --- !u!65 &442676356
 BoxCollider:
@@ -3913,7 +3914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P4
-  confirmButton: Jump_P4
+  confirmButton: Fire4_P4
   selectionCooldown: 0.3
   selectedCharacter: 0
   testGameManager: {fileID: 0}
@@ -4240,7 +4241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P1
-  confirmButton: Jump_P1
+  confirmButton: Fire4_P1
   selectionCooldown: 0.3
   selectedCharacter: 0
   testGameManager: {fileID: 0}
@@ -4911,7 +4912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P3
-  confirmButton: Jump_P3
+  confirmButton: Fire4_P3
   selectionCooldown: 0.3
   selectedCharacter: 0
   testGameManager: {fileID: 0}
@@ -5756,7 +5757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P2
-  confirmButton: Jump_P2
+  confirmButton: Fire4_P2
   selectionCooldown: 0.3
   selectedCharacter: 0
   testGameManager: {fileID: 0}
@@ -7893,7 +7894,8 @@ MonoBehaviour:
   vertical: Vertical_P3
   fire1Button: Fire1_P3
   fire2Button: Fire2_P3
-  jumpButton: Jump_P3
+  fire3Button: Fire3_P3
+  fire4Button: Fire4_P3
   mainCamera: {fileID: 0}
 --- !u!65 &1210143193
 BoxCollider:
@@ -8644,7 +8646,8 @@ MonoBehaviour:
   vertical: Vertical_P4
   fire1Button: Fire1_P4
   fire2Button: Fire2_P4
-  jumpButton: Jump_P4
+  fire3Button: Fire3_P4
+  fire4Button: Fire4_P4
   mainCamera: {fileID: 0}
 --- !u!65 &1323039839
 BoxCollider:
@@ -11858,7 +11861,8 @@ MonoBehaviour:
   vertical: Vertical_P2
   fire1Button: Fire1_P2
   fire2Button: Fire2_P2
-  jumpButton: Jump_P2
+  fire3Button: Fire3_P2
+  fire4Button: Fire4_P2
   mainCamera: {fileID: 0}
 --- !u!65 &1685252555
 BoxCollider:

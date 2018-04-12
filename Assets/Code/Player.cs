@@ -40,7 +40,9 @@ public class Player : MonoBehaviour {
     public string vertical = "Vertical_P1";
     public string fire1Button = "Fire1_P1";
     public string fire2Button = "Fire2_P1";
-    public string jumpButton = "Jump_P1";
+    public string fire3Button = "Fire3_P1";
+    public string fire4Button = "Fire4_P1";
+    //public string jumpButton = "Jump_P1";
 
     public GameObject mainCamera;
     
@@ -68,12 +70,14 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button)) {
+        if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button) 
+            || Input.GetButtonDown(fire3Button) || Input.GetButtonDown(fire4Button)) {
             _pressTime = Time.time;
         }
 
         // Throw input.
-        bool _throwIt = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button);
+        bool _throwIt = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button) 
+            || Input.GetButtonUp(fire3Button) || Input.GetButtonUp(fire4Button);
         
         // Calculate how long the fire button was pressed.
         if (_throwIt){
@@ -137,7 +141,7 @@ public class Player : MonoBehaviour {
     {
         float moveHorizontal = Input.GetAxis(horizontal);                       // Horizontal Input
         float moveVertical = Input.GetAxis(vertical);                           // Vertical Input
-        bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
+        //bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
             PlayAnimation (0);                                                   // Play's Idle animation
@@ -149,7 +153,7 @@ public class Player : MonoBehaviour {
             isMoving = true;
 		}
         
-        Jump(jump);                                                             // New Jump() Method
+        Jump(false);                                                             // New Jump() Method
 
         Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
 
@@ -184,12 +188,12 @@ public class Player : MonoBehaviour {
         }
 
         if (verticalVelocity > -50)                                              // No need to go smaller than this
-        {
+         {
             verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
 
             if (verticalVelocity < 0)                                           // Fall faster than go up
             {
-                verticalVelocity -= gravity * downwardsFallMultiplier * Time.deltaTime;
+                 verticalVelocity -= gravity * downwardsFallMultiplier * Time.deltaTime;
             }
         }
     }
