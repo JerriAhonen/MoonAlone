@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TestGameManager : MonoBehaviour
 {
@@ -29,8 +30,8 @@ public class TestGameManager : MonoBehaviour
     public int readyCount;                                                      // Num of players ready
     public int noPlayerCount = 4;                                               // Num of players not playing
 
-    public TextMesh timerText;                                                  // Timer displayer during round
-    public TextMesh winnerText;                                                 // Text displayed after round
+    public TextMeshPro timerText;                                                  // Timer displayer during round
+    public TextMeshPro winnerText;                                                 // Text displayed after round
 
     public float setTimer = 60.0f;                                              // Round lenght in seconds
     private float timer;                                                        // Timer counting floats
