@@ -1,60 +1,105 @@
 fileFormatVersion: 2
-guid: 8090b316630eb4cd8ae731e5c94dcc6c
-timeCreated: 1522801461
+guid: eb7990a9ddacc7c439fa84a50537a958
+timeCreated: 1523502448
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cube_001
-    100004: Cylinder_001
-    100006: Cylinder_002
-    100008: Plane
-    100010: Plane_001
-    100012: Plane_002
-    400000: //RootNode
-    400002: Cube_001
-    400004: Cylinder_001
-    400006: Cylinder_002
-    400008: Plane
-    400010: Plane_001
-    400012: Plane_002
-    2300000: Cube_001
-    2300002: Cylinder_001
-    2300004: Cylinder_002
-    2300006: Plane
-    2300008: Plane_001
-    2300010: Plane_002
-    3300000: Cube_001
-    3300002: Cylinder_001
-    3300004: Cylinder_002
-    3300006: Plane
-    3300008: Plane_001
-    3300010: Plane_002
-    4300000: Cylinder_002
+    100000: _MASTER
+    100002: Armature
+    100004: backleg1_L
+    100006: backleg1_R
+    100008: backleg2_L
+    100010: backleg2_R
+    100012: backleg3_L
+    100014: backleg3_R
+    100016: backtoes_L
+    100018: backtoes_R
+    100020: Cube
+    100022: Cube_001
+    100024: frontleg1_L
+    100026: frontleg1_R
+    100028: frontleg2_L
+    100030: frontleg2_R
+    100032: frontleg3_L
+    100034: frontleg3_R
+    100036: fronttoes_L
+    100038: fronttoes_R
+    100040: head
+    100042: hipbone_L
+    100044: hipbone_R
+    100046: neck
+    100048: shoulder_L
+    100050: shoulder_R
+    100052: //RootNode
+    100054: Sphere
+    100056: spine1
+    100058: spine2
+    100060: tail1
+    100062: tail2
+    100064: tail3
+    100066: tail4
+    100068: tail5
+    100070: tail6
+    100072: tailbone
+    400000: _MASTER
+    400002: Armature
+    400004: backleg1_L
+    400006: backleg1_R
+    400008: backleg2_L
+    400010: backleg2_R
+    400012: backleg3_L
+    400014: backleg3_R
+    400016: backtoes_L
+    400018: backtoes_R
+    400020: Cube
+    400022: Cube_001
+    400024: frontleg1_L
+    400026: frontleg1_R
+    400028: frontleg2_L
+    400030: frontleg2_R
+    400032: frontleg3_L
+    400034: frontleg3_R
+    400036: fronttoes_L
+    400038: fronttoes_R
+    400040: head
+    400042: hipbone_L
+    400044: hipbone_R
+    400046: neck
+    400048: shoulder_L
+    400050: shoulder_R
+    400052: //RootNode
+    400054: Sphere
+    400056: spine1
+    400058: spine2
+    400060: tail1
+    400062: tail2
+    400064: tail3
+    400066: tail4
+    400068: tail5
+    400070: tail6
+    400072: tailbone
+    4300000: Sphere
     4300002: Cube_001
-    4300004: Cylinder_001
-    4300006: Plane_002
-    4300008: Plane_001
-    4300010: Plane
+    4300004: Cube
     7400000: Default Take
+    7400002: Eat
+    7400004: idle
     9500000: //RootNode
+    13700000: Cube
+    13700002: Cube_001
+    13700004: Sphere
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: rope
-    second: {fileID: 2100000, guid: a1e11f95492fb4ada840738df0f27f05, type: 2}
+      name: Material_002
+    second: {fileID: 2100000, guid: 63f599cbf1411564c8dd8a37ccf71cda, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: wood
-    second: {fileID: 2100000, guid: 50f6b55f3c9b600489c6c95e141eda41, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wood2
-    second: {fileID: 2100000, guid: 80bc981f5a39248d1ab49bd0c01163e9, type: 2}
+      name: cowmaterial
+    second: {fileID: 2100000, guid: e5fa4ada8734f714db28f42d53a378ab, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -107,7 +152,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
