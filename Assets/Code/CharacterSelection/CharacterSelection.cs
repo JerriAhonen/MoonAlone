@@ -14,17 +14,18 @@ public class CharacterSelection : MonoBehaviour {
     private bool characterConfirmed = false;
     public int selectedCharacter;
 
-    public TestGameManager testGameManager;
-    public GameManager gameManager;
+    //public TestGameManager testGameManager;
+    public CSManager csManager;
     public Animator animator;
 
     public bool UseTestGameManager;
-
+    public string csNumber;
     
     private void Start()
     {
-        testGameManager = GetComponentInParent<TestGameManager>();
-        gameManager = GetComponentInParent<GameManager>();
+        index = 0;
+
+        csManager = GetComponentInParent<CSManager>();
 
         characterList = new GameObject[transform.childCount];
 
@@ -36,8 +37,8 @@ public class CharacterSelection : MonoBehaviour {
             go.SetActive(false);
 
         //Set the first model to Active (visible)
-        if (characterList[0])
-            characterList[0].SetActive(true);
+        if (characterList[index])
+            characterList[index].SetActive(true);
     }
 
     private void Update()
@@ -74,48 +75,10 @@ public class CharacterSelection : MonoBehaviour {
 
             if (Input.GetButtonDown(confirmButton)) {
                 Debug.Log("Confirm button pressed.");
-                if (UseTestGameManager)
-                    TestConfirm();
-                else 
-                    Confirm();
+                Confirm();
 
             }
         }
-
-        if (UseTestGameManager) {
-            if (testGameManager.roundStarted && characterConfirmed)
-                {
-                    DisableReadyCube();
-
-                    // Set the animator so Player.cs can get it.
-                    if (animator == null)
-                        animator = GetComponentInChildren<Animator>();
-                }
-                else if (testGameManager.roundStarted && !characterConfirmed)
-                {
-                    //Set all the models to nonActive (not visible)
-                    foreach (GameObject go in characterList)
-                        go.SetActive(false);
-                }
-        } else {
-            if (gameManager.roundStarted && characterConfirmed)
-            {
-                DisableReadyCube();
-
-                // Set the animator so Player.cs can get it.
-                if (animator == null)
-                    animator = GetComponentInChildren<Animator>();
-            }
-            else if (gameManager.roundStarted && !characterConfirmed)
-            {
-                //Set all the models to nonActive (not visible)
-                foreach (GameObject go in characterList)
-                    go.SetActive(false);
-            }
-        }
-        
-
-
     }
 
     public void ToggleUp()
@@ -156,59 +119,21 @@ public class CharacterSelection : MonoBehaviour {
     {
         // Can't choose "no player" as character. Can't choose character that has already been chose.
         Debug.Log("Character Confirmed");
-        if (index != 0 && !gameManager.chosenCharacters[index]) {
+        if (index != 0 && !csManager.chosenCharacters[index]) {
 			selectedCharacter = index;
-            gameManager.chosenCharacters[index] = true;
+            csManager.chosenCharacters[index] = true;
+
+            //Save the selected character in PlayerPrefs.
+            PlayerPrefs.SetInt(csNumber, index);
 
             index = characterList.Length - 1;
 			characterList[index].SetActive(true);
 
 			characterConfirmed = true;
 
-			gameManager.readyCount++;
-			gameManager.noPlayerCount--;
+			csManager.readyCount++;
+			csManager.noPlayerCount--;
 		}
-    }
-
-    public void TestConfirm()
-    {
-        // Can't choose "no player" as character. Can't choose character that has already been chose.
-        Debug.Log("Character Confirmed");
-        if (index != 0 && !testGameManager.chosenCharacters[index]) {
-			selectedCharacter = index;
-            testGameManager.chosenCharacters[index] = true;
-
-            index = characterList.Length - 1;
-			characterList[index].SetActive(true);
-
-			characterConfirmed = true;
-
-			testGameManager.readyCount++;
-			testGameManager.noPlayerCount--;
-		}
-    }
-
-    public void UnConfirm()
-    {
-        for (int i = 0; i < testGameManager.chosenCharacters.Length; i++)
-        {
-            testGameManager.chosenCharacters[i]= false;
-        }
-
-        //Set all the models to nonActive (not visible)
-        foreach (GameObject go in characterList)
-            go.SetActive(false);
-
-        //Set the first model to Active (visible)
-        if (characterList[0])
-            characterList[0].SetActive(true);
-
-        characterConfirmed = false;
-
-        testGameManager.readyCount--;
-        testGameManager.noPlayerCount++;
-
-        index = 0;
     }
 
     public GameObject getSelectedCharacter()
@@ -221,4 +146,46 @@ public class CharacterSelection : MonoBehaviour {
         index = characterList.Length - 1;
         characterList[index].SetActive(false);
     }
+
+    //  public void TestConfirm()
+    //  {
+    //      // Can't choose "no player" as character. Can't choose character that has already been chose.
+    //      Debug.Log("Character Confirmed");
+    //      if (index != 0 && !testGameManager.chosenCharacters[index]) {
+    //	selectedCharacter = index;
+    //          testGameManager.chosenCharacters[index] = true;
+
+    //          index = characterList.Length - 1;
+    //	characterList[index].SetActive(true);
+
+    //	characterConfirmed = true;
+
+    //	testGameManager.readyCount++;
+    //	testGameManager.noPlayerCount--;
+    //}
+    //  }
+
+    //public void UnConfirm()
+    //{
+    //    for (int i = 0; i < testGameManager.chosenCharacters.Length; i++)
+    //    {
+    //        testGameManager.chosenCharacters[i]= false;
+    //    }
+
+    //    //Set all the models to nonActive (not visible)
+    //    foreach (GameObject go in characterList)
+    //        go.SetActive(false);
+
+    //    //Set the first model to Active (visible)
+    //    if (characterList[0])
+    //        characterList[0].SetActive(true);
+
+    //    characterConfirmed = false;
+
+    //    testGameManager.readyCount--;
+    //    testGameManager.noPlayerCount++;
+
+    //    index = 0;
+    //}
+
 }

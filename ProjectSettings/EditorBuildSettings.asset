@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Main Build/Level1.unity
-    guid: 6f98d0b8c1bbaa04a923a8ecfe8269b1
-  - enabled: 1
     path: Assets/Scenes/Main Build/MainMenu.unity
     guid: 97012ab2fbad8be45825943ca6a2d2be
   - enabled: 1
     path: Assets/Scenes/Main Build/CharacterSelection.unity
     guid: cead637085a209e4c9feb04949816950
+  - enabled: 1
+    path: Assets/Scenes/Main Build/Round_Level1.unity
+    guid: cfe5b2cecc311094ea250e1b6ffed249
+  - enabled: 1
+    path: Assets/Scenes/Main Build/Level1.unity
+    guid: 6f98d0b8c1bbaa04a923a8ecfe8269b1
