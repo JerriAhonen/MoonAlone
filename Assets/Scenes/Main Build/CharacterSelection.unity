@@ -32,11 +32,11 @@ RenderSettings:
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
+  m_CustomReflection: {fileID: 8900000, guid: 09e633c9aa7514882968e1932b2619db, type: 3}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.14581496, g: 0.13377205, b: 0.24863783, a: 1}
 --- !u!157 &3
@@ -59,7 +59,7 @@ LightmapSettings:
     m_BakeResolution: 40
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_AO: 0
+    m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P1
-  confirmButton: Fire4_P1
+  confirmButton: Fire1_P1
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P3
-  confirmButton: Fire4_P3
+  confirmButton: Fire1_P3
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P2
-  confirmButton: Fire4_P2
+  confirmButton: Fire1_P2
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -3381,7 +3381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P4
-  confirmButton: Fire4_P4
+  confirmButton: Fire1_P4
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}

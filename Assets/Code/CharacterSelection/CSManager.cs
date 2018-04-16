@@ -22,6 +22,7 @@ public class CSManager : MonoBehaviour {
 	void Update () {
         if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
         {
+            PlayerPrefs.SetInt("NumberOfPlayers", NumOfPlayersNeededToStartGame_DEBUG);
             SceneManager.LoadScene("Round_Level1");
         }
 
