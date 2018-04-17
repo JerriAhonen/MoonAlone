@@ -3302,7 +3302,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Size: {x: 5.66, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1 &442880148
 GameObject:
@@ -3917,10 +3917,10 @@ MonoBehaviour:
   confirmButton: Fire4_P4
   selectionCooldown: 0.3
   selectedCharacter: 0
-  testGameManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  csManager: {fileID: 0}
   animator: {fileID: 0}
   UseTestGameManager: 0
+  csNumber: 
 --- !u!4 &550880760
 Transform:
   m_ObjectHideFlags: 0
@@ -4244,10 +4244,10 @@ MonoBehaviour:
   confirmButton: Fire4_P1
   selectionCooldown: 0.3
   selectedCharacter: 0
-  testGameManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  csManager: {fileID: 0}
   animator: {fileID: 0}
   UseTestGameManager: 0
+  csNumber: 
 --- !u!4 &603073118
 Transform:
   m_ObjectHideFlags: 0
@@ -4915,10 +4915,10 @@ MonoBehaviour:
   confirmButton: Fire4_P3
   selectionCooldown: 0.3
   selectedCharacter: 0
-  testGameManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  csManager: {fileID: 0}
   animator: {fileID: 0}
   UseTestGameManager: 0
+  csNumber: 
 --- !u!4 &707749673
 Transform:
   m_ObjectHideFlags: 0
@@ -5208,42 +5208,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850ff44478d4ca34784b5b566a1ec2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chosenCharacters: 000000000000
   players:
   - {fileID: 442676349}
   - {fileID: 1685252548}
   - {fileID: 1210143186}
   - {fileID: 1323039832}
-  cs:
-  - {fileID: 603073117}
-  - {fileID: 894248069}
-  - {fileID: 707749672}
-  - {fileID: 550880759}
-  spawnPoints:
-  - {fileID: 2033850985}
-  - {fileID: 1338723029}
-  - {fileID: 890169282}
-  - {fileID: 330553806}
-  scenes: 0000000000
   playerScores: 00000000000000000000000000000000
-  camera: {fileID: 1654744383}
-  cameraPosMainMenu: {fileID: 1996224351}
-  cameraPosCharacterSelection: {fileID: 1996224351}
-  cameraPosGameplay: {fileID: 1423366995}
   runtimeAnimatorController: {fileID: 9100000, guid: f9c8924338e19ba4893b6e23c1d6ba76,
     type: 2}
   avatar: {fileID: 9000000, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
   readyCount: 0
   noPlayerCount: 4
-  timerText: {fileID: 146545842}
-  winnerText: {fileID: 0}
+  timerText: {fileID: 0}
+  nextRound: {fileID: 0}
   setTimer: 500
   timeLeft: 0
-  roundNum: 0
+  NumOfRounds: 2
+  curRoundNum: 0
   winningScore: 0
   roundStarted: 0
   roundFinished: 0
-  NumOfPlayersNeededToStartGame_DEBUG: 1
+  numberOfPlayers: 0
+  cooldownTimerFinished: 0
 --- !u!4 &757404727
 Transform:
   m_ObjectHideFlags: 0
@@ -5302,7 +5288,7 @@ MonoBehaviour:
   cancelButton: Fire2_P1
   readyCount: 0
   noPlayerCount: 4
-  timerText: {fileID: 146545842}
+  timerText: {fileID: 0}
   winnerText: {fileID: 0}
   setTimer: 60
   timeLeft: 0
@@ -5760,10 +5746,10 @@ MonoBehaviour:
   confirmButton: Fire4_P2
   selectionCooldown: 0.3
   selectedCharacter: 0
-  testGameManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  csManager: {fileID: 0}
   animator: {fileID: 0}
   UseTestGameManager: 0
+  csNumber: 
 --- !u!4 &894248070
 Transform:
   m_ObjectHideFlags: 0
@@ -7894,8 +7880,8 @@ MonoBehaviour:
   vertical: Vertical_P3
   fire1Button: Fire1_P3
   fire2Button: Fire2_P3
-  fire3Button: Fire3_P3
-  fire4Button: Fire4_P3
+  fire3Button: Fire3_P1
+  fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
 --- !u!65 &1210143193
 BoxCollider:
@@ -7907,7 +7893,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Size: {x: 5.66, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1 &1227345215
 GameObject:
@@ -8646,8 +8632,8 @@ MonoBehaviour:
   vertical: Vertical_P4
   fire1Button: Fire1_P4
   fire2Button: Fire2_P4
-  fire3Button: Fire3_P4
-  fire4Button: Fire4_P4
+  fire3Button: Fire3_P1
+  fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
 --- !u!65 &1323039839
 BoxCollider:
@@ -8659,7 +8645,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Size: {x: 5.66, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!1001 &1327087189
 Prefab:
@@ -11861,8 +11847,8 @@ MonoBehaviour:
   vertical: Vertical_P2
   fire1Button: Fire1_P2
   fire2Button: Fire2_P2
-  fire3Button: Fire3_P2
-  fire4Button: Fire4_P2
+  fire3Button: Fire3_P1
+  fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
 --- !u!65 &1685252555
 BoxCollider:
@@ -11874,7 +11860,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.62, y: 0, z: 13}
+  m_Size: {x: 5.66, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!4 &1692724838 stripped
 Transform:
@@ -14100,11 +14086,9 @@ MonoBehaviour:
   - {fileID: 1701668712}
   prefabToSpawn: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
     type: 2}
-  gm: {fileID: 757404726}
   spawnTimer: 4
   speed: 10
-  i: 0
-  mainCamera: {fileID: 0}
+  amountToSpawn: 0
 --- !u!4 &2026261651
 Transform:
   m_ObjectHideFlags: 0

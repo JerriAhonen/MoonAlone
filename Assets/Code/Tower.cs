@@ -99,7 +99,7 @@ public class Tower : MonoBehaviour {
         // Create a clone of the removed chicken at a position slightly in front
         // of the first chicken if the chicken is thrown and at removed chicken's position if not.
         if (toBeThrown) {
-            clonePosition = transform.position + transform.forward * 2f + new Vector3(0f, 0.5f, 0);
+            clonePosition = transform.position + transform.forward + new Vector3(0f, 0.5f, 0);
         } else {
             clonePosition = removedChicken.transform.position;
         }

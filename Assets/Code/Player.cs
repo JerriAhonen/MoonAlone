@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     private float _pressTime = 0;
     private float _animTimer;
     private float _throwTimer = 0;
+    private bool _readyToThrow = true;
     private bool _throwFar = false;
     private GameObject _enemy;
     private Vector3 _throwDirection;
@@ -77,17 +78,17 @@ public class Player : MonoBehaviour {
         }
 
         // Throw input.
-        bool _throwIt = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button) 
+        bool _throwInput = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button) 
             || Input.GetButtonUp(fire3Button) || Input.GetButtonUp(fire4Button);
         
         // Calculate how long the fire button was pressed.
-        if (_throwIt){
+        if (_throwInput & _readyToThrow) {
             _pressTime = Time.time - _pressTime;
 
             //_animTimer = 0;
 
             // If the press time was long, throw far.
-            if (_pressTime > 0.2f) {
+            if (_pressTime > 0.5f) {
                 _throwFar = true;
             } else {
                 _throwFar = false;
@@ -107,10 +108,12 @@ public class Player : MonoBehaviour {
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (_throwIt && (tower.chickenCount > 0) && (_throwTimer > 1f))                // Check if there are chickens to throw
+        if (_throwInput && (tower.chickenCount > 0) && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
         {
+            _readyToThrow = false;
+
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
-            
+
             // If an enemy has triggered the aim collider, throw at the enemy 
             // and "forget" the enemy from autoaim. Else throw forward.
             if (_enemy != null) {
@@ -136,6 +139,8 @@ public class Player : MonoBehaviour {
 
         // Reset throw timer.
         _throwTimer = 0f;
+
+        _readyToThrow = true;
     }
 
     void Move()
