@@ -7803,7 +7803,7 @@ MonoBehaviour:
   noPlayerCount: 4
   timerText: {fileID: 1245384858}
   nextRound: {fileID: 987760903}
-  setTimer: 10
+  setTimer: 100
   timeLeft: 0
   NumOfRounds: 2
   curRoundNum: 0

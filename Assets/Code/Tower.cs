@@ -27,30 +27,38 @@ public class Tower : MonoBehaviour {
     public float wobbleDistance;
     public float oldRot;
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
+    private bool calculateNewTowerTiltPos;
+
     void Start()
     {
         player = GetComponent<Player>();
         wobbleDistance = wobbleDistanceSetter;    
     }
 
-    // Update is called once per frame
+    float cttt = 0;
+
     void Update () {
+
+        if (cttt == 0)
+            calculateNewTowerTiltPos = false;
+
+        //TowerTiltv2();
         TowerTilt();
-        //MoveChickensWithPlayer();
+
+        cttt += Time.deltaTime;
+        if (cttt > 1f)
+        {
+            cttt = 0;
+            calculateNewTowerTiltPos = true;
+        }
+            
     }
     
     // Adds a chicken to the tower.
     public void AddChicken() {
         //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
         Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 0.8f, 0));
-
-        // Possibility to put all chickens face the same way
-        // Quaternion forward = Quaternion.LookRotation(transform.forward);
-
+        
         //Instantiate a clone of the chicken prefab, so we can Destroy() it later.
         GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;
         //Parent it to the player so it moves with the player.
@@ -116,29 +124,68 @@ public class Tower : MonoBehaviour {
         chickenController.SetFlight(toBeThrown, flyFar, originatingPlayer);
     }
 
-    // public void MoveChickensWithPlayer()
-    // {
-    //     //Start the offset from 0;
-    //     chickenOffset = 0;
+    //------------------------------------------------------------------------------------------------\\
 
-    //     foreach (var chicken in tower)
-    //     {
-    //         Vector3 chickenPos = new Vector3(transform.position.x, 
-    //                                             chicken.transform.position.y, 
-    //                                             transform.position.z);
+    private float riskOfCollapse; //The higher the tower, the greater the risk of collapsing. Collapses when reaches 100.
+    private List<Vector3> oldPos = new List<Vector3>();
 
-    //         //Adding slight tilt to tower
-    //         chickenPos -= transform.forward * chickenOffset;
-    //         chicken.transform.position = chickenPos;
+    //------------------------------------------------------------------------------------------------\\
 
-    //         chickenOffset += 0.1f;
-    //     }
-    // }
+    public void TowerTiltv2()
+    {
+        //------------------------------------------------------------------------------------------------\\
+
+        if (player.isMoving)
+        {
+            riskOfCollapse += 0.1f * Time.deltaTime;
+        }
+        else if (riskOfCollapse > 0f)
+        {
+            riskOfCollapse -= 0.2f * Time.deltaTime;
+        }
+
+        float height = tower.Count;         //The heigher the tower, the more it should tilt.
+
+        //------------------------------------------------------------------------------------------------\\
+
+        // Calculating a position for every chicken in the tower one by one
+        for (int i = 0; i < tower.Count; i++)
+        {
+            
+                GameObject chicken = tower[i];
+                Vector3 pos = new Vector3(transform.position.x,
+                                                    chicken.transform.position.y,
+                                                    transform.position.z);
+
+                //oldPos[i] = pos;    //Save the position for clamping the next round of movement
+                Vector3 newPos = Vector3.zero;
+
+
+                if (player.isMoving)                //The tower should tilt more, if the player is moving
+                {
+                    //TODO: Tower tilting/swaying incrementally as the player moves or the tower height augments 
+
+
+                }
+                else
+                {
+                    //TODO: Calm the tower back down.
+
+                    newPos = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+                }
+            
+            
+            chicken.transform.position += newPos;
+
+        }
+
+        //------------------------------------------------------------------------------------------------\\
+    }
+
+
 
     public void TowerTilt(){
         
-        
-
         for (int i = 0; i < tower.Count; i++)
         {
 
