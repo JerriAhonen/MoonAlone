@@ -3335,7 +3335,7 @@ MonoBehaviour:
   chosenCharacters: 000000000000
   readyCount: 0
   noPlayerCount: 4
-  NumOfPlayersNeededToStartGame_DEBUG: 1
+  NumOfPlayersNeededToStartGame_DEBUG: 2
 --- !u!4 &1742351295
 Transform:
   m_ObjectHideFlags: 0

@@ -47,6 +47,8 @@ public class Player : MonoBehaviour {
 
     public GameObject mainCamera;
 
+    public bool isHit = false;
+    public bool isIncapacitated = false;
     public GameObject hitEffect;
     public GameObject chargeEffect;
     
@@ -70,19 +72,39 @@ public class Player : MonoBehaviour {
         //    //Debug.Log("animControl = " + animControl);
         //}
         
-        Move();
+        if (!isIncapacitated) {
+            Move();
 
-        // If a pickuppable chicken has collided with the player.
-        if (chicken != null) {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+            // If a pickuppable chicken has collided with the player.
+            if (chicken != null) {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
 
-            tower.AddChicken();
-            Destroy(chicken);
+                tower.AddChicken();
+                Destroy(chicken);
+            }
+
+            if (tower.chickenCount > 0) {
+                Throw();
+            }
+
+            if (isHit) {
+                float animLength = PlayAnimation(4);
+
+                StartCoroutine(GetHit(animLength));
+            }
         }
+    }
 
-        if (tower.chickenCount > 0) {
-            Throw();
-        }
+    IEnumerator GetHit(float length) {
+        isHit = false;
+        isIncapacitated = true;
+
+        hitEffect.SetActive(true);
+
+        yield return new WaitForSeconds(length);
+
+        hitEffect.SetActive(false);
+        isIncapacitated = false;
     }
 
     void Throw()
@@ -283,7 +305,16 @@ public class Player : MonoBehaviour {
                 case 3:
                     Debug.Log("Set animation Throw");
                     break;
-                
+                case 4:
+                    Debug.Log("Set animation to Fall");
+                    break;
+                case 5:
+                    Debug.Log("Set animation to Wind Up Idle");
+                    break;
+                case 6:
+                    Debug.Log("Set animation to Wind Up Run");
+                    break;
+
             }
         }
 
@@ -294,3 +325,6 @@ public class Player : MonoBehaviour {
                                                                                 // Run = 1
                                                                                 // Jump = 2
                                                                                 // Throw = 3 
+                                                                                // Fall = 4
+                                                                                // Wind Up Idle = 5
+                                                                                // Wind Up Run = 6
