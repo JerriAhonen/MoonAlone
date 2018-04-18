@@ -1658,8 +1658,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: af11412c904dafe4cbaaa2ef2cc164d8, type: 2}
-  m_sharedMaterial: {fileID: 21956136911206020, guid: af11412c904dafe4cbaaa2ef2cc164d8,
+  m_fontAsset: {fileID: 11400000, guid: 4dfd7d73a9357174bbb0a8ae9d3405ce, type: 2}
+  m_sharedMaterial: {fileID: 21917088439428786, guid: 4dfd7d73a9357174bbb0a8ae9d3405ce,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1770,7 +1770,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21956136911206020, guid: af11412c904dafe4cbaaa2ef2cc164d8, type: 2}
+  - {fileID: 21917088439428786, guid: 4dfd7d73a9357174bbb0a8ae9d3405ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3557,6 +3557,7 @@ MonoBehaviour:
   fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
   isHit: 0
+  isIncapacitated: 0
   hitEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
 --- !u!65 &442676356
@@ -8113,6 +8114,7 @@ MonoBehaviour:
   fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
   isHit: 0
+  isIncapacitated: 0
   hitEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
 --- !u!65 &1210143193
@@ -8931,6 +8933,7 @@ MonoBehaviour:
   fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
   isHit: 0
+  isIncapacitated: 0
   hitEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
 --- !u!65 &1323039839
@@ -12518,6 +12521,7 @@ MonoBehaviour:
   fire4Button: Fire4_P1
   mainCamera: {fileID: 0}
   isHit: 0
+  isIncapacitated: 0
   hitEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
 --- !u!65 &1685252555
