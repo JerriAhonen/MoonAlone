@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
 
         hitEffect.SetActive(true);
 
-        yield return new WaitForSeconds(length);
+        yield return new WaitForSeconds(2f); // WHEN ANIMATIONS WORKING, CHECK IF ANIM LENGTH IS ENOUGH (ATM IT'S NOT)
 
         hitEffect.SetActive(false);
         isIncapacitated = false;
