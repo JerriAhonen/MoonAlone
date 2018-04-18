@@ -115,6 +115,12 @@ public class Player : MonoBehaviour {
             _pressTime = Time.time;
 
             chargeEffect.SetActive(true);
+
+            if (isMoving) {
+                PlayAnimation(6);
+            } else {
+                PlayAnimation(5);
+            }
         }
 
         // Throw input.
@@ -157,7 +163,7 @@ public class Player : MonoBehaviour {
                 _throwDirection = transform.forward;
             }
             
-            float animLength = PlayAnimation(3);
+            float animLength = PlayAnimation(3);  // CHANGE IN UNITY SO THAT THE ANIM STARTS AT DIFFERENT POINT TO COMPENSATE FOR WINDUP ANIM
             
             StartCoroutine(ThrowChicken(animLength));
         }

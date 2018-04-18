@@ -42,6 +42,7 @@ public class Chicken : MonoBehaviour
     public GameObject mainCamera;
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
+    private ParticleSystem _cloudParticles;
 
     private float offset = 0.5f;
 
@@ -62,8 +63,9 @@ public class Chicken : MonoBehaviour
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
 
-        _featherParticles = this.transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
-        _trailParticles = this.transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
+        _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
+        _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
+        _cloudParticles = transform.Find("DropDownBurst").GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -292,6 +294,8 @@ public class Chicken : MonoBehaviour
             
             if (collisionObject.layer == LayerMask.NameToLayer(_groundLayer)) {
                 _isGrounded = true;
+
+                _cloudParticles.Play();
             }
         }
     }
