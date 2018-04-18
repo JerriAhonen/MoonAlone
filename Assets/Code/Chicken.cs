@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chicken : MonoBehaviour
 {
     public float numberInTower;
+    private Tower tower;
     public float yPos;
     public float wanderDistance;
     public float turningSpeed;
@@ -41,6 +42,8 @@ public class Chicken : MonoBehaviour
     public GameObject mainCamera;
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
+
+    private float offset = 0.5f;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -93,6 +96,8 @@ public class Chicken : MonoBehaviour
 
 		if (isInTower) {
 			animControl.SetInteger ("AnimParam", 2);
+            if (tower != null)
+                MovementInTower();
         }
 
         if (_isGrounded) {
@@ -144,6 +149,68 @@ public class Chicken : MonoBehaviour
         {
             newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
         }
+    }
+
+    public void MovementInTower() 
+    {
+        if (tower.GetChickenUnderneath(this.gameObject) == null) {
+            return;
+        }
+
+        GameObject chickenUnderneath = tower.GetChickenUnderneath(this.gameObject);
+
+        // Vector3 diff = transform.position - chickenUnderneath.transform.position;
+
+        // diff.y = 0.0f;
+        // transform.position = chickenUnderneath.transform.position + diff.normalized * offset;
+
+        // transform.position += new Vector3(0.0f, 1 * tower.GetChickenIndex(this.gameObject),0);
+
+        // Apply that offset to get a target position.
+        Vector3 targetPosition = chickenUnderneath.transform.localPosition * offset;
+
+        // Keep our y position unchanged.
+        targetPosition.y = transform.localPosition.y;
+
+        // Smooth follow.    
+        transform.position += (targetPosition - transform.localPosition) * 0.1f;
+        
+        //transform.position = new Vector3(0.0f, verticalOffset, 0.0f) + player.position + diff.normalized * distanceWanted;
+
+
+        // Vector3 newPos = new Vector3(
+        //     chickenUnderneath.transform.position.x , 
+        //     transform.position.y, 
+        //     chickenUnderneath.transform.position.z
+        // );
+
+        //newPos.x = objectUnderneath.transform.position.x - offset;
+
+        //newPos = newPos * Mathf.Sin(Time.deltaTime);
+
+        //transform.position = newPos;
+        //transform.Translate(newPos, Space.Self);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public void SetTower(Tower tower)
+    {
+        this.tower = tower;
     }
 
     // The chicken flies through the air either when thrown or falling.

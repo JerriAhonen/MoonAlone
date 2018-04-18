@@ -26,9 +26,13 @@ public class Tower : MonoBehaviour {
     public float wobbleDistanceSetter;
     public float wobbleDistance;
     public float oldRot;
-
     private bool calculateNewTowerTiltPos;
 
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
     void Start()
     {
         player = GetComponent<Player>();
@@ -37,13 +41,15 @@ public class Tower : MonoBehaviour {
 
     float cttt = 0;
 
-    void Update () {
 
+    // Update is called once per frame
+    void Update () {
         if (cttt == 0)
             calculateNewTowerTiltPos = false;
 
         //TowerTiltv2();
-        TowerTilt();
+        //TowerTilt();
+        //MoveChickensWithPlayer();
 
         cttt += Time.deltaTime;
         if (cttt > 1f)
@@ -51,86 +57,30 @@ public class Tower : MonoBehaviour {
             cttt = 0;
             calculateNewTowerTiltPos = true;
         }
-            
+
     }
-    
-    // Adds a chicken to the tower.
-    public void AddChicken() {
-        //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
-        Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 0.8f, 0));
-        
-        //Instantiate a clone of the chicken prefab, so we can Destroy() it later.
-        GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;
-        //Parent it to the player so it moves with the player.
-        cloneChicken.transform.parent = transform;
-
-        Rigidbody cloneRigidbody = cloneChicken.GetComponent<Rigidbody>();
-
-        cloneRigidbody.useGravity = false;
-
-        // Freeze chicken rigidbody rotation and position so that it is not affected by unwanted collisions.
-        cloneRigidbody.constraints = 
-            RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-
-        //Tell the chicken it is in a tower.
-        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
-        chickenController.IsInTower = true;
-
-        tower.Add(cloneChicken);
-        chickenCount = tower.Count;
-
-        // Change chicken's layer to the tower layer so that it can't be picked up by players.
-        cloneChicken.layer = LayerMask.NameToLayer(_towerLayer);
-    }
-
-    // Removes a chicken from the tower, removing it from the tower list and 
-    // setting it up for flight in the Chicken script.
-    public void RemoveChicken(Vector3 flightDirection, bool toBeThrown, bool flyFar, GameObject originatingPlayer) {
-        GameObject removedChicken = tower[chickenCount - 1].gameObject;
-
-        // Remove parent link before Removing.
-        removedChicken.transform.parent = null;
-
-        tower.Remove(removedChicken);
-        chickenCount--;
-
-        Vector3 clonePosition;
-
-        // Create a clone of the removed chicken at a position slightly in front
-        // of the first chicken if the chicken is thrown and at removed chicken's position if not.
-        if (toBeThrown) {
-            clonePosition = transform.position + transform.forward + new Vector3(0f, 0.5f, 0);
-        } else {
-            clonePosition = removedChicken.transform.position;
-        }
-        
-        GameObject cloneChicken = Instantiate(chicken, clonePosition, Quaternion.identity);
-
-        // Tell the chicken it is not in a tower.
-        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
-        chickenController.IsInTower = false;
-
-        // Turn clone chicken to face the direction the player is facing so that
-        // it is thrown in the right direction.
-        cloneChicken.transform.rotation = Quaternion.LookRotation(flightDirection, Vector3.up);
-
-        Destroy(removedChicken);
-
-        // Change chicken's layer back to the pick up layer before throw.
-        cloneChicken.layer = LayerMask.NameToLayer(_pickUpLayer);
-
-        cloneChicken.GetComponent<Rigidbody>().useGravity = false;
-        
-        chickenController.SetFlight(toBeThrown, flyFar, originatingPlayer);
-    }
-
-    //------------------------------------------------------------------------------------------------\\
 
     private float riskOfCollapse; //The higher the tower, the greater the risk of collapsing. Collapses when reaches 100.
     private List<Vector3> oldPos = new List<Vector3>();
 
     //------------------------------------------------------------------------------------------------\\
 
+    public GameObject GetChickenUnderneath(GameObject go)
+    {
+        int index = tower.IndexOf(go);
+
+        if (index == 0)
+            return null;
+
+        //Debug.Log("Position of chicken in tower at index: " + (index - 1) + " = " + tower[index - 1].transform.position);
+
+        return tower[index - 1];
+    }
+
+    public int GetChickenIndex(GameObject go)
+    {
+        return tower.IndexOf(go);
+    }
     public void TowerTiltv2()
     {
         //------------------------------------------------------------------------------------------------\\
@@ -182,10 +132,105 @@ public class Tower : MonoBehaviour {
         //------------------------------------------------------------------------------------------------\\
     }
 
+    
+    // Adds a chicken to the tower.
+    public void AddChicken() {
+        //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
+        Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 0.8f, 0));
 
+        // Possibility to put all chickens face the same way
+        // Quaternion forward = Quaternion.LookRotation(transform.forward);
+
+        //Instantiate a clone of the chicken prefab, so we can Destroy() it later.
+        GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;
+        //Parent it to the player so it moves with the player.
+        cloneChicken.transform.parent = transform;
+
+        Rigidbody cloneRigidbody = cloneChicken.GetComponent<Rigidbody>();
+
+        cloneRigidbody.useGravity = false;
+
+        // Freeze chicken rigidbody rotation and position so that it is not affected by unwanted collisions.
+        cloneRigidbody.constraints = 
+            RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+
+        //Tell the chicken it is in a tower.
+        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
+        chickenController.IsInTower = true;
+        chickenController.SetTower(this);
+
+        tower.Add(cloneChicken);
+        chickenCount = tower.Count;
+
+        // Change chicken's layer to the tower layer so that it can't be picked up by players.
+        cloneChicken.layer = LayerMask.NameToLayer(_towerLayer);
+    }
+
+    // Removes a chicken from the tower, removing it from the tower list and 
+    // setting it up for flight in the Chicken script.
+    public void RemoveChicken(Vector3 flightDirection, bool toBeThrown, bool flyFar, GameObject originatingPlayer) {
+        GameObject removedChicken = tower[chickenCount - 1].gameObject;
+
+        // Remove parent link before Removing.
+        removedChicken.transform.parent = null;
+
+        tower.Remove(removedChicken);
+        chickenCount--;
+
+        Vector3 clonePosition;
+
+        // Create a clone of the removed chicken at a position slightly in front
+        // of the first chicken if the chicken is thrown and at removed chicken's position if not.
+        if (toBeThrown) {
+            clonePosition = transform.position + transform.forward + new Vector3(0f, 0.5f, 0);
+        } else {
+            clonePosition = removedChicken.transform.position;
+        }
+        
+        GameObject cloneChicken = Instantiate(chicken, clonePosition, Quaternion.identity);
+
+        // Tell the chicken it is not in a tower.
+        Chicken chickenController = cloneChicken.GetComponent<Chicken>();
+        chickenController.IsInTower = false;
+        chickenController.SetTower(null);
+
+        // Turn clone chicken to face the direction the player is facing so that
+        // it is thrown in the right direction.
+        cloneChicken.transform.rotation = Quaternion.LookRotation(flightDirection, Vector3.up);
+
+        Destroy(removedChicken);
+
+        // Change chicken's layer back to the pick up layer before throw.
+        cloneChicken.layer = LayerMask.NameToLayer(_pickUpLayer);
+
+        cloneChicken.GetComponent<Rigidbody>().useGravity = false;
+        
+        chickenController.SetFlight(toBeThrown, flyFar, originatingPlayer);
+    }
+
+    // public void MoveChickensWithPlayer()
+    // {
+    //     //Start the offset from 0;
+    //     chickenOffset = 0;
+
+    //     foreach (var chicken in tower)
+    //     {
+    //         Vector3 chickenPos = new Vector3(transform.position.x, 
+    //                                             chicken.transform.position.y, 
+    //                                             transform.position.z);
+
+    //         //Adding slight tilt to tower
+    //         chickenPos -= transform.forward * chickenOffset;
+    //         chicken.transform.position = chickenPos;
+
+    //         chickenOffset += 0.1f;
+    //     }
+    // }
 
     public void TowerTilt(){
         
+        
+
         for (int i = 0; i < tower.Count; i++)
         {
 
