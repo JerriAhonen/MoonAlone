@@ -46,6 +46,9 @@ public class Player : MonoBehaviour {
     //public string jumpButton = "Jump_P1";
 
     public GameObject mainCamera;
+
+    public GameObject hitEffect;
+    public GameObject chargeEffect;
     
     private void Start()
     {
@@ -54,6 +57,8 @@ public class Player : MonoBehaviour {
         tower = GetComponent<Tower>();
 		animControl = gameObject.GetComponentInChildren<Animator>();
         mainCamera = GameObject.Find("Main Camera");
+        hitEffect = transform.Find("Hit").gameObject;
+        chargeEffect = transform.Find("ChargeShot").gameObject;
     }
 
     void Update()
@@ -65,8 +70,19 @@ public class Player : MonoBehaviour {
         //    //Debug.Log("animControl = " + animControl);
         //}
         
-        Move();                                                                 // Player movement
-        Throw();                                                                // Player throw
+        Move();
+
+        // If a pickuppable chicken has collided with the player.
+        if (chicken != null) {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+
+            tower.AddChicken();
+            Destroy(chicken);
+        }
+
+        if (tower.chickenCount > 0) {
+            Throw();
+        }
     }
 
     void Throw()
@@ -75,6 +91,8 @@ public class Player : MonoBehaviour {
         if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button) 
             || Input.GetButtonDown(fire3Button) || Input.GetButtonDown(fire4Button)) {
             _pressTime = Time.time;
+
+            chargeEffect.SetActive(true);
         }
 
         // Throw input.
@@ -83,6 +101,8 @@ public class Player : MonoBehaviour {
         
         // Calculate how long the fire button was pressed.
         if (_throwInput & _readyToThrow) {
+            chargeEffect.SetActive(false);
+
             _pressTime = Time.time - _pressTime;
 
             //_animTimer = 0;
@@ -97,18 +117,9 @@ public class Player : MonoBehaviour {
 
         _throwTimer += Time.deltaTime;
 
-        // If a pickuppable chicken has collided with the player.
-        if (chicken != null)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
-
-            tower.AddChicken();                                                 // Adds chicken to Tower
-            Destroy(chicken);                                                   // Destroys picked up chicken from scene
-        }
-
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (_throwInput && (tower.chickenCount > 0) && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
+        if (_throwInput && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
         {
             _readyToThrow = false;
 
