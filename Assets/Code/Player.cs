@@ -46,6 +46,11 @@ public class Player : MonoBehaviour {
     //public string jumpButton = "Jump_P1";
 
     public GameObject mainCamera;
+
+    public bool isHit = false;
+    public bool isIncapacitated = false;
+    public GameObject hitEffect;
+    public GameObject chargeEffect;
     
     private void Start()
     {
@@ -54,6 +59,8 @@ public class Player : MonoBehaviour {
         tower = GetComponent<Tower>();
 		animControl = gameObject.GetComponentInChildren<Animator>();
         mainCamera = GameObject.Find("Main Camera");
+        hitEffect = transform.Find("Hit").gameObject;
+        chargeEffect = transform.Find("ChargeShot").gameObject;
     }
 
     void Update()
@@ -65,8 +72,39 @@ public class Player : MonoBehaviour {
         //    //Debug.Log("animControl = " + animControl);
         //}
         
-        Move();                                                                 // Player movement
-        Throw();                                                                // Player throw
+        if (!isIncapacitated) {
+            Move();
+
+            // If a pickuppable chicken has collided with the player.
+            if (chicken != null) {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+
+                tower.AddChicken();
+                Destroy(chicken);
+            }
+
+            if (tower.chickenCount > 0) {
+                Throw();
+            }
+
+            if (isHit) {
+                float animLength = PlayAnimation(4);
+
+                StartCoroutine(GetHit(animLength));
+            }
+        }
+    }
+
+    IEnumerator GetHit(float length) {
+        isHit = false;
+        isIncapacitated = true;
+
+        hitEffect.SetActive(true);
+
+        yield return new WaitForSeconds(2f); // WHEN ANIMATIONS WORKING, CHECK IF ANIM LENGTH IS ENOUGH (ATM IT'S NOT)
+
+        hitEffect.SetActive(false);
+        isIncapacitated = false;
     }
 
     void Throw()
@@ -75,6 +113,8 @@ public class Player : MonoBehaviour {
         if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button) 
             || Input.GetButtonDown(fire3Button) || Input.GetButtonDown(fire4Button)) {
             _pressTime = Time.time;
+
+            chargeEffect.SetActive(true);
         }
 
         // Throw input.
@@ -83,6 +123,8 @@ public class Player : MonoBehaviour {
         
         // Calculate how long the fire button was pressed.
         if (_throwInput & _readyToThrow) {
+            chargeEffect.SetActive(false);
+
             _pressTime = Time.time - _pressTime;
 
             //_animTimer = 0;
@@ -97,18 +139,9 @@ public class Player : MonoBehaviour {
 
         _throwTimer += Time.deltaTime;
 
-        // If a pickuppable chicken has collided with the player.
-        if (chicken != null)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
-
-            tower.AddChicken();                                                 // Adds chicken to Tower
-            Destroy(chicken);                                                   // Destroys picked up chicken from scene
-        }
-
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (_throwInput && (tower.chickenCount > 0) && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
+        if (_throwInput && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
         {
             _readyToThrow = false;
 
@@ -272,7 +305,16 @@ public class Player : MonoBehaviour {
                 case 3:
                     Debug.Log("Set animation Throw");
                     break;
-                
+                case 4:
+                    Debug.Log("Set animation to Fall");
+                    break;
+                case 5:
+                    Debug.Log("Set animation to Wind Up Idle");
+                    break;
+                case 6:
+                    Debug.Log("Set animation to Wind Up Run");
+                    break;
+
             }
         }
 
@@ -283,3 +325,6 @@ public class Player : MonoBehaviour {
                                                                                 // Run = 1
                                                                                 // Jump = 2
                                                                                 // Throw = 3 
+                                                                                // Fall = 4
+                                                                                // Wind Up Idle = 5
+                                                                                // Wind Up Run = 6
