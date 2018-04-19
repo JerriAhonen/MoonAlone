@@ -8348,7 +8348,7 @@ MonoBehaviour:
   playerScores: 00000000000000000000000000000000
   runtimeAnimatorController: {fileID: 9100000, guid: f9c8924338e19ba4893b6e23c1d6ba76,
     type: 2}
-  avatar: {fileID: 9000000, guid: e783dd01d91bab74998482bb2f7e8196, type: 3}
+  avatar: {fileID: 9000000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
   readyCount: 0
   noPlayerCount: 4
   timerText: {fileID: 1245384858}

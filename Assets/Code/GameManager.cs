@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour {
         {
             players[i].SetActive(true);
         }
+
+        AddAnimators();
     }
 
     private void Update()
@@ -93,11 +95,6 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(StartCooldownTimer(5));
 
             displayTransitionText = true;
-
-
-
-            //Debug.Log("EndRound();");
-            //EndRound();
         }
 
         if (displayTransitionText)
@@ -129,6 +126,16 @@ public class GameManager : MonoBehaviour {
     //    animator.runtimeanimatorcontroller = runtimeanimatorcontroller;
     //    animator.avatar = avatar;
     //}
+
+    public void AddAnimators()
+    {
+        foreach (var player in players)
+        {
+            Animator animator = player.GetComponentInChildren<EnablePlayerModel>().GetActivePlayerModel().AddComponent<Animator>() as Animator;
+            animator.runtimeAnimatorController = runtimeAnimatorController;
+            animator.avatar = avatar;
+        }
+    }
 
         //TODO: MAKE THIS WORK
     public void GetRoundScore(){

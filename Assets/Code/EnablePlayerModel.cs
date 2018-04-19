@@ -8,10 +8,14 @@ public class EnablePlayerModel : MonoBehaviour {
     private int index;
     public string csNumber;
 
+    void Awake()
+    {
+        index = PlayerPrefs.GetInt(csNumber);
+    }
+
     // Use this for initialization
     void Start () {
-        index = PlayerPrefs.GetInt(csNumber);
-
+        
         characterList = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -24,6 +28,21 @@ public class EnablePlayerModel : MonoBehaviour {
         //Set the first model to Active (visible)
         if (characterList[index])
             characterList[index].SetActive(true);
+    }
+
+    public GameObject GetActivePlayerModel()
+    {
+        if (characterList[index] != null)
+        {
+            Debug.Log("Model Found! yay");
+            return characterList[index];
+        }
+            
+        else
+        {
+            Debug.Log("No model to be found. Sad :(");
+            return null;
+        }
     }
 	
 	// Update is called once per frame
