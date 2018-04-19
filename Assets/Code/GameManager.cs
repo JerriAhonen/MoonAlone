@@ -131,9 +131,12 @@ public class GameManager : MonoBehaviour {
     {
         foreach (var player in players)
         {
-            Animator animator = player.GetComponentInChildren<EnablePlayerModel>().GetActivePlayerModel().AddComponent<Animator>() as Animator;
-            animator.runtimeAnimatorController = runtimeAnimatorController;
-            animator.avatar = avatar;
+            if (player.activeSelf)
+            {
+                Animator animator = player.GetComponentInChildren<EnablePlayerModel>().GetActivePlayerModel().AddComponent<Animator>() as Animator;
+                animator.runtimeAnimatorController = runtimeAnimatorController;
+                animator.avatar = avatar;
+            }
         }
     }
 

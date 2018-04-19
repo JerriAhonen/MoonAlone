@@ -72,6 +72,9 @@ public class Player : MonoBehaviour {
         //    //Debug.Log("animControl = " + animControl);
         //}
         
+        if(animControl == null)
+            animControl = gameObject.GetComponentInChildren<Animator>();
+
         if (!isIncapacitated) {
             Move();
 
@@ -290,8 +293,11 @@ public class Player : MonoBehaviour {
     {
         float animLength = 0;
 
+        //Debug.Log("Set animation to " + param);
+
         if (animControl != null && param != currentAnimationParam)
         {
+            
             animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
 
             // To get accurate current clip length. (Not that accurate though...)
