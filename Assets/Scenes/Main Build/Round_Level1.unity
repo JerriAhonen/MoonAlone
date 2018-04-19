@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 09e633c9aa7514882968e1932b2619db, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.018358557, g: 0.01582661, b: 0.04951973, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5368,6 +5368,10 @@ Prefab:
       propertyPath: m_Name
       value: Pikatchu
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
@@ -9687,6 +9691,10 @@ Prefab:
       propertyPath: m_Name
       value: Ironman
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
@@ -9737,6 +9745,10 @@ Prefab:
     - target: {fileID: 100006, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
       propertyPath: m_Name
       value: Luigi
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 95100da0403eb4749bc12f1080d55cca, type: 3}
