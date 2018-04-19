@@ -192,7 +192,6 @@ public class Chicken : MonoBehaviour
 
         //transform.position = newPos;
         //transform.Translate(newPos, Space.Self);
-
     }
 
     public void SetTower(Tower tower)
