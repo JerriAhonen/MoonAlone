@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018358557, g: 0.01582661, b: 0.04951973, a: 1}
+  m_IndirectSpecularColor: {r: 0.018358313, g: 0.015827449, b: 0.049523737, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -260,8 +260,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
-  m_sharedMaterial: {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b,
+  m_fontAsset: {fileID: 11400000, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
+  m_sharedMaterial: {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -372,7 +372,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
+  - {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -568,8 +568,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
-  m_sharedMaterial: {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b,
+  m_fontAsset: {fileID: 11400000, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
+  m_sharedMaterial: {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -680,7 +680,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
+  - {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -767,8 +767,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
-  m_sharedMaterial: {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b,
+  m_fontAsset: {fileID: 11400000, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
+  m_sharedMaterial: {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -879,7 +879,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21956136911206020, guid: a54ebf1347abba446bb32e1d7bd08f0b, type: 2}
+  - {fileID: 21491907780233430, guid: 4d430129f72ea42d28fdc3a10e99e9fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -917,7 +917,7 @@ RectTransform:
   m_LocalScale: {x: 0.595858, y: 0.595858, z: 0.595858}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 25.073002, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
