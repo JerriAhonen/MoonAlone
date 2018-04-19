@@ -238,9 +238,9 @@ public class Chicken : MonoBehaviour
             _launchAngle = 30f;
             
             if (flyFar) {
-                _launchVelocity = 17f;
+                _launchVelocity = 30f;
             } else {
-                _launchVelocity = 11f;
+                _launchVelocity = 17f;
             }
 
             isThrown = true;
