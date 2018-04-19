@@ -72,7 +72,7 @@ public class Player : MonoBehaviour {
         //    //Debug.Log("animControl = " + animControl);
         //}
         
-        if(animControl == null)
+        if (animControl == null)
             animControl = gameObject.GetComponentInChildren<Animator>();
 
         if (!isIncapacitated) {
