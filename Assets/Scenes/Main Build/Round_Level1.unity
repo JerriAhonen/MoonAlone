@@ -1596,15 +1596,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.57
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.55
+      value: 1.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
@@ -2584,7 +2584,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.66, y: 0, z: 13}
+  m_Size: {x: 4.16, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!23 &422798501
 MeshRenderer:
@@ -3754,15 +3754,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.57
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.55
+      value: 1.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
@@ -5066,7 +5066,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.66, y: 0, z: 13}
+  m_Size: {x: 4.16, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!23 &804860058
 MeshRenderer:
@@ -5893,7 +5893,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.66, y: 0, z: 13}
+  m_Size: {x: 4.16, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!23 &1002855983
 MeshRenderer:
@@ -6627,7 +6627,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.66, y: 0, z: 13}
+  m_Size: {x: 4.16, y: 0, z: 13}
   m_Center: {x: 0, y: 0, z: 7.16}
 --- !u!23 &1092533604
 MeshRenderer:
@@ -10939,22 +10939,6 @@ Prefab:
       propertyPath: m_Name
       value: ChargeShot
       objectReference: {fileID: 0}
-    - target: {fileID: 1463828380602466, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
   m_IsPrefabParent: 0
@@ -11568,15 +11552,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.57
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4837478206118882, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.55
+      value: 1.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}

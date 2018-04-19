@@ -136,7 +136,7 @@ public class Player : MonoBehaviour {
             //_animTimer = 0;
 
             // If the press time was long, throw far.
-            if (_pressTime > 0.5f) {
+            if (_pressTime > 2.5f) {
                 _throwFar = true;
             } else {
                 _throwFar = false;
@@ -169,9 +169,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    // Throw chicken after waiting for the animation to pass a certain point.
+    // Throw chicken after waiting for the animation to pass a certain point.    // MIGHT NOT NEED THIS, CAUSES LAG?
     IEnumerator ThrowChicken(float length) {
-        yield return new WaitForSeconds(length / 5f);
+        //yield return new WaitForSeconds(length / 5f);
 
         // Remove chicken from the tower to be thrown.
         tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
@@ -180,6 +180,8 @@ public class Player : MonoBehaviour {
         _throwTimer = 0f;
 
         _readyToThrow = true;
+
+        yield return null;
     }
 
     void Move()
