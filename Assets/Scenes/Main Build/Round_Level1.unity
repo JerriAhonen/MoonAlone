@@ -2692,11 +2692,11 @@ MonoBehaviour:
   _pickUpLayer: PickUp
   doSidewaysWobble: 0
   chickenOffsetZMultiplier: 0
-  chickenOffsetZMultiplierAdder: 0.01
+  chickenOffsetZMultiplierAdder: 0.0004
   chickenOffsetXMultiplier: 0
-  chickenOffsetXMultiplierAdder: 0
-  maxTilt: 1
-  wobbleDistanceSetter: 0
+  chickenOffsetXMultiplierAdder: 0.002
+  maxTilt: 1.5
+  wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
 --- !u!114 &422798505
@@ -6016,11 +6016,11 @@ MonoBehaviour:
   _pickUpLayer: PickUp
   doSidewaysWobble: 0
   chickenOffsetZMultiplier: 0
-  chickenOffsetZMultiplierAdder: 0.01
+  chickenOffsetZMultiplierAdder: 0.0004
   chickenOffsetXMultiplier: 0
-  chickenOffsetXMultiplierAdder: 0
-  maxTilt: 1
-  wobbleDistanceSetter: 0
+  chickenOffsetXMultiplierAdder: 0.002
+  maxTilt: 1.5
+  wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
 --- !u!114 &1002855987
@@ -6750,11 +6750,11 @@ MonoBehaviour:
   _pickUpLayer: PickUp
   doSidewaysWobble: 0
   chickenOffsetZMultiplier: 0
-  chickenOffsetZMultiplierAdder: 0.01
+  chickenOffsetZMultiplierAdder: 0.0004
   chickenOffsetXMultiplier: 0
-  chickenOffsetXMultiplierAdder: 0
-  maxTilt: 1
-  wobbleDistanceSetter: 0
+  chickenOffsetXMultiplierAdder: 0.002
+  maxTilt: 1.5
+  wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
 --- !u!114 &1092533608

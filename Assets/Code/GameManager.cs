@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
     private int countdownTime;
 
     private bool displayTransitionText;
+    private bool playerGOsEnabled = false;
 
     private void Start()
     {
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour {
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
         timer = setTimer;
 
-        EnablePlayerGOs(numberOfPlayers);
+        //EnablePlayerGOs(numberOfPlayers);
         displayTransitionText = false;
     }
 
@@ -63,11 +64,17 @@ public class GameManager : MonoBehaviour {
             players[i].SetActive(true);
         }
 
-        AddAnimators();
+        AddAnimators(num);
     }
 
     private void Update()
     {
+        if(!playerGOsEnabled)
+        {
+            EnablePlayerGOs(numberOfPlayers);
+            playerGOsEnabled = true;
+        }
+
         // Logic for when GAME RUNNING
         
         if (timer >= 0.0f && !roundFinished)
@@ -108,6 +115,7 @@ public class GameManager : MonoBehaviour {
         if (roundFinished && cooldownTimerFinished)
         {
             Debug.Log("EndRound();");
+            playerGOsEnabled = false;
             EndRound();
         }
     }
@@ -127,16 +135,13 @@ public class GameManager : MonoBehaviour {
     //    animator.avatar = avatar;
     //}
 
-    public void AddAnimators()
+    public void AddAnimators(int num)
     {
-        foreach (var player in players)
+        for (int i = 0; i < num; i++)
         {
-            if (player.activeSelf)
-            {
-                Animator animator = player.GetComponentInChildren<EnablePlayerModel>().GetActivePlayerModel().AddComponent<Animator>() as Animator;
-                animator.runtimeAnimatorController = runtimeAnimatorController;
-                animator.avatar = avatar;
-            }
+            Animator animator = players[i].GetComponentInChildren<EnablePlayerModel>().GetActivePlayerModel().AddComponent<Animator>() as Animator;
+            animator.runtimeAnimatorController = runtimeAnimatorController;
+            animator.avatar = avatar;
         }
     }
 

@@ -32,15 +32,17 @@ public class EnablePlayerModel : MonoBehaviour {
 
     public GameObject GetActivePlayerModel()
     {
+        Debug.Log("Fetching chosen model from: " + csNumber);
+
         if (characterList[index] != null)
         {
-            Debug.Log("Model Found! yay");
+            Debug.Log("Model found from: " + csNumber);
             return characterList[index];
         }
             
         else
         {
-            Debug.Log("No model to be found. Sad :(");
+            Debug.Log("No model to be found from: " + csNumber);
             return null;
         }
     }

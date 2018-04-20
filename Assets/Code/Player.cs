@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public bool debugAnimations = false;
+
     public float movementSpeed = 7.0f;
     public float turningSpeed = 800.0f;
     public float gravity = 16.0f;
@@ -305,31 +307,35 @@ public class Player : MonoBehaviour {
             
             currentAnimationParam = param;
 
-            switch (param)
+            if (debugAnimations) 
             {
-                case 0:
-                    Debug.Log("Set animation Idle");
-                    break;
-                case 1:
-                    Debug.Log("Set animation Run");
-                    break;
-                case 2:
-                    Debug.Log("Set animation Jump");
-                    break;
-                case 3:
-                    Debug.Log("Set animation Throw");
-                    break;
-                case 4:
-                    Debug.Log("Set animation to Fall");
-                    break;
-                case 5:
-                    Debug.Log("Set animation to Wind Up Idle");
-                    break;
-                case 6:
-                    Debug.Log("Set animation to Wind Up Run");
-                    break;
+                switch (param)
+                {
+                    case 0:
+                        Debug.Log("Set animation Idle");
+                        break;
+                    case 1:
+                        Debug.Log("Set animation Run");
+                        break;
+                    case 2:
+                        Debug.Log("Set animation Jump");
+                        break;
+                    case 3:
+                        Debug.Log("Set animation Throw");
+                        break;
+                    case 4:
+                        Debug.Log("Set animation to Fall");
+                        break;
+                    case 5:
+                        Debug.Log("Set animation to Wind Up Idle");
+                        break;
+                    case 6:
+                        Debug.Log("Set animation to Wind Up Run");
+                        break;
 
+                }
             }
+            
         }
 
         return animLength;
