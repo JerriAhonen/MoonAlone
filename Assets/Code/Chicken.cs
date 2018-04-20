@@ -45,6 +45,7 @@ public class Chicken : MonoBehaviour
     private ParticleSystem _cloudParticles;
 
     private float offset = 0.5f;
+    private Vector3 _followOffset = new Vector3(1,0,0);
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -59,6 +60,7 @@ public class Chicken : MonoBehaviour
         newPos = transform.position;
 		animControl = gameObject.GetComponent<Animator>();
         mainCamera = GameObject.Find("Main Camera");
+        
 
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
@@ -161,37 +163,17 @@ public class Chicken : MonoBehaviour
 
         GameObject chickenUnderneath = tower.GetChickenUnderneath(this.gameObject);
 
-        // Vector3 diff = transform.position - chickenUnderneath.transform.position;
-
-        // diff.y = 0.0f;
-        // transform.position = chickenUnderneath.transform.position + diff.normalized * offset;
-
-        // transform.position += new Vector3(0.0f, 1 * tower.GetChickenIndex(this.gameObject),0);
-
         // Apply that offset to get a target position.
-        Vector3 targetPosition = chickenUnderneath.transform.localPosition * offset;
+        Vector3 targetPosition = chickenUnderneath.transform.localPosition + _followOffset;
 
         // Keep our y position unchanged.
         targetPosition.y = transform.localPosition.y;
 
-        // Smooth follow.    
-        transform.position += (targetPosition - transform.localPosition) * 0.1f;
+        //This cancels all tower movement
+        //if ((targetPosition - transform.localPosition).magnitude > 0.1f)
         
-        //transform.position = new Vector3(0.0f, verticalOffset, 0.0f) + player.position + diff.normalized * distanceWanted;
-
-
-        // Vector3 newPos = new Vector3(
-        //     chickenUnderneath.transform.position.x , 
-        //     transform.position.y, 
-        //     chickenUnderneath.transform.position.z
-        // );
-
-        //newPos.x = objectUnderneath.transform.position.x - offset;
-
-        //newPos = newPos * Mathf.Sin(Time.deltaTime);
-
-        //transform.position = newPos;
-        //transform.Translate(newPos, Space.Self);
+        // Smooth follow.    
+        transform.localPosition += (targetPosition - transform.localPosition) * 0.1f;
     }
 
     public void SetTower(Tower tower)
