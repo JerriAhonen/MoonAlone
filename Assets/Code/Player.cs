@@ -53,6 +53,8 @@ public class Player : MonoBehaviour {
     public bool isIncapacitated = false;
     public GameObject hitEffect;
     public GameObject chargeEffect;
+
+    private bool _isWindingUp = false;
     
     private void Start()
     {
@@ -98,18 +100,14 @@ public class Player : MonoBehaviour {
                 StartCoroutine(GetHit(animLength));
             }
         }
-    }
 
-    IEnumerator GetHit(float length) {
-        isHit = false;
-        isIncapacitated = true;
-
-        hitEffect.SetActive(true);
-
-        yield return new WaitForSeconds(2f); // WHEN ANIMATIONS WORKING, CHECK IF ANIM LENGTH IS ENOUGH (ATM IT'S NOT)
-
-        hitEffect.SetActive(false);
-        isIncapacitated = false;
+        if (_isWindingUp) {
+            if (isMoving) {
+                PlayAnimation(6);
+            } else {
+                PlayAnimation(5);
+            }
+        }
     }
 
     void Throw()
@@ -121,11 +119,7 @@ public class Player : MonoBehaviour {
 
             chargeEffect.SetActive(true);
 
-            if (isMoving) {
-                PlayAnimation(6);
-            } else {
-                PlayAnimation(5);
-            }
+            _isWindingUp = true;
         }
 
         // Throw input.
@@ -155,6 +149,7 @@ public class Player : MonoBehaviour {
         if (_throwInput && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
         {
             _readyToThrow = false;
+            _isWindingUp = false;
 
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
@@ -168,7 +163,7 @@ public class Player : MonoBehaviour {
                 _throwDirection = transform.forward;
             }
             
-            float animLength = PlayAnimation(3);  // CHANGE IN UNITY SO THAT THE ANIM STARTS AT DIFFERENT POINT TO COMPENSATE FOR WINDUP ANIM
+            float animLength = PlayAnimation(3);
             
             StartCoroutine(ThrowChicken(animLength));
         }
@@ -176,7 +171,7 @@ public class Player : MonoBehaviour {
 
     // Throw chicken after waiting for the animation to pass a certain point.    // MIGHT NOT NEED THIS, CAUSES LAG?
     IEnumerator ThrowChicken(float length) {
-        //yield return new WaitForSeconds(length / 5f);
+        yield return new WaitForSeconds(length / 6f);
 
         // Remove chicken from the tower to be thrown.
         tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
@@ -288,6 +283,18 @@ public class Player : MonoBehaviour {
                 _enemy = null;
             }
         }
+    }
+
+    IEnumerator GetHit(float length) {
+        isHit = false;
+        isIncapacitated = true;
+
+        hitEffect.SetActive(true);
+
+        yield return new WaitForSeconds(2f); // WHEN ANIMATIONS WORKING, CHECK IF ANIM LENGTH IS ENOUGH (ATM IT'S NOT)
+
+        hitEffect.SetActive(false);
+        isIncapacitated = false;
     }
 
     // Play animation and return the animation length.
