@@ -5,11 +5,12 @@ using UnityEngine;
 public class EggTimer : MonoBehaviour {
 
     public float time;
-
+    public float speed;
 
 	// Use this for initialization
 	void Start () {
         time = 60f;
+        speed = 10f;
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,7 @@ public class EggTimer : MonoBehaviour {
 
     void Rotate()
     {
-        transform.eulerAngles = Vector3.up * time * 60;
+        //transform.rotation = Vector3.up * time * 60;
+        transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 }
