@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: cb35aad348853504390afb9efbc3ad00
+timeCreated: 1524214504
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Nasalization
+  fontNames:
+  - Nasalization
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b5fb2023d7d3cb541bcc1829bb505ab1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
