@@ -37,6 +37,7 @@ public class Chicken : MonoBehaviour
     public bool isFalling = false;
     public string _groundLayer;
     public string _pickUpLayer;
+    public string _terrainLayer;
     public bool _isGrounded = false;
 
     public GameObject mainCamera;
@@ -64,6 +65,7 @@ public class Chicken : MonoBehaviour
 
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
+        _terrainLayer = "Terrain";
 
         _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
@@ -257,8 +259,12 @@ public class Chicken : MonoBehaviour
                 GetComponent<Rigidbody>().drag = 2f;
                 collisionObject.GetComponent<Rigidbody>().drag = 2f;
             }
-            
+
             if (collisionObject.layer == LayerMask.NameToLayer(_groundLayer)) {
+                GetComponent<Rigidbody>().drag = 3f;
+            }
+            
+            if (collisionObject.layer == LayerMask.NameToLayer(_terrainLayer)) {
                 _isGrounded = true;
 
                 _cloudParticles.Play();
