@@ -13,20 +13,13 @@ public class Chicken : MonoBehaviour
     public bool isInTower;
 
 	public Animator animControl;
-
-    public bool IsInTower {
-        set
-        {
-            isInTower = value;
-        }
-    }
-
+    
     private float time;
     private float movementTimer = 5;
 
     private Vector3 newPos = Vector3.zero;
 
-    private GameObject _originatingPlayer;
+    public GameObject _originatingPlayer;
     private float _gravity;
     private float _launchAngle;
     private float _launchVelocity;
@@ -61,7 +54,6 @@ public class Chicken : MonoBehaviour
         newPos = transform.position;
 		animControl = gameObject.GetComponent<Animator>();
         mainCamera = GameObject.Find("Main Camera");
-        
 
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
@@ -111,7 +103,7 @@ public class Chicken : MonoBehaviour
             isFalling = false;
 
             _flyTime = 0;
-            
+
             // Unity gravity is turned back on for easy walk about and bouncing.
             GetComponent<Rigidbody>().useGravity = true;
 
@@ -178,9 +170,11 @@ public class Chicken : MonoBehaviour
         transform.localPosition += (targetPosition - transform.localPosition) * 0.1f;
     }
 
-    public void SetTower(Tower tower)
+    public void SetTower(Tower tower, bool isInTower, GameObject towerOwner)
     {
         this.tower = tower;
+        this.isInTower = isInTower;
+        _originatingPlayer = towerOwner;
     }
 
     // The chicken flies through the air either when thrown or falling.
@@ -223,11 +217,22 @@ public class Chicken : MonoBehaviour
             isFalling = true;
         }
 
+        StartCoroutine(IgnoreTower(GetComponent<Rigidbody>()));
+
         // Reset fly time just in case.
         _flyTime = 0;
         
         // Set flight's horizontal trajectory. The horizontal trajectory stays constant through flight.
         _horizontalTrajectory = transform.forward * _launchVelocity * Mathf.Cos(_launchAngle * Mathf.Deg2Rad);
+    }
+
+    // Ignores tower chicken rigidbodies that interfere with flight trajectory during launch.
+    IEnumerator IgnoreTower(Rigidbody rigid) {
+        rigid.isKinematic = true;
+
+        yield return new WaitForSeconds(0.2f);
+
+        rigid.isKinematic = false;
     }
 
     private void OnCollisionEnter(Collision collision) {

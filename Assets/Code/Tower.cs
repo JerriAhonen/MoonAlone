@@ -134,7 +134,7 @@ public class Tower : MonoBehaviour {
 
     
     // Adds a chicken to the tower.
-    public void AddChicken() {
+    public void AddChicken(GameObject originatingPlayer) {
         //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
         Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 0.8f, 0));
 
@@ -156,8 +156,7 @@ public class Tower : MonoBehaviour {
 
         //Tell the chicken it is in a tower.
         Chicken chickenController = cloneChicken.GetComponent<Chicken>();
-        chickenController.IsInTower = true;
-        chickenController.SetTower(this);
+        chickenController.SetTower(this, true, originatingPlayer);
 
         tower.Add(cloneChicken);
         chickenCount = tower.Count;
@@ -179,10 +178,8 @@ public class Tower : MonoBehaviour {
 
         Vector3 clonePosition;
 
-        // Create a clone of the removed chicken at a position slightly in front
-        // of the first chicken if the chicken is thrown and at removed chicken's position if not.
         if (toBeThrown) {
-            clonePosition = transform.position + transform.forward + new Vector3(0f, 0.5f, 0);
+            clonePosition = transform.position + new Vector3(0f, 0.5f, 0);
         } else {
             clonePosition = removedChicken.transform.position;
         }
@@ -191,8 +188,7 @@ public class Tower : MonoBehaviour {
 
         // Tell the chicken it is not in a tower.
         Chicken chickenController = cloneChicken.GetComponent<Chicken>();
-        chickenController.IsInTower = false;
-        chickenController.SetTower(null);
+        chickenController.SetTower(null, false, originatingPlayer);
 
         // Turn clone chicken to face the direction the player is facing so that
         // it is thrown in the right direction.

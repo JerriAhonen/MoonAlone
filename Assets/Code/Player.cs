@@ -55,6 +55,7 @@ public class Player : MonoBehaviour {
     public GameObject chargeEffect;
 
     private bool _isWindingUp = false;
+    private bool _isThrowing = false;
     
     private void Start()
     {
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour {
             if (chicken != null) {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
 
-                tower.AddChicken();
+                tower.AddChicken(gameObject);
                 Destroy(chicken);
             }
 
@@ -101,12 +102,24 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (_isWindingUp) {
-            if (isMoving) {
-                PlayAnimation(6);
-            } else {
-                PlayAnimation(5);
-            }
+        if (isMoving && _isWindingUp) {
+            PlayAnimation(6);
+        }
+
+        if (isMoving && !_isWindingUp) {
+            PlayAnimation(1);
+        }
+
+        if (!isMoving && _isWindingUp) {
+            PlayAnimation(5);
+        }
+
+        if (!isMoving && !_isWindingUp) {
+            PlayAnimation(0);
+        }
+
+        if (_isThrowing) {
+            PlayAnimation(3);
         }
     }
 
@@ -162,16 +175,18 @@ public class Player : MonoBehaviour {
             } else {
                 _throwDirection = transform.forward;
             }
+
+            //float animLength = PlayAnimation(3);
+
+            _isThrowing = true;
             
-            float animLength = PlayAnimation(3);
-            
-            StartCoroutine(ThrowChicken(animLength));
+            StartCoroutine(ThrowChicken(1f));
         }
     }
 
     // Throw chicken after waiting for the animation to pass a certain point.    // MIGHT NOT NEED THIS, CAUSES LAG?
     IEnumerator ThrowChicken(float length) {
-        yield return new WaitForSeconds(length / 6f);
+        yield return new WaitForSeconds(0.1f);
 
         // Remove chicken from the tower to be thrown.
         tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
@@ -180,6 +195,8 @@ public class Player : MonoBehaviour {
         _throwTimer = 0f;
 
         _readyToThrow = true;
+
+        _isThrowing = false;
 
         yield return null;
     }
@@ -191,12 +208,12 @@ public class Player : MonoBehaviour {
         //bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
-            PlayAnimation (0);                                                   // Play's Idle animation
+            //PlayAnimation (0);                                                   // Play's Idle animation
             isMoving = false;
 		}
 		else 
 		{
-			PlayAnimation(1);                                                   // Plays Run animation
+			//PlayAnimation(1);                                                   // Plays Run animation
             isMoving = true;
 		}
         
