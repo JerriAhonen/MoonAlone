@@ -184,9 +184,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    // Throw chicken after waiting for the animation to pass a certain point.    // MIGHT NOT NEED THIS, CAUSES LAG?
+    // Throw chicken after waiting for the animation to pass a certain point.
     IEnumerator ThrowChicken(float length) {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.0f);  // NEEDS THIS 0f WAIT FOR SOME REASON
 
         // Remove chicken from the tower to be thrown.
         tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
@@ -197,8 +197,6 @@ public class Player : MonoBehaviour {
         _readyToThrow = true;
 
         _isThrowing = false;
-
-        yield return null;
     }
 
     void Move()
