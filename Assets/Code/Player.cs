@@ -125,6 +125,11 @@ public class Player : MonoBehaviour {
         if (_isThrowing) {
             PlayAnimation(3);
         }
+
+        // Makes sure charge effect doesn't get stuck as active. MIGHT NEED A DIFFERENT FIX IF IT LOOKS LIKE LONG THROW HAPPENS!
+        if (chargeEffect.activeInHierarchy && tower.chickenCount == 0) {
+            chargeEffect.SetActive(false);
+        }
     }
 
     void Throw()
