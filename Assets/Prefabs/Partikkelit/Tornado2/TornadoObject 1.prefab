@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4724951116443344}
   - component: {fileID: 198273842729825030}
   - component: {fileID: 199480266080035954}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Electric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4635664882217292}
   - component: {fileID: 198850456293024490}
   - component: {fileID: 199571865634463798}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TornadoLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4199709609607998}
-  m_Layer: 0
+  - component: {fileID: 114100946267514550}
+  - component: {fileID: 136730455917584830}
+  m_Layer: 15
   m_Name: TornadoObject 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +72,7 @@ GameObject:
   - component: {fileID: 4089812376114150}
   - component: {fileID: 198575918439027474}
   - component: {fileID: 199241774067130328}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SmokeTrailBigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +89,7 @@ GameObject:
   - component: {fileID: 4724770489495910}
   - component: {fileID: 198714894377811098}
   - component: {fileID: 199551422313996084}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TornadoMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +106,7 @@ GameObject:
   - component: {fileID: 4353137233281680}
   - component: {fileID: 198904267159466964}
   - component: {fileID: 199817010781756824}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SmokeTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +123,7 @@ GameObject:
   - component: {fileID: 4672682924979626}
   - component: {fileID: 198396225051113508}
   - component: {fileID: 199384418102521410}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Lightball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +140,7 @@ GameObject:
   - component: {fileID: 4558541935859014}
   - component: {fileID: 198754790797427764}
   - component: {fileID: 199421532006319402}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TornadoOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +157,7 @@ GameObject:
   - component: {fileID: 4387101510155758}
   - component: {fileID: 198650040735408576}
   - component: {fileID: 199838481666422880}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140658674477648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.96, y: 0, z: 0}
+  m_LocalPosition: {x: 8.2, y: 118.2, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4558541935859014}
@@ -287,6 +289,31 @@ Transform:
   m_Father: {fileID: 4558541935859014}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114100946267514550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140658674477648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9f38d02d728647bee67da1b5ac866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderDistance: 10
+--- !u!136 &136730455917584830
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140658674477648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 13.02
+  m_Height: 66.1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 12.67}
 --- !u!198 &198273842729825030
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -347,7 +374,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1944868741
+  randomSeed: -2128537051
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3664,7 +3691,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2061867634
+  randomSeed: 1673804857
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6981,7 +7008,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 519439688
+  randomSeed: 462689856
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10298,7 +10325,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -446534582
+  randomSeed: -1714456311
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13615,7 +13642,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 50581834
+  randomSeed: 1922902230
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16932,7 +16959,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 4199709609607998}
   scalingMode: 1
-  randomSeed: 918162322
+  randomSeed: 1244292361
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20249,7 +20276,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1493601845
+  randomSeed: -286353353
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -23566,7 +23593,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 56757743
+  randomSeed: -2133572332
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -54,6 +54,7 @@ public class Player : MonoBehaviour {
     public bool isHit = false;
     public bool isIncapacitated = false;
     public GameObject hitEffect;
+    public GameObject hitBirdEffect;
     public GameObject chargeEffect;
 
     private bool _isWindingUp = false;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour {
 		animControl = gameObject.GetComponentInChildren<Animator>();
         mainCamera = GameObject.Find("Main Camera");
         hitEffect = transform.Find("Hit").gameObject;
+        hitBirdEffect = transform.Find("Rotating chickens").gameObject;
         chargeEffect = transform.Find("ChargeShot").gameObject;
     }
 
@@ -159,7 +161,6 @@ public class Player : MonoBehaviour {
             _isWindingUp = false;
 
             _pressTime = Time.time - _pressTime;
-            Debug.Log("pressed for " + _pressTime);
 
             //_animTimer = 0;
 
@@ -315,10 +316,12 @@ public class Player : MonoBehaviour {
         isIncapacitated = true;
 
         hitEffect.SetActive(true);
+        hitBirdEffect.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         hitEffect.SetActive(false);
+        hitBirdEffect.SetActive(false);
         isIncapacitated = false;
     }
 
