@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1a5b7fe5bb47fe145a95e34bcc56604a
-timeCreated: 1519660688
+guid: 851e0fec6e0f24803b30ea2029095890
+timeCreated: 1524604410
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -12,18 +12,12 @@ ModelImporter:
     4300000: Cube
     7400000: Default Take
     9500000: //RootNode
-    11100000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 4c841b044de6d55458e426f6f5d07597, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_001
-    second: {fileID: 2100000, guid: 55b9b6fdc0f5c584daa5667114525ae0, type: 2}
+      name: Haystack2__haystack_texture_png
+    second: {fileID: 2100000, guid: d859da162ed824404a43ce66f3dd6af7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -42,7 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -61,7 +55,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

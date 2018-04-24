@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tornado : MonoBehaviour {
 
     private float time;
-    private float movementTimer = 5;
+    private float movementTimer = 1;
     public float wanderDistance;
 
     private Vector3 newPos = Vector3.zero;
@@ -22,7 +22,7 @@ public class Tornado : MonoBehaviour {
         if (time > movementTimer) {
             CalculateRandomLocation(wanderDistance);
             time = 0f;
-            movementTimer = Random.Range(5, 10);
+            movementTimer = Random.Range(1, 5);
         }
 
         Wander(newPos);
@@ -34,7 +34,7 @@ public class Tornado : MonoBehaviour {
     }
 
     public void Wander(Vector3 movement) {
-        transform.position = Vector3.MoveTowards(transform.position, movement, 0.5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movement, 2f * Time.deltaTime);
     }
 
     private void CalculateRandomLocation(float max) {
@@ -48,8 +48,14 @@ public class Tornado : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
-            if (collision.gameObject.GetComponent<Player>() != null) {
-                collision.gameObject.GetComponent<Player>().isHit = true;
+            GameObject collisionObject = collision.gameObject;
+
+            if (collisionObject.GetComponent<Player>() != null) {
+                collisionObject.GetComponent<Player>().isHit = true;
+
+                if (collisionObject.GetComponent<Tower>() != null) {
+                    collisionObject.GetComponent<Tower>().Scatter(collision.gameObject);
+                }
             }
         }
     }
