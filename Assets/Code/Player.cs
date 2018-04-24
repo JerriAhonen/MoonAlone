@@ -31,6 +31,8 @@ public class Player : MonoBehaviour {
     public string _playerLayer = "Player";
 
     private float _pressTime = 0;
+    private bool _countWindUp = false;
+    private float _windUpTimer;
     private float _animTimer;
     private float _throwTimer = 0;
     private bool _readyToThrow = true;
@@ -96,12 +98,14 @@ public class Player : MonoBehaviour {
             }
 
             if (isHit) {
-                float animLength = PlayAnimation(4);
+                PlayAnimation(4);
 
-                StartCoroutine(GetHit(animLength));
+                StartCoroutine(GetHit());
             }
         }
+    }
 
+    private void LateUpdate() {
         if (isMoving && _isWindingUp) {
             PlayAnimation(6);
         }
@@ -130,20 +134,27 @@ public class Player : MonoBehaviour {
             || Input.GetButtonDown(fire3Button) || Input.GetButtonDown(fire4Button)) {
             _pressTime = Time.time;
 
+            _countWindUp = true;
+            _windUpTimer = 0f;
+
             chargeEffect.SetActive(true);
 
             _isWindingUp = true;
         }
-
+        
         // Throw input.
         bool _throwInput = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button) 
             || Input.GetButtonUp(fire3Button) || Input.GetButtonUp(fire4Button);
         
         // Calculate how long the fire button was pressed.
         if (_throwInput & _readyToThrow) {
+
             chargeEffect.SetActive(false);
 
+            _isWindingUp = false;
+
             _pressTime = Time.time - _pressTime;
+            Debug.Log("pressed for " + _pressTime);
 
             //_animTimer = 0;
 
@@ -158,12 +169,11 @@ public class Player : MonoBehaviour {
         _throwTimer += Time.deltaTime;
 
         // If the throw button has been pressed, there are chickens in the tower 
-        // and it has been over a second since the last throw, throw a chicken.
+        // and it has been over the limit since the last throw, throw a chicken.
         if (_throwInput && (_throwTimer > 0.5f) & _readyToThrow)                // Check if there are chickens to throw
         {
             _isThrowing = true;
             _readyToThrow = false;
-            _isWindingUp = false;
 
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
 
@@ -203,12 +213,10 @@ public class Player : MonoBehaviour {
         //bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
-            //PlayAnimation (0);                                                   // Play's Idle animation
             isMoving = false;
 		}
 		else 
 		{
-			//PlayAnimation(1);                                                   // Plays Run animation
             isMoving = true;
 		}
         
@@ -297,32 +305,27 @@ public class Player : MonoBehaviour {
         }
     }
 
-    IEnumerator GetHit(float length) {
+    IEnumerator GetHit() {
         isHit = false;
         isIncapacitated = true;
 
         hitEffect.SetActive(true);
 
-        yield return new WaitForSeconds(2f); // WHEN ANIMATIONS WORKING, CHECK IF ANIM LENGTH IS ENOUGH (ATM IT'S NOT)
+        yield return new WaitForSeconds(2f);
 
         hitEffect.SetActive(false);
         isIncapacitated = false;
     }
 
     // Play animation and return the animation length.
-    public float PlayAnimation(int param)                                   // Changes current animation
+    public void PlayAnimation(int param)                                   // Changes current animation
     {
-        float animLength = 0;
-
         //Debug.Log("Set animation to " + param);
 
         if (animControl != null && param != currentAnimationParam)
         {
             
             animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
-
-            // To get accurate current clip length. (Not that accurate though...)
-            animLength = animControl.GetCurrentAnimatorClipInfo(0)[0].clip.length;
             
             currentAnimationParam = param;
 
@@ -356,8 +359,6 @@ public class Player : MonoBehaviour {
             }
             
         }
-
-        return animLength;
     }
 }
                                                                                 // Idle = 0
