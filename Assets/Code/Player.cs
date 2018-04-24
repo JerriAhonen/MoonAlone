@@ -159,8 +159,9 @@ public class Player : MonoBehaviour {
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over a second since the last throw, throw a chicken.
-        if (_throwInput && (_throwTimer > 0.3f) & _readyToThrow)                // Check if there are chickens to throw
+        if (_throwInput && (_throwTimer > 0.5f) & _readyToThrow)                // Check if there are chickens to throw
         {
+            _isThrowing = true;
             _readyToThrow = false;
             _isWindingUp = false;
 
@@ -175,10 +176,6 @@ public class Player : MonoBehaviour {
             } else {
                 _throwDirection = transform.forward;
             }
-
-            //float animLength = PlayAnimation(3);
-
-            _isThrowing = true;
             
             StartCoroutine(ThrowChicken(1f));
         }
