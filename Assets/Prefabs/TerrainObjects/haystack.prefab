@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95081157732659340}
   - component: {fileID: 65288057603202642}
   - component: {fileID: 114422339982913412}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: haystack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
