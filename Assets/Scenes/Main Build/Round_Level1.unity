@@ -12928,11 +12928,6 @@ Prefab:
       propertyPath: m_Name
       value: haystack object (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 198487798592727476, guid: d9bd008afa431f14082391a73bb195cc,
-        type: 2}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9bd008afa431f14082391a73bb195cc, type: 2}
   m_IsPrefabParent: 0
