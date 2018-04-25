@@ -9825,7 +9825,7 @@ MonoBehaviour:
   noPlayerCount: 4
   timerText: {fileID: 1245384858}
   nextRound: {fileID: 987760903}
-  setTimer: 60
+  setTimer: 400
   timeLeft: 0
   NumOfRounds: 2
   curRoundNum: 0
@@ -11005,6 +11005,7 @@ GameObject:
   - component: {fileID: 1695447383}
   - component: {fileID: 1695447384}
   - component: {fileID: 1695447385}
+  - component: {fileID: 1695447386}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11047,7 +11048,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -1.51
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -11111,6 +11112,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Resolution: 0
   DefaultSpotCookie: {fileID: 2800000, guid: 5157bf6d690b6df458f6c0ce0c06d329, type: 3}
+--- !u!114 &1695447386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1695447378}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af748d2165c08049949fafde21ea716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 804860056}
+  - {fileID: 1002855981}
+  - {fileID: 1092533602}
+  - {fileID: 422798499}
+  offset: {x: 0, y: 38.48, z: -32.6}
+  smoothTime: 0.5
+  minZoom: 40
+  maxZoom: 20
+  zoomLimiter: 50
 --- !u!1 &1723267698
 GameObject:
   m_ObjectHideFlags: 0
