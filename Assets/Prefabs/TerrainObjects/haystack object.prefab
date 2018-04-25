@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 33839504637385374}
   - component: {fileID: 23453595899703518}
   - component: {fileID: 95556667528854114}
+  - component: {fileID: 65263752456227000}
   m_Layer: 11
   m_Name: haystack
   m_TagString: Untagged
@@ -207,6 +208,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985336960344416}
   m_Mesh: {fileID: 4300000, guid: 851e0fec6e0f24803b30ea2029095890, type: 3}
+--- !u!65 &65263752456227000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985336960344416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.197795, y: 2.06, z: 2.48}
+  m_Center: {x: 0.033445537, y: -0.0024359827, z: -0.04}
 --- !u!65 &65290751715454072
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -214,11 +227,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1637112229856590}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.197795, y: 2.2901044, z: 2.7199707}
-  m_Center: {x: 0.033445537, y: -0.0024359827, z: 0.35998508}
+  m_Size: {x: 2.197795, y: 2.06, z: 2.48}
+  m_Center: {x: 0.033445537, y: -0.0024359827, z: -0.04}
 --- !u!95 &95556667528854114
 Animator:
   serializedVersion: 3
@@ -3595,7 +3608,7 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -6933,7 +6946,7 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

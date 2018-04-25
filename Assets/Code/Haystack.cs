@@ -13,7 +13,7 @@ public class Haystack : MonoBehaviour {
         _hayEffect = transform.Find("HayPoof").gameObject;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PickUp"))
         {
