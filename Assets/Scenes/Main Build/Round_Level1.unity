@@ -3180,9 +3180,9 @@ Transform:
   - {fileID: 1371590910}
   - {fileID: 1781064797}
   - {fileID: 1134523995}
+  - {fileID: 1723267699}
   - {fileID: 374426356}
   - {fileID: 600144579}
-  - {fileID: 1723267699}
   - {fileID: 1242729603}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -5864,18 +5864,6 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1389154636403906, guid: 55a86bbe3e82d9e4fafa73e98233d536, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1228811757204558, guid: 55a86bbe3e82d9e4fafa73e98233d536, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1127624752742814, guid: 55a86bbe3e82d9e4fafa73e98233d536, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1875868332538614, guid: 55a86bbe3e82d9e4fafa73e98233d536, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -10988,7 +10976,6 @@ GameObject:
   - component: {fileID: 1695447383}
   - component: {fileID: 1695447384}
   - component: {fileID: 1695447385}
-  - component: {fileID: 1695447386}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11095,21 +11082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Resolution: 0
   DefaultSpotCookie: {fileID: 2800000, guid: 5157bf6d690b6df458f6c0ce0c06d329, type: 3}
-<<<<<<< HEAD
---- !u!114 &1695447386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1695447378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
-  DefaultRotInfluence: {x: 1, y: 1, z: 1}
-=======
 --- !u!1 &1723267698
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,9 +11124,8 @@ Transform:
   - {fileID: 1181011450}
   - {fileID: 681158920}
   m_Father: {fileID: 430589209}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> 7fff1c31c23fed97fe7cca6ed94a424bfd5c12e6
 --- !u!1 &1744113264
 GameObject:
   m_ObjectHideFlags: 0
@@ -12004,11 +11975,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198804522703594966, guid: 00a5d60f2486f6146a5a034dbf4c7989,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 1781064799}
     - target: {fileID: 1463828380602466, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_Name
       value: ChargeShot
@@ -12589,7 +12555,7 @@ MonoBehaviour:
     type: 2}
   spawnTimer: 7
   speed: 10
-  amountToSpawn: 25
+  amountToSpawn: 26
 --- !u!4 &1947688975
 Transform:
   m_ObjectHideFlags: 0
@@ -12743,11 +12709,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78d55376d09ac6941af4ccccd5dfa2a5, type: 3}
       propertyPath: m_LocalRotation.x
-<<<<<<< HEAD
-      value: 0.05885003
-=======
       value: 0.058850013
->>>>>>> 7fff1c31c23fed97fe7cca6ed94a424bfd5c12e6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78d55376d09ac6941af4ccccd5dfa2a5, type: 3}
       propertyPath: m_LocalRotation.y
@@ -13147,29 +13109,6 @@ Prefab:
       propertyPath: m_Name
       value: haystack object (1)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 198487798592727476, guid: d9bd008afa431f14082391a73bb195cc,
-        type: 2}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198487798592727476, guid: d9bd008afa431f14082391a73bb195cc,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198499187152146818, guid: d9bd008afa431f14082391a73bb195cc,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198850965530676776, guid: d9bd008afa431f14082391a73bb195cc,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> 7fff1c31c23fed97fe7cca6ed94a424bfd5c12e6
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9bd008afa431f14082391a73bb195cc, type: 2}
   m_IsPrefabParent: 0
