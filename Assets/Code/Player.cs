@@ -59,7 +59,13 @@ public class Player : MonoBehaviour {
 
     private bool _isWindingUp = false;
     private bool _isThrowing = false;
-    
+
+    Camera cam;
+    public float shakeTime = 0.1f;
+    float timeStop = 0;
+    float shakeAmount = 0.1f;
+    Vector3 originPosition;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -70,6 +76,7 @@ public class Player : MonoBehaviour {
         hitEffect = transform.Find("Hit").gameObject;
         hitBirdEffect = transform.Find("Rotating chickens").gameObject;
         chargeEffect = transform.Find("ChargeShot").gameObject;
+        cam = Camera.main;
     }
 
     void Update()
@@ -104,6 +111,11 @@ public class Player : MonoBehaviour {
 
                 StartCoroutine(GetHit());
             }
+        }
+
+        if (Time.time < timeStop)
+        {
+            cam.transform.localPosition = originPosition + Random.insideUnitSphere * shakeAmount;
         }
     }
 
@@ -312,6 +324,7 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator GetHit() {
+        shakeNow();
         isHit = false;
         isIncapacitated = true;
 
@@ -323,6 +336,13 @@ public class Player : MonoBehaviour {
         hitEffect.SetActive(false);
         hitBirdEffect.SetActive(false);
         isIncapacitated = false;
+    }
+
+    public void shakeNow()
+    {
+        originPosition = cam.transform.position;
+        timeStop = Time.time + shakeTime;
+
     }
 
     // Play animation and return the animation length.

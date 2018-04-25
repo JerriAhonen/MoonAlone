@@ -2405,7 +2405,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4651029130739646, guid: cbd38f8c5f0a2164c98c764d1cac9433, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4651029130739646, guid: cbd38f8c5f0a2164c98c764d1cac9433, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2442,6 +2442,31 @@ Prefab:
     - target: {fileID: 4651029130739646, guid: cbd38f8c5f0a2164c98c764d1cac9433, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955121359487334, guid: cbd38f8c5f0a2164c98c764d1cac9433,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.353
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955121359487334, guid: cbd38f8c5f0a2164c98c764d1cac9433,
+        type: 2}
+      propertyPath: randomSeed
+      value: 148393581
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955121359487334, guid: cbd38f8c5f0a2164c98c764d1cac9433,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8221342
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955121359487334, guid: cbd38f8c5f0a2164c98c764d1cac9433,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.4455558
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955121359487334, guid: cbd38f8c5f0a2164c98c764d1cac9433,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.9044118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbd38f8c5f0a2164c98c764d1cac9433, type: 2}
@@ -3123,6 +3148,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  shakeTime: 0.2
 --- !u!1 &424192277
 GameObject:
   m_ObjectHideFlags: 0
@@ -5414,6 +5440,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  shakeTime: 0.2
 --- !u!1 &810174769
 GameObject:
   m_ObjectHideFlags: 0
@@ -7135,6 +7162,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  shakeTime: 0.2
 --- !u!1001 &1005320544
 Prefab:
   m_ObjectHideFlags: 0
@@ -7808,6 +7836,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  shakeTime: 0.2
 --- !u!1 &1121236362
 GameObject:
   m_ObjectHideFlags: 0
