@@ -51,4 +51,10 @@ public class EnablePlayerModel : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //Returns the chosen character index
+    public int GetModelIndex()
+    {
+        return index;
+    }
 }

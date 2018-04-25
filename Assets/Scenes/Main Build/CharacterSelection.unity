@@ -2974,8 +2974,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416836380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 327, y: 269, z: 0}
-  m_LocalScale: {x: 0.49814814, y: 0.49814814, z: 0.49814814}
+  m_LocalPosition: {x: 526, y: 296, z: 0}
+  m_LocalScale: {x: 0.54814816, y: 0.54814816, z: 0.54814816}
   m_Children:
   - {fileID: 1420548754}
   - {fileID: 1642237927}
@@ -3760,7 +3760,7 @@ MonoBehaviour:
   chosenCharacters: 000000000000
   readyCount: 0
   noPlayerCount: 4
-  NumOfPlayersNeededToStartGame_DEBUG: 4
+  NumOfPlayersNeededToStartGame_DEBUG: 1
 --- !u!4 &1742351295
 Transform:
   m_ObjectHideFlags: 0
