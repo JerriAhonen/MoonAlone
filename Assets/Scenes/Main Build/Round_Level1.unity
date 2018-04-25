@@ -12380,9 +12380,9 @@ MonoBehaviour:
   - {fileID: 810174769}
   prefabToSpawn: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
     type: 2}
-  spawnTimer: 10
+  spawnTimer: 7
   speed: 10
-  amountToSpawn: 14
+  amountToSpawn: 25
 --- !u!4 &1947688975
 Transform:
   m_ObjectHideFlags: 0
