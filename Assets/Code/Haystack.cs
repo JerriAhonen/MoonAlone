@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Haystack : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private GameObject _haystack;
+    private GameObject _hayEffect;
+
+    // Use this for initialization
+    void Start() {
+        _haystack = transform.Find("haystack").gameObject;
+        _hayEffect = transform.Find("HayPoof").gameObject;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("PickUp"))
         {
             if (collision.gameObject.GetComponent<Chicken>() != null)
             {
                 if (collision.gameObject.GetComponent<Chicken>().isThrown)
                 {
-                    Destroy(this.gameObject);
+                    Destroy(_haystack.gameObject);
+
+                    _hayEffect.SetActive(true);
+
+                    gameObject.layer = 0;
                 }
             }
         }
