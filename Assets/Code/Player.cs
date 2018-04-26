@@ -193,8 +193,6 @@ public class Player : MonoBehaviour {
             _isThrowing = true;
             _readyToThrow = false;
 
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/THROWTOBE!", mainCamera.transform.position);
-
             // If an enemy has triggered the aim collider, throw at the enemy 
             // and "forget" the enemy from autoaim. Else throw forward.
             if (_enemy != null) {
@@ -215,6 +213,8 @@ public class Player : MonoBehaviour {
 
         // Remove chicken from the tower to be thrown.
         tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
 
         // Reset throw timer.
         _throwTimer = 0f;
@@ -325,7 +325,7 @@ public class Player : MonoBehaviour {
 
     IEnumerator GetHit() {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit", mainCamera.transform.position);
-        shakeNow();
+        ShakeNow();
         isHit = false;
         isIncapacitated = true;
 
@@ -341,7 +341,7 @@ public class Player : MonoBehaviour {
         PlayAnimation(0);
     }
 
-    public void shakeNow()
+    public void ShakeNow()
     {
         originPosition = cam.transform.position;
         timeStop = Time.time + shakeTime;

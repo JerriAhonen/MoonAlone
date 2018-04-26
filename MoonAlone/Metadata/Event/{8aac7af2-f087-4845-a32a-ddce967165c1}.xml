@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{8aac7af2-f087-4845-a32a-ddce967165c1}">
         <property name="name">
-            <value>THROWTOBE</value>
+            <value>Throw1</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -31,6 +31,9 @@
         <relationship name="timeline">
             <destination>{c5cea7f8-1387-404c-b219-e7e941db6419}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{6ee488e7-3edb-4749-ba9a-23e5f6c7ba82}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{a81fe9c6-ff52-4711-840b-8f31b0bada15}">
         <relationship name="masterBus">
@@ -56,11 +59,18 @@
     <object class="EventAutomatableProperties" id="{aff9257b-00dc-4e0a-b778-bd24cb58d7d3}"/>
     <object class="MarkerTrack" id="{6a7f8dcb-9f2b-4dc1-80e6-2e056361e238}"/>
     <object class="GroupTrack" id="{efc3cebe-d566-41e4-92f0-0df74ddbf507}">
+        <relationship name="modules">
+            <destination>{71f99193-0527-4ab4-86f4-ca80806d3fef}</destination>
+        </relationship>
         <relationship name="mixerGroup">
             <destination>{9ca4f95e-ec8d-4568-b242-f20434ba9299}</destination>
         </relationship>
     </object>
-    <object class="Timeline" id="{c5cea7f8-1387-404c-b219-e7e941db6419}"/>
+    <object class="Timeline" id="{c5cea7f8-1387-404c-b219-e7e941db6419}">
+        <relationship name="modules">
+            <destination>{71f99193-0527-4ab4-86f4-ca80806d3fef}</destination>
+        </relationship>
+    </object>
     <object class="EventMixerMaster" id="{e7810e2b-3ac8-42de-890e-ea393257ddcf}">
         <relationship name="effectChain">
             <destination>{f5317d72-4af9-4bc2-aa98-189a70d3d540}</destination>
@@ -78,7 +88,21 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{2862a966-c27b-49f4-89eb-4168e49656b3}"/>
+    <object class="SingleSound" id="{71f99193-0527-4ab4-86f4-ca80806d3fef}">
+        <property name="length">
+            <value>0.27253487152423478</value>
+        </property>
+        <property name="pitch">
+            <value>1.60000002</value>
+        </property>
+        <relationship name="audioFile">
+            <destination>{22b33f27-e323-4313-9b1e-ec94836c2db8}</destination>
+        </relationship>
+    </object>
     <object class="EventMixerGroup" id="{9ca4f95e-ec8d-4568-b242-f20434ba9299}">
+        <property name="volume">
+            <value>-8</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
