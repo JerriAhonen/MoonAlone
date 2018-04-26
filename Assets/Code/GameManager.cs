@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour {
     private bool displayTransitionText;
     private bool playerGOsEnabled = false;
 
+    FMOD.Studio.EventInstance menuMusic;
+    FMOD.Studio.EventInstance levelMusic;
+
     private void Start()
     {
         //camera.GetComponent<CameraController>().MoveCamera(cameraPosCharacterSelection);
@@ -48,6 +51,15 @@ public class GameManager : MonoBehaviour {
 
         //EnablePlayerGOs(numberOfPlayers);
         displayTransitionText = false;
+
+        levelMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/level");
+
+        if (GameObject.Find("MainMenu") != null)
+            menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;
+
+        menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+        levelMusic.start();
     }
 
     private void EnablePlayerGOs (int num)
@@ -190,12 +202,21 @@ public class GameManager : MonoBehaviour {
             //Add 1 to the current roundNumber in PlayerPrefs.
             PlayerPrefs.SetInt("CurrentRoundNumber", PlayerPrefs.GetInt("CurrentRoundNumber") + 1);
             SceneManager.LoadScene("Round_Level1");
+
+            levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
         else
         {
             //When all rounds are played, reset the roundNumber to 1.
             PlayerPrefs.SetInt("CurrentRoundNumber", 1);
             SceneManager.LoadScene("MainMenu");
+
+            levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+            menuMusic.release();
+            levelMusic.release();
+
+            Destroy(GameObject.Find("MainMenu"));
         }
             
     }

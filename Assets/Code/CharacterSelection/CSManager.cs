@@ -15,16 +15,15 @@ public class CSManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
         {
             PlayerPrefs.SetInt("NumberOfPlayers", NumOfPlayersNeededToStartGame_DEBUG);
             SceneManager.LoadScene("Round_Level1");
         }
-
     }
 }

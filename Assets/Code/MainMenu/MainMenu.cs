@@ -19,11 +19,20 @@ public class MainMenu : MonoBehaviour {
     private Vector3 optionOnePos = new Vector3(2f, 2f, -4f);
     private Vector3 optionTwoPos = new Vector3(2f, 1f, -4f);
     private Vector3 optionThreePos = new Vector3(2f, 0f, -4f);
+    private GameObject _mainCamera;
+
+    public FMOD.Studio.EventInstance menuMusic;
 
     // Use this for initialization
     void Start () {
         selector.transform.position = optionOnePos;
 
+        _mainCamera = GameObject.Find("Main Camera");
+
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu");
+        menuMusic.start();
+
+        DontDestroyOnLoad(gameObject);
     }
 	
 	// Update is called once per frame
