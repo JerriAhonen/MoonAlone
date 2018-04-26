@@ -324,6 +324,7 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator GetHit() {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit", mainCamera.transform.position);
         shakeNow();
         isHit = false;
         isIncapacitated = true;

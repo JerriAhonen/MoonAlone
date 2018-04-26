@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 09e633c9aa7514882968e1932b2619db, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018358313, g: 0.015827449, b: 0.049523737, a: 1}
+  m_IndirectSpecularColor: {r: 0.018358557, g: 0.01582661, b: 0.04951973, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3006,8 +3006,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416836380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 132, y: 74.5, z: 0}
-  m_LocalScale: {x: 0.13796298, y: 0.13796298, z: 0.13796298}
+  m_LocalPosition: {x: 327, y: 269, z: 0}
+  m_LocalScale: {x: 0.49814814, y: 0.49814814, z: 0.49814814}
   m_Children:
   - {fileID: 1420548754}
   - {fileID: 1642237927}
@@ -3796,7 +3796,7 @@ MonoBehaviour:
   chosenCharacters: 000000000000
   readyCount: 0
   noPlayerCount: 4
-  NumOfPlayersNeededToStartGame_DEBUG: 1
+  NumOfPlayersNeededToStartGame_DEBUG: 4
 --- !u!4 &1742351295
 Transform:
   m_ObjectHideFlags: 0

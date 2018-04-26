@@ -247,7 +247,6 @@ public class Chicken : MonoBehaviour
 
                 if (collidingChicken.isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
-                        //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/HITTOBE!", mainCamera.transform.position);
                         GetComponentInParent<Player>().isHit = true;
 
                         GetComponentInParent<Tower>().Scatter(_originatingPlayer);
