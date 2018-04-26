@@ -336,6 +336,8 @@ public class Player : MonoBehaviour {
         hitEffect.SetActive(false);
         hitBirdEffect.SetActive(false);
         isIncapacitated = false;
+
+        PlayAnimation(0);
     }
 
     public void shakeNow()
