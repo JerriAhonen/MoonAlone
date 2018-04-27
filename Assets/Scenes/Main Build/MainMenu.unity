@@ -15170,9 +15170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  toggleAxis: Vertical_P1
+  toggleAxis: Vertical
   selectionCooldown: 0.2
-  confirmButton: Fire1_P1
+  confirmButton: Fire_P1
   optionConfirmed: 0
   optionIndex: 0
   selector: {fileID: 1739770061}
@@ -19869,7 +19869,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1084139222}
-  m_LocalRotation: {x: 0.64032304, y: -0.013319072, z: 0.7663802, w: -0.04970466}
+  m_LocalRotation: {x: 0.640323, y: -0.01331907, z: 0.7663801, w: -0.049704652}
   m_LocalPosition: {x: -0.23371053, y: 0.000000013969839, z: -0.000000015703726}
   m_LocalScale: {x: 0.9999998, y: 1, z: 1}
   m_Children: []
@@ -19899,7 +19899,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120419560}
-  m_LocalRotation: {x: 0.640323, y: -0.01331907, z: 0.7663801, w: -0.049704652}
+  m_LocalRotation: {x: 0.64032304, y: -0.013319072, z: 0.7663802, w: -0.04970466}
   m_LocalPosition: {x: -0.23371053, y: 0.000000013969839, z: -0.000000015703726}
   m_LocalScale: {x: 0.9999998, y: 1, z: 1}
   m_Children: []
@@ -21419,8 +21419,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1650187124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 327, y: 269, z: 0}
-  m_LocalScale: {x: 0.49814814, y: 0.49814814, z: 0.49814814}
+  m_LocalPosition: {x: 260, y: 180.5, z: 0}
+  m_LocalScale: {x: 0.33425927, y: 0.33425927, z: 0.33425927}
   m_Children:
   - {fileID: 615629757}
   - {fileID: 2067048700}

@@ -43,10 +43,7 @@ public class Player : MonoBehaviour {
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
-    public string fire1Button = "Fire1_P1";
-    public string fire2Button = "Fire2_P1";
-    public string fire3Button = "Fire3_P1";
-    public string fire4Button = "Fire4_P1";
+    public string fireButton = "Fire_P1";
     //public string jumpButton = "Jump_P1";
 
     public GameObject mainCamera;
@@ -149,8 +146,7 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fire1Button) || Input.GetButtonDown(fire2Button) 
-            || Input.GetButtonDown(fire3Button) || Input.GetButtonDown(fire4Button)) {
+        if (Input.GetButtonDown(fireButton)) {
             _pressTime = Time.time;
 
             _countWindUp = true;
@@ -162,8 +158,7 @@ public class Player : MonoBehaviour {
         }
         
         // Throw input.
-        bool _throwInput = Input.GetButtonUp(fire1Button) || Input.GetButtonUp(fire2Button) 
-            || Input.GetButtonUp(fire3Button) || Input.GetButtonUp(fire4Button);
+        bool _throwInput = Input.GetButtonUp(fireButton);
         
         // Calculate how long the fire button was pressed.
         if (_throwInput & _readyToThrow) {
