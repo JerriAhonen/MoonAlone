@@ -4952,7 +4952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  movementSpeed: 7
+  movementSpeed: 8.5
   turningSpeed: 800
   gravity: 10
   jumpForce: 5
@@ -4970,10 +4970,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
-  fire1Button: Fire_P4
-  fire2Button: Fire2_P4
-  fire3Button: Fire3_P4
-  fire4Button: Fire4_P4
+  fireButton: Fire_P1
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
@@ -7565,7 +7562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  movementSpeed: 7
+  movementSpeed: 8.5
   turningSpeed: 800
   gravity: 10
   jumpForce: 5
@@ -7583,10 +7580,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P1
   vertical: Vertical_P1
-  fire1Button: Fire_P1
-  fire2Button: Fire2_P1
-  fire3Button: Fire3_P1
-  fire4Button: Fire4_P1
+  fireButton: Fire_P1
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
@@ -9847,7 +9841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  movementSpeed: 7
+  movementSpeed: 8.5
   turningSpeed: 800
   gravity: 10
   jumpForce: 5
@@ -9865,10 +9859,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
-  fire1Button: Fire_P2
-  fire2Button: Fire2_P2
-  fire3Button: Fire3_P2
-  fire4Button: Fire4_P2
+  fireButton: Fire_P1
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
@@ -10713,7 +10704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  movementSpeed: 7
+  movementSpeed: 8.5
   turningSpeed: 800
   gravity: 10
   jumpForce: 5
@@ -10731,10 +10722,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
-  fire1Button: Fire_P3
-  fire2Button: Fire2_P3
-  fire3Button: Fire3_P3
-  fire4Button: Fire4_P3
+  fireButton: Fire_P1
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
