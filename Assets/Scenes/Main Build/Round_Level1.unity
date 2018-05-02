@@ -5286,7 +5286,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
-  fireButton: Fire_P1
+  fireButton: Fire_P4
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
@@ -10337,7 +10337,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
-  fireButton: Fire_P1
+  fireButton: Fire_P2
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0
@@ -11354,7 +11354,7 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
-  fireButton: Fire_P1
+  fireButton: Fire_P3
   mainCamera: {fileID: 0}
   isHit: 0
   isIncapacitated: 0

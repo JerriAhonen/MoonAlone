@@ -150,8 +150,6 @@ public class GameManager : MonoBehaviour {
                 _displayRoundEndCanvas = true;
             }
         }
-        
-        
 
         if (_displayRoundEndCanvas)
         {
@@ -167,6 +165,17 @@ public class GameManager : MonoBehaviour {
             Debug.Log("EndRound();");
             _playerGOsEnabled = false;
             EndRound();
+        }
+    }
+
+    private void EnablePlayerScripts(bool enable)
+    {
+        foreach (GameObject player in players)
+        {
+            if(player.activeSelf)
+            {
+
+            }
         }
     }
 
@@ -234,45 +243,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
-        //TODO: MAKE THIS WORK
-        //public void GetRoundScore(){
-
-        //    int[] scores = new int[4];
-
-        //    // Fill scores[] with players' chicken counts
-        //    for (int i = 0; i < players.Length; i++)
-        //    {
-        //        if (players[i].activeSelf)
-        //            scores[i] = players[i].GetComponent<Tower>().chickenCount;
-        //    }
-
-        //    System.Array.Sort(scores);
-
-        //    for (int i = 0; i < players.Length; i++)
-        //    {
-        //        if (players[i].activeSelf) {
-        //            if ( players[i].GetComponent<Tower>().chickenCount == 0) {
-        //                players[i].GetComponent<Player>().score = 0;
-        //            } else if (players[i].GetComponent<Tower>().chickenCount == scores[3]) {
-        //                players[i].GetComponent<Player>().score = readyCount - 1;
-        //            } else if (players[i].GetComponent<Tower>().chickenCount == scores[2]) {
-        //                players[i].GetComponent<Player>().score = readyCount - 2;
-        //            } else if (players[i].GetComponent<Tower>().chickenCount == scores[1]) {
-        //                players[i].GetComponent<Player>().score = readyCount - 3;
-        //            } else if (players[i].GetComponent<Tower>().chickenCount == scores[0]) {
-        //                players[i].GetComponent<Player>().score = readyCount - 4;
-        //            }
-        //        }
-        //    }
-
-        //    for (int i = 0; i < playerScores.Length; i++)
-        //    {
-        //        playerScores[i] += players[i].GetComponent<Player>().score;
-        //    }
-
-        //}
-
         private void EndRound()
     {
         if(PlayerPrefs.GetInt("CurrentRoundNumber") < NumOfRounds)
@@ -337,7 +307,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Start timer Finished!");
             _startTimerFinished = true;
             roundStarted = true;
-            
+
             gameStartTimerText.text = "GO!";
             yield return new WaitForSeconds(1f);
             
