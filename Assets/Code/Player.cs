@@ -56,6 +56,7 @@ public class Player : MonoBehaviour {
 
     private bool _isWindingUp = false;
     private bool _isThrowing = false;
+    private bool _throwNow = false;
 
     Camera cam;
     public float shakeTime = 0.1f;
@@ -130,8 +131,13 @@ public class Player : MonoBehaviour {
             PlayAnimation(3);
         }
 
+        // Makes sure throw animation doesn't get stuck. (Since there cannot be a transition from throw to windup animation.)
+        if (!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
+            _isWindingUp = false;
+        }
+        
         // Makes sure charge effect doesn't get stuck as active. MIGHT NEED A DIFFERENT FIX IF IT LOOKS LIKE LONG THROW HAPPENS!
-        if (chargeEffect.activeInHierarchy && tower.chickenCount == 0) {
+        if (chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
             chargeEffect.SetActive(false);
         }
     }
@@ -139,7 +145,7 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fireButton)) {
+        if (Input.GetButtonDown(fireButton) && _readyToThrow) {
             _pressTime = Time.time;
 
             _countWindUp = true;
@@ -150,11 +156,8 @@ public class Player : MonoBehaviour {
             _isWindingUp = true;
         }
         
-        // Throw input.
-        bool _throwInput = Input.GetButtonUp(fireButton);
-        
         // Calculate how long the fire button was pressed.
-        if (_throwInput & _readyToThrow) {
+        if (Input.GetButtonUp(fireButton) && _readyToThrow && _isWindingUp) {
 
             chargeEffect.SetActive(false);
 
@@ -170,16 +173,19 @@ public class Player : MonoBehaviour {
             } else {
                 _throwFar = false;
             }
+
+            _throwNow = true;
         }
 
         _throwTimer += Time.deltaTime;
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over the limit since the last throw, throw a chicken.
-        if (_throwInput && (_throwTimer > 0.5f) & _readyToThrow)                // Check if there are chickens to throw
+        if (_throwNow && (_throwTimer > 0.5f) && _readyToThrow)                // Check if there are chickens to throw
         {
             _isThrowing = true;
             _readyToThrow = false;
+            _throwNow = false;
 
             // If an enemy has triggered the aim collider, throw at the enemy 
             // and "forget" the enemy from autoaim. Else throw forward.
@@ -207,9 +213,9 @@ public class Player : MonoBehaviour {
         // Reset throw timer.
         _throwTimer = 0f;
 
-        _readyToThrow = true;
-
         _isThrowing = false;
+
+        _readyToThrow = true;
     }
 
     void Move()
