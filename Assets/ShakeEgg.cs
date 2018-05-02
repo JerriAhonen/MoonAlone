@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EggTimer : MonoBehaviour {
+public class ShakeEgg : MonoBehaviour
+{
+
     public float time;
     public float speed;
 
@@ -12,41 +14,45 @@ public class EggTimer : MonoBehaviour {
     public bool shakeRight = true;
     public bool shakeLeft = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         shakeTime = 0.01f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         time -= Time.deltaTime;
         if (time >= 0)
         {
             Rotate();
         }
-        else {
+        else
+        {
             Shake();
         }
-        
+
 
         //Debug.Log(time);
-	}
+    }
 
     void Rotate()
     {
-       
-        transform.Rotate(Vector3.forward, speed * Time.deltaTime);
+
+       // transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 
-    void Shake() {
+    void Shake()
+    {
 
         if (shakeRight)
         {
             transform.Rotate(Vector3.forward, -shakeSpeed * Time.deltaTime);
             shakeTime -= Time.deltaTime;
-            if (shakeTime < 0)
+            if (transform.rotation.eulerAngles.z > 1)
             {
-                shakeTime = 0.001f;
+                shakeTime = 0.01f;
                 shakeLeft = true;
                 shakeRight = false;
             }
@@ -55,9 +61,9 @@ public class EggTimer : MonoBehaviour {
         {
             transform.Rotate(Vector3.forward, shakeSpeed * Time.deltaTime);
             shakeTime -= Time.deltaTime;
-            if (shakeTime < 0)
+            if (transform.rotation.eulerAngles.z < -1)
             {
-                shakeTime = 0.001f;
+                shakeTime = 0.01f;
                 shakeLeft = false;
                 shakeRight = true;
             }

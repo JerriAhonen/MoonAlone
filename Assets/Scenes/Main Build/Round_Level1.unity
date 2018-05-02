@@ -359,7 +359,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15300405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 375, y: 211, z: 0}
+  m_LocalPosition: {x: 953, y: 493.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497691319}
@@ -422,7 +422,7 @@ Prefab:
     - target: {fileID: 114287756423251564, guid: 9332288aa8c248543a3a6eb2cc280952,
         type: 2}
       propertyPath: time
-      value: 60
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114287756423251564, guid: 9332288aa8c248543a3a6eb2cc280952,
         type: 2}
@@ -9826,7 +9826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1564d41ce9c1284db3c1429bd92c766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 60
+  time: 5
   speed: 6
   shakeSpeed: 100
   shakeRight: 1
@@ -14337,7 +14337,7 @@ MonoBehaviour:
   transitionText: {fileID: 22185138}
   canvasRoundStart: {fileID: 15300408}
   gameStartTimerText: {fileID: 497691320}
-  setTimer: 10
+  setTimer: 60
   timeLeft: 0
   NumOfRounds: 2
   curRoundNum: 0
@@ -16487,6 +16487,7 @@ GameObject:
   - component: {fileID: 1673693957}
   - component: {fileID: 1673693956}
   - component: {fileID: 1673693958}
+  - component: {fileID: 1673693959}
   m_Layer: 0
   m_Name: egg
   m_TagString: Untagged
@@ -16541,6 +16542,22 @@ CapsuleCollider:
   m_Height: 4.92
   m_Direction: 1
   m_Center: {x: 0.04, y: 3.18, z: 0}
+--- !u!114 &1673693959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1673693955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b008c3eef3e7f489c4287bd042a307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
+  speed: 6
+  shakeSpeed: 100
+  shakeRight: 1
+  shakeLeft: 0
 --- !u!1001 &1678790373
 Prefab:
   m_ObjectHideFlags: 0
