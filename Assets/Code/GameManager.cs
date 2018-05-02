@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour {
     public Canvas canvasRoundStart;
     public TextMeshProUGUI gameStartTimerText;
 
+    public Canvas canvasInput;
+
+
     public float setTimer = 60.0f;                                              // Round lenght in seconds
     private float _timer;                                                        // Timer counting floats
     public int timeLeft;                                                        // Time displayed on timer
@@ -57,6 +60,11 @@ public class GameManager : MonoBehaviour {
         curRoundNum = PlayerPrefs.GetInt("CurrentRoundNumber");
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
         _timer = setTimer;
+
+        if (curRoundNum == 1)
+            canvasInput.enabled = true;
+        else
+            canvasInput.enabled = false;
         
         _displayRoundEndCanvas = false;
         canvasRoundEnd.gameObject.SetActive(false);
@@ -110,6 +118,7 @@ public class GameManager : MonoBehaviour {
 
         if(!roundStarted) 
         {
+            EnablePlayerScripts(false);
             gameStartTimerText.text = _startTime.ToString();
         }
         else
@@ -122,6 +131,7 @@ public class GameManager : MonoBehaviour {
                     chicken.GetComponent<Chicken>().isFalling = true;
                 }
                 _startChickensEnabled = true;
+                EnablePlayerScripts(true);
             }
             
             if (_timer >= 0.0f && !roundFinished)
@@ -174,7 +184,7 @@ public class GameManager : MonoBehaviour {
         {
             if(player.activeSelf)
             {
-
+                player.GetComponent<Player>().enabled = enable;
             }
         }
     }
@@ -310,7 +320,7 @@ public class GameManager : MonoBehaviour {
 
             gameStartTimerText.text = "GO!";
             yield return new WaitForSeconds(1f);
-            
+            canvasInput.enabled = false;
             canvasRoundStart.gameObject.SetActive(false);
         }
     }
