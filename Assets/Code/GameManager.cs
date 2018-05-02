@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     
     public GameObject[] players = new GameObject[4];                            // List of all players
     public int[] playerScores = new int[4];
+
+    private GameObject[] _startChickens = new GameObject[12];
+    private bool _startChickensEnabled = false;
     
     public RuntimeAnimatorController runtimeAnimatorController;                 // Player Animation controller
     public Avatar avatar;                                                       // Player Avatar
@@ -16,10 +20,14 @@ public class GameManager : MonoBehaviour {
     public int noPlayerCount = 4;                                               // Num of players not playing
 
     public TextMeshPro timerText;                                               // Timer displayer during round
-    public TextMeshPro nextRound;                                               // Text saying what happens next after round finished
+    public Canvas canvasRoundEnd;
+    public TextMeshProUGUI transitionText;
+    
+    public Canvas canvasRoundStart;
+    public TextMeshProUGUI gameStartTimerText;
 
     public float setTimer = 60.0f;                                              // Round lenght in seconds
-    private float timer;                                                        // Timer counting floats
+    private float _timer;                                                        // Timer counting floats
     public int timeLeft;                                                        // Time displayed on timer
     public int NumOfRounds = 2;
     public int curRoundNum;                                                     // Number of current round
@@ -34,8 +42,12 @@ public class GameManager : MonoBehaviour {
     public bool cooldownTimerFinished = false;
     private int countdownTime;
 
-    private bool displayTransitionText;
-    private bool playerGOsEnabled = false;
+    private bool _startTimerFinished = false;
+    private int _startTime;
+
+    private bool _displayRoundEndCanvas;
+    private bool _displayGameStartCanvas;
+    private bool _playerGOsEnabled = false;
 
     FMOD.Studio.EventInstance menuMusic;
     FMOD.Studio.EventInstance levelMusic;
@@ -44,9 +56,10 @@ public class GameManager : MonoBehaviour {
     {
         curRoundNum = PlayerPrefs.GetInt("CurrentRoundNumber");
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
-        timer = setTimer;
+        _timer = setTimer;
         
-        displayTransitionText = false;
+        _displayRoundEndCanvas = false;
+        canvasRoundEnd.gameObject.SetActive(false);
 
         levelMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/level");
 
@@ -56,6 +69,16 @@ public class GameManager : MonoBehaviour {
         menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         levelMusic.start();
+
+        int i = 0;
+        foreach(GameObject chicken in GameObject.FindGameObjectsWithTag("Chicken"))
+        {
+            _startChickens[i] = chicken;
+            i++;
+            chicken.gameObject.SetActive(false);
+        }
+
+        StartCoroutine(StartTimer(3));
     }
 
     private void EnablePlayerGOs (int num)
@@ -77,52 +100,72 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if(!playerGOsEnabled)
+        if(!_playerGOsEnabled)
         {
             EnablePlayerGOs(numberOfPlayers);
-            playerGOsEnabled = true;
+            _playerGOsEnabled = true;
         }
 
         // Logic for when GAME RUNNING
+
+        if(!roundStarted) 
+        {
+            gameStartTimerText.text = _startTime.ToString();
+        }
+        else
+        {
+            if (!_startChickensEnabled)
+            {
+                foreach(GameObject chicken in _startChickens)
+                {
+                    chicken.gameObject.SetActive(true);
+                    chicken.GetComponent<Chicken>().isFalling = true;
+                }
+                _startChickensEnabled = true;
+            }
+            
+            if (_timer >= 0.0f && !roundFinished)
+            {
+                _timer -= Time.deltaTime;
+                timeLeft = System.Convert.ToInt32(_timer);                       // Convert float to int to get seconds
+                //if(timeLeft < 5)												// Set when the timer shows
+                timerText.text = timeLeft.ToString();
+            }
+
+            // Winning condition = the player with the most chickens when timeLeft = 0.
+            if (timeLeft == 0 && !roundFinished)
+            {
+                GetRoundScore();
+
+                roundFinished = true;                                           // Set the round to finished
+                    
+                _timer = setTimer;                                               // Reset the timer for next round
+                timeLeft = System.Convert.ToInt32(_timer % 60);                  // Reset TimeLeft
+
+                //timerText.text = "Time's up!";
+
+                Debug.Log("Started CooldownTimer Coroutine");
+                StartCoroutine(CooldownTimer(5));
+
+                _displayRoundEndCanvas = true;
+            }
+        }
         
-        if (timer >= 0.0f && !roundFinished)
+        
+
+        if (_displayRoundEndCanvas)
         {
-            timer -= Time.deltaTime;
-            timeLeft = System.Convert.ToInt32(timer);                       // Convert float to int to get seconds
-            //if(timeLeft < 5)												// Set when the timer shows
-            timerText.text = timeLeft.ToString();
-        }
-
-        // Winning condition = the player with the most chickens when timeLeft = 0.
-        if (timeLeft == 0 && !roundFinished)
-        {
-            GetRoundScore();
-
-            roundFinished = true;                                           // Set the round to finished
-                
-            timer = setTimer;                                               // Reset the timer for next round
-            timeLeft = System.Convert.ToInt32(timer % 60);                  // Reset TimeLeft
-
-            timerText.text = "Time's up!";
-
-            Debug.Log("Started CooldownTimer Coroutine");
-            StartCoroutine(StartCooldownTimer(5));
-
-            displayTransitionText = true;
-        }
-
-        if (displayTransitionText)
-        {
+            canvasRoundEnd.gameObject.SetActive(true);
             if (PlayerPrefs.GetInt("CurrentRoundNumber") < NumOfRounds)
-                nextRound.text = "Time until next round: " + countdownTime;
+                transitionText.text = "Time until next round: " + countdownTime;
             else
-                nextRound.text = "Time until main menu: " + countdownTime;
+                transitionText.text = "Time until main menu: " + countdownTime;
         }
 
         if (roundFinished && cooldownTimerFinished)
         {
             Debug.Log("EndRound();");
-            playerGOsEnabled = false;
+            _playerGOsEnabled = false;
             EndRound();
         }
     }
@@ -159,18 +202,26 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
             }
+
+
             else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 1])
             {
                 PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
             }
+
+
             else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 2])
             {
                 PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
             }
+
+
             else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 3])
             {
                 PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
             }
+
+
             else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 4])
             {
                 PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
@@ -248,7 +299,7 @@ public class GameManager : MonoBehaviour {
             
     }
 
-    private IEnumerator StartCooldownTimer(int cooldownTime)
+    private IEnumerator CooldownTimer(int cooldownTime)
     {
         countdownTime = cooldownTime;
 
@@ -264,6 +315,33 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log("CooldownTimer Finished!");
             cooldownTimerFinished = true;
+        }
+    }
+
+    private IEnumerator StartTimer(int time)
+    {
+        _startTime = time;
+        canvasRoundStart.gameObject.SetActive(true);
+
+        while (_startTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+
+            _startTime--;
+            _startTimerFinished = false;
+            roundStarted = false;
+            Debug.Log("Time until start: " + _startTime);
+        }
+        if (_startTime <= 0)
+        {
+            Debug.Log("Start timer Finished!");
+            _startTimerFinished = true;
+            roundStarted = true;
+            
+            gameStartTimerText.text = "GO!";
+            yield return new WaitForSeconds(1f);
+            
+            canvasRoundStart.gameObject.SetActive(false);
         }
     }
 }
