@@ -433,6 +433,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114287756423251564, guid: 9332288aa8c248543a3a6eb2cc280952,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
   m_IsPrefabParent: 0
@@ -9889,7 +9894,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 19896594}
   m_GameObject: {fileID: 966623666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1564d41ce9c1284db3c1429bd92c766, type: 3}
   m_Name: 
@@ -14415,6 +14420,7 @@ MonoBehaviour:
   roundFinished: 0
   numberOfPlayers: 0
   cooldownTimerFinished: 0
+  eggTimer: {fileID: 0}
 --- !u!4 &1410003975
 Transform:
   m_ObjectHideFlags: 0

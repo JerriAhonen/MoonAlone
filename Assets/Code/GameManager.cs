@@ -52,11 +52,15 @@ public class GameManager : MonoBehaviour {
     private bool _displayGameStartCanvas;
     private bool _playerGOsEnabled = false;
 
+    public EggTimer eggTimer;
+
     FMOD.Studio.EventInstance menuMusic;
     FMOD.Studio.EventInstance levelMusic;
 
     private void Start()
     {
+        eggTimer = GameObject.Find("egg").gameObject.GetComponentInChildren<EggTimer>();
+
         curRoundNum = PlayerPrefs.GetInt("CurrentRoundNumber");
         numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
         _timer = setTimer;
@@ -319,6 +323,9 @@ public class GameManager : MonoBehaviour {
             roundStarted = true;
 
             gameStartTimerText.text = "GO!";
+
+            eggTimer.enabled = enabled;
+
             yield return new WaitForSeconds(1f);
             canvasInput.enabled = false;
             canvasRoundStart.gameObject.SetActive(false);
