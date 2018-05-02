@@ -78,13 +78,6 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        //TODO: animations
-        //if (animControl == null)
-        //{
-        //    animControl = cs.animator;
-        //    //Debug.Log("animControl = " + animControl);
-        //}
-        
         if (animControl == null)
             animControl = gameObject.GetComponentInChildren<Animator>();
 
