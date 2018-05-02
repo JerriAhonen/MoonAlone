@@ -145,7 +145,7 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fireButton) && _readyToThrow) {
+        if (Input.GetButtonDown(fireButton) && _readyToThrow && !isIncapacitated) {
             _pressTime = Time.time;
 
             _countWindUp = true;
