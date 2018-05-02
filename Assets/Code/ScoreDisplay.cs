@@ -22,16 +22,16 @@ public class ScoreDisplay : MonoBehaviour {
         switch (playerModel)
         {
             case 1:
-                meshPro.color = Color.blue;
+				meshPro.color = new Color(0,166,189);
                 break;
             case 2:
-                meshPro.color = Color.red;
+				meshPro.color = new Color(163,0,0);
                 break;
             case 3:
-                meshPro.color = Color.green;
+				meshPro.color = Color.green;
                 break;
             case 4:
-                meshPro.color = Color.yellow;
+				meshPro.color = new Color(167,151,4);
                 break;
         }
 	}
