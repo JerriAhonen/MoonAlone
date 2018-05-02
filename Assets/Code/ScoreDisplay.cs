@@ -31,7 +31,7 @@ public class ScoreDisplay : MonoBehaviour {
 				meshPro.color = Color.green;
                 break;
             case 4:
-				meshPro.color = new Color(167,151,4);
+			meshPro.color = Color.yellow;
                 break;
         }
 	}
