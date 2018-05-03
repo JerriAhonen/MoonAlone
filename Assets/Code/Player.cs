@@ -59,6 +59,7 @@ public class Player : MonoBehaviour {
     private bool _throwNow = false;
 
     Camera cam;
+    public Camera playerCamera;
     public float shakeTime = 0.1f;
     float timeStop = 0;
     float shakeAmount = 0.1f;
@@ -106,7 +107,9 @@ public class Player : MonoBehaviour {
 
         if (Time.time < timeStop)
         {
-            cam.transform.localPosition = originPosition + Random.insideUnitSphere * shakeAmount;
+            Vector3 rand = Random.insideUnitSphere;
+            cam.transform.localPosition = originPosition + rand * shakeAmount;
+            playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
         }
     }
 
