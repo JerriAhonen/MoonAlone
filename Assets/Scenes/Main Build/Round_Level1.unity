@@ -5013,7 +5013,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.000000119209275
+      value: -0.00000011920928
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalRotation.y
@@ -5021,11 +5021,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.09661554
+      value: 0.096615545
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.99532175
+      value: 0.9953218
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_RootOrder
@@ -5295,13 +5295,14 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
-  fireButton: Fire_P4
-  mainCamera: {fileID: 0}
+  fireShortButton: Fire_P1
+  fireLongButton: 
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  mainCamera: {fileID: 0}
   playerCamera: {fileID: 800264224}
   shakeTime: 0.2
 --- !u!1 &424192277
@@ -8068,13 +8069,14 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P1
   vertical: Vertical_P1
-  fireButton: Fire_P1
-  mainCamera: {fileID: 0}
+  fireShortButton: Fire_P1
+  fireLongButton: 
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  mainCamera: {fileID: 0}
   playerCamera: {fileID: 800264224}
   shakeTime: 0.2
 --- !u!1 &810174769
@@ -10547,13 +10549,14 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
-  fireButton: Fire_P2
-  mainCamera: {fileID: 0}
+  fireShortButton: Fire_P1
+  fireLongButton: 
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  mainCamera: {fileID: 0}
   playerCamera: {fileID: 800264224}
   shakeTime: 0.2
 --- !u!1001 &1005320544
@@ -11565,13 +11568,14 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
-  fireButton: Fire_P3
-  mainCamera: {fileID: 0}
+  fireShortButton: Fire_P1
+  fireLongButton: 
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
   hitBirdEffect: {fileID: 0}
   chargeEffect: {fileID: 0}
+  mainCamera: {fileID: 0}
   playerCamera: {fileID: 800264224}
   shakeTime: 0.2
 --- !u!1 &1121236362
@@ -13391,11 +13395,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 191
+      value: 191.1
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 21.8
+      value: 21.4
       objectReference: {fileID: 0}
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20562,26 +20566,6 @@ Prefab:
     - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.6502339
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.6502346
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322915646746786, guid: f954e14641a174067ae3564a496b401f, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.6502343
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167699588887384, guid: f954e14641a174067ae3564a496b401f, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167699588887384, guid: f954e14641a174067ae3564a496b401f, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f954e14641a174067ae3564a496b401f, type: 2}

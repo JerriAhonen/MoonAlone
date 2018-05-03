@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5a319b7e24e264c0380862761bf86095
-timeCreated: 1522799793
+guid: 6f4f1a714a2f0e044bcb92efdcc3ce27
+timeCreated: 1525345365
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -9,15 +9,15 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane
+    4300000: Cube
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material_001
-    second: {fileID: 2100000, guid: 55b9b6fdc0f5c584daa5667114525ae0, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 94f47f6a0a9dcba41b00c957057b3663, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +55,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
