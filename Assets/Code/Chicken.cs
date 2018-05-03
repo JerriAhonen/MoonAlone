@@ -33,7 +33,7 @@ public class Chicken : MonoBehaviour
     public string _terrainLayer;
     public bool _isGrounded = false;
 
-    public GameObject mainCamera;
+    public Camera mainCamera;
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
     private ParticleSystem _cloudParticles;
@@ -53,7 +53,7 @@ public class Chicken : MonoBehaviour
     {
         newPos = transform.position;
 		animControl = gameObject.GetComponent<Animator>();
-        mainCamera = GameObject.Find("Main Camera");
+        mainCamera = Camera.main;
 
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";

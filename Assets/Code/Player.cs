@@ -16,7 +16,6 @@ public class Player : MonoBehaviour {
     public bool isMoving;
     public int score;
 
-
     private Vector3 movement;
 
     public Tower tower;
@@ -31,8 +30,6 @@ public class Player : MonoBehaviour {
     public string _playerLayer = "Player";
 
     private float _pressTime = 0;
-    private bool _countWindUp = false;
-    private float _windUpTimer;
     private float _animTimer;
     private float _throwTimer = 0;
     private bool _readyToThrow = true;
@@ -43,10 +40,11 @@ public class Player : MonoBehaviour {
 
     public string horizontal = "Horizontal_P1";
     public string vertical = "Vertical_P1";
-    public string fireButton = "Fire_P1";
+    public string fireShortButton = "Fire_P1";
+    public string fireLongButton;
     //public string jumpButton = "Jump_P1";
 
-    public GameObject mainCamera;
+    //public GameObject mainCamera;
 
     public bool isHit = false;
     public bool isIncapacitated = false;
@@ -58,7 +56,7 @@ public class Player : MonoBehaviour {
     private bool _isThrowing = false;
     private bool _throwNow = false;
 
-    Camera cam;
+    public Camera mainCamera;
     public Camera playerCamera;
     public float shakeTime = 0.1f;
     float timeStop = 0;
@@ -71,11 +69,11 @@ public class Player : MonoBehaviour {
         renderer = GetComponent<MeshRenderer>();
         tower = GetComponent<Tower>();
 		animControl = gameObject.GetComponentInChildren<Animator>();
-        mainCamera = GameObject.Find("Main Camera");
+        //mainCamera = GameObject.Find("Main Camera");
         hitEffect = transform.Find("Hit").gameObject;
         hitBirdEffect = transform.Find("Rotating chickens").gameObject;
         chargeEffect = transform.Find("ChargeShot").gameObject;
-        cam = Camera.main;
+        mainCamera = Camera.main;
     }
 
     void Update()
@@ -108,7 +106,7 @@ public class Player : MonoBehaviour {
         if (Time.time < timeStop)
         {
             Vector3 rand = Random.insideUnitSphere;
-            cam.transform.localPosition = originPosition + rand * shakeAmount;
+            mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
             playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
         }
     }
@@ -134,6 +132,8 @@ public class Player : MonoBehaviour {
             PlayAnimation(3);
         }
 
+        // STUCK IN WINDING UP EFFECT WITH CHICKENS IN TOWER AND IN THROW ANIMATION!
+
         // Makes sure throw animation doesn't get stuck. (Since there cannot be a transition from throw to windup animation.)
         if (!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
             _isWindingUp = false;
@@ -148,11 +148,8 @@ public class Player : MonoBehaviour {
     void Throw()
     {
         // Initialize press time with the moment in time the fire button was pressed down.
-        if (Input.GetButtonDown(fireButton) && _readyToThrow && !isIncapacitated) {
+        if (Input.GetButtonDown(fireShortButton) && _readyToThrow && !isIncapacitated) {
             _pressTime = Time.time;
-
-            _countWindUp = true;
-            _windUpTimer = 0f;
 
             chargeEffect.SetActive(true);
 
@@ -160,7 +157,7 @@ public class Player : MonoBehaviour {
         }
         
         // Calculate how long the fire button was pressed.
-        if (Input.GetButtonUp(fireButton) && _readyToThrow && _isWindingUp) {
+        if (Input.GetButtonUp(fireShortButton) && _readyToThrow && _isWindingUp) {
 
             chargeEffect.SetActive(false);
 
@@ -219,6 +216,43 @@ public class Player : MonoBehaviour {
         _isThrowing = false;
 
         _readyToThrow = true;
+    }
+
+    IEnumerator GetHit() {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit", mainCamera.transform.position);
+
+        ShakeNow();
+
+        isHit = false;
+        isIncapacitated = true;
+
+        //chargeEffect.SetActive(false);
+        //_isWindingUp = false;
+
+        //_throwFar = false;
+        //_throwNow = false;
+
+        //_isThrowing = false;
+        //_readyToThrow = true;
+        //_throwTimer = 0f;
+
+        //isMoving = false;
+
+        hitEffect.SetActive(true);
+        hitBirdEffect.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        hitEffect.SetActive(false);
+        hitBirdEffect.SetActive(false);
+        isIncapacitated = false;
+
+        PlayAnimation(0);
+    }
+
+    public void ShakeNow() {
+        originPosition = mainCamera.transform.position;
+        timeStop = Time.time + shakeTime;
     }
 
     void Move()
@@ -318,31 +352,6 @@ public class Player : MonoBehaviour {
                 _enemy = null;
             }
         }
-    }
-
-    IEnumerator GetHit() {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit", mainCamera.transform.position);
-        ShakeNow();
-        isHit = false;
-        isIncapacitated = true;
-
-        hitEffect.SetActive(true);
-        hitBirdEffect.SetActive(true);
-
-        yield return new WaitForSeconds(1f);
-
-        hitEffect.SetActive(false);
-        hitBirdEffect.SetActive(false);
-        isIncapacitated = false;
-
-        PlayAnimation(0);
-    }
-
-    public void ShakeNow()
-    {
-        originPosition = cam.transform.position;
-        timeStop = Time.time + shakeTime;
-
     }
 
     // Play animation and return the animation length.
