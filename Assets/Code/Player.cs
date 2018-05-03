@@ -38,9 +38,9 @@ public class Player : MonoBehaviour {
     private Vector3 _throwDirection;
     private bool _animFinished = false;
 
-    public string horizontal = "Horizontal_P1";
-    public string vertical = "Vertical_P1";
-    public string fireShortButton = "Fire_P1";
+    public string horizontal;
+    public string vertical;
+    public string fireShortButton;
     public string fireLongButton;
     //public string jumpButton = "Jump_P1";
 
@@ -147,34 +147,37 @@ public class Player : MonoBehaviour {
 
     void Throw()
     {
-        // Initialize press time with the moment in time the fire button was pressed down.
         if (Input.GetButtonDown(fireShortButton) && _readyToThrow && !isIncapacitated) {
-            _pressTime = Time.time;
+            _throwFar = false;
+            _throwNow = true;
+        } else {
+            // Initialize press time with the moment in time the fire button was pressed down.
+            if (Input.GetButtonDown(fireLongButton) && _readyToThrow && !isIncapacitated) {
+                _pressTime = Time.time;
 
-            chargeEffect.SetActive(true);
+                chargeEffect.SetActive(true);
 
-            _isWindingUp = true;
-        }
-        
-        // Calculate how long the fire button was pressed.
-        if (Input.GetButtonUp(fireShortButton) && _readyToThrow && _isWindingUp) {
-
-            chargeEffect.SetActive(false);
-
-            _isWindingUp = false;
-
-            _pressTime = Time.time - _pressTime;
-
-            //_animTimer = 0;
-
-            // If the press time was long, throw far.
-            if (_pressTime > 2.5f) {
-                _throwFar = true;
-            } else {
-                _throwFar = false;
+                _isWindingUp = true;
             }
 
-            _throwNow = true;
+            // Calculate how long the fire button was pressed.
+            if (Input.GetButtonUp(fireLongButton) && _readyToThrow && _isWindingUp) {
+
+                chargeEffect.SetActive(false);
+
+                _isWindingUp = false;
+
+                _pressTime = Time.time - _pressTime;
+
+                // If the press time was long, throw far.
+                if (_pressTime > 1.5f) {
+                    _throwFar = true;
+                    _throwNow = true;
+                } else {
+                    _throwNow = false;
+                    _throwFar = false;
+                }
+            }
         }
 
         _throwTimer += Time.deltaTime;

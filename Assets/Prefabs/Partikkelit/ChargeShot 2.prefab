@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4910155716405134}
   - component: {fileID: 198804522703594966}
   - component: {fileID: 199986223110903248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: thirdWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4837478206118882}
   - component: {fileID: 198619586491986612}
   - component: {fileID: 199218034695745926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: readyCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,13 +53,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4435628971170882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChargeShot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1724166801922550
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4754139904471972}
   - component: {fileID: 198245359703906014}
   - component: {fileID: 199190279995193950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4856307570508590}
   - component: {fileID: 198190619288158246}
   - component: {fileID: 199663309995252244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: firstWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4998673473615358}
   - component: {fileID: 198613499229397580}
   - component: {fileID: 199270596124420476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Readyflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850348009523776}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1.95
   simulationSpeed: 1
   stopAction: 0
   looping: 1
@@ -3530,7 +3530,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -6847,7 +6847,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2.35
+    scalar: 1.35
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -13502,7 +13502,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 1
     minScalar: 0
     maxCurve:
       serializedVersion: 2

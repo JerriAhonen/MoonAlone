@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P1
-  confirmButton: Fire_P1
+  confirmButton: FireShort_P1
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P3
-  confirmButton: Fire_P3
+  confirmButton: FireShort_P3
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P2
-  confirmButton: Fire_P2
+  confirmButton: FireShort_P2
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}
@@ -3315,8 +3315,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416836380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 293.5, y: 180.5, z: 0}
-  m_LocalScale: {x: 0.33425927, y: 0.33425927, z: 0.33425927}
+  m_LocalPosition: {x: 328.5, y: 269, z: 0}
+  m_LocalScale: {x: 0.49814814, y: 0.49814814, z: 0.49814814}
   m_Children:
   - {fileID: 1420548754}
   - {fileID: 1642237927}
@@ -4152,7 +4152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleAxis: Vertical_P4
-  confirmButton: Fire_P4
+  confirmButton: FireShort_P4
   selectionCooldown: 0.3
   selectedCharacter: 0
   csManager: {fileID: 0}

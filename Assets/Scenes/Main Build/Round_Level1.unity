@@ -5295,8 +5295,8 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P4
   vertical: Vertical_P4
-  fireShortButton: Fire_P1
-  fireLongButton: 
+  fireShortButton: FireShort_P4
+  fireLongButton: FireLong_P4
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
@@ -8069,8 +8069,8 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P1
   vertical: Vertical_P1
-  fireShortButton: Fire_P1
-  fireLongButton: 
+  fireShortButton: FireShort_P1
+  fireLongButton: FireLong_P1
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
@@ -10549,8 +10549,8 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P2
   vertical: Vertical_P2
-  fireShortButton: Fire_P1
-  fireLongButton: 
+  fireShortButton: FireShort_P2
+  fireLongButton: FireLong_P2
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
@@ -11568,8 +11568,8 @@ MonoBehaviour:
   _playerLayer: Player
   horizontal: Horizontal_P3
   vertical: Vertical_P3
-  fireShortButton: Fire_P1
-  fireLongButton: 
+  fireShortButton: FireShort_P3
+  fireLongButton: FireLong_P3
   isHit: 0
   isIncapacitated: 0
   hitEffect: {fileID: 0}
@@ -18657,34 +18657,6 @@ Prefab:
     - target: {fileID: 1463828380602466, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
       propertyPath: m_Name
       value: ChargeShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 1850348009523776, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1193466903825644, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1724166801922550, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1285820764752094, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1463828380602466, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1990664736478600, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1463828380602466, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00a5d60f2486f6146a5a034dbf4c7989, type: 2}
