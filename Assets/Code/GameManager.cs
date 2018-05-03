@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public GameObject[] players = new GameObject[4];                            // List of all players
     public int[] playerScores = new int[4];
 
-    private GameObject[] _startChickens = new GameObject[12];
+    private GameObject[] _startChickens = new GameObject[15];
     private bool _startChickensEnabled = false;
     
     public RuntimeAnimatorController runtimeAnimatorController;                 // Player Animation controller
@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour {
             if (timeLeft == 0 && !roundFinished)
             {
                 GetRoundScore();
+                EnablePlayerScripts(false);
 
                 roundFinished = true;                                           // Set the round to finished
                     
