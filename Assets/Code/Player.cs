@@ -147,10 +147,10 @@ public class Player : MonoBehaviour {
 
     void Throw()
     {
-        if (Input.GetButtonDown(fireShortButton) && _readyToThrow && !isIncapacitated) {
+        if (Input.GetButtonDown(fireShortButton) && _readyToThrow && !isIncapacitated && !Input.GetButton(fireLongButton)) {
             _throwFar = false;
             _throwNow = true;
-        } else {
+        } else if (!Input.GetButton(fireShortButton)) {
             // Initialize press time with the moment in time the fire button was pressed down.
             if (Input.GetButtonDown(fireLongButton) && _readyToThrow && !isIncapacitated) {
                 _pressTime = Time.time;

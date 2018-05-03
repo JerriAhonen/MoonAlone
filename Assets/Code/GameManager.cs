@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour {
 
     public Canvas canvasInput;
 
-
     public float setTimer = 60.0f;                                              // Round lenght in seconds
     private float _timer;                                                        // Timer counting floats
     public int timeLeft;                                                        // Time displayed on timer
