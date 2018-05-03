@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 6450d0c1b39dc46d2b56db151de26ee5, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c2e8be688ac7a694cb2b7d96006f080f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -392,19 +392,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.017452449
       objectReference: {fileID: 0}
     - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.99984765
       objectReference: {fileID: 0}
     - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.000004568709
       objectReference: {fileID: 0}
     - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.0002617804
+      value: -0.00026174053
       objectReference: {fileID: 0}
     - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
       propertyPath: m_RootOrder
@@ -437,6 +437,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791353939190586, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9332288aa8c248543a3a6eb2cc280952, type: 2}
@@ -9904,6 +9908,7 @@ MonoBehaviour:
   shakeSpeed: 100
   shakeRight: 1
   shakeLeft: 0
+  animControl: {fileID: 0}
 --- !u!4 &966623668
 Transform:
   m_ObjectHideFlags: 0
@@ -16649,7 +16654,7 @@ Animator:
   m_GameObject: {fileID: 1673693955}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 93dd14b263a3428489d951fe47a44804, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45f885d4a8e313e46852773a86c9fe80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -16664,7 +16669,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 19896594}
   m_GameObject: {fileID: 1673693955}
-  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0002617804}
+  m_LocalRotation: {x: -0.034899585, y: 0.99939084, z: 0.000009136027, w: -0.00026162094}
   m_LocalPosition: {x: 4.12, y: 2.8, z: 8.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16672,7 +16677,7 @@ Transform:
   - {fileID: 966623668}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 180.03, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.03, z: -4}
 --- !u!136 &1673693958
 CapsuleCollider:
   m_ObjectHideFlags: 0

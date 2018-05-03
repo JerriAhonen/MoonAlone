@@ -11,10 +11,12 @@ public class EggTimer : MonoBehaviour {
 
     public bool shakeRight = true;
     public bool shakeLeft = false;
+    public Animator animControl;
 
 	// Use this for initialization
 	void Start () {
         shakeTime = 0.01f;
+        animControl = GetComponentInParent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class EggTimer : MonoBehaviour {
         if (time >= 0)
         {
             Rotate();
+            animControl.SetInteger("EggAnimParam", 0);
         }
         else {
             Shake();
@@ -40,7 +43,8 @@ public class EggTimer : MonoBehaviour {
 
     void Shake() {
 
-        if (shakeRight)
+        animControl.SetInteger("EggAnimParam", 1);
+        /*if (shakeRight)
         {
             transform.Rotate(Vector3.forward, -shakeSpeed * Time.deltaTime);
             shakeTime -= Time.deltaTime;
@@ -61,6 +65,8 @@ public class EggTimer : MonoBehaviour {
                 shakeLeft = false;
                 shakeRight = true;
             }
+       
         }
+        */
     }
 }
