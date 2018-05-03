@@ -188,6 +188,10 @@ public class GameManager : MonoBehaviour {
         {
             if(player.activeSelf)
             {
+                if (enable == false) {
+                    player.GetComponent<Player>().ResetPlayer();
+                }
+
                 player.GetComponent<Player>().enabled = enable;
             }
         }

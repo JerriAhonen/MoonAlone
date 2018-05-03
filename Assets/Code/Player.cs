@@ -180,6 +180,8 @@ public class Player : MonoBehaviour {
             }
         }
 
+        
+
         _throwTimer += Time.deltaTime;
 
         // If the throw button has been pressed, there are chickens in the tower 
@@ -256,6 +258,20 @@ public class Player : MonoBehaviour {
     public void ShakeNow() {
         originPosition = mainCamera.transform.position;
         timeStop = Time.time + shakeTime;
+    }
+
+    public void ResetPlayer() {
+        chargeEffect.SetActive(false);
+        _isWindingUp = false;
+
+        _throwFar = false;
+        _throwNow = false;
+
+        _isThrowing = false;
+        _readyToThrow = true;
+        _throwTimer = 0f;
+
+        isMoving = false;
     }
 
     void Move()
