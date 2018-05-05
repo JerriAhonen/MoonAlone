@@ -48,7 +48,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.29090938
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101132852963763734
@@ -72,7 +72,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.23720932
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101244079752508700
@@ -168,7 +168,7 @@ AnimatorStateTransition:
   m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101449405602685550
@@ -192,7 +192,7 @@ AnimatorStateTransition:
   m_ExitTime: 7.6320844e-10
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101491216896469786
@@ -216,7 +216,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.33895773
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101507055339849122
@@ -264,7 +264,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.7679173
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101560845931745452
@@ -336,7 +336,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.5240033
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101672191438729358
@@ -360,7 +360,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.89123136
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 2
+  m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101781681047460768
@@ -408,7 +408,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.83276844
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101898425544837894
@@ -504,7 +504,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.12656331
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 2
+  m_InterruptionSource: 4
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &1102094658710081564
@@ -517,10 +517,10 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 1101449405602685550}
-  - {fileID: 1101959231158932172}
   - {fileID: 1101642956473787026}
   - {fileID: 1101898425544837894}
+  - {fileID: 1101449405602685550}
+  - {fileID: 1101959231158932172}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -546,9 +546,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 1101652640439910028}
-  - {fileID: 1101943685245820616}
   - {fileID: 1101298245966006100}
+  - {fileID: 1101943685245820616}
+  - {fileID: 1101652640439910028}
   - {fileID: 1101040126417432900}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
@@ -575,9 +575,9 @@ AnimatorState:
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
+  - {fileID: 1101560845931745452}
   - {fileID: 1101854280516399394}
   - {fileID: 1101491216896469786}
-  - {fileID: 1101560845931745452}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -603,9 +603,9 @@ AnimatorState:
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
+  - {fileID: 1101507055339849122}
   - {fileID: 1101900784415370088}
   - {fileID: 1101308400023127874}
-  - {fileID: 1101507055339849122}
   - {fileID: 1101132852963763734}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
@@ -632,10 +632,10 @@ AnimatorState:
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 1101540028826856158}
-  - {fileID: 1101781681047460768}
   - {fileID: 1101244079752508700}
   - {fileID: 1101300729914127596}
+  - {fileID: 1101540028826856158}
+  - {fileID: 1101781681047460768}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0

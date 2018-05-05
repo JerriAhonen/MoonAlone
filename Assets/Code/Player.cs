@@ -130,6 +130,13 @@ public class Player : MonoBehaviour {
 
         if (_isThrowing) {
             PlayAnimation(3);
+
+            // Reset throw timer.
+            _throwTimer = 0f;
+
+            _isThrowing = false;
+
+            _readyToThrow = true;
         }
 
         // STUCK IN WINDING UP EFFECT WITH CHICKENS IN TOWER AND IN THROW ANIMATION!
@@ -179,14 +186,12 @@ public class Player : MonoBehaviour {
                 }
             }
         }
-
         
-
         _throwTimer += Time.deltaTime;
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over the limit since the last throw, throw a chicken.
-        if (_throwNow && (_throwTimer > 0.5f) && _readyToThrow)                // Check if there are chickens to throw
+        if (_throwNow && (_throwTimer > 0.3f) && _readyToThrow)                // Check if there are chickens to throw
         {
             _isThrowing = true;
             _readyToThrow = false;
@@ -201,26 +206,12 @@ public class Player : MonoBehaviour {
             } else {
                 _throwDirection = transform.forward;
             }
-            
-            StartCoroutine(ThrowChicken(1f));
+
+            // Remove chicken from the tower to be thrown.
+            tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
         }
-    }
-
-    // Throw chicken after waiting for the animation to pass a certain point.
-    IEnumerator ThrowChicken(float length) {
-        yield return new WaitForSeconds(0.0f);  // NEEDS THIS 0f WAIT FOR SOME REASON
-
-        // Remove chicken from the tower to be thrown.
-        tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
-
-        // Reset throw timer.
-        _throwTimer = 0f;
-
-        _isThrowing = false;
-
-        _readyToThrow = true;
     }
 
     IEnumerator GetHit() {
