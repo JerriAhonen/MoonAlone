@@ -91,9 +91,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.06070563
-  m_TransitionOffset: 0
-  m_ExitTime: 0.000000005100392
+  m_TransitionDuration: 0.15556364
+  m_TransitionOffset: 0.23061024
+  m_ExitTime: 0.5188728
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -115,9 +115,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.06748082
-  m_TransitionOffset: 0
-  m_ExitTime: 0.000000005809512
+  m_TransitionDuration: 0.16010167
+  m_TransitionOffset: 0.22627045
+  m_ExitTime: 0.37026104
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -235,9 +235,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.074217625
-  m_TransitionOffset: 0
-  m_ExitTime: 0.0000000018451446
+  m_TransitionDuration: 0.16231811
+  m_TransitionOffset: 0.22811413
+  m_ExitTime: 0.30795416
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -283,9 +283,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.09615583
-  m_TransitionOffset: 0
-  m_ExitTime: 0.0000000078583415
+  m_TransitionDuration: 0.16978836
+  m_TransitionOffset: 0.22293176
+  m_ExitTime: 0.3343975
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -307,9 +307,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.090987496
-  m_TransitionOffset: 0
-  m_ExitTime: 0.0000000032093777
+  m_TransitionDuration: 0.16467795
+  m_TransitionOffset: 0.22942246
+  m_ExitTime: 0.12904982
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -355,12 +355,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.23320359
-  m_TransitionOffset: 0.81303376
-  m_ExitTime: 0.89123136
+  m_TransitionDuration: 1.3160166
+  m_TransitionOffset: 0
+  m_ExitTime: 5.93081e-10
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1101781681047460768

@@ -222,17 +222,17 @@ public class Player : MonoBehaviour {
         isHit = false;
         isIncapacitated = true;
 
-        //chargeEffect.SetActive(false);
-        //_isWindingUp = false;
+        chargeEffect.SetActive(false);
+        _isWindingUp = false;
 
-        //_throwFar = false;
-        //_throwNow = false;
+        _throwFar = false;
+        _throwNow = false;
 
-        //_isThrowing = false;
-        //_readyToThrow = true;
-        //_throwTimer = 0f;
+        _isThrowing = false;
+        _readyToThrow = true;
+        _throwTimer = 0f;
 
-        //isMoving = false;
+        isMoving = false;
 
         hitEffect.SetActive(true);
         hitBirdEffect.SetActive(true);
