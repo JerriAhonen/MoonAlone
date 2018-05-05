@@ -103,31 +103,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (Time.time < timeStop)
-        {
-            Vector3 rand = Random.insideUnitSphere;
-            mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
-            playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
-        }
-    }
-
-    private void LateUpdate() {
-        if (isMoving && _isWindingUp) {
-            PlayAnimation(6);
-        }
-
-        if (isMoving && !_isWindingUp) {
-            PlayAnimation(1);
-        }
-
-        if (!isMoving && _isWindingUp) {
-            PlayAnimation(5);
-        }
-
-        if (!isMoving && !_isWindingUp) {
-            PlayAnimation(0);
-        }
-
+        // Here instead of LateUpdate since it makes throw input response feel a bit faster.
         if (_isThrowing) {
             PlayAnimation(3);
 
@@ -138,16 +114,39 @@ public class Player : MonoBehaviour {
 
             _readyToThrow = true;
         }
+        
+        if (Time.time < timeStop)
+        {
+            Vector3 rand = Random.insideUnitSphere;
+            mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
+            playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
+        }
+    }
 
-        // STUCK IN WINDING UP EFFECT WITH CHICKENS IN TOWER AND IN THROW ANIMATION!
+    private void LateUpdate() {
+        if(isMoving && _isWindingUp) {
+            PlayAnimation(6);
+        }
 
-        // Makes sure throw animation doesn't get stuck. (Since there cannot be a transition from throw to windup animation.)
-        if (!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
-            _isWindingUp = false;
+        if(isMoving && !_isWindingUp) {
+            PlayAnimation(1);
+        }
+
+        if(!isMoving && _isWindingUp) {
+            PlayAnimation(5);
+        }
+
+        if(!isMoving && !_isWindingUp) {
+            PlayAnimation(0);
         }
         
-        // Makes sure charge effect doesn't get stuck as active. MIGHT NEED A DIFFERENT FIX IF IT LOOKS LIKE LONG THROW HAPPENS!
-        if (chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
+        // Makes sure throw animation doesn't get stuck.
+        if(!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
+            _isWindingUp = false;
+        }
+
+        // Makes sure charge effect doesn't get stuck as active.
+        if(chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
             chargeEffect.SetActive(false);
         }
     }
