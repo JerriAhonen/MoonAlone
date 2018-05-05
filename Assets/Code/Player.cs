@@ -103,6 +103,18 @@ public class Player : MonoBehaviour {
             }
         }
 
+        // Here instead of LateUpdate since it makes throw input response feel a bit faster.
+        if (_isThrowing) {
+            PlayAnimation(3);
+
+            // Reset throw timer.
+            _throwTimer = 0f;
+
+            _isThrowing = false;
+
+            _readyToThrow = true;
+        }
+        
         if (Time.time < timeStop)
         {
             Vector3 rand = Random.insideUnitSphere;
@@ -112,35 +124,29 @@ public class Player : MonoBehaviour {
     }
 
     private void LateUpdate() {
-        if (isMoving && _isWindingUp) {
+        if(isMoving && _isWindingUp) {
             PlayAnimation(6);
         }
 
-        if (isMoving && !_isWindingUp) {
+        if(isMoving && !_isWindingUp) {
             PlayAnimation(1);
         }
 
-        if (!isMoving && _isWindingUp) {
+        if(!isMoving && _isWindingUp) {
             PlayAnimation(5);
         }
 
-        if (!isMoving && !_isWindingUp) {
+        if(!isMoving && !_isWindingUp) {
             PlayAnimation(0);
         }
-
-        if (_isThrowing) {
-            PlayAnimation(3);
-        }
-
-        // STUCK IN WINDING UP EFFECT WITH CHICKENS IN TOWER AND IN THROW ANIMATION!
-
-        // Makes sure throw animation doesn't get stuck. (Since there cannot be a transition from throw to windup animation.)
-        if (!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
+        
+        // Makes sure throw animation doesn't get stuck.
+        if(!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
             _isWindingUp = false;
         }
-        
-        // Makes sure charge effect doesn't get stuck as active. MIGHT NEED A DIFFERENT FIX IF IT LOOKS LIKE LONG THROW HAPPENS!
-        if (chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
+
+        // Makes sure charge effect doesn't get stuck as active.
+        if(chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
             chargeEffect.SetActive(false);
         }
     }
@@ -179,14 +185,12 @@ public class Player : MonoBehaviour {
                 }
             }
         }
-
         
-
         _throwTimer += Time.deltaTime;
 
         // If the throw button has been pressed, there are chickens in the tower 
         // and it has been over the limit since the last throw, throw a chicken.
-        if (_throwNow && (_throwTimer > 0.5f) && _readyToThrow)                // Check if there are chickens to throw
+        if (_throwNow && (_throwTimer > 0.3f) && _readyToThrow)                // Check if there are chickens to throw
         {
             _isThrowing = true;
             _readyToThrow = false;
@@ -201,26 +205,12 @@ public class Player : MonoBehaviour {
             } else {
                 _throwDirection = transform.forward;
             }
-            
-            StartCoroutine(ThrowChicken(1f));
+
+            // Remove chicken from the tower to be thrown.
+            tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
         }
-    }
-
-    // Throw chicken after waiting for the animation to pass a certain point.
-    IEnumerator ThrowChicken(float length) {
-        yield return new WaitForSeconds(0.0f);  // NEEDS THIS 0f WAIT FOR SOME REASON
-
-        // Remove chicken from the tower to be thrown.
-        tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
-
-        // Reset throw timer.
-        _throwTimer = 0f;
-
-        _isThrowing = false;
-
-        _readyToThrow = true;
     }
 
     IEnumerator GetHit() {
@@ -231,17 +221,7 @@ public class Player : MonoBehaviour {
         isHit = false;
         isIncapacitated = true;
 
-        //chargeEffect.SetActive(false);
-        //_isWindingUp = false;
-
-        //_throwFar = false;
-        //_throwNow = false;
-
-        //_isThrowing = false;
-        //_readyToThrow = true;
-        //_throwTimer = 0f;
-
-        //isMoving = false;
+        ResetPlayer();
 
         hitEffect.SetActive(true);
         hitBirdEffect.SetActive(true);
@@ -261,6 +241,8 @@ public class Player : MonoBehaviour {
     }
 
     public void ResetPlayer() {
+        isMoving = false;
+
         chargeEffect.SetActive(false);
         _isWindingUp = false;
 
@@ -270,8 +252,6 @@ public class Player : MonoBehaviour {
         _isThrowing = false;
         _readyToThrow = true;
         _throwTimer = 0f;
-
-        isMoving = false;
     }
 
     void Move()
