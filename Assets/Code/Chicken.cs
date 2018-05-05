@@ -77,10 +77,10 @@ public class Chicken : MonoBehaviour
                 time = 0f;
                 movementTimer = Random.Range(5, 10);
             }
-
-            //Rotate(newPos);
+            
             Wander(newPos);
-			animControl.SetInteger ("AnimParam", 0);
+            Rotate();
+            animControl.SetInteger ("AnimParam", 0);
         }
 
         if (isThrown || isFalling) {
@@ -132,10 +132,11 @@ public class Chicken : MonoBehaviour
     }
 
     // Make this work
-    void Rotate(Vector3 movement)
+    void Rotate()
     {
-        float step = turningSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movement.normalized), step);
+        Vector3 direction = (newPos - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     private void CalculateRandomLocation(float max)

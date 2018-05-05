@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
     FMOD.Studio.EventInstance menuMusic;
     FMOD.Studio.EventInstance levelMusic;
-
+    
     private void Start()
     {
         eggTimer = GameObject.Find("egg").gameObject.GetComponentInChildren<EggTimer>();
@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour {
         menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         levelMusic.start();
+
+        
 
         int i = 0;
         foreach(GameObject chicken in GameObject.FindGameObjectsWithTag("Chicken"))
@@ -107,6 +109,13 @@ public class GameManager : MonoBehaviour {
         }
 
         AddAnimators(num);
+    }
+    
+    //Called when Quiting Play mode.
+    private void OnApplicationQuit()
+    {
+        ResetPlayerPrefs();
+        Debug.Log("Reset PlayerPrefs RoundNumber and PlayerScores");
     }
 
     private void Update()
@@ -180,6 +189,18 @@ public class GameManager : MonoBehaviour {
             _playerGOsEnabled = false;
             EndRound();
         }
+    }
+
+    public void ResetPlayerPrefs()
+    {
+        //Reset the round number to 1
+        PlayerPrefs.SetInt("CurrentRoundNumber", 1);
+
+        //Reset all player scores to 0 when a new game is started
+        PlayerPrefs.SetInt("Player0Score", 0);
+        PlayerPrefs.SetInt("Player1Score", 0);
+        PlayerPrefs.SetInt("Player2Score", 0);
+        PlayerPrefs.SetInt("Player3Score", 0);
     }
 
     private void EnablePlayerScripts(bool enable)
