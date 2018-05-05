@@ -222,17 +222,7 @@ public class Player : MonoBehaviour {
         isHit = false;
         isIncapacitated = true;
 
-        chargeEffect.SetActive(false);
-        _isWindingUp = false;
-
-        _throwFar = false;
-        _throwNow = false;
-
-        _isThrowing = false;
-        _readyToThrow = true;
-        _throwTimer = 0f;
-
-        isMoving = false;
+        ResetPlayer();
 
         hitEffect.SetActive(true);
         hitBirdEffect.SetActive(true);
@@ -252,6 +242,8 @@ public class Player : MonoBehaviour {
     }
 
     public void ResetPlayer() {
+        isMoving = false;
+
         chargeEffect.SetActive(false);
         _isWindingUp = false;
 
@@ -261,8 +253,6 @@ public class Player : MonoBehaviour {
         _isThrowing = false;
         _readyToThrow = true;
         _throwTimer = 0f;
-
-        isMoving = false;
     }
 
     void Move()
