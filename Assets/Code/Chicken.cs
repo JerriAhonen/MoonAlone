@@ -111,6 +111,8 @@ public class Chicken : MonoBehaviour
             _trailParticles.Stop();
 
             _isGrounded = false;
+
+            _originatingPlayer = null;
         }
     }
 

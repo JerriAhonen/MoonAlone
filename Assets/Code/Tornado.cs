@@ -10,9 +10,13 @@ public class Tornado : MonoBehaviour {
 
     private Vector3 newPos = Vector3.zero;
 
+    private Camera _mainCamera;
+
     // Use this for initialization
     void Start () {
         newPos = transform.position;
+
+        _mainCamera = Camera.main;
     }
 	
 	// Update is called once per frame
@@ -62,8 +66,10 @@ public class Tornado : MonoBehaviour {
         if(collision.gameObject.layer == LayerMask.NameToLayer("PickUp")) {
             GameObject collisionObject = collision.gameObject;
 
-            if (collisionObject.GetComponent<Chicken>() != null) {
+            // Basically only chickens on the ground get affected.
+            if (collisionObject.GetComponent<Chicken>() != null && collisionObject.GetComponent<Chicken>()._originatingPlayer == null) {
                 collisionObject.GetComponent<Chicken>().SetFlight(true, false, null);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", _mainCamera.transform.position);
             }
         }
     }

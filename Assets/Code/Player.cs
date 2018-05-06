@@ -215,8 +215,8 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator GetHit() {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit4", mainCamera.transform.position);
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit5", mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
 
         ShakeNow();
 
