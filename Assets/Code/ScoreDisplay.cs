@@ -7,15 +7,16 @@ public class ScoreDisplay : MonoBehaviour {
 
     public bool isCounter;
 
-    public GameManager gameManager;
-    public int playerNumber;            //To get the score of the right player
-    private int playerModel;             //Defines the colour of the text to match the player model
-    private TextMeshPro meshPro;         //The score variable
+    private GameManager gameManager;
+    public int playerNumber;                //To get the score of the right player
+    private int playerModel;                //Defines the colour of the text to match the player model
+    private TextMeshPro meshPro;            //The score variable
     private Tower tower;
     
 	// Use this for initialization
 	void Start () {
         meshPro = GetComponent<TextMeshPro>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerModel = gameManager.players[playerNumber - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
         tower = gameManager.players[playerNumber - 1].GetComponent<Tower>();
 
