@@ -6,7 +6,8 @@ public class Player : MonoBehaviour {
 
     public bool debugAnimations = false;
 
-    public float movementSpeed = 7.0f;
+    public float setMovementSpeed;
+    public float movementSpeed;
     public float turningSpeed = 800.0f;
     public float gravity = 16.0f;
     public float jumpForce = 8.0f;
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour {
         hitBirdEffect = transform.Find("Rotating chickens").gameObject;
         chargeEffect = transform.Find("ChargeShot").gameObject;
         mainCamera = Camera.main;
+        movementSpeed = setMovementSpeed;
     }
 
     void Update()
@@ -82,6 +84,12 @@ public class Player : MonoBehaviour {
             animControl = gameObject.GetComponentInChildren<Animator>();
 
         if (!isIncapacitated) {
+            
+            if (tower.chickenCount > 5)
+            {
+                movementSpeed = setMovementSpeed - ((tower.chickenCount - 5) / 4);
+            }
+            
             Move();
 
             // If a pickuppable chicken has collided with the player.
