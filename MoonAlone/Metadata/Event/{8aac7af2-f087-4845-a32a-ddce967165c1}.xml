@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{8aac7af2-f087-4845-a32a-ddce967165c1}">
         <property name="name">
-            <value>Throw1</value>
+            <value>Throw</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -91,6 +91,9 @@
     <object class="SingleSound" id="{beccad41-117f-48c7-8e3d-ed0fdd383fb2}">
         <property name="length">
             <value>0.29891156462585033</value>
+        </property>
+        <property name="pitch">
+            <value>-7</value>
         </property>
         <relationship name="audioFile">
             <destination>{a884a28c-ae68-452d-86b3-f5d0bacc79b9}</destination>

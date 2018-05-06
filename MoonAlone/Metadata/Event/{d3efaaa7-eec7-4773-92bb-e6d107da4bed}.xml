@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{d3efaaa7-eec7-4773-92bb-e6d107da4bed}">
         <property name="name">
-            <value>Throw2</value>
+            <value>Throw</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -33,6 +33,7 @@
         </relationship>
         <relationship name="tags">
             <destination>{9aa14cda-d307-4b5f-9a3c-09ce5ad8331b}</destination>
+            <destination>{7e2f763b-23fc-4d76-8651-e66056f20b90}</destination>
         </relationship>
         <relationship name="banks">
             <destination>{6ee488e7-3edb-4749-ba9a-23e5f6c7ba82}</destination>
@@ -93,19 +94,19 @@
     <object class="MixerBusPanner" id="{b5750aed-9a5a-47aa-ac5a-0a4336991e39}"/>
     <object class="SingleSound" id="{f6fde481-ba14-4775-86ec-2a054abf251b}">
         <property name="length">
-            <value>0.66000000000000003</value>
+            <value>0.20000000000000001</value>
         </property>
         <property name="name">
             <value>throw2</value>
+        </property>
+        <property name="pitch">
+            <value>1.60000002</value>
         </property>
         <relationship name="audioFile">
             <destination>{348f5fdc-958a-454d-bf98-b68e49b04654}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{d3b737d9-f0fb-4708-8770-fc234070e36b}">
-        <property name="volume">
-            <value>10</value>
-        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>

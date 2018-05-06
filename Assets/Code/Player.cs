@@ -86,7 +86,7 @@ public class Player : MonoBehaviour {
 
             // If a pickuppable chicken has collided with the player.
             if (chicken != null) {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSuprise", mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
 
                 tower.AddChicken(gameObject);
                 Destroy(chicken);
@@ -209,12 +209,14 @@ public class Player : MonoBehaviour {
             // Remove chicken from the tower to be thrown.
             tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw1", mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw", mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", mainCamera.transform.position);
         }
     }
 
     IEnumerator GetHit() {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit", mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit4", mainCamera.transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
 
         ShakeNow();
 

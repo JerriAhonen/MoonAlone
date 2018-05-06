@@ -22,7 +22,7 @@ public class Tornado : MonoBehaviour {
         if (time > movementTimer) {
             CalculateRandomLocation(wanderDistance);
             time = 0f;
-            movementTimer = Random.Range(1, 5);
+            movementTimer = Random.Range(1, 3);
         }
 
         Wander(newPos);
@@ -56,6 +56,14 @@ public class Tornado : MonoBehaviour {
                 if (collisionObject.GetComponent<Tower>() != null) {
                     collisionObject.GetComponent<Tower>().Scatter(collision.gameObject);
                 }
+            }
+        }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("PickUp")) {
+            GameObject collisionObject = collision.gameObject;
+
+            if (collisionObject.GetComponent<Chicken>() != null) {
+                collisionObject.GetComponent<Chicken>().SetFlight(true, false, null);
             }
         }
     }

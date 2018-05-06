@@ -13,9 +13,11 @@ public class CSManager : MonoBehaviour {
 
     public int NumOfPlayersNeededToStartGame_DEBUG;
 
+    private Camera _mainCamera;
+
     // Use this for initialization
     void Start () {
-        
+        _mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -23,7 +25,10 @@ public class CSManager : MonoBehaviour {
         if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
         {
             PlayerPrefs.SetInt("NumberOfPlayers", NumOfPlayersNeededToStartGame_DEBUG);
+
             SceneManager.LoadScene("Round_Level1");
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenCluckSeries", _mainCamera.transform.position);
         }
     }
 }

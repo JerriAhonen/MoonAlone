@@ -46,6 +46,7 @@ public class MainMenu : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleUp();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
                     Debug.Log("+1 Switch! Index = " + index);
                 }
             }
@@ -56,6 +57,7 @@ public class MainMenu : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleDown();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
                     Debug.Log("-1 Switch! Index = " + index);
                 }
             }
@@ -107,6 +109,8 @@ public class MainMenu : MonoBehaviour {
         switch(index)
         {
             case 0:
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
+
                 SceneManager.LoadScene("CharacterSelection");
                 break;
             case 1:

@@ -20,6 +20,8 @@ public class CharacterSelection : MonoBehaviour {
 
     public bool UseTestGameManager;
     public string csNumber;
+
+    private Camera _mainCamera;
     
     private void Start()
     {
@@ -39,6 +41,8 @@ public class CharacterSelection : MonoBehaviour {
         //Set the first model to Active (visible)
         if (characterList[index])
             characterList[index].SetActive(true);
+
+        _mainCamera = Camera.main;
     }
 
     private void Update()
@@ -53,6 +57,9 @@ public class CharacterSelection : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleUp();
+
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+
                     Debug.Log("+1 Switch!");
                 }
             }
@@ -63,6 +70,9 @@ public class CharacterSelection : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleDown();
+
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+
                     Debug.Log("-1 Switch!");
                 }
             }
