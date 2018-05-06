@@ -294,8 +294,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            //When all rounds are played, reset the roundNumber to 1.
-            PlayerPrefs.SetInt("CurrentRoundNumber", 1);
+            ResetPlayerPrefs();
             SceneManager.LoadScene("MainMenu");
 
             levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
