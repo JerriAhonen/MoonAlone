@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     
+    public ScoreManager scoreManager;
     public GameObject[] players = new GameObject[4];                            // List of all players
     public int[] playerScores = new int[4];
 
@@ -157,7 +158,7 @@ public class GameManager : MonoBehaviour {
             // Winning condition = the player with the most chickens when timeLeft = 0.
             if (timeLeft == 0 && !roundFinished)
             {
-                GetRoundScore();
+                scoreManager.GetRoundScore();
                 EnablePlayerScripts(false);
 
                 roundFinished = true;                                           // Set the round to finished
@@ -228,61 +229,61 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void GetRoundScore()
-    {
-        int[] scores = new int[numberOfPlayers];
+    // public void GetRoundScore()
+    // {
+    //     int[] scores = new int[numberOfPlayers];
 
-        for (int i = 0; i < scores.Length; i++)
-        {
-            if (players[i].activeSelf)
-                scores[i] = players[i].GetComponent<Tower>().chickenCount;
-            else
-                Debug.Log("GetRoundScore(); Player" + i + " isn't active");
-        }
+    //     for (int i = 0; i < scores.Length; i++)
+    //     {
+    //         if (players[i].activeSelf)
+    //             scores[i] = players[i].GetComponent<Tower>().chickenCount;
+    //         else
+    //             Debug.Log("GetRoundScore(); Player" + i + " isn't active");
+    //     }
 
-        System.Array.Sort(scores);
+    //     System.Array.Sort(scores);
 
-        for (int i = 0; i < scores.Length; i++)
-        {
-            string playerScore = "Player" + i + "Score";
+    //     for (int i = 0; i < scores.Length; i++)
+    //     {
+    //         string playerScore = "Player" + i + "Score";
 
-            if (players[i].GetComponent<Tower>().chickenCount == 0)
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-            }
-
-
-            else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 1])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
-            }
+    //         if (players[i].GetComponent<Tower>().chickenCount == 0)
+    //         {
+    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
+    //         }
 
 
-            else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 2])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
-            }
+    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 1])
+    //         {
+    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
+    //         }
 
 
-            else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 3])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
-            }
+    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 2])
+    //         {
+    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
+    //         }
 
 
-            else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 4])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-            }
-        }
+    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 3])
+    //         {
+    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
+    //         }
 
-        for (int i = 0; i < playerScores.Length; i++)
-        {
-            playerScores[i] = PlayerPrefs.GetInt("Player" + i + "Score");
-        }
-    }
 
-        private void EndRound()
+    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 4])
+    //         {
+    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
+    //         }
+    //     }
+
+    //     for (int i = 0; i < playerScores.Length; i++)
+    //     {
+    //         playerScores[i] = PlayerPrefs.GetInt("Player" + i + "Score");
+    //     }
+    // }
+
+    private void EndRound()
     {
         if(PlayerPrefs.GetInt("CurrentRoundNumber") < NumOfRounds)
         {

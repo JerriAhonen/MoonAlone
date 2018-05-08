@@ -8,6 +8,7 @@ public class ScoreDisplay : MonoBehaviour {
     public bool isCounter;
 
     private GameManager gameManager;
+    public ScoreManager scoreManager;
     public int playerNumber;                //To get the score of the right player
     private int playerModel;                //Defines the colour of the text to match the player model
     private TextMeshPro meshPro;            //The score variable
@@ -17,6 +18,7 @@ public class ScoreDisplay : MonoBehaviour {
 	void Start () {
         meshPro = GetComponent<TextMeshPro>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         playerModel = gameManager.players[playerNumber - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
         tower = gameManager.players[playerNumber - 1].GetComponent<Tower>();
 
@@ -42,7 +44,8 @@ public class ScoreDisplay : MonoBehaviour {
 
         if (isCounter)
         {
-            meshPro.text = tower.chickenCount.ToString();
+            //meshPro.text = tower.chickenCount.ToString();
+            meshPro.text = scoreManager.GetPlayerTotalChickenCount(playerNumber).ToString();
         }
     }
 }

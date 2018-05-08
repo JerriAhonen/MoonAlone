@@ -146,7 +146,10 @@ public class Chicken : MonoBehaviour
         float x = Random.Range(-max, max);
         float z = Random.Range(-max, max);
         
-        if (transform.position.x + x > -20f && transform.position.x + x < 20f && transform.position.z + z > -12 && transform.position.z + z < 12)
+        if (transform.position.x + x > -20f 
+            && transform.position.x + x < 20f 
+            && transform.position.z + z > -12 
+            && transform.position.z + z < 12)
         {
             newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
         }
