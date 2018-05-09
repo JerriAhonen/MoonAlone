@@ -28,7 +28,7 @@ public class CSManager : MonoBehaviour {
 
             SceneManager.LoadScene("Round_Level1");
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenCluckSeries", _mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_clucks", _mainCamera.transform.position);
         }
     }
 }

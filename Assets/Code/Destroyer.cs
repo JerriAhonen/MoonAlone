@@ -26,7 +26,7 @@ public class Destroyer : MonoBehaviour {
 	{
 		if (col.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)){
 			Destroy(col.gameObject);
-			FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
+			//FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
 		}
 	}
 }

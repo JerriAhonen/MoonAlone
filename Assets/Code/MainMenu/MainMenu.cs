@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour {
 
         _mainCamera = GameObject.Find("Main Camera");
 
-        menuMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu");
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/music_menu");
         menuMusic.start();
 
         DontDestroyOnLoad(gameObject);
@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleUp();
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_change_selection", _mainCamera.transform.position);
                     Debug.Log("+1 Switch! Index = " + index);
                 }
             }
@@ -57,7 +57,7 @@ public class MainMenu : MonoBehaviour {
                     axisInUse = true;
                     cooldown = selectionCooldown;
                     ToggleDown();
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_change_selection", _mainCamera.transform.position);
                     Debug.Log("-1 Switch! Index = " + index);
                 }
             }
@@ -109,7 +109,7 @@ public class MainMenu : MonoBehaviour {
         switch(index)
         {
             case 0:
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
 
                 SceneManager.LoadScene("CharacterSelection");
                 break;

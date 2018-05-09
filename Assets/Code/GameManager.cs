@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
         _displayRoundEndCanvas = false;
         canvasRoundEnd.gameObject.SetActive(false);
 
-        levelMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/level");
+        levelMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/music_level");
 
         if (GameObject.Find("MainMenu") != null)
             menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;

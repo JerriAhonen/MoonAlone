@@ -58,7 +58,7 @@ public class CharacterSelection : MonoBehaviour {
                     cooldown = selectionCooldown;
                     ToggleUp();
 
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_change_selection", _mainCamera.transform.position);
 
                     Debug.Log("+1 Switch!");
                 }
@@ -71,7 +71,7 @@ public class CharacterSelection : MonoBehaviour {
                     cooldown = selectionCooldown;
                     ToggleDown();
 
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/change_selection", _mainCamera.transform.position);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_change_selection", _mainCamera.transform.position);
 
                     Debug.Log("-1 Switch!");
                 }

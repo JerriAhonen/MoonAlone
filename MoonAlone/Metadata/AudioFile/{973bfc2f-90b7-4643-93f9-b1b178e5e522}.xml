@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{973bfc2f-90b7-4643-93f9-b1b178e5e522}">
+        <property name="assetPath">
+            <value>shh_level_v1.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>16</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{6fa02b61-0f41-4a12-94e6-cb116013241d}</destination>
+        </relationship>
+    </object>
+</objects>

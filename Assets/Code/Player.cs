@@ -94,7 +94,7 @@ public class Player : MonoBehaviour {
 
             // If a pickuppable chicken has collided with the player.
             if (chicken != null) {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
 
                 tower.AddChicken(gameObject);
                 Destroy(chicken);
@@ -217,14 +217,14 @@ public class Player : MonoBehaviour {
             // Remove chicken from the tower to be thrown.
             tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw", mainCamera.transform.position);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw", mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", mainCamera.transform.position);
         }
     }
 
     IEnumerator GetHit() {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit5", mainCamera.transform.position);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit5", mainCamera.transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
 
         ShakeNow();
 
@@ -305,7 +305,7 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
 
                 verticalVelocity = jumpForce;
                 PlayAnimation(2);                                               // Play Jump animation
