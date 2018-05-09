@@ -70,15 +70,22 @@ public class Collector : MonoBehaviour {
 
 	private void Move()
 	{
+		bool doRotation = false;
 		if (Vector3.Distance(transform.position, newDestination) < 0.5f)
         {
             if (i == path.Length - 1)
             {
 				goClockWise = false;
+				doRotation = false;
             }
 			else if (i == 0)
 			{
 				goClockWise = true;
+				doRotation = false;
+			}
+			else 
+			{
+				doRotation = true;
 			}
             if (goClockWise)
             {
@@ -93,6 +100,23 @@ public class Collector : MonoBehaviour {
         }
 
         transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
+		
+		// Vector3 heading = newDestination - transform.position;
+		// heading = Quaternion.Euler(0, 90, 0) * heading;
+		// //heading.Normalize();
+		// Quaternion rotation = Quaternion.LookRotation(heading);
+		// transform.rotation = rotation;
+
+		Vector3 relativePos = newDestination - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+		if(doRotation)
+		{
+			if (goClockWise)
+        		transform.rotation = rotation;
+			else
+				transform.rotation = Quaternion.Inverse(rotation);
+		}
+		
 	}
 
 	/// <summary>
