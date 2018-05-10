@@ -19,20 +19,27 @@ public class MainMenu : MonoBehaviour {
     private Vector3 optionOnePos = new Vector3(2f, 2f, -4f);
     private Vector3 optionTwoPos = new Vector3(2f, 1f, -4f);
     private Vector3 optionThreePos = new Vector3(2f, 0f, -4f);
-    private GameObject _mainCamera;
+
+    private Camera _mainCamera;
 
     public FMOD.Studio.EventInstance menuMusic;
+
+    public Canvas canvasOptions;
+    public Options options;
+    public bool inOptionsMenu = false;
 
     // Use this for initialization
     void Start () {
         selector.transform.position = optionOnePos;
 
-        _mainCamera = GameObject.Find("Main Camera");
+        _mainCamera = Camera.main;
 
         menuMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/music_menu");
         menuMusic.start();
 
         DontDestroyOnLoad(gameObject);
+
+        options = GetComponent<Options>();
     }
 	
 	// Update is called once per frame
@@ -114,12 +121,11 @@ public class MainMenu : MonoBehaviour {
                 SceneManager.LoadScene("CharacterSelection");
                 break;
             case 1:
+                canvasOptions.gameObject.SetActive(true);
                 break;
             case 2:
+                Application.Quit();
                 break;
         }
-        
-
-
     }
 }

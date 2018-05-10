@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05852334, g: 0.045718964, b: 0.19204251, a: 1}
+  m_IndirectSpecularColor: {r: 0.058479648, g: 0.04566965, b: 0.19189885, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -15796,6 +15796,9 @@ MonoBehaviour:
   optionConfirmed: 0
   optionIndex: 0
   selector: {fileID: 1739770061}
+  canvasOptions: {fileID: 2059215752}
+  options: {fileID: 0}
+  inOptionsMenu: 0
 --- !u!4 &529716749
 Transform:
   m_ObjectHideFlags: 0
@@ -22652,8 +22655,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1650187124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 291, y: 163.5, z: 0}
-  m_LocalScale: {x: 0.30277777, y: 0.30277777, z: 0.30277777}
+  m_LocalPosition: {x: 293.5, y: 165, z: 0}
+  m_LocalScale: {x: 0.30555555, y: 0.30555555, z: 0.30555555}
   m_Children:
   - {fileID: 687636090}
   - {fileID: 615629757}
@@ -27157,6 +27160,7 @@ GameObject:
   - component: {fileID: 2059215752}
   - component: {fileID: 2059215751}
   - component: {fileID: 2059215750}
+  - component: {fileID: 2059215754}
   m_Layer: 5
   m_Name: OptionsCanvas
   m_TagString: Untagged
@@ -27242,6 +27246,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2059215754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2059215749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad5e7fe99685ca4e8da08cab5c21eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  toggleAxis: Vertical_P1
+  selectionCooldown: 0.2
+  optionIndex: 0
+  musicSlider: {fileID: 1476099516}
+  sfxSlider: {fileID: 987935731}
+  volumeAxis: Horizontal_P1
+  cancelButton: Cancel
+  mainMenu: {fileID: 0}
 --- !u!1 &2067048699
 GameObject:
   m_ObjectHideFlags: 0
