@@ -14,8 +14,8 @@ public class Options : MonoBehaviour {
 
     public GameObject musicSlider;
     public GameObject sfxSlider;
-    private Vector3 musicSliderPos;
-    private Vector3 sfxSliderPos;
+    private RectTransform musicSliderTransform;
+    private RectTransform sfxSliderTransform;
 
     private Camera _mainCamera;
 
@@ -38,8 +38,8 @@ public class Options : MonoBehaviour {
 
         mainMenu = GameObject.Find("MainMenu");
 
-        musicSliderPos = musicSlider.GetComponent<RectTransform>().localPosition;
-        sfxSliderPos = sfxSlider.GetComponent<RectTransform>().localPosition;
+        musicSliderTransform = musicSlider.GetComponent<RectTransform>();
+        sfxSliderTransform = sfxSlider.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -106,21 +106,41 @@ public class Options : MonoBehaviour {
         switch(index) {
             case 0:
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
+                Vector3 sfxSliderPos = sfxSliderTransform.localPosition;
 
                 if (Input.GetAxis(volumeAxis) < 0) {
                     sfxSliderPos.x--;
+
                     Debug.Log("slider pos = " + sfxSliderPos.x);
-                    sfxSliderPos = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    sfxSliderTransform.localPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
                 }
 
                 if (Input.GetAxis(volumeAxis) > 0) {
                     sfxSliderPos.x++;
-                    sfxSliderPos = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+
+                    Debug.Log("slider pos = " + sfxSliderPos.x);
+                    sfxSliderTransform.localPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
                 }
 
                 break;
             case 1:
-                Input.GetAxis(volumeAxis);
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
+                Vector3 musicSliderPos = musicSliderTransform.localPosition;
+
+                if(Input.GetAxis(volumeAxis) < 0) {
+                    musicSliderPos.x--;
+
+                    Debug.Log("slider pos = " + musicSliderPos.x);
+                    musicSliderTransform.localPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                }
+
+                if(Input.GetAxis(volumeAxis) > 0) {
+                    musicSliderPos.x++;
+
+                    Debug.Log("slider pos = " + musicSliderPos.x);
+                    musicSliderTransform.localPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                }
+
                 break;
         }
     }
