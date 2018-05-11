@@ -16,6 +16,8 @@ public class Options : MonoBehaviour {
     public GameObject sfxSlider;
     private RectTransform musicSliderTransform;
     private RectTransform sfxSliderTransform;
+    private float maxPos = 140f;
+    private float minPos = 0f;
 
     private Camera _mainCamera;
 
@@ -25,6 +27,9 @@ public class Options : MonoBehaviour {
 
     public string volumeAxis;
     public string cancelButton;
+
+    public float sfxVolume;
+    public float musicVolume;
 
     public GameObject mainMenu;
 
@@ -40,22 +45,25 @@ public class Options : MonoBehaviour {
 
         musicSliderTransform = musicSlider.GetComponent<RectTransform>();
         sfxSliderTransform = sfxSlider.GetComponent<RectTransform>();
+
+        _sfx.getVolume(out sfxVolume, out sfxVolume);
+        _music.getVolume(out musicVolume, out musicVolume);
+
+        sfxSliderTransform.anchoredPosition = new Vector2(sfxVolume * 100f, sfxSliderTransform.anchoredPosition.y);
+        musicSliderTransform.anchoredPosition = new Vector2(musicVolume * 100f, musicSliderTransform.anchoredPosition.y);
     }
-
-    // Update is called once per frame
-    void Update() {
-        //_master.setVolume(0.1f);
-
-        if(Input.GetAxisRaw(toggleAxis) == 1) {
-            if(axisInUse == false) {
+    
+    private void Update() {
+        if (Input.GetAxisRaw(toggleAxis) == 1) {
+            if (axisInUse == false) {
                 axisInUse = true;
                 cooldown = selectionCooldown;
                 ToggleUp();
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_change_selection", _mainCamera.transform.position);
                 Debug.Log("+1 Switch! Index = " + index);
             }
-        } else if(Input.GetAxisRaw(toggleAxis) == -1) {
-            if(axisInUse == false) {
+        } else if (Input.GetAxisRaw(toggleAxis) == -1) {
+            if (axisInUse == false) {
                 axisInUse = true;
                 cooldown = selectionCooldown;
                 ToggleDown();
@@ -64,13 +72,13 @@ public class Options : MonoBehaviour {
             }
         }
 
-        if(cooldown >= 0.0f)
+        if (cooldown >= 0.0f)
             cooldown -= Time.deltaTime;
 
-        if(cooldown < 0.0f)
+        if (cooldown < 0.0f)
             axisInUse = false;
 
-        switch(index) {
+        switch (index) {
             case 0:
                 //selector.transform.position = optionOnePos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
                 break;
@@ -90,56 +98,59 @@ public class Options : MonoBehaviour {
 
     public void ToggleUp() {
         index--;
-        if(index < 0)
+        if (index < 0)
             index = 1;
     }
 
     public void ToggleDown() {
         index++;
-        if(index == 2)
+        if (index == 2)
             index = 0;
     }
 
     public void AdjustVolume() {
         optionIndex = index;
 
-        switch(index) {
+        switch (index) {
             case 0:
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
-                Vector3 sfxSliderPos = sfxSliderTransform.localPosition;
+                Vector3 sfxSliderPos = sfxSliderTransform.anchoredPosition;
 
-                if (Input.GetAxis(volumeAxis) < 0) {
+                sfxVolume = sfxSliderPos.x / 100f;
+
+                if (Input.GetAxis(volumeAxis) < 0 && (sfxSliderPos.x > minPos)) {
                     sfxSliderPos.x--;
 
-                    Debug.Log("slider pos = " + sfxSliderPos.x);
-                    sfxSliderTransform.localPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
                 }
 
-                if (Input.GetAxis(volumeAxis) > 0) {
+                if (Input.GetAxis(volumeAxis) > 0 && (sfxSliderPos.x < maxPos)) {
                     sfxSliderPos.x++;
-
-                    Debug.Log("slider pos = " + sfxSliderPos.x);
-                    sfxSliderTransform.localPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    
+                    sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
                 }
+
+                _sfx.setVolume(sfxVolume);
 
                 break;
             case 1:
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
-                Vector3 musicSliderPos = musicSliderTransform.localPosition;
+                Vector3 musicSliderPos = musicSliderTransform.anchoredPosition;
 
-                if(Input.GetAxis(volumeAxis) < 0) {
+                musicVolume = musicSliderPos.x / 100f;
+
+                if (Input.GetAxis(volumeAxis) < 0 && (musicSliderPos.x > minPos)) {
                     musicSliderPos.x--;
-
-                    Debug.Log("slider pos = " + musicSliderPos.x);
-                    musicSliderTransform.localPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    
+                    musicSliderTransform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
                 }
 
-                if(Input.GetAxis(volumeAxis) > 0) {
+                if (Input.GetAxis(volumeAxis) > 0 && (musicSliderPos.x < maxPos)) {
                     musicSliderPos.x++;
-
-                    Debug.Log("slider pos = " + musicSliderPos.x);
-                    musicSliderTransform.localPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    
+                    musicSliderTransform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
                 }
+
+                _music.setVolume(musicVolume);
 
                 break;
         }
