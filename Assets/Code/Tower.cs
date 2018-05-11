@@ -40,8 +40,7 @@ public class Tower : MonoBehaviour {
     }
 
     float cttt = 0;
-
-
+    
     // Update is called once per frame
     void Update () {
         if (cttt == 0)

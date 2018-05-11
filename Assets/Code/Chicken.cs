@@ -41,6 +41,8 @@ public class Chicken : MonoBehaviour
     private float offset = 0.5f;
     private Vector3 _followOffset = new Vector3(1,0,0);
 
+    public int mood;    //0 = Normal, 1 = Loving, 2 = Fearfull
+
     public Chicken(int numberInTower, float yPos)
     {
         this.numberInTower = numberInTower;
@@ -62,6 +64,19 @@ public class Chicken : MonoBehaviour
         _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
         _cloudParticles = transform.Find("DropDownBurst").GetComponent<ParticleSystem>();
+
+        if (Random.value > 0.8)         //20% chance
+        {
+            mood = 2;
+        }
+        else if (Random.value > 0.6)    //20% chnce
+        {
+            mood = 1;
+        }
+        else                            //60% chance
+        {
+            mood = 0;
+        }
     }
 
     private void Update()
@@ -70,17 +85,49 @@ public class Chicken : MonoBehaviour
 
         if (!isInTower && !isThrown && !isFalling)
         {
-
-            if (time > movementTimer)
+            switch (mood)
             {
-                CalculateRandomLocation(wanderDistance);
-                time = 0f;
-                movementTimer = Random.Range(5, 10);
+                case 0:     //0 = Normal
+                    if (time > movementTimer)
+                    {
+                        CalculateRandomLocation(wanderDistance);
+                        time = 0f;
+                        movementTimer = Random.Range(5, 10);
+                    }
+
+                    Wander(newPos);
+                    Rotate();
+                    animControl.SetInteger("AnimParam", 0);
+                    break;
+                case 1:     //1 = Loving
+                            // get newPos from playerPos - position.
+                    if (time > movementTimer)
+                    {
+                        CalculateRandomLocation(wanderDistance);
+                        time = 0f;
+                        movementTimer = Random.Range(5, 10);
+                    }
+
+                    Wander(newPos);
+                    Rotate();
+
+                    animControl.SetInteger("AnimParam", 0);
+                    break;
+                case 2:     //2 = Fearfull
+                            //Get new pos from position - player pos.
+                    if (time > movementTimer)
+                    {
+                        CalculateRandomLocation(wanderDistance);
+                        time = 0f;
+                        movementTimer = Random.Range(5, 10);
+                    }
+
+                    Wander(newPos);
+                    Rotate();
+
+                    animControl.SetInteger("AnimParam", 0);
+                    break;
             }
-            
-            Wander(newPos);
-            Rotate();
-            animControl.SetInteger ("AnimParam", 0);
         }
 
         if (isThrown || isFalling) {
@@ -133,7 +180,7 @@ public class Chicken : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, movement, 0.5f * Time.deltaTime);
     }
 
-    // Make this work
+
     void Rotate()
     {
         Vector3 direction = (newPos - transform.position).normalized;
@@ -145,11 +192,11 @@ public class Chicken : MonoBehaviour
     {
         float x = Random.Range(-max, max);
         float z = Random.Range(-max, max);
-        
-        if (transform.position.x + x > -20f 
-            && transform.position.x + x < 20f 
-            && transform.position.z + z > -12 
-            && transform.position.z + z < 12)
+
+        if (transform.position.x + x > -20f
+            && transform.position.x + x < 20f
+            && transform.position.z + z > -12f
+            && transform.position.z + z < 12f)
         {
             newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
         }
