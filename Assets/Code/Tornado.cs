@@ -12,11 +12,18 @@ public class Tornado : MonoBehaviour {
 
     private Camera _mainCamera;
 
+    public Transform tornadoPath;
+    private List<Transform> tornadoPoints;
+
     // Use this for initialization
     void Start () {
         newPos = transform.position;
 
         _mainCamera = Camera.main;
+
+        foreach (Transform child in tornadoPath) {
+            tornadoPoints.Add(child);
+        }
     }
 	
 	// Update is called once per frame
@@ -30,11 +37,6 @@ public class Tornado : MonoBehaviour {
         }
 
         Wander(newPos);
-    }
-
-    public void Move(Vector3 dir) {
-        transform.Translate(dir);
-
     }
 
     public void Wander(Vector3 movement) {
