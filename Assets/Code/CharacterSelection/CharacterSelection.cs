@@ -27,6 +27,7 @@ public class CharacterSelection : MonoBehaviour {
 
     public Button arrowUp;
     public Button arrowDown;
+    public Light spotlight;
     
     private void Start()
     {
@@ -34,7 +35,7 @@ public class CharacterSelection : MonoBehaviour {
 
         csManager = GetComponentInParent<CSManager>();
         animControl = gameObject.GetComponentInChildren<Animator>();
-
+        spotlight.gameObject.SetActive(false);
         characterList = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -147,7 +148,7 @@ public class CharacterSelection : MonoBehaviour {
             csManager.chosenCharacters[index] = true;
 
             animControl.SetInteger("AnimParam", 5);
-
+            spotlight.gameObject.SetActive(true);
             //Save the selected character in PlayerPrefs.
             PlayerPrefs.SetInt(csNumber, index);
 
