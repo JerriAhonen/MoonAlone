@@ -116,11 +116,13 @@ public class MainMenu : MonoBehaviour {
         switch(index)
         {
             case 0:
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_confirm", _mainCamera.transform.position);
 
                 SceneManager.LoadScene("CharacterSelection");
                 break;
             case 1:
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_confirm", _mainCamera.transform.position);
+
                 canvasOptions.gameObject.SetActive(true);
                 break;
             case 2:

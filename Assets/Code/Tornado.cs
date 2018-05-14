@@ -22,7 +22,7 @@ public class Tornado : MonoBehaviour {
         _mainCamera = Camera.main;
 
         foreach (Transform child in tornadoPath) {
-            tornadoPoints.Add(child);
+            //tornadoPoints.Add(child);
         }
     }
 	
