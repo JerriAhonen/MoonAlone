@@ -652,6 +652,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   UseTestGameManager: 0
   csNumber: CharacterList1
+  animControl: {fileID: 0}
+  arrowUp: {fileID: 1315653494}
+  arrowDown: {fileID: 877245901}
 --- !u!4 &268695617
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,6 +1721,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   UseTestGameManager: 0
   csNumber: CharacterList3
+  animControl: {fileID: 0}
+  arrowUp: {fileID: 0}
+  arrowDown: {fileID: 0}
 --- !u!4 &504823756
 Transform:
   m_ObjectHideFlags: 0
@@ -2613,7 +2619,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 877245902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &877245902
@@ -3295,6 +3312,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   UseTestGameManager: 0
   csNumber: CharacterList2
+  animControl: {fileID: 0}
+  arrowUp: {fileID: 0}
+  arrowDown: {fileID: 0}
 --- !u!4 &1210678957
 Transform:
   m_ObjectHideFlags: 0
@@ -3568,7 +3588,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1315653495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1315653495
@@ -4815,7 +4846,7 @@ MonoBehaviour:
   chosenCharacters: 000000000000
   readyCount: 0
   noPlayerCount: 4
-  NumOfPlayersNeededToStartGame_DEBUG: 1
+  NumOfPlayersNeededToStartGame_DEBUG: 2
 --- !u!4 &1742351295
 Transform:
   m_ObjectHideFlags: 0
@@ -4876,6 +4907,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   UseTestGameManager: 0
   csNumber: CharacterList4
+  animControl: {fileID: 0}
+  arrowUp: {fileID: 0}
+  arrowDown: {fileID: 0}
 --- !u!4 &1793853755
 Transform:
   m_ObjectHideFlags: 0
