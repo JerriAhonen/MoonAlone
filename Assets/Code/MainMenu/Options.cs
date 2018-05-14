@@ -90,6 +90,8 @@ public class Options : MonoBehaviour {
         AdjustVolume();
 
         if (Input.GetButton(cancelButton)) {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_cancel", _mainCamera.transform.position);
+
             mainMenu.GetComponent<MainMenu>().optionConfirmed = false;
 
             gameObject.SetActive(false);
