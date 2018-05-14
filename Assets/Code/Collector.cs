@@ -127,7 +127,7 @@ public class Collector : MonoBehaviour {
 		Gizmos.color = Color.red;
 
 		Gizmos.DrawLine(path[0].transform.position, path[1].transform.position);
-		Gizmos.DrawLine(path[1].transform.position, path[2].transform.position);
-		Gizmos.DrawLine(path[2].transform.position, path[3].transform.position);
+		//Gizmos.DrawLine(path[1].transform.position, path[2].transform.position);
+		//Gizmos.DrawLine(path[2].transform.position, path[3].transform.position);
 	}
 }

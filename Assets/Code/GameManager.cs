@@ -229,60 +229,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // public void GetRoundScore()
-    // {
-    //     int[] scores = new int[numberOfPlayers];
-
-    //     for (int i = 0; i < scores.Length; i++)
-    //     {
-    //         if (players[i].activeSelf)
-    //             scores[i] = players[i].GetComponent<Tower>().chickenCount;
-    //         else
-    //             Debug.Log("GetRoundScore(); Player" + i + " isn't active");
-    //     }
-
-    //     System.Array.Sort(scores);
-
-    //     for (int i = 0; i < scores.Length; i++)
-    //     {
-    //         string playerScore = "Player" + i + "Score";
-
-    //         if (players[i].GetComponent<Tower>().chickenCount == 0)
-    //         {
-    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-    //         }
-
-
-    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 1])
-    //         {
-    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
-    //         }
-
-
-    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 2])
-    //         {
-    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
-    //         }
-
-
-    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 3])
-    //         {
-    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
-    //         }
-
-
-    //         else if (players[i].GetComponent<Tower>().chickenCount == scores[scores.Length - 4])
-    //         {
-    //             PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-    //         }
-    //     }
-
-    //     for (int i = 0; i < playerScores.Length; i++)
-    //     {
-    //         playerScores[i] = PlayerPrefs.GetInt("Player" + i + "Score");
-    //     }
-    // }
-
+    
     private void EndRound()
     {
         if(PlayerPrefs.GetInt("CurrentRoundNumber") < NumOfRounds)
