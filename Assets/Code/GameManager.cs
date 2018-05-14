@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour {
 
     FMOD.Studio.EventInstance menuMusic;
     FMOD.Studio.EventInstance levelMusic;
+
+    private Camera _mainCamera;
     
     private void Start()
     {
@@ -77,6 +79,8 @@ public class GameManager : MonoBehaviour {
 
         if (GameObject.Find("MainMenu") != null)
             menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;
+
+        _mainCamera = Camera.main;
 
         menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
@@ -281,8 +285,10 @@ public class GameManager : MonoBehaviour {
 
         while (_startTime > 0)
         {
-            yield return new WaitForSeconds(1f);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/other_countdown", _mainCamera.transform.position);
 
+            yield return new WaitForSeconds(1f);
+            
             _startTime--;
             _startTimerFinished = false;
             roundStarted = false;
@@ -295,6 +301,8 @@ public class GameManager : MonoBehaviour {
             roundStarted = true;
 
             gameStartTimerText.text = "GO!";
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/other_go", _mainCamera.transform.position);
 
             eggTimer.enabled = enabled;
 

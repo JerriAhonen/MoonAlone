@@ -157,7 +157,9 @@ public class CharacterSelection : MonoBehaviour {
 
 			characterConfirmed = true;
 
-			csManager.readyCount++;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_confirm", _mainCamera.transform.position);
+
+            csManager.readyCount++;
 			csManager.noPlayerCount--;
 		}
     }

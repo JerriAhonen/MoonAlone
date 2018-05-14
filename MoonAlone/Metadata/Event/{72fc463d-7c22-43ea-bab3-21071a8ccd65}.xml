@@ -53,14 +53,14 @@
             <destination>{8a831343-93cd-43e0-9edf-674975b1eb4f}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{397172b2-9dd5-47bd-a500-ff879dc35737}</destination>
+            <destination>{6ff903fc-616a-49eb-a6c9-1c60dfe5a7cd}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{2f6fdf57-e2ae-4901-853e-e734b44c9b9b}"/>
     <object class="MarkerTrack" id="{f6eb3a87-bf26-4e86-b1d3-b34aa8cc4471}"/>
     <object class="GroupTrack" id="{3abcf7c6-ac5e-45d7-ac8b-6179aa9c75bd}">
         <relationship name="modules">
-            <destination>{bed1cc85-4460-42d3-90a3-42fb16756620}</destination>
+            <destination>{62a22244-3b2d-46fb-98ed-74e1dbc5bc51}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{1fbe2597-babd-4107-acc7-ce01a0c661bb}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{3a562906-10dd-4668-913a-7cae645ccd93}">
         <relationship name="modules">
-            <destination>{bed1cc85-4460-42d3-90a3-42fb16756620}</destination>
+            <destination>{62a22244-3b2d-46fb-98ed-74e1dbc5bc51}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{9a4202ed-33a6-4408-95be-adb8b610f9dc}">
@@ -88,12 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{8a831343-93cd-43e0-9edf-674975b1eb4f}"/>
-    <object class="SingleSound" id="{bed1cc85-4460-42d3-90a3-42fb16756620}">
+    <object class="SingleSound" id="{62a22244-3b2d-46fb-98ed-74e1dbc5bc51}">
         <property name="length">
             <value>0.16231292517006804</value>
         </property>
         <relationship name="audioFile">
-            <destination>{8a0fd54f-0484-4b4c-b1c8-5fb0590ace54}</destination>
+            <destination>{246999f7-a503-4d05-81f6-ad1a5acfd1a8}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{1fbe2597-babd-4107-acc7-ce01a0c661bb}">

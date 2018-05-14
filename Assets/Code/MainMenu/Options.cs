@@ -36,9 +36,10 @@ public class Options : MonoBehaviour {
 	private Vector3 optionTwoPos = new Vector2(785f, 460f);
 
     public GameObject mainMenu;
+    public bool movedSfxSlider = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         _mainCamera = Camera.main;
 
         _master = FMODUnity.RuntimeManager.GetBus("bus:/");
@@ -121,7 +122,6 @@ public class Options : MonoBehaviour {
 
         switch (index) {
             case 0:
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", _mainCamera.transform.position);
                 Vector3 sfxSliderPos = sfxSliderTransform.anchoredPosition;
 
                 sfxVolume = sfxSliderPos.x / 100f;
@@ -130,15 +130,25 @@ public class Options : MonoBehaviour {
                     sfxSliderPos.x--;
 
                     sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+
+                    movedSfxSlider = true;
                 }
 
                 if (Input.GetAxis(volumeAxis) > 0 && (sfxSliderPos.x < maxPos)) {
                     sfxSliderPos.x++;
                     
                     sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+
+                    movedSfxSlider = true;
+
                 }
 
                 _sfx.setVolume(sfxVolume);
+
+                if ((Input.GetAxis(volumeAxis) == 0) && movedSfxSlider) {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_sfx_slider", _mainCamera.transform.position);
+                    movedSfxSlider = false;
+                }
 
                 break;
             case 1:
