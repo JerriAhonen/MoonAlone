@@ -100,7 +100,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material_000
-    second: {fileID: 2100000, guid: 03c97cc71aef56547aea04240172224f, type: 2}
+    second: {fileID: 2100000, guid: d7f54e4a845f0f6498b7bea52dedcc8f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -120,7 +120,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: feathers
-    second: {fileID: 2100000, guid: c3f169d686cc39e41aa935ee39313f89, type: 2}
+    second: {fileID: 2100000, guid: c0e47794d7e715d4c9123cd53dd0858d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -139,7 +139,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -385,7 +385,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
