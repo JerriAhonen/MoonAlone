@@ -31,6 +31,10 @@ public class Options : MonoBehaviour {
     public float sfxVolume;
     public float musicVolume;
 
+	public GameObject selector;
+	private Vector3 optionOnePos = new Vector2(785f, 568f);
+	private Vector3 optionTwoPos = new Vector2(785f, 460f);
+
     public GameObject mainMenu;
 
 	// Use this for initialization
@@ -81,8 +85,10 @@ public class Options : MonoBehaviour {
         switch (index) {
             case 0:
                 //selector.transform.position = optionOnePos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
+				selector.transform.position = optionOnePos;
                 break;
             case 1:
+				selector.transform.position = optionTwoPos;
                 //selector.transform.position = optionTwoPos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
                 break;
         }
@@ -90,6 +96,8 @@ public class Options : MonoBehaviour {
         AdjustVolume();
 
         if (Input.GetButton(cancelButton)) {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_cancel", _mainCamera.transform.position);
+
             mainMenu.GetComponent<MainMenu>().optionConfirmed = false;
 
             gameObject.SetActive(false);
