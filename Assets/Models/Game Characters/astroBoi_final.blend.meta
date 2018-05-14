@@ -390,7 +390,7 @@ ModelImporter:
       name: windUpIdle
       takeName: ArmatureAction_003
       firstFrame: 240
-      lastFrame: 260
+      lastFrame: 259
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
