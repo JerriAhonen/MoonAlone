@@ -16,9 +16,9 @@ public class MainMenu : MonoBehaviour {
     public int optionIndex;
 
     public GameObject selector;
-    private Vector3 optionOnePos = new Vector3(2f, 2f, -4f);
-    private Vector3 optionTwoPos = new Vector3(2f, 1f, -4f);
-    private Vector3 optionThreePos = new Vector3(2f, 0f, -4f);
+	private Vector3 optionOnePos = new Vector3(2.11f, 2.21f, -4.78f);
+	private Vector3 optionTwoPos = new Vector3(2.43f, 1.16f, -4.93f);
+	private Vector3 optionThreePos = new Vector3(2.11f, 0.16f, -4.78f);
 
     private Camera _mainCamera;
 
