@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour {
 
@@ -22,12 +23,17 @@ public class CharacterSelection : MonoBehaviour {
     public string csNumber;
 
     private Camera _mainCamera;
+    public Animator animControl;
+
+    public Button arrowUp;
+    public Button arrowDown;
     
     private void Start()
     {
         index = 0;
 
         csManager = GetComponentInParent<CSManager>();
+        animControl = gameObject.GetComponentInChildren<Animator>();
 
         characterList = new GameObject[transform.childCount];
 
@@ -47,6 +53,11 @@ public class CharacterSelection : MonoBehaviour {
 
     private void Update()
     {
+
+        //animControl = gameObject.GetComponentInChildren<Animator>();
+        animControl = gameObject.transform.GetChild(index).GetComponent<Animator>();
+            
+
         //Once confirmed, cannot change anymore.
         if (!characterConfirmed)
         {
@@ -93,6 +104,7 @@ public class CharacterSelection : MonoBehaviour {
 
     public void ToggleUp()
     {
+        arrowUp.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
@@ -110,6 +122,7 @@ public class CharacterSelection : MonoBehaviour {
     
     public void ToggleDown()
     {
+        arrowDown.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
@@ -133,11 +146,13 @@ public class CharacterSelection : MonoBehaviour {
 			selectedCharacter = index;
             csManager.chosenCharacters[index] = true;
 
+            animControl.SetInteger("AnimParam", 5);
+
             //Save the selected character in PlayerPrefs.
             PlayerPrefs.SetInt(csNumber, index);
 
             index = characterList.Length - 1;
-			characterList[index].SetActive(true);
+			//characterList[index].SetActive(true);
 
 			characterConfirmed = true;
 
