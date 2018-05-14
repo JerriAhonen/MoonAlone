@@ -27245,6 +27245,18 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 4.06
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 227698309a106c342893f8fb28ee5c7d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 227698309a106c342893f8fb28ee5c7d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 227698309a106c342893f8fb28ee5c7d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 227698309a106c342893f8fb28ee5c7d, type: 3}
   m_IsPrefabParent: 0
@@ -29805,8 +29817,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4, y: 2.74, z: 7.3}
-  m_Center: {x: -0.21, y: 0.049464893, z: -0.24965245}
+  m_Size: {x: 1.49, y: 2.25, z: 7.3}
+  m_Center: {x: 0.47, y: -0.07, z: -0.24965245}
 --- !u!1001 &2054317010
 Prefab:
   m_ObjectHideFlags: 0
@@ -29948,7 +29960,7 @@ GameObject:
   - component: {fileID: 2112940900}
   - component: {fileID: 2112940899}
   - component: {fileID: 2112940901}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MidBit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30021,8 +30033,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4, y: 2.74, z: 7.3}
-  m_Center: {x: -0.07, y: 0.049464893, z: -0.24965245}
+  m_Size: {x: 0.71, y: 1.75, z: 7.3}
+  m_Center: {x: 0.18, y: 0.049464893, z: -0.24965245}
 --- !u!1001 &2115352016
 Prefab:
   m_ObjectHideFlags: 0
