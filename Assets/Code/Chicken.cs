@@ -37,11 +37,14 @@ public class Chicken : MonoBehaviour
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
     private ParticleSystem _cloudParticles;
+    private ParticleSystem _loveParticles;
+    private ParticleSystem _fearParticles;
 
     private float offset = 0.5f;
     private Vector3 _followOffset = new Vector3(1,0,0);
 
-    public int mood;    //0 = Normal, 1 = Loving, 2 = Fearfull
+    public int mood;    //0 = Fearful, 1 = Loving, 2 = Chill
+    public bool spottedPlayer = false;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -64,19 +67,8 @@ public class Chicken : MonoBehaviour
         _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
         _cloudParticles = transform.Find("DropDownBurst").GetComponent<ParticleSystem>();
-
-        if (Random.value > 0.8)         //20% chance
-        {
-            mood = 2;
-        }
-        else if (Random.value > 0.6)    //20% chnce
-        {
-            mood = 1;
-        }
-        else                            //60% chance
-        {
-            mood = 0;
-        }
+        _loveParticles = transform.Find("Hearts").GetComponent<ParticleSystem>();
+        _fearParticles = transform.Find("AlertParticle").GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -87,25 +79,35 @@ public class Chicken : MonoBehaviour
         {
             switch (mood)
             {
-                case 0:     //0 = Normal
-                    if (time > movementTimer)
-                    {
-                        CalculateRandomLocation(wanderDistance);
-                        time = 0f;
-                        movementTimer = Random.Range(5, 10);
+                case 0:     //0 = Fearful
+                            // get newPos from playerPos - position.
+                    if (spottedPlayer) {
+
+                        
+                    } else {
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
+                        }
                     }
 
                     Wander(newPos);
                     Rotate();
+
                     animControl.SetInteger("AnimParam", 0);
                     break;
                 case 1:     //1 = Loving
-                            // get newPos from playerPos - position.
-                    if (time > movementTimer)
-                    {
-                        CalculateRandomLocation(wanderDistance);
-                        time = 0f;
-                        movementTimer = Random.Range(5, 10);
+                            //Get new pos from position - player pos.
+                    if (spottedPlayer) {
+
+
+                    } else {
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
+                        }
                     }
 
                     Wander(newPos);
@@ -113,13 +115,16 @@ public class Chicken : MonoBehaviour
 
                     animControl.SetInteger("AnimParam", 0);
                     break;
-                case 2:     //2 = Fearfull
-                            //Get new pos from position - player pos.
-                    if (time > movementTimer)
-                    {
-                        CalculateRandomLocation(wanderDistance);
-                        time = 0f;
-                        movementTimer = Random.Range(5, 10);
+                case 2:     //2 = Chill
+                    if (spottedPlayer) {
+
+
+                    } else {
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
+                        }
                     }
 
                     Wander(newPos);

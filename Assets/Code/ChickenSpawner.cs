@@ -5,6 +5,9 @@ using UnityEngine;
 public class ChickenSpawner : MonoBehaviour {
 
     public GameObject[] spawnerRoute = new GameObject[4];
+    public GameObject prefabLoving;
+    public GameObject prefabFearful;
+    public GameObject prefabChill;
     public GameObject prefabToSpawn;
     public float spawnTimer;
     public float speed;
@@ -57,7 +60,25 @@ public class ChickenSpawner : MonoBehaviour {
 
     void SpawnChicken()
     {
+        int mood;
+
+        if (Random.value > 0.8)         //20% chance chill
+        {
+            mood = 2;
+            prefabToSpawn = prefabChill;
+        } else if(Random.value > 0.6)    //20% chance loving
+          {
+            mood = 1;
+            prefabToSpawn = prefabLoving;
+        } else                            //60% chance fearful
+          {
+            mood = 0;
+            prefabToSpawn = prefabFearful;
+        }
+        
         GameObject cloneChicken = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+
+        cloneChicken.GetComponent<Chicken>().mood = mood;
 
         cloneChicken.GetComponent<Chicken>().isFalling = true;
 
