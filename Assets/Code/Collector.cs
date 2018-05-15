@@ -55,7 +55,7 @@ public class Collector : MonoBehaviour {
             if (collisionObject.GetComponent<Chicken>() != null) 
 			{
 				Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
-				if (!collidingChicken.isThrown)
+				if (!collidingChicken.isThrown || (collidingChicken._originatingPlayer == null))
 				{
 					Destroy(collision.gameObject);
 					return;

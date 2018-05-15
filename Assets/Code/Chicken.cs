@@ -123,7 +123,7 @@ public class Chicken : MonoBehaviour
 
                             reactionTime = 0f;
                         } 
-                        //else if(Vector3.Distance(transform.position, newPos) < 0.5f) {
+                        // else if(Vector3.Distance(transform.position, newPos) < 0.5f) {
                         //    newPos = newPos * 1.5f;
                         //}
 

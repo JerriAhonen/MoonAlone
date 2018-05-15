@@ -200,7 +200,21 @@ public class Tower : MonoBehaviour {
         } else {
             clonePosition = removedChicken.transform.position;
         }
-        
+
+        mood = removedChicken.GetComponent<Chicken>().mood;
+
+        switch(mood) {
+            case 0:
+                chicken = chickenFearful;
+                break;
+            case 1:
+                chicken = chickenLoving;
+                break;
+            case 2:
+                chicken = chickenChill;
+                break;
+        }
+
         GameObject cloneChicken = Instantiate(chicken, clonePosition, Quaternion.identity);
 
         // Tell the chicken it is not in a tower.

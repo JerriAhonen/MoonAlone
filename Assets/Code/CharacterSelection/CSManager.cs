@@ -18,12 +18,17 @@ public class CSManager : MonoBehaviour {
 
     private int _startTime;
     public string cancelButton = "Cancel";
-    
+
+    FMOD.Studio.EventInstance menuMusic;
+
     //public Canvas canvasGameStart;
     public TextMeshProUGUI gameStartTimerText;
 
     // Use this for initialization
     void Start () {
+        if(GameObject.Find("MainMenu") != null)
+            menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;
+
         _mainCamera = Camera.main;
     }
 
@@ -34,6 +39,8 @@ public class CSManager : MonoBehaviour {
         {
             SceneManager.LoadScene("MainMenu");
             Destroy(GameObject.Find("MainMenu"));
+
+            menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
         if (cs[0].GetCharacterConfirmed()   //Player one always needs to choose a character.
