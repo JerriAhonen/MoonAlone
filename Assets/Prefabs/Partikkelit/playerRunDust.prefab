@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4651029130739646}
   - component: {fileID: 198955121359487334}
   - component: {fileID: 199961223129907110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: playerRunDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,9 +34,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535473417806890}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.49, y: 0.3, z: -2.96}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,7 +101,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 148393581
+  randomSeed: -932068759
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -191,7 +191,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.5514706, g: 0.5221073, b: 0.49064663, a: 1}
-      maxColor: {r: 0.7038577, g: 0.39170632, b: 0.77205884, a: 0.522}
+      maxColor: {r: 0.8221342, g: 0.4455558, b: 0.9044118, a: 0.353}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
