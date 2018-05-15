@@ -747,7 +747,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856093599825542}
   m_LocalRotation: {x: 0, y: -0.61414754, z: 0, w: 0.7891913}
-  m_LocalPosition: {x: -12.43, y: 25.51, z: -0.68}
+  m_LocalPosition: {x: 2.95, y: 28.04, z: -7.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4776898850314880}
@@ -794,7 +794,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584975344206628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.717764, y: 2.76, z: -9.948571}
+  m_LocalPosition: {x: 0, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4124733739052976}
@@ -997,7 +997,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065234152998812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.17, y: 3.06, z: -10.45}
+  m_LocalPosition: {x: 0, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4124733739052976}
@@ -1362,6 +1362,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   mood: 2
   spottedPlayer: 0
+  movementSpeed: 0
 --- !u!135 &135331234438409476
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4913,7 +4914,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -227066777
+  randomSeed: 633500000
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14912,7 +14913,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 733111576
+  randomSeed: 912937754
   InitialModule:
     serializedVersion: 3
     enabled: 1
