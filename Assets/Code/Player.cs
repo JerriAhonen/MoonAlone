@@ -359,7 +359,7 @@ public class Player : MonoBehaviour {
                 Chicken detectedChicken = collider.gameObject.GetComponent<Chicken>();
 
                 if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2) {
-                    detectedChicken.SpottedPlayer(transform.position);
+                    detectedChicken.SpottedPlayer(gameObject);
                 }
             }
         }

@@ -49,6 +49,8 @@ public class Chicken : MonoBehaviour
     public bool spottedPlayer = false;
     public float movementSpeed;
 
+    public GameObject player;
+
     public Chicken(int numberInTower, float yPos)
     {
         this.numberInTower = numberInTower;
@@ -81,18 +83,20 @@ public class Chicken : MonoBehaviour
         moveTime += Time.deltaTime;
         reactionTime += Time.deltaTime;
 
+        if (spottedPlayer && mood == 1) {
+            newPos = player.transform.position;
+        }
+
         if (!isInTower && !isThrown && !isFalling)
         {
             switch (mood)
             {
                 case 0:     //0 = Fearful
                     if (spottedPlayer) {
-                        movementSpeed = 5f;
+                        movementSpeed = 4f;
 
                         if (reactionTime > reactionTimer) {
                             spottedPlayer = false;
-
-                            reactionTime = 0f;
                         }
 
                         animControl.SetInteger("AnimParam", 3);
@@ -120,12 +124,7 @@ public class Chicken : MonoBehaviour
                             spottedPlayer = false;
 
                             _loveParticles.Stop();
-
-                            reactionTime = 0f;
-                        } 
-                        // else if(Vector3.Distance(transform.position, newPos) < 0.5f) {
-                        //    newPos = newPos * 1.5f;
-                        //}
+                        }
 
                         animControl.SetInteger("AnimParam", 3);
                     } else {
@@ -230,19 +229,18 @@ public class Chicken : MonoBehaviour
         }
     }
 
-    public void SpottedPlayer(Vector3 playerPosition) {
+    public void SpottedPlayer(GameObject player) {
+        this.player = player;
+        spottedPlayer = true;
+        reactionTime = 0f;
+
         switch (mood) {
             case 0:
                 _fearParticles.Play();
-                newPos = transform.position - playerPosition;
-                spottedPlayer = true;
-                reactionTime = 0f;
+                newPos = transform.position - player.transform.position;
                 break;
             case 1:
                 _loveParticles.Play();
-                newPos = playerPosition;
-                spottedPlayer = true;
-                reactionTime = 0f;
                 break;
         }
     }

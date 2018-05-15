@@ -18,6 +18,7 @@ public class CSManager : MonoBehaviour {
 
     private int _startTime;
     public string cancelButton = "Cancel";
+    public bool isStarted = false;
 
     FMOD.Studio.EventInstance menuMusic;
 
@@ -51,7 +52,12 @@ public class CSManager : MonoBehaviour {
         &&
         (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
         {
-            StartCoroutine(StartTimer(2));
+            if (!isStarted) {
+                StartCoroutine(StartTimer(2));          // QUICK FIX FOR 61 x START
+
+                isStarted = true;
+            }
+            
         }
         else
         {
@@ -65,8 +71,6 @@ public class CSManager : MonoBehaviour {
 
         while (_startTime > 0)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/other_countdown", _mainCamera.transform.position);
-
             //gameStartTimerText.text = "Game starting in " + _startTime.ToString("0");
 
             yield return new WaitForSeconds(1f);
@@ -77,16 +81,16 @@ public class CSManager : MonoBehaviour {
         }
         if (_startTime <= 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_start_game", _mainCamera.transform.position);
+
             Debug.Log("Game start timer Finished!");
 
             //gameStartTimerText.text = "Game starting in " + _startTime.ToString();
 
             PlayerPrefs.SetInt("NumberOfPlayers", readyCount);
-
+            
             SceneManager.LoadScene("Round_Level1");
-
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_start_game", _mainCamera.transform.position);
-
+            
             //yield return new WaitForSeconds(1f);
         }
     }
