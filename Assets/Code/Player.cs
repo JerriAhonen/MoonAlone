@@ -344,12 +344,23 @@ public class Player : MonoBehaviour {
             
         }
     }
-
-    // If another player triggers the aim collider, remember the enemy for autoaim.
+    
     private void OnTriggerStay(Collider collider) {
-        if (collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+        // If another player triggers the aim collider, remember the enemy for autoaim.
+        if(collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
             if (!(collider is BoxCollider)) {
                 _enemy = collider.gameObject;
+            }
+        }
+
+        // If a chicken triggers the collider, player has been spotted.
+        if (collider.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
+            if (collider.gameObject.GetComponent<Chicken>() != null) {
+                Chicken chicken = collider.gameObject.GetComponent<Chicken>();
+
+                if (!chicken.isThrown && !chicken.isFalling) {
+                    chicken.SpottedPlayer(transform.position);
+                }
             }
         }
     }
