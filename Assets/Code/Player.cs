@@ -96,7 +96,7 @@ public class Player : MonoBehaviour {
             if (chicken != null) {
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
 
-                tower.AddChicken(gameObject);
+                tower.AddChicken(gameObject, chicken);
                 Destroy(chicken);
             }
 
@@ -356,10 +356,10 @@ public class Player : MonoBehaviour {
         // If a chicken triggers the collider, player has been spotted.
         if (collider.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
             if (collider.gameObject.GetComponent<Chicken>() != null) {
-                Chicken chicken = collider.gameObject.GetComponent<Chicken>();
+                Chicken detectedChicken = collider.gameObject.GetComponent<Chicken>();
 
-                if (!chicken.isThrown && !chicken.isFalling) {
-                    chicken.SpottedPlayer(transform.position);
+                if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2) {
+                    detectedChicken.SpottedPlayer(transform.position);
                 }
             }
         }

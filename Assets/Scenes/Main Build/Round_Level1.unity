@@ -5387,6 +5387,7 @@ MonoBehaviour:
   wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
+  mood: 0
 --- !u!114 &422798505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9236,6 +9237,7 @@ MonoBehaviour:
   wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
+  mood: 0
 --- !u!114 &804860062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11924,6 +11926,7 @@ MonoBehaviour:
   wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
+  mood: 0
 --- !u!114 &1002855987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16524,6 +16527,7 @@ MonoBehaviour:
   wobbleDistanceSetter: 0.001
   wobbleDistance: 0
   oldRot: 0
+  mood: 0
 --- !u!114 &1092533608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29359,9 +29363,9 @@ MonoBehaviour:
   - {fileID: 810174769}
   prefabLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
     type: 2}
-  prefabFearful: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+  prefabFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
     type: 2}
-  prefabChill: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+  prefabChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
     type: 2}
   prefabToSpawn: {fileID: 0}
   spawnTimer: 3
