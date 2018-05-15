@@ -85,15 +85,15 @@ public class Chicken : MonoBehaviour
                     if (spottedPlayer) {
                         movementSpeed = 3f;
                     } else {
-                        if (time > movementTimer) {
-                            CalculateRandomLocation(wanderDistance);
-                            time = 0f;
-                            movementTimer = Random.Range(5, 10);
+                        //if (time > movementTimer) {
+                        //    CalculateRandomLocation(wanderDistance);
+                        //    time = 0f;
+                        //    movementTimer = Random.Range(5, 10);
 
-                            animControl.SetInteger("AnimParam", 0);
+                        //    animControl.SetInteger("AnimParam", 0);
 
-                            movementSpeed = 0.5f;
-                        }
+                        //    movementSpeed = 0.5f;
+                        //}
                     }
 
                     Wander(newPos, movementSpeed);
@@ -213,14 +213,14 @@ public class Chicken : MonoBehaviour
 
     public void SpottedPlayer(Vector3 playerPosition) {
         switch (mood) {
+            case 0:
+                _fearParticles.Play();
+                newPos = -playerPosition;
+                spottedPlayer = true;
+                break;
             case 1:
                 _loveParticles.Play();
                 newPos = playerPosition;
-                spottedPlayer = true;
-                break;
-            case 2:
-                _fearParticles.Play();
-                newPos = -playerPosition;
                 spottedPlayer = true;
                 break;
         }
