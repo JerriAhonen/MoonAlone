@@ -99,4 +99,10 @@ public class RoundScore : MonoBehaviour {
                 break;
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        
+        Debug.Log("Reset PlayerPrefs LastRoundScores");
+    }
 }
