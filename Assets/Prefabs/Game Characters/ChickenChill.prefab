@@ -707,7 +707,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1032634404758268}
   m_LocalRotation: {x: 0, y: -0.61414754, z: 0, w: 0.7891913}
-  m_LocalPosition: {x: 8.9438305, y: 24.17, z: -2.7767792}
+  m_LocalPosition: {x: -12.43, y: 25.51, z: -0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253096305591442}
@@ -1355,12 +1355,12 @@ MonoBehaviour:
   _originatingPlayer: {fileID: 0}
   isThrown: 0
   isFalling: 0
-  _groundLayer: 
-  _pickUpLayer: 
-  _terrainLayer: 
+  _groundLayer: Ground
+  _pickUpLayer: PickUp
+  _terrainLayer: Terrain
   _isGrounded: 0
   mainCamera: {fileID: 0}
-  mood: 0
+  mood: 2
   spottedPlayer: 0
   movementSpeed: 0
 --- !u!135 &135482720644536218
@@ -8252,7 +8252,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -384639468
+  randomSeed: -1948224441
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14898,7 +14898,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -644643656
+  randomSeed: -1427913466
   InitialModule:
     serializedVersion: 3
     enabled: 1

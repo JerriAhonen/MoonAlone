@@ -6,6 +6,9 @@ public class Tower : MonoBehaviour {
     
     private Player player;
     public GameObject chicken;
+    public GameObject chickenLoving;
+    public GameObject chickenFearful;
+    public GameObject chickenChill;
     public int chickenCount;
     float chickenOffset;
 

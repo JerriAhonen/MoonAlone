@@ -5364,6 +5364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
+  chickenLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
+    type: 2}
+  chickenFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+    type: 2}
+  chickenChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+    type: 2}
   chickenCount: 0
   tower: []
   _towerLayer: Tower
@@ -7675,23 +7681,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -7971,23 +7977,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     - target: {fileID: 4124733739052976, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -9147,6 +9153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
+  chickenLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
+    type: 2}
+  chickenFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+    type: 2}
+  chickenChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+    type: 2}
   chickenCount: 0
   tower: []
   _towerLayer: Tower
@@ -10582,23 +10594,19 @@ Prefab:
         type: 2}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
-      objectReference: {fileID: 0}
-    - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
-      propertyPath: m_Name
-      value: Chicken
+      value: -0.049704652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -11685,23 +11693,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -11833,6 +11841,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
+  chickenLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
+    type: 2}
+  chickenFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+    type: 2}
+  chickenChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+    type: 2}
   chickenCount: 0
   tower: []
   _towerLayer: Tower
@@ -11928,23 +11942,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -15958,23 +15972,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -16427,6 +16441,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chicken: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
+  chickenLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
+    type: 2}
+  chickenFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+    type: 2}
+  chickenChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+    type: 2}
   chickenCount: 0
   tower: []
   _towerLayer: Tower
@@ -17437,23 +17457,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -26231,19 +26251,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -28843,19 +28863,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.64032304
+      value: 0.640323
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.013319072
+      value: -0.01331907
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663802
+      value: 0.7663801
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.04970466
+      value: -0.049704652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -30335,23 +30355,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
@@ -30831,23 +30851,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_Name
-      value: Chicken
+      value: ChickenFearful
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.640323
+      value: 0.64032304
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.01331907
+      value: -0.013319072
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7663801
+      value: 0.7663802
       objectReference: {fileID: 0}
     - target: {fileID: 4379786467898492, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.049704652
+      value: -0.04970466
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a42a85b345dd6141a848c3b36506c22, type: 2}
