@@ -14,8 +14,10 @@ public class Chicken : MonoBehaviour
 
 	public Animator animControl;
     
-    private float time;
-    private float movementTimer = 5;
+    private float moveTime;
+    private float reactionTime;
+    private float movementTimer = 5f;
+    private float reactionTimer;
 
     private Vector3 newPos = Vector3.zero;
 
@@ -70,11 +72,14 @@ public class Chicken : MonoBehaviour
         _cloudParticles = transform.Find("DropDownBurst").GetComponent<ParticleSystem>();
         _loveParticles = transform.Find("Hearts").GetComponent<ParticleSystem>();
         _fearParticles = transform.Find("AlertParticle").GetComponent<ParticleSystem>();
+
+        reactionTimer = 2f;
     }
 
     private void Update()
     {
-        time += Time.deltaTime;
+        moveTime += Time.deltaTime;
+        reactionTime += Time.deltaTime;
 
         if (!isInTower && !isThrown && !isFalling)
         {
@@ -84,11 +89,17 @@ public class Chicken : MonoBehaviour
                     if (spottedPlayer) {
                         movementSpeed = 3f;
 
+                        if (reactionTime > reactionTimer) {
+                            spottedPlayer = false;
+
+                            reactionTime = 0f;
+                        }
+
                         animControl.SetInteger("AnimParam", 3);
                     } else {
-                        if (time > movementTimer) {
+                        if (moveTime > movementTimer) {
                             CalculateRandomLocation(wanderDistance);
-                            time = 0f;
+                            moveTime = 0f;
                             movementTimer = Random.Range(5, 10);
 
                             animControl.SetInteger("AnimParam", 0);
@@ -105,11 +116,22 @@ public class Chicken : MonoBehaviour
                     if (spottedPlayer) {
                         movementSpeed = 3f;
 
+                        if (reactionTime > reactionTimer) {
+                            spottedPlayer = false;
+
+                            _loveParticles.Stop();
+
+                            reactionTime = 0f;
+                        } 
+                        //else if(Vector3.Distance(transform.position, newPos) < 0.5f) {
+                        //    newPos = newPos * 1.5f;
+                        //}
+
                         animControl.SetInteger("AnimParam", 3);
                     } else {
-                        if (time > movementTimer) {
+                        if (moveTime > movementTimer) {
                             CalculateRandomLocation(wanderDistance);
-                            time = 0f;
+                            moveTime = 0f;
                             movementTimer = Random.Range(5, 10);
 
                             animControl.SetInteger("AnimParam", 0);
@@ -123,9 +145,9 @@ public class Chicken : MonoBehaviour
                     
                     break;
                 case 2:     //2 = Chill
-                    if (time > movementTimer) {
+                    if (moveTime > movementTimer) {
                         CalculateRandomLocation(wanderDistance);
-                        time = 0f;
+                        moveTime = 0f;
                         movementTimer = Random.Range(5, 10);
 
                         movementSpeed = 0.5f;
@@ -164,6 +186,8 @@ public class Chicken : MonoBehaviour
             // Unity gravity is turned back on for easy walk about and bouncing.
             GetComponent<Rigidbody>().useGravity = true;
 
+            GetComponent<Rigidbody>().drag = 3f;
+
             _featherParticles.Stop();
             _trailParticles.Stop();
 
@@ -177,12 +201,6 @@ public class Chicken : MonoBehaviour
         if (isThrown || isFalling) {
             Fly();
         }
-    }
-
-    public void Move(Vector3 dir)
-    {
-        transform.Translate(dir);
-
     }
 
     public void Wander(Vector3 movement, float speed)
@@ -218,11 +236,13 @@ public class Chicken : MonoBehaviour
                 _fearParticles.Play();
                 newPos = -playerPosition;
                 spottedPlayer = true;
+                reactionTime = 0f;
                 break;
             case 1:
                 _loveParticles.Play();
                 newPos = playerPosition;
                 spottedPlayer = true;
+                reactionTime = 0f;
                 break;
         }
     }
