@@ -105,15 +105,23 @@ public class CharacterSelection : MonoBehaviour {
 
     public void ToggleUp()
     {
-        arrowUp.onClick.Invoke();
+        //arrowUp.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
         //gameManager.chosenCharacters[index] = false;
 
+
         index--;
-        if (index < 0)
+        if (index < 1)
             index = characterList.Length - 2;
+
+        while (csManager.chosenCharacters[index])
+        {
+            index--;
+            if (index < 1)
+                index = characterList.Length - 2;
+        }
 
         //Set the index to be taken, so other players can't choose it.
         //gameManager.chosenCharacters[index] = true;
@@ -123,7 +131,7 @@ public class CharacterSelection : MonoBehaviour {
     
     public void ToggleDown()
     {
-        arrowDown.onClick.Invoke();
+        //arrowDown.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
@@ -131,7 +139,14 @@ public class CharacterSelection : MonoBehaviour {
 
         index++;
         if (index == characterList.Length - 1)
-            index = 0;
+            index = 1;
+
+        while (csManager.chosenCharacters[index])
+        {
+            index++;
+            if (index == characterList.Length - 1)
+                index = 1;
+        }
 
         //Set the index to be taken, so other players can't choose it.
         //gameManager.chosenCharacters[index] = true;
@@ -162,6 +177,16 @@ public class CharacterSelection : MonoBehaviour {
             csManager.readyCount++;
 			csManager.noPlayerCount--;
 		}
+    }
+
+    public int GetIndex()
+    {
+        return index;
+    }
+
+    public bool GetCharacterConfirmed()
+    {
+        return characterConfirmed;
     }
 
     public GameObject getSelectedCharacter()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CSManager : MonoBehaviour {
 
@@ -15,6 +16,12 @@ public class CSManager : MonoBehaviour {
 
     private Camera _mainCamera;
 
+    private int _startTime;
+    public string cancelButton = "Cancel";
+    
+    //public Canvas canvasGameStart;
+    public TextMeshProUGUI gameStartTimerText;
+
     // Use this for initialization
     void Start () {
         _mainCamera = Camera.main;
@@ -22,13 +29,58 @@ public class CSManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
+        
+        if (Input.GetButtonDown(cancelButton))
         {
-            PlayerPrefs.SetInt("NumberOfPlayers", NumOfPlayersNeededToStartGame_DEBUG);
+            SceneManager.LoadScene("MainMenu");
+            Destroy(GameObject.Find("MainMenu"));
+        }
+
+        if (cs[0].GetCharacterConfirmed()   //Player one always needs to choose a character.
+        &&
+        (cs[1].GetIndex() == 0 || cs[1].GetCharacterConfirmed())
+        &&
+        (cs[2].GetIndex() == 0 || cs[2].GetCharacterConfirmed())
+        &&
+        (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
+        {
+            StartCoroutine(StartTimer(2));
+        }
+        else
+        {
+            gameStartTimerText.text = "";
+        }
+    }
+
+    private IEnumerator StartTimer(int time)
+    {
+        _startTime = time;
+
+        while (_startTime > 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/other_countdown", _mainCamera.transform.position);
+
+            //gameStartTimerText.text = "Game starting in " + _startTime.ToString("0");
+
+            yield return new WaitForSeconds(1f);
+            
+            _startTime--;
+            
+            Debug.Log("Time until Game start: " + _startTime);
+        }
+        if (_startTime <= 0)
+        {
+            Debug.Log("Game start timer Finished!");
+
+            //gameStartTimerText.text = "Game starting in " + _startTime.ToString();
+
+            PlayerPrefs.SetInt("NumberOfPlayers", readyCount);
 
             SceneManager.LoadScene("Round_Level1");
 
             FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_start_game", _mainCamera.transform.position);
+
+            //yield return new WaitForSeconds(1f);
         }
     }
 }

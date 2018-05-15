@@ -12,24 +12,27 @@ public class RoundScore : MonoBehaviour {
     private int playerModel;                //Defines the colour of the text to match the player model
 
 
-    public float animationTime = 5f;
+    public float animationTime = 50f;
     private float desiredNumber;
     private float initialNumber;
     private float currentNumber;
 
+    private bool numberSet = false;
+
     public void SetNumber(float value)
     {
         //FIDDLE WITH THESE AND THE PLAYER PREFS
-
+        //initialNumber = PlayerPrefs.GetFloat("LastRoundScoreP"+player);
         initialNumber = currentNumber;
         desiredNumber = value;
     }
 
-    public void AddToNumber(float value)
+    //NOT USED ATM
+    public void AddToNumber(float value, string player)
     {
         //FIDDLE WITH THESE AND THE PLAYER PREFS
 
-        initialNumber = currentNumber;
+        initialNumber = PlayerPrefs.GetFloat("LastRoundScoreP"+player);
         desiredNumber += value;
     }
 
@@ -55,6 +58,7 @@ public class RoundScore : MonoBehaviour {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         playerModel = gameManager.players[playerNumber - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
+        numberSet = false;
 
         switch (playerModel)
         {
@@ -78,24 +82,49 @@ public class RoundScore : MonoBehaviour {
         switch (playerNumber)
         {
             case 1:
-
-                    // SetNumber(gameManager.playerScores[0]);
-                    // PlayerPrefs.SetFloat("LastRoundScoreP1", desiredNumber);
-                    AddToNumber(gameManager.playerScores[0] - PlayerPrefs.GetFloat("LastRoundScoreP1"));
+                
+                if (!numberSet)
+                {
+                    SetNumber(gameManager.playerScores[0]);
                     PlayerPrefs.SetFloat("LastRoundScoreP1", desiredNumber);
-                    //Lisää playerPrefseihin lastroundscore jotenkin
+                    numberSet = true;
+                }
+                ScrollNumbers();
 
-
-                meshPro.text = "P1: " + currentNumber.ToString() + "p";
+                meshPro.text = "P1: " + currentNumber.ToString("0") + "p";
                 break;
             case 2:
-                meshPro.text = "P2: " + gameManager.playerScores[1].ToString() + "p";
+
+                if (!numberSet)
+                {
+                    SetNumber(gameManager.playerScores[1]);
+                    PlayerPrefs.SetFloat("LastRoundScoreP2", desiredNumber);
+                    numberSet = true;
+                }
+                ScrollNumbers();
+
+                meshPro.text = "P2: " + currentNumber.ToString("0") + "p";
                 break;
             case 3:
-                meshPro.text = "P3: " + gameManager.playerScores[2].ToString() + "p";
+                if (!numberSet)
+                {
+                    SetNumber(gameManager.playerScores[2]);
+                    PlayerPrefs.SetFloat("LastRoundScoreP3", desiredNumber);
+                    numberSet = true;
+                }
+                ScrollNumbers();
+                meshPro.text = "P3: " + currentNumber.ToString("0") + "p";
                 break;
             case 4:
-                meshPro.text = "P4: " + gameManager.playerScores[3].ToString() + "p";
+                if (!numberSet)
+                {
+                    SetNumber(gameManager.playerScores[3]);
+                    PlayerPrefs.SetFloat("LastRoundScoreP4", desiredNumber);
+                    numberSet = true;
+                }
+                ScrollNumbers();
+                meshPro.text = "P4: " + currentNumber.ToString("0") + "p";
+                //meshPro.text = "P4: " + gameManager.playerScores[3].ToString() + "p";
                 break;
         }
     }
