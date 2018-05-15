@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour {
                 //timerText.text = "Time's up!";
 
                 Debug.Log("Started CooldownTimer Coroutine");
-                StartCoroutine(CooldownTimer(10));
+                StartCoroutine(CooldownTimer(5));
 
                 _displayRoundEndCanvas = true;
             }

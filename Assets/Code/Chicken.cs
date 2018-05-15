@@ -87,7 +87,7 @@ public class Chicken : MonoBehaviour
             {
                 case 0:     //0 = Fearful
                     if (spottedPlayer) {
-                        movementSpeed = 3f;
+                        movementSpeed = 5f;
 
                         if (reactionTime > reactionTimer) {
                             spottedPlayer = false;
@@ -234,7 +234,7 @@ public class Chicken : MonoBehaviour
         switch (mood) {
             case 0:
                 _fearParticles.Play();
-                newPos = -playerPosition;
+                newPos = transform.position - playerPosition;
                 spottedPlayer = true;
                 reactionTime = 0f;
                 break;
