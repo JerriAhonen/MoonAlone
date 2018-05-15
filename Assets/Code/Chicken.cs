@@ -81,19 +81,20 @@ public class Chicken : MonoBehaviour
             switch (mood)
             {
                 case 0:     //0 = Fearful
-                            // get newPos from playerPos - position.
                     if (spottedPlayer) {
                         movementSpeed = 3f;
+
+                        animControl.SetInteger("AnimParam", 3);
                     } else {
-                        //if (time > movementTimer) {
-                        //    CalculateRandomLocation(wanderDistance);
-                        //    time = 0f;
-                        //    movementTimer = Random.Range(5, 10);
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
 
-                        //    animControl.SetInteger("AnimParam", 0);
+                            animControl.SetInteger("AnimParam", 0);
 
-                        //    movementSpeed = 0.5f;
-                        //}
+                            movementSpeed = 0.5f;
+                        }
                     }
 
                     Wander(newPos, movementSpeed);
@@ -101,20 +102,20 @@ public class Chicken : MonoBehaviour
 
                     break;
                 case 1:     //1 = Loving
-                            //Get new pos from position - player pos.
                     if (spottedPlayer) {
                         movementSpeed = 3f;
 
+                        animControl.SetInteger("AnimParam", 3);
                     } else {
-                        //if (time > movementTimer) {
-                        //    CalculateRandomLocation(wanderDistance);
-                        //    time = 0f;
-                        //    movementTimer = Random.Range(5, 10);
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
 
-                        //    animControl.SetInteger("AnimParam", 0);
+                            animControl.SetInteger("AnimParam", 0);
 
-                        //    movementSpeed = 0.5f;
-                        //}
+                            movementSpeed = 0.5f;
+                        }
                     }
 
                     Wander(newPos, movementSpeed);
