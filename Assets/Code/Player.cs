@@ -64,6 +64,8 @@ public class Player : MonoBehaviour {
     float shakeAmount = 0.1f;
     Vector3 originPosition;
 
+    private FMOD.Studio.EventInstance run;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -76,6 +78,8 @@ public class Player : MonoBehaviour {
         chargeEffect = transform.Find("ChargeShot").gameObject;
         mainCamera = Camera.main;
         movementSpeed = setMovementSpeed;
+
+        run = FMODUnity.RuntimeManager.CreateInstance("event:/Player Sounds/player_run");
     }
 
     void Update()
@@ -94,7 +98,7 @@ public class Player : MonoBehaviour {
 
             // If a pickuppable chicken has collided with the player.
             if (chicken != null) {
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_pickup", mainCamera.transform.position);
 
                 tower.AddChicken(gameObject, chicken);
                 Destroy(chicken);
@@ -217,13 +221,16 @@ public class Player : MonoBehaviour {
             // Remove chicken from the tower to be thrown.
             tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
 
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw", mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw_cartoon", mainCamera.transform.position);
+
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", mainCamera.transform.position);
         }
     }
 
     IEnumerator GetHit() {
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/hit5", mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_hit", mainCamera.transform.position);
         //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
 
         ShakeNow();
@@ -262,6 +269,8 @@ public class Player : MonoBehaviour {
         _isThrowing = false;
         _readyToThrow = true;
         _throwTimer = 0f;
+
+        run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     void Move()
@@ -272,12 +281,20 @@ public class Player : MonoBehaviour {
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
             isMoving = false;
+
+            run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		}
 		else 
 		{
             isMoving = true;
-		}
-        
+
+            FMOD.Studio.PLAYBACK_STATE state;
+            run.getPlaybackState(out state);
+
+            if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                run.start();
+        }
+
         Jump(false);                                                             // New Jump() Method
 
         Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form

@@ -17,6 +17,7 @@ public class Collector : MonoBehaviour {
 
     private Animator anim;
     private CharacterController controller;
+    private Camera _mainCamera;
 
     // Use this for initialization
     void Start () {
@@ -24,6 +25,7 @@ public class Collector : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
 
+        _mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -61,9 +63,12 @@ public class Collector : MonoBehaviour {
 					return;
 				}
 					
-				originatingPlayer = collidingChicken._originatingPlayer;
-				recievedChicken = true;
-				Destroy(collision.gameObject);
+			originatingPlayer = collidingChicken._originatingPlayer;
+			recievedChicken = true;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
+
+            Destroy(collision.gameObject);
 			}
 			else
 			{
