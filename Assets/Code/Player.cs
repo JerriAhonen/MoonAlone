@@ -96,7 +96,7 @@ public class Player : MonoBehaviour {
             if (chicken != null) {
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenPickUpSurprise", mainCamera.transform.position);
 
-                tower.AddChicken(gameObject);
+                tower.AddChicken(gameObject, chicken);
                 Destroy(chicken);
             }
 
@@ -344,12 +344,23 @@ public class Player : MonoBehaviour {
             
         }
     }
-
-    // If another player triggers the aim collider, remember the enemy for autoaim.
+    
     private void OnTriggerStay(Collider collider) {
-        if (collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
+        // If another player triggers the aim collider, remember the enemy for autoaim.
+        if(collider.gameObject.layer == LayerMask.NameToLayer(_playerLayer)) {
             if (!(collider is BoxCollider)) {
                 _enemy = collider.gameObject;
+            }
+        }
+
+        // If a chicken triggers the collider, player has been spotted.
+        if (collider.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {
+            if (collider.gameObject.GetComponent<Chicken>() != null) {
+                Chicken detectedChicken = collider.gameObject.GetComponent<Chicken>();
+
+                if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2) {
+                    detectedChicken.SpottedPlayer(transform.position);
+                }
             }
         }
     }

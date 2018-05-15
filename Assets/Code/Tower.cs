@@ -6,6 +6,9 @@ public class Tower : MonoBehaviour {
     
     private Player player;
     public GameObject chicken;
+    public GameObject chickenLoving;
+    public GameObject chickenFearful;
+    public GameObject chickenChill;
     public int chickenCount;
     float chickenOffset;
 
@@ -28,6 +31,7 @@ public class Tower : MonoBehaviour {
     public float oldRot;
     private bool calculateNewTowerTiltPos;
 
+    public int mood;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -133,12 +137,26 @@ public class Tower : MonoBehaviour {
 
     
     // Adds a chicken to the tower.
-    public void AddChicken(GameObject originatingPlayer) {
+    public void AddChicken(GameObject originatingPlayer, GameObject chickenObj) {
         //Calculate the new chicken's position by the player's pos and the amount of chicken in the tower.
         Vector3 pos = transform.position + (((transform.up / 1.5f) * chickenCount) + new Vector3(0, 0.8f, 0));
 
         // Possibility to put all chickens face the same way
         // Quaternion forward = Quaternion.LookRotation(transform.forward);
+
+        mood = chickenObj.GetComponent<Chicken>().mood;
+
+        switch (mood) {
+            case 0:
+                chicken = chickenFearful;
+                break;
+            case 1:
+                chicken = chickenLoving;
+                break;
+            case 2:
+                chicken = chickenChill;
+                break;
+        }
 
         //Instantiate a clone of the chicken prefab, so we can Destroy() it later.
         GameObject cloneChicken = Instantiate(chicken, pos, Quaternion.identity) as GameObject;

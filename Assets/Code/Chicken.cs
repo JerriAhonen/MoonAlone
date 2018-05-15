@@ -37,11 +37,15 @@ public class Chicken : MonoBehaviour
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
     private ParticleSystem _cloudParticles;
+    private ParticleSystem _loveParticles;
+    private ParticleSystem _fearParticles;
 
     private float offset = 0.5f;
     private Vector3 _followOffset = new Vector3(1,0,0);
 
-    public int mood;    //0 = Normal, 1 = Loving, 2 = Fearfull
+    public int mood;    //0 = Fearful, 1 = Loving, 2 = Chill
+    public bool spottedPlayer = false;
+    public float movementSpeed;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -64,19 +68,8 @@ public class Chicken : MonoBehaviour
         _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
         _cloudParticles = transform.Find("DropDownBurst").GetComponent<ParticleSystem>();
-
-        if (Random.value > 0.8)         //20% chance
-        {
-            mood = 2;
-        }
-        else if (Random.value > 0.6)    //20% chnce
-        {
-            mood = 1;
-        }
-        else                            //60% chance
-        {
-            mood = 0;
-        }
+        _loveParticles = transform.Find("Hearts").GetComponent<ParticleSystem>();
+        _fearParticles = transform.Find("AlertParticle").GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -87,45 +80,62 @@ public class Chicken : MonoBehaviour
         {
             switch (mood)
             {
-                case 0:     //0 = Normal
-                    if (time > movementTimer)
-                    {
-                        CalculateRandomLocation(wanderDistance);
-                        time = 0f;
-                        movementTimer = Random.Range(5, 10);
+                case 0:     //0 = Fearful
+                    if (spottedPlayer) {
+                        movementSpeed = 3f;
+
+                        animControl.SetInteger("AnimParam", 3);
+                    } else {
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
+
+                            animControl.SetInteger("AnimParam", 0);
+
+                            movementSpeed = 0.5f;
+                        }
                     }
 
-                    Wander(newPos);
+                    Wander(newPos, movementSpeed);
                     Rotate();
-                    animControl.SetInteger("AnimParam", 0);
+
                     break;
                 case 1:     //1 = Loving
-                            // get newPos from playerPos - position.
-                    if (time > movementTimer)
-                    {
-                        CalculateRandomLocation(wanderDistance);
-                        time = 0f;
-                        movementTimer = Random.Range(5, 10);
+                    if (spottedPlayer) {
+                        movementSpeed = 3f;
+
+                        animControl.SetInteger("AnimParam", 3);
+                    } else {
+                        if (time > movementTimer) {
+                            CalculateRandomLocation(wanderDistance);
+                            time = 0f;
+                            movementTimer = Random.Range(5, 10);
+
+                            animControl.SetInteger("AnimParam", 0);
+
+                            movementSpeed = 0.5f;
+                        }
                     }
 
-                    Wander(newPos);
+                    Wander(newPos, movementSpeed);
                     Rotate();
-
-                    animControl.SetInteger("AnimParam", 0);
+                    
                     break;
-                case 2:     //2 = Fearfull
-                            //Get new pos from position - player pos.
-                    if (time > movementTimer)
-                    {
+                case 2:     //2 = Chill
+                    if (time > movementTimer) {
                         CalculateRandomLocation(wanderDistance);
                         time = 0f;
                         movementTimer = Random.Range(5, 10);
+
+                        movementSpeed = 0.5f;
                     }
 
-                    Wander(newPos);
+                    Wander(newPos, movementSpeed);
                     Rotate();
 
                     animControl.SetInteger("AnimParam", 0);
+
                     break;
             }
         }
@@ -175,9 +185,9 @@ public class Chicken : MonoBehaviour
 
     }
 
-    public void Wander(Vector3 movement)
+    public void Wander(Vector3 movement, float speed)
     {
-        transform.position = Vector3.MoveTowards(transform.position, movement, 0.5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movement, speed * Time.deltaTime);
     }
 
 
@@ -199,6 +209,21 @@ public class Chicken : MonoBehaviour
             && transform.position.z + z < 12f)
         {
             newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
+        }
+    }
+
+    public void SpottedPlayer(Vector3 playerPosition) {
+        switch (mood) {
+            case 0:
+                _fearParticles.Play();
+                newPos = -playerPosition;
+                spottedPlayer = true;
+                break;
+            case 1:
+                _loveParticles.Play();
+                newPos = playerPosition;
+                spottedPlayer = true;
+                break;
         }
     }
 
