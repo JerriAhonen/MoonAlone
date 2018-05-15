@@ -15,16 +15,22 @@ public class Collector : MonoBehaviour {
 	GameObject originatingPlayer;
 	private bool recievedChicken;
 
+    private Animator anim;
+    private CharacterController controller;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		newDestination = path[0].transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        controller = GetComponent<CharacterController>();
+        anim = gameObject.GetComponentInChildren<Animator>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		Move();
-		if(recievedChicken)
+        
+        if (recievedChicken)
 		{
 			TakeChicken();
 			recievedChicken = false;
@@ -70,17 +76,24 @@ public class Collector : MonoBehaviour {
 
 	private void Move()
 	{
+
 		bool doRotation = false;
+
+
+
 		if (Vector3.Distance(transform.position, newDestination) < 0.5f)
         {
+
             if (i == path.Length - 1)
             {
-				goClockWise = false;
+                
+                goClockWise = false;
 				doRotation = false;
             }
 			else if (i == 0)
 			{
-				goClockWise = true;
+                
+                goClockWise = true;
 				doRotation = false;
 			}
 			else 
@@ -89,11 +102,14 @@ public class Collector : MonoBehaviour {
 			}
             if (goClockWise)
             {
+                anim.SetInteger("AnimParam", 0);
+                
                 i++;
             } 
 			else if(!goClockWise)
 			{
-				i--;
+                anim.SetInteger("AnimParam", 1);
+                i--;
 			}
 
             newDestination = path[i].transform.position;
