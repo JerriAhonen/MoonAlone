@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour {
         {
             EnablePlayerScripts(false);
             gameStartTimerText.text = _startTime.ToString();
-            roundText.text = "Round " + curRoundNum;
+            roundText.text = "Round " + curRoundNum + "/5";
         }
         else
         {
