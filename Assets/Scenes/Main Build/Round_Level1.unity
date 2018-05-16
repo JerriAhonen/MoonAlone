@@ -363,7 +363,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15300405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 201.5, y: 473.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497691319}
@@ -6407,11 +6407,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -19750,7 +19750,7 @@ MonoBehaviour:
   canvasInput: {fileID: 1607972437}
   setTimer: 60
   timeLeft: 0
-  NumOfRounds: 5
+  NumOfRounds: 3
   curRoundNum: 0
   winningScore: 0
   roundStarted: 0
@@ -20536,11 +20536,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -29339,9 +29339,9 @@ MonoBehaviour:
   prefabChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
     type: 2}
   prefabToSpawn: {fileID: 0}
-  spawnTimer: 3
-  speed: 15
-  amountToSpawn: 56
+  spawnTimer: 1.5
+  speed: 30
+  amountToSpawn: 100
 --- !u!4 &1947688975
 Transform:
   m_ObjectHideFlags: 0
