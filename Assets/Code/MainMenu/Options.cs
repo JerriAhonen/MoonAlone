@@ -31,9 +31,12 @@ public class Options : MonoBehaviour {
     public float sfxVolume;
     public float musicVolume;
 
-	public GameObject selector;
-	private Vector3 optionOnePos = new Vector2(785f, 568f);
-	private Vector3 optionTwoPos = new Vector2(785f, 460f);
+	//public GameObject selector;
+	//private Vector3 optionOnePos = new Vector2(785f, 568f);
+	//private Vector3 optionTwoPos = new Vector2(785f, 460f);
+
+    public GameObject sfxArrow;
+    public GameObject musicArrow;
 
     public GameObject mainMenu;
     public bool movedSfxSlider = false;
@@ -86,11 +89,15 @@ public class Options : MonoBehaviour {
         switch (index) {
             case 0:
                 //selector.transform.position = optionOnePos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
-				selector.transform.position = optionOnePos;
+                //selector.transform.position = optionOnePos;
+                sfxArrow.SetActive(true);
+                musicArrow.SetActive(false);
                 break;
             case 1:
-				selector.transform.position = optionTwoPos;
+                //selector.transform.position = optionTwoPos;
                 //selector.transform.position = optionTwoPos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
+                sfxArrow.SetActive(false);
+                musicArrow.SetActive(true);
                 break;
         }
 
