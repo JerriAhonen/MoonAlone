@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public TextMeshPro timerText;                                               // Timer displayer during round
     public Canvas canvasRoundEnd;
     public TextMeshProUGUI transitionText;
+    public TextMeshProUGUI roundText;
     
     public Canvas canvasRoundStart;
     public TextMeshProUGUI gameStartTimerText;
@@ -137,9 +138,11 @@ public class GameManager : MonoBehaviour {
         {
             EnablePlayerScripts(false);
             gameStartTimerText.text = _startTime.ToString();
+            roundText.text = "Round " + curRoundNum;
         }
         else
         {
+            roundText.text = "";
             if (!_startChickensEnabled)
             {
                 foreach(GameObject chicken in _startChickens)
