@@ -53,7 +53,7 @@ public class CSManager : MonoBehaviour {
         (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
         {
             if (!isStarted) {
-                StartCoroutine(StartTimer(2));          // QUICK FIX FOR 61 x START
+                StartCoroutine(StartTimer(5));          // QUICK FIX FOR 61 x START
 
                 isStarted = true;
             }
