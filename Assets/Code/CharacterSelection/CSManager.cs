@@ -53,7 +53,7 @@ public class CSManager : MonoBehaviour {
         (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
         {
             if (!isStarted) {
-                StartCoroutine(StartTimer(5));          // QUICK FIX FOR 61 x START
+                StartCoroutine(StartTimer(3));          // QUICK FIX FOR 61 x START
 
                 isStarted = true;
             }
@@ -81,7 +81,7 @@ public class CSManager : MonoBehaviour {
         }
         if (_startTime <= 0)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_start_game", _mainCamera.transform.position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Menu Sounds/menu_start_game", _mainCamera.transform.position);
 
             Debug.Log("Game start timer Finished!");
 

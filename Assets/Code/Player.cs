@@ -250,6 +250,8 @@ public class Player : MonoBehaviour {
         isIncapacitated = false;
 
         PlayAnimation(0);
+
+        movementSpeed = setMovementSpeed;
     }
 
     public void ShakeNow() {
