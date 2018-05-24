@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 
     public TextMeshPro timerText;                                               // Timer displayer during round
     public Canvas canvasRoundEnd;
+    public Canvas canvasGameOver;
     public TextMeshProUGUI transitionText;
     public TextMeshProUGUI roundText;
     
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour {
     FMOD.Studio.EventInstance levelMusic;
 
     private Camera _mainCamera;
+
+    public string confirmButton;    //Player 1 button A.      
+    private bool confirmedExitToMainMenu;                              
     
     private void Start()
     {
@@ -75,6 +79,7 @@ public class GameManager : MonoBehaviour {
         
         _displayRoundEndCanvas = false;
         canvasRoundEnd.gameObject.SetActive(false);
+        canvasGameOver.gameObject.SetActive(false);
 
         levelMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/music_level");
 
@@ -126,7 +131,7 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if(!_playerGOsEnabled)
+        if(!_playerGOsEnabled && !roundFinished)
         {
             EnablePlayerGOs(numberOfPlayers);
             _playerGOsEnabled = true;
@@ -184,16 +189,24 @@ public class GameManager : MonoBehaviour {
 
         if (_displayRoundEndCanvas)
         {
-            canvasRoundEnd.gameObject.SetActive(true);
-            if (PlayerPrefs.GetInt("CurrentRoundNumber") < NumOfRounds)
-                transitionText.text = "Time until next round: " + countdownTime;
+            if (PlayerPrefs.GetInt("CurrentRoundNumber") == NumOfRounds)
+            {
+                canvasGameOver.gameObject.SetActive(true);
+            }
             else
-                transitionText.text = "Time until main menu: " + countdownTime;
+            {
+                canvasRoundEnd.gameObject.SetActive(true);
+                
+                transitionText.text = "Time until next round: " + countdownTime;
+            }
+
+            
         }
 
         if (roundFinished && cooldownTimerFinished)
         {
-            Debug.Log("EndRound();");
+            //cooldownTimerFinished = false;
+            //Debug.Log("EndRound();");
             _playerGOsEnabled = false;
             EndRound();
         }
@@ -249,15 +262,19 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            ResetPlayerPrefs();
-            SceneManager.LoadScene("MainMenu");
+            if (Input.GetButtonDown(confirmButton))
+            {
+                ResetPlayerPrefs();
+                SceneManager.LoadScene("MainMenu");
 
-            levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-            menuMusic.release();
-            levelMusic.release();
+                menuMusic.release();
+                levelMusic.release();
 
-            Destroy(GameObject.Find("MainMenu"));
+                Destroy(GameObject.Find("MainMenu"));
+            }
+            
         }
             
     }
