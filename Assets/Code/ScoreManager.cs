@@ -38,52 +38,58 @@ public class ScoreManager : MonoBehaviour {
 
         for (int i = 0; i < scores.Length; i++)
         {
+            string playerScore = "Player" + i + "Score";
             if (gameManager.players[i].activeSelf)
-                scores[i] = gameManager.players[i].GetComponent<Tower>().chickenCount + collectorChickenCount[i];
+            {
+                int score = gameManager.players[i].GetComponent<Tower>().chickenCount + collectorChickenCount[i];
+                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + score);
+            }
             else
                 Debug.Log("GetRoundScore(); Player" + i + " isn't active");
         }
 
-        System.Array.Sort(scores);
+        // System.Array.Sort(scores);
 
-        for (int i = 0; i < scores.Length; i++)
-        {
-            string playerScore = "Player" + i + "Score";
-			int chickenCount = gameManager.players[i].GetComponent<Tower>().chickenCount;
+        // for (int i = 0; i < scores.Length; i++)
+        // {
+        //     string playerScore = "Player" + i + "Score";
+		// 	int chickenCount = gameManager.players[i].GetComponent<Tower>().chickenCount;
 
-            if (chickenCount + collectorChickenCount[i] == 0)
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-            }
-
-
-            else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 1])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
-            }
+        //     if (chickenCount + collectorChickenCount[i] == 0)
+        //     {
+        //         PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
+        //     }
 
 
-            else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 2])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
-            }
+        //     else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 1])
+        //     {
+        //         PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 3);
+        //     }
 
 
-            else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 3])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
-            }
+        //     else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 2])
+        //     {
+        //         PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 2);
+        //     }
 
 
-            else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 4])
-            {
-                PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
-            }
-        }
+        //     else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 3])
+        //     {
+        //         PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 1);
+        //     }
+
+
+        //     else if (chickenCount + collectorChickenCount[i] == scores[scores.Length - 4])
+        //     {
+        //         PlayerPrefs.SetInt(playerScore, PlayerPrefs.GetInt(playerScore) + 0);
+        //     }
+        // }
 
         for (int i = 0; i < gameManager.playerScores.Length; i++)
         {
             gameManager.playerScores[i] = PlayerPrefs.GetInt("Player" + i + "Score");
         }
     }
+
+    
 }
