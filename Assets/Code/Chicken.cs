@@ -51,6 +51,8 @@ public class Chicken : MonoBehaviour
 
     public GameObject player;
 
+    private string _flyBackLayer;
+
     public Chicken(int numberInTower, float yPos)
     {
         this.numberInTower = numberInTower;
@@ -68,6 +70,7 @@ public class Chicken : MonoBehaviour
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
         _terrainLayer = "Terrain";
+        _flyBackLayer = "FlyBack";
 
         _featherParticles = transform.Find("FlyingFeathers").GetComponent<ParticleSystem>();
         _trailParticles = transform.Find("WhiteTrail").GetComponent<ParticleSystem>();
@@ -369,6 +372,13 @@ public class Chicken : MonoBehaviour
 
                 _cloudParticles.Play();
             }
+        }
+    }
+
+    // If a chicken touches down on a fly back zone, set flight.
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer(_flyBackLayer)) {
+            SetFlight(true, false, null);
         }
     }
 }
