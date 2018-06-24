@@ -13,11 +13,13 @@ public class Collector : MonoBehaviour {
 	private int i = 0;
 
 	GameObject originatingPlayer;
-	private bool recievedChicken;
+	private bool receivedChicken;
 
     private Animator anim;
     private CharacterController controller;
     private Camera _mainCamera;
+
+    public ChickenSpawner spawner;
 
     // Use this for initialization
     void Start () {
@@ -26,16 +28,18 @@ public class Collector : MonoBehaviour {
         anim = gameObject.GetComponentInChildren<Animator>();
 
         _mainCamera = Camera.main;
+
+        spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
     }
 
     // Update is called once per frame
     void Update () {
 		Move();
         
-        if (recievedChicken)
+        if (receivedChicken)
 		{
 			TakeChicken();
-			recievedChicken = false;
+			receivedChicken = false;
 		}
 		
 	}
@@ -52,31 +56,33 @@ public class Collector : MonoBehaviour {
 	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision collision)
 	{
-            GameObject collisionObject = collision.gameObject;
+        GameObject collisionObject = collision.gameObject;
 
-            if (collisionObject.GetComponent<Chicken>() != null) 
+        if (collisionObject.GetComponent<Chicken>() != null) 
+	    {
+			Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
+			if (!collidingChicken.isThrown || (collidingChicken._originatingPlayer == null))
 			{
-				Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
-				if (!collidingChicken.isThrown || (collidingChicken._originatingPlayer == null))
-				{
-					Destroy(collision.gameObject);
-					return;
-				}
+				Destroy(collision.gameObject);
+
+                spawner.SpawnChicken();
+
+                return;
+			}
 					
-			originatingPlayer = collidingChicken._originatingPlayer;
-			recievedChicken = true;
+		originatingPlayer = collidingChicken._originatingPlayer;
+		receivedChicken = true;
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
 
-            Destroy(collision.gameObject);
-			}
-			else
-			{
-				return;
-			}
+        Destroy(collision.gameObject);
 
-		   
-
+        spawner.SpawnChicken();
+        }
+		else
+		{
+			return;
+		}
 	}
 
 	private void Move()

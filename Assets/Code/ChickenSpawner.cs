@@ -58,7 +58,7 @@ public class ChickenSpawner : MonoBehaviour {
         }
 	}
 
-    void SpawnChicken()
+    public void SpawnChicken()
     {
         int mood;
 
