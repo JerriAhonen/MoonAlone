@@ -1588,7 +1588,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: nasa_lowercase Material
   m_Shader: {fileID: 4800000, guid: 9ddf7e24188da9145949fa27a87ae177, type: 3}
-  m_ShaderKeywords: GLOW_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -1671,7 +1671,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FaceColor: {r: 1, g: 1, b: 1, a: 0.091}
     - _GlowColor: {r: 0, g: 0.5372549, b: 1, a: 0.5019608}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
