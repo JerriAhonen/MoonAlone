@@ -62,7 +62,9 @@ public class GameManager : MonoBehaviour {
     private Camera _mainCamera;
 
     public string confirmButton;    //Player 1 button A.      
-    private bool confirmedExitToMainMenu;                              
+    private bool confirmedExitToMainMenu;
+
+    public string menuButton = "Menu";
     
     private void Start()
     {
@@ -209,6 +211,18 @@ public class GameManager : MonoBehaviour {
             //Debug.Log("EndRound();");
             _playerGOsEnabled = false;
             EndRound();
+        }
+
+        if (Input.GetButtonDown(menuButton)) {
+            ResetPlayerPrefs();
+            SceneManager.LoadScene("MainMenu");
+
+            levelMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+            menuMusic.release();
+            levelMusic.release();
+
+            Destroy(GameObject.Find("MainMenu"));
         }
     }
 
