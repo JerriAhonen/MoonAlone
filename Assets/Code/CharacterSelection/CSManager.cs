@@ -25,12 +25,20 @@ public class CSManager : MonoBehaviour {
     //public Canvas canvasGameStart;
     public TextMeshProUGUI gameStartTimerText;
 
+    public GameObject gameRulesScreen;
+
     // Use this for initialization
     void Start () {
         if(GameObject.Find("MainMenu") != null)
             menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;
 
         _mainCamera = Camera.main;
+
+        if (gameRulesScreen == null) {
+            gameRulesScreen = GameObject.Find("SplashScreenCanvas");
+        }
+
+        gameRulesScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,9 +96,19 @@ public class CSManager : MonoBehaviour {
             //gameStartTimerText.text = "Game starting in " + _startTime.ToString();
 
             PlayerPrefs.SetInt("NumberOfPlayers", readyCount);
-            
+
+            _startTime = 5;
+
+            gameRulesScreen.SetActive(true);
+
+            while(_startTime > 0) {
+                yield return new WaitForSeconds(1f);
+
+                _startTime--;
+            }
+
             SceneManager.LoadScene("Round_Level1");
-            
+
             //yield return new WaitForSeconds(1f);
         }
     }
