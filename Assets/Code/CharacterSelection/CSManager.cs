@@ -12,7 +12,7 @@ public class CSManager : MonoBehaviour {
     public int readyCount;                                                      // Num of players ready
     public int noPlayerCount = 4;                                               // Num of players not playing
 
-    public int NumOfPlayersNeededToStartGame_DEBUG;
+    public bool canPlayWithOnePlayer;
 
     private Camera _mainCamera;
 
@@ -52,24 +52,54 @@ public class CSManager : MonoBehaviour {
             menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
-        if (cs[0].GetCharacterConfirmed()   //Player one always needs to choose a character.
+        // ************* THIS IS FOR DEBUGGING WITH ONE PLAYER ************* //
+
+        if (canPlayWithOnePlayer)
+        {
+            if (cs[0].GetCharacterConfirmed()   //Player one always needs to choose a character.
         &&
         (cs[1].GetIndex() == 0 || cs[1].GetCharacterConfirmed())
         &&
         (cs[2].GetIndex() == 0 || cs[2].GetCharacterConfirmed())
         &&
         (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
-        {
-            if (!isStarted) {
-                StartCoroutine(StartTimer(3));          // QUICK FIX FOR 61 x START
+            {
+                if (!isStarted)
+                {
+                    StartCoroutine(StartTimer(3));          // QUICK FIX FOR 61 x START
 
-                isStarted = true;
+                    isStarted = true;
+                }
+
             }
-            
+            else
+            {
+                gameStartTimerText.text = "";
+            }
         }
         else
+        // ************* THIS IS FOR THE NORMAL GAME, AT LEAST 2 PLAEYRS NEEDED ************* //
         {
-            gameStartTimerText.text = "";
+            if (cs[0].GetCharacterConfirmed()   
+        &&
+        (cs[1].GetCharacterConfirmed())
+        &&
+        (cs[2].GetIndex() == 0 || cs[2].GetCharacterConfirmed())
+        &&
+        (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
+            {
+                if (!isStarted)
+                {
+                    StartCoroutine(StartTimer(3));          // QUICK FIX FOR 61 x START
+
+                    isStarted = true;
+                }
+
+            }
+            else
+            {
+                gameStartTimerText.text = "";
+            }
         }
     }
 
