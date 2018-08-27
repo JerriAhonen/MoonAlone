@@ -14,6 +14,7 @@ public class Collector : MonoBehaviour {
 
 	GameObject originatingPlayer;
 	private bool receivedChicken;
+    public GameObject FloatingCollectorPointText;
 
     private Animator anim;
     private CharacterController controller;
@@ -39,10 +40,19 @@ public class Collector : MonoBehaviour {
         if (receivedChicken)
 		{
 			TakeChicken();
+            if (FloatingCollectorPointText)
+            {
+                ShowFloatingText();
+            }
 			receivedChicken = false;
 		}
 		
 	}
+
+    private void ShowFloatingText()
+    {
+        Instantiate(FloatingCollectorPointText, transform.position, Quaternion.identity, transform);
+    }
 
 	private void TakeChicken()
 	{
