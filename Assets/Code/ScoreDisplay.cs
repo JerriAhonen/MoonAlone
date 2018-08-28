@@ -13,6 +13,7 @@ public class ScoreDisplay : MonoBehaviour {
     private int playerModel;                //Defines the colour of the text to match the player model
     private TextMeshPro meshPro;            //The score variable
     private Tower tower;
+    private int numOfPlayers;
     
 	// Use this for initialization
 	void Start () {
@@ -21,22 +22,32 @@ public class ScoreDisplay : MonoBehaviour {
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         playerModel = gameManager.players[playerNumber - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
         tower = gameManager.players[playerNumber - 1].GetComponent<Tower>();
+        numOfPlayers = gameManager.numberOfPlayers;
 
-        switch (playerModel)
+        if (playerNumber <= numOfPlayers)
         {
-            case 1:
-				meshPro.color = new Color(0,166,189);
-                break;
-            case 2:
-				meshPro.color = new Color(163,0,0);
-                break;
-            case 3:
-				meshPro.color = Color.green;
-                break;
-            case 4:
-			meshPro.color = Color.yellow;
-                break;
+            switch (playerModel)
+            {
+                case 1:
+                    meshPro.color = new Color(0, 166, 189);
+                    break;
+                case 2:
+                    meshPro.color = new Color(163, 0, 0);
+                    break;
+                case 3:
+                    meshPro.color = Color.green;
+                    break;
+                case 4:
+                    meshPro.color = Color.yellow;
+                    break;
+            }
         }
+        else
+        {
+            meshPro.color = Color.gray;
+        }
+
+        
 	}
 	
 	// Update is called once per frame
