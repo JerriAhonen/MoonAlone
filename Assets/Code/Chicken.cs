@@ -240,7 +240,7 @@ public class Chicken : MonoBehaviour
         switch (mood) {
             case 0:
                 _fearParticles.Play();
-                newPos = transform.position - player.transform.position;
+                newPos = transform.position - player.transform.position;        // distance vector instead of reactiontime used??
                 break;
             case 1:
                 _loveParticles.Play();
