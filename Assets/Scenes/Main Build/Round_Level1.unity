@@ -1040,7 +1040,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 43.1, y: -90, z: 0}
 --- !u!1 &46774816
 GameObject:
@@ -2800,7 +2800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4199709609607998, guid: 7e019221d09a6ce45b1252e6148ac619, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1140658674477648, guid: 7e019221d09a6ce45b1252e6148ac619, type: 2}
       propertyPath: m_Name
@@ -5885,6 +5885,51 @@ Transform:
   m_PrefabParentObject: {fileID: 4651029130739646, guid: cbd38f8c5f0a2164c98c764d1cac9433,
     type: 2}
   m_PrefabInternal: {fileID: 333653524}
+--- !u!1 &346845859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 346845861}
+  - component: {fileID: 346845860}
+  m_Layer: 0
+  m_Name: LightBallPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &346845860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 346845859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d614340b935444c97a75757f3840b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 10
+  _objectPrefab: {fileID: 1087623454784834, guid: a9c5c071c576f0b4090874e50ed38f07,
+    type: 2}
+  _shouldGrow: 1
+  collector: {fileID: 555876009}
+--- !u!4 &346845861
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 346845859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.62686944, y: 3.1547108, z: 0.8050251}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 44
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &347699465
 Prefab:
   m_ObjectHideFlags: 0
@@ -8475,6 +8520,7 @@ MonoBehaviour:
   speed: 2.5
   FloatingCollectorPointText: {fileID: 1405261520976566, guid: 4dc9461185a273c43a513cba3ab2aa84,
     type: 2}
+  lightBallPool: {fileID: 0}
   spawner: {fileID: 0}
 --- !u!65 &555876010
 BoxCollider:
@@ -10193,7 +10239,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4065561548065400, guid: d74c35a03959c7d4d8db5df787505c15, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 4688686275382954, guid: d74c35a03959c7d4d8db5df787505c15, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10251,7 +10297,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: d035a867c8558c342a8348ce251ab861, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: d035a867c8558c342a8348ce251ab861, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -14223,7 +14269,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 50.51, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29954,7 +30000,7 @@ Transform:
   - {fileID: 727421193}
   - {fileID: 966623668}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180.03, z: -4}
 --- !u!136 &1673693958
 CapsuleCollider:

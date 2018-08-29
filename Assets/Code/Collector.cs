@@ -20,6 +20,9 @@ public class Collector : MonoBehaviour {
     private CharacterController controller;
     private Camera _mainCamera;
 
+    [SerializeField]
+    private LightBallPooling lightBallPool;
+
     public ChickenSpawner spawner;
 
     // Use this for initialization
@@ -86,7 +89,7 @@ public class Collector : MonoBehaviour {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
 
         Destroy(collision.gameObject);
-
+        GetLightBall();
         spawner.SpawnChicken();
         }
 		else
@@ -167,4 +170,30 @@ public class Collector : MonoBehaviour {
 		//Gizmos.DrawLine(path[1].transform.position, path[2].transform.position);
 		//Gizmos.DrawLine(path[2].transform.position, path[3].transform.position);
 	}
+
+    public LightBall GetLightBall()
+    {
+        GameObject result = null;
+
+        result = lightBallPool.GetPooledObject();
+
+        // If the pooled object was found, return that. Otherwise just return null.
+        if (result != null)
+        {
+
+            LightBall lightBall = result.GetComponent<LightBall>();
+            if (lightBall == null)
+            {
+                Debug.LogError("LightBall component could not be found " +
+                    "from the object fetched from the pool.");
+            }
+            return lightBall;
+        }
+        return null;
+    }
+
+    public bool ReturnLightBall(LightBall lightBall)
+    {
+        return lightBallPool.ReturnObject(lightBall.gameObject);
+    }
 }
