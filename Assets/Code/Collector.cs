@@ -25,6 +25,8 @@ public class Collector : MonoBehaviour {
 
     public ChickenSpawner spawner;
 
+    public GameObject[] scoreBoards = new GameObject[4];
+
     // Use this for initialization
     void Start () {
 		newDestination = path[0].transform.position;
@@ -89,7 +91,7 @@ public class Collector : MonoBehaviour {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
 
         Destroy(collision.gameObject);
-        GetLightBall();
+        GetLightBall(GetPlayerNum());
         spawner.SpawnChicken();
         }
 		else
@@ -159,6 +161,31 @@ public class Collector : MonoBehaviour {
 		
 	}
 
+    private int GetPlayerNum()
+    {
+        if (originatingPlayer.transform.name == "P1")
+        {
+            return 1;
+        }
+        else if (originatingPlayer.transform.name == "P2")
+        {
+            return 2;
+        }
+        else if (originatingPlayer.transform.name == "P3")
+        {
+            return 3;
+        }
+        else if (originatingPlayer.transform.name == "P4")
+        {
+            return 4;
+        }
+        else
+        {
+            Debug.LogError("Collector: GetPlayerNum returned 0");
+            return 0;
+        }
+    }
+
 	/// <summary>
 	/// Callback to draw gizmos that are pickable and always drawn.
 	/// </summary>
@@ -171,7 +198,7 @@ public class Collector : MonoBehaviour {
 		//Gizmos.DrawLine(path[2].transform.position, path[3].transform.position);
 	}
 
-    public LightBall GetLightBall()
+    public LightBall GetLightBall(int playerNum)
     {
         GameObject result = null;
 
@@ -187,6 +214,12 @@ public class Collector : MonoBehaviour {
                 Debug.LogError("LightBall component could not be found " +
                     "from the object fetched from the pool.");
             }
+
+            result.transform.position = transform.position;
+            lightBall.startPos = transform.position;
+            lightBall.target = scoreBoards[playerNum - 1].transform;
+            result.gameObject.SetActive(true);
+            
             return lightBall;
         }
         return null;
