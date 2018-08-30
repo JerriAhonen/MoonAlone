@@ -26,6 +26,8 @@ public class Collector : MonoBehaviour {
     public ChickenSpawner spawner;
 
     public GameObject[] scoreBoards = new GameObject[4];
+    public GameObject pointRight;   //LightBall routing points
+    public GameObject pointLeft;
 
     // Use this for initialization
     void Start () {
@@ -218,6 +220,12 @@ public class Collector : MonoBehaviour {
             result.transform.position = transform.position;
             lightBall.startPos = transform.position;
             lightBall.target = scoreBoards[playerNum - 1].transform;
+
+            if (playerNum == 1 || playerNum == 2)
+                lightBall.routingPoint = pointLeft.transform;
+            else
+                lightBall.routingPoint = pointRight.transform;
+
             result.gameObject.SetActive(true);
             
             return lightBall;
