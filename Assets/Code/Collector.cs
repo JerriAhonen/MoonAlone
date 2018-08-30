@@ -29,6 +29,8 @@ public class Collector : MonoBehaviour {
     public GameObject pointRight;   //LightBall routing points
     public GameObject pointLeft;
 
+    public Vector3 RandomizeIntensity = new Vector3(5f, 5f, 5f);
+
     // Use this for initialization
     void Start () {
 		newDestination = path[0].transform.position;
@@ -221,10 +223,20 @@ public class Collector : MonoBehaviour {
             lightBall.startPos = transform.position;
             lightBall.target = scoreBoards[playerNum - 1].transform;
 
+            //If the LightBall's target is on the left of the score board, use Left Routing Point. Else use the right. 
             if (playerNum == 1 || playerNum == 2)
-                lightBall.routingPoint = pointLeft.transform;
+            {
+                //                                                      Adding a little randomization to the routing point location to make effect/path seem arbitary.
+                lightBall.routingPoint = pointLeft.transform.position + new Vector3(Random.Range(-RandomizeIntensity.x, RandomizeIntensity.x),
+                                                Random.Range(-RandomizeIntensity.y, RandomizeIntensity.y),
+                                                Random.Range(-RandomizeIntensity.z, RandomizeIntensity.z)); ;
+            }
             else
-                lightBall.routingPoint = pointRight.transform;
+            {
+                lightBall.routingPoint = pointRight.transform.position + new Vector3(Random.Range(-RandomizeIntensity.x, RandomizeIntensity.x),
+                                                Random.Range(-RandomizeIntensity.y, RandomizeIntensity.y),
+                                                Random.Range(-RandomizeIntensity.z, RandomizeIntensity.z)); ;
+            }   
 
             result.gameObject.SetActive(true);
             

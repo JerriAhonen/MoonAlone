@@ -8,7 +8,9 @@ public class LightBall : MonoBehaviour {
     public Vector3 startPos;
     public Vector3 secondStartPos;
     public Transform target;
-    public Transform routingPoint;
+    public Vector3 routingPoint;
+
+    
 
     float startTime;
     bool goToRoutingPoint;
@@ -17,6 +19,13 @@ public class LightBall : MonoBehaviour {
     {
         startTime = Time.time;
         goToRoutingPoint = true;
+
+        
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()
@@ -33,10 +42,10 @@ public class LightBall : MonoBehaviour {
 
         if (goToRoutingPoint)
         {
-            transform.position = Vector3.Slerp(startPos, routingPoint.position, progress / 0.5f);
+            transform.position = Vector3.Slerp(startPos, routingPoint, progress / 0.5f);
 
 
-            if (Vector3.Distance(transform.position, routingPoint.position) <= 1f)
+            if (Vector3.Distance(transform.position, routingPoint) <= 1f)
             {
                 goToRoutingPoint = false;
                 secondStartPos = transform.position;
