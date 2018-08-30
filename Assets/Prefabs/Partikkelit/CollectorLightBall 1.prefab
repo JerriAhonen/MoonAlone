@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4659410823058922}
   - component: {fileID: 114273489352803968}
   m_Layer: 0
-  m_Name: CollectorLightBall
+  m_Name: CollectorLightBall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
