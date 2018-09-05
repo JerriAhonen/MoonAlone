@@ -10,7 +10,7 @@ public class RoundScore : MonoBehaviour {
     private ScoreManager scoreManager;
     public int playerNumber;
     private int playerModel;                //Defines the colour of the text to match the player model
-
+    private int numOfPlayers;
 
     public float animationTime = 50f;
     private float desiredNumber;
@@ -59,21 +59,29 @@ public class RoundScore : MonoBehaviour {
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         playerModel = gameManager.players[playerNumber - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
         numberSet = false;
+        numOfPlayers = gameManager.numberOfPlayers;
 
-        switch (playerModel)
+        if (playerNumber <= numOfPlayers)
         {
-            case 1:
-                meshPro.color = new Color(0, 166, 189);
-                break;
-            case 2:
-                meshPro.color = new Color(163, 0, 0);
-                break;
-            case 3:
-                meshPro.color = Color.green;
-                break;
-            case 4:
-                meshPro.color = Color.yellow;
-                break;
+            switch (playerModel)
+            {
+                case 1:
+                    meshPro.color = new Color(0, 166, 189);
+                    break;
+                case 2:
+                    meshPro.color = new Color(163, 0, 0);
+                    break;
+                case 3:
+                    meshPro.color = Color.green;
+                    break;
+                case 4:
+                    meshPro.color = Color.yellow;
+                    break;
+            }
+        }
+        else
+        {
+            meshPro.color = Color.gray;
         }
     }
 	
