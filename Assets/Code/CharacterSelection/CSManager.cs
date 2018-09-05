@@ -20,6 +20,9 @@ public class CSManager : MonoBehaviour {
     public string cancelButton = "Cancel";
     public bool isStarted = false;
 
+    private bool tutorialCanvasTimerEnded;
+    private bool tutorialCanvasTimerStarted;
+
     FMOD.Studio.EventInstance menuMusic;
 
     //public Canvas canvasGameStart;
@@ -39,6 +42,8 @@ public class CSManager : MonoBehaviour {
         }
 
         gameRulesScreen.SetActive(false);
+        tutorialCanvasTimerEnded = false;
+        tutorialCanvasTimerStarted = false;
     }
 
     // Update is called once per frame
@@ -81,12 +86,12 @@ public class CSManager : MonoBehaviour {
         // ************* THIS IS FOR THE NORMAL GAME, AT LEAST 2 PLAEYRS NEEDED ************* //
         {
             if (cs[0].GetCharacterConfirmed()   
-        &&
-        (cs[1].GetCharacterConfirmed())
-        &&
-        (cs[2].GetIndex() == 0 || cs[2].GetCharacterConfirmed())
-        &&
-        (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
+                &&
+                (cs[1].GetCharacterConfirmed())
+                &&
+                (cs[2].GetIndex() == 0 || cs[2].GetCharacterConfirmed())
+                &&
+                (cs[3].GetIndex() == 0 || cs[3].GetCharacterConfirmed()))
             {
                 if (!isStarted)
                 {
@@ -101,6 +106,14 @@ public class CSManager : MonoBehaviour {
                 gameStartTimerText.text = "";
             }
         }
+
+        if (tutorialCanvasTimerEnded || (tutorialCanvasTimerStarted && Input.GetButtonDown("FireShort_P1")))
+        {
+            StopCoroutine("TutorialCanvasStartTimer");
+            SceneManager.LoadScene("Round_Level1");
+        }
+
+
     }
 
     private IEnumerator StartTimer(int time)
@@ -127,19 +140,42 @@ public class CSManager : MonoBehaviour {
 
             PlayerPrefs.SetInt("NumberOfPlayers", readyCount);
 
-            _startTime = 5;
+            //_startTime = 5;
+
+            StartCoroutine(TutorialCanvasStartTimer(5));
+            tutorialCanvasTimerStarted = true;
 
             gameRulesScreen.SetActive(true);
 
+            /*
             while(_startTime > 0) {
-                yield return new WaitForSeconds(1f);
+                if (Input.GetButtonDown("FireShort_P1"))
+                {
+                    break;
+                }
 
+                Debug.Log("Tutorial canvas timer: " + _startTime);
+                yield return new WaitForSeconds(1f);
+                
                 _startTime--;
             }
+            */
 
-            SceneManager.LoadScene("Round_Level1");
-
-            //yield return new WaitForSeconds(1f);
+            
         }
+    }
+
+    private IEnumerator TutorialCanvasStartTimer(int time)
+    {
+        _startTime = time;
+
+        while (_startTime > 0)
+        {
+            Debug.Log("Tutorial canvas timer: " + _startTime);
+            yield return new WaitForSeconds(1f);
+
+            _startTime--;
+        }
+        tutorialCanvasTimerEnded = true;
     }
 }
