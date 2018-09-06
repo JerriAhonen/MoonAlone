@@ -6,8 +6,9 @@ public class Collector : MonoBehaviour {
 
 	public GameObject[] path = new GameObject[4];
 	public ScoreManager scoreManager;
+    private GameManager gameManager;
 
-	Vector3 newDestination;
+    Vector3 newDestination;
 	private bool goClockWise = true;
 	public float speed;
 	private int i = 0;
@@ -29,6 +30,8 @@ public class Collector : MonoBehaviour {
     public GameObject pointRight;   //LightBall routing points
     public GameObject pointLeft;
 
+    private int playerModel;
+
     public Vector3 RandomizeIntensity = new Vector3(5f, 5f, 5f);
 
     // Use this for initialization
@@ -38,6 +41,7 @@ public class Collector : MonoBehaviour {
         anim = gameObject.GetComponentInChildren<Animator>();
 
         _mainCamera = Camera.main;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
     }
@@ -222,6 +226,10 @@ public class Collector : MonoBehaviour {
             result.transform.position = transform.position;
             lightBall.startPos = transform.position;
             lightBall.target = scoreBoards[playerNum - 1].transform;
+
+            // Determine the color of the lightball
+            playerModel = gameManager.players[GetPlayerNum() - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
+            lightBall.playerModel = playerModel;
 
             //If the LightBall's target is on the left of the score board, use Left Routing Point. Else use the right. 
             if (playerNum == 1 || playerNum == 2)

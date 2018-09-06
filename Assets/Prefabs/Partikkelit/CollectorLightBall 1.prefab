@@ -164,7 +164,8 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   secondStartPos: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
-  routingPoint: {fileID: 0}
+  routingPoint: {x: 0, y: 0, z: 0}
+  playerModel: 0
 --- !u!198 &198220433591665078
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -3548,7 +3549,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -654086550
+  randomSeed: -1614616207
   InitialModule:
     serializedVersion: 3
     enabled: 1
