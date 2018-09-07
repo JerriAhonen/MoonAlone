@@ -7153,6 +7153,7 @@ Transform:
   - {fileID: 42205685}
   - {fileID: 1303905485}
   - {fileID: 777478624}
+  - {fileID: 1480347368}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24657,6 +24658,62 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 78d55376d09ac6941af4ccccd5dfa2a5, type: 3}
   m_PrefabInternal: {fileID: 1479083484}
+--- !u!1 &1480347367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1480347368}
+  - component: {fileID: 1480347370}
+  - component: {fileID: 1480347369}
+  m_Layer: 13
+  m_Name: Destroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1480347368
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1480347367}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08750348, w: 0.99616426}
+  m_LocalPosition: {x: 63.72, y: -15, z: -160}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 430589209}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.04}
+--- !u!114 &1480347369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1480347367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e2fff9c7fb73d44bf889e473e4fd79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickUpLayer: PickUp
+  mainCamera: {fileID: 0}
+  spawner: {fileID: 0}
+--- !u!65 &1480347370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1480347367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 1000, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1493756239 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4651029130739646, guid: cbd38f8c5f0a2164c98c764d1cac9433,
