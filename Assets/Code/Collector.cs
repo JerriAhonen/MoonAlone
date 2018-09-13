@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collector : MonoBehaviour {
+
+    public Text intervalDebugText;
 
 	public GameObject[] path = new GameObject[4];
 	public ScoreManager scoreManager;
@@ -12,6 +15,9 @@ public class Collector : MonoBehaviour {
 	private bool goClockWise = true;
 	public float speed;
 	private int i = 0;
+    private bool isMoving = true;
+    private float intervalTime;
+    
 
 	GameObject originatingPlayer;
 	private bool receivedChicken;
@@ -29,7 +35,9 @@ public class Collector : MonoBehaviour {
     public GameObject[] scoreBoards = new GameObject[4];
     public GameObject pointRight;   //LightBall routing points
     public GameObject pointLeft;
-
+    public GameObject shutDownSmoke;
+    public GameObject hooverParticle;
+    public GameObject noChickensSign;
     private int playerModel;
 
     public Vector3 RandomizeIntensity = new Vector3(5f, 5f, 5f);
@@ -39,17 +47,27 @@ public class Collector : MonoBehaviour {
 		newDestination = path[0].transform.position;
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
-
+        
         _mainCamera = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
+        hooverParticle.SetActive(true);
+        shutDownSmoke.SetActive(false);
+        noChickensSign.SetActive(false);
+        intervalTime = Random.Range(20.0f, 30.0f);
     }
 
     // Update is called once per frame
-    void Update () {
-		Move();
-        
+    void Update ()
+    {
+        intervalDebugText.text = "ShutDown interval: " + intervalTime.ToString("0.00");
+
+        if (isMoving)
+        {
+            Move();
+        }
+        ShutDown();
         if (receivedChicken)
 		{
 			TakeChicken();
@@ -79,6 +97,10 @@ public class Collector : MonoBehaviour {
 	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision collision)
 	{
+        if(!isMoving)
+        {
+            return;
+        }
         GameObject collisionObject = collision.gameObject;
 
         if (collisionObject.GetComponent<Chicken>() != null) 
@@ -134,13 +156,13 @@ public class Collector : MonoBehaviour {
 			{
 				doRotation = true;
 			}
-            if (goClockWise)
+            if (goClockWise) //left
             {
                 anim.SetInteger("AnimParam", 0);
                 
                 i++;
             } 
-			else if(!goClockWise)
+			else if(!goClockWise) // right
 			{
                 anim.SetInteger("AnimParam", 1);
                 i--;
@@ -150,12 +172,6 @@ public class Collector : MonoBehaviour {
         }
 
         transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
-		
-		// Vector3 heading = newDestination - transform.position;
-		// heading = Quaternion.Euler(0, 90, 0) * heading;
-		// //heading.Normalize();
-		// Quaternion rotation = Quaternion.LookRotation(heading);
-		// transform.rotation = rotation;
 
 		Vector3 relativePos = newDestination - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
@@ -168,7 +184,36 @@ public class Collector : MonoBehaviour {
 		}
 		
 	}
+    private void ShutDown()
+    {
+        intervalTime -= Time.deltaTime;
 
+        if(intervalTime <= 0)
+        {
+            if (!isMoving)
+            {
+                Invoke("SetIsMovingTrue", 2.2f);
+                intervalTime = Random.Range(20.0f, 30.0f);
+                anim.SetTrigger("Restart");
+                hooverParticle.SetActive(true);
+                shutDownSmoke.SetActive(false);
+            }
+            else
+            {
+                isMoving = false;
+                intervalTime = Random.Range(6.0f, 8.0f);
+                anim.SetTrigger("ShutDown");
+                hooverParticle.SetActive(false);
+                shutDownSmoke.SetActive(true);
+                noChickensSign.SetActive(true);
+            }
+        }
+    }
+    private void SetIsMovingTrue()
+    {
+        isMoving = true;
+        noChickensSign.SetActive(false);
+    }
     private int GetPlayerNum()
     {
         if (originatingPlayer.transform.name == "P1")
