@@ -377,7 +377,7 @@ public class Player : MonoBehaviour {
             if (collider.gameObject.GetComponent<Chicken>() != null) {
                 Chicken detectedChicken = collider.gameObject.GetComponent<Chicken>();
 
-                if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2) {
+                if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2 && !detectedChicken.spottedPlayer) {
                     detectedChicken.SpottedPlayer(gameObject);
                 }
             }

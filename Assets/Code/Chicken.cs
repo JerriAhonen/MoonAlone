@@ -81,6 +81,8 @@ public class Chicken : MonoBehaviour
         reactionTimer = 2f;
     }
 
+    float distance;
+
     private void Update()
     {
         moveTime += Time.deltaTime;
@@ -88,6 +90,8 @@ public class Chicken : MonoBehaviour
 
         if (spottedPlayer && mood == 1) {
             newPos = player.transform.position;
+
+            distance = Vector3.Distance(newPos, transform.position);
         }
 
         if (!isInTower && !isThrown && !isFalling)
@@ -99,10 +103,8 @@ public class Chicken : MonoBehaviour
                         movementSpeed = 4f;
 
                         if (reactionTime > reactionTimer) {
-                            spottedPlayer = false;
+                            spottedPlayer = false;      // CAN YOU BREAK AND GO TO ELSE??
                         }
-
-                        animControl.SetInteger("AnimParam", 3);
                     } else {
                         if (moveTime > movementTimer) {
                             CalculateRandomLocation(wanderDistance);
@@ -121,15 +123,13 @@ public class Chicken : MonoBehaviour
                     break;
                 case 1:     //1 = Loving
                     if (spottedPlayer) {
-                        movementSpeed = 3f;
-
-                        if (reactionTime > reactionTimer) {
+                        if (distance < 0f || distance > 3f) {
                             spottedPlayer = false;
 
                             _loveParticles.Stop();
-                        }
 
-                        animControl.SetInteger("AnimParam", 3);
+                            //movementSpeed = 0.5f;
+                        }
                     } else {
                         if (moveTime > movementTimer) {
                             CalculateRandomLocation(wanderDistance);
@@ -240,10 +240,16 @@ public class Chicken : MonoBehaviour
         switch (mood) {
             case 0:
                 _fearParticles.Play();
-                newPos = transform.position - player.transform.position;        // distance vector instead of reactiontime used??
+                newPos = transform.position - player.transform.position;
+
+                animControl.SetInteger("AnimParam", 3);
                 break;
             case 1:
                 _loveParticles.Play();
+
+                movementSpeed = 3f;
+
+                animControl.SetInteger("AnimParam", 3);
                 break;
         }
     }
