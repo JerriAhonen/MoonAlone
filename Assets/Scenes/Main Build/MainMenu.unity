@@ -28099,22 +28099,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad5e7fe99685ca4e8da08cab5c21eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  toggleAxis: Vertical_P1
-  selectionCooldown: 0.2
-  optionIndex: 0
-  musicSlider1: {fileID: 1476099516}
-  sfxSlider1: {fileID: 987935731}
-  musicSlider2: {fileID: 92785541}
-  sfxSlider2: {fileID: 1289076907}
-  volumeAxis: Horizontal_P1
-  cancelButton: Cancel
-  sfxVolume: 0
-  musicVolume: 0
-  sfxArrow: {fileID: 640779924}
-  musicArrow: {fileID: 1339707377}
-  mainMenu: {fileID: 0}
-  movedSfxSlider: 0
+  _toggleAxis: Vertical_P1
+  _selectionCooldown: 0.2
+  _musicSlider1: {fileID: 1476099516}
+  _sfxSlider1: {fileID: 987935731}
+  _volumeAxis: Horizontal_P1
+  _cancelButton: Cancel
+  _sfxArrow: {fileID: 640779924}
+  _musicArrow: {fileID: 1339707377}
 --- !u!1 &2067048699
 GameObject:
   m_ObjectHideFlags: 0
