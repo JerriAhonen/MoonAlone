@@ -2712,7 +2712,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063262486770750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4658,10 +4658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32176cba1d419a641835b22b63ca6d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4197700602798280}
-  orbitDistance: 10
-  orbitDegreesPerSec: 360
-  relativeDistance: {x: 0, y: 0, z: 0}
+  _target: {fileID: 4197700602798280}
+  _orbitDistance: 10
+  _orbitDegreesPerSec: 360
 --- !u!114 &114316409275284692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4673,10 +4672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32176cba1d419a641835b22b63ca6d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4197700602798280}
-  orbitDistance: 10
-  orbitDegreesPerSec: 360
-  relativeDistance: {x: 0, y: 0, z: 0}
+  _target: {fileID: 4197700602798280}
+  _orbitDistance: 10
+  _orbitDegreesPerSec: 360
 --- !u!114 &114379464805338962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4688,10 +4686,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32176cba1d419a641835b22b63ca6d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4197700602798280}
-  orbitDistance: 10
-  orbitDegreesPerSec: 360
-  relativeDistance: {x: 0, y: 0, z: 0}
+  _target: {fileID: 4197700602798280}
+  _orbitDistance: 10
+  _orbitDegreesPerSec: 360
 --- !u!114 &114816472681165544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4703,10 +4700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32176cba1d419a641835b22b63ca6d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4197700602798280}
-  orbitDistance: 10
-  orbitDegreesPerSec: 360
-  relativeDistance: {x: 0, y: 0, z: 0}
+  _target: {fileID: 4197700602798280}
+  _orbitDistance: 10
+  _orbitDegreesPerSec: 360
 --- !u!137 &137027122750415060
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

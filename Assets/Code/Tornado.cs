@@ -7,8 +7,7 @@ public class Tornado : MonoBehaviour {
     private float time;
     private float movementTimer = 1;
 
-    [SerializeField]
-    private float wanderDistance;
+    [SerializeField] private float _wanderDistance = 10;
 
     private Vector3 newPos = Vector3.zero;
 
@@ -34,7 +33,7 @@ public class Tornado : MonoBehaviour {
 
     private void SetMovement() {
         do {
-            CalculateRandomLocation(wanderDistance);
+            CalculateRandomLocation(_wanderDistance);
         } while (newPos.z > 6f);
 
         time = 0f;
