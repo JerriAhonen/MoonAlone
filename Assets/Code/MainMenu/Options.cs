@@ -12,11 +12,17 @@ public class Options : MonoBehaviour {
     private bool axisInUse = false;
     public int optionIndex;
 
-    public GameObject musicSlider;
-    public GameObject sfxSlider;
-    private RectTransform musicSliderTransform;
-    private RectTransform sfxSliderTransform;
-    private float maxPos = 140f;
+    public GameObject musicSlider1;
+    public GameObject sfxSlider1;
+    //public GameObject musicSlider2;
+    //public GameObject sfxSlider2;
+
+    private RectTransform musicSlider1Transform;
+    private RectTransform sfxSlider1Transform;
+    //private RectTransform musicSlider2Transform;
+    //private RectTransform sfxSlider2Transform;
+
+    private float maxPos = 160f;
     private float minPos = 0f;
 
     private Camera _mainCamera;
@@ -29,10 +35,6 @@ public class Options : MonoBehaviour {
 
     public float sfxVolume;
     public float musicVolume;
-
-	//public GameObject selector;
-	//private Vector3 optionOnePos = new Vector2(785f, 568f);
-	//private Vector3 optionTwoPos = new Vector2(785f, 460f);
 
     public GameObject sfxArrow;
     public GameObject musicArrow;
@@ -49,14 +51,18 @@ public class Options : MonoBehaviour {
 
         mainMenu = GameObject.Find("MainMenu");
 
-        musicSliderTransform = musicSlider.GetComponent<RectTransform>();
-        sfxSliderTransform = sfxSlider.GetComponent<RectTransform>();
+        musicSlider1Transform = musicSlider1.GetComponent<RectTransform>();
+        sfxSlider1Transform = sfxSlider1.GetComponent<RectTransform>();
+        //musicSlider2Transform = musicSlider2.GetComponent<RectTransform>();
+        //sfxSlider2Transform = sfxSlider2.GetComponent<RectTransform>();
 
         _sfx.getVolume(out sfxVolume, out sfxVolume);
         _music.getVolume(out musicVolume, out musicVolume);
 
-        sfxSliderTransform.anchoredPosition = new Vector2(sfxVolume * 100f, sfxSliderTransform.anchoredPosition.y);
-        musicSliderTransform.anchoredPosition = new Vector2(musicVolume * 100f, musicSliderTransform.anchoredPosition.y);
+        sfxSlider1Transform.anchoredPosition = new Vector2(sfxVolume * 100f, sfxSlider1Transform.anchoredPosition.y);
+        musicSlider1Transform.anchoredPosition = new Vector2(musicVolume * 100f, musicSlider1Transform.anchoredPosition.y);
+        //sfxSlider2Transform.right = new Vector2(sfxVolume * 100f - 40f, sfxSlider2Transform.anchoredPosition.y);
+        //musicSlider2Transform.right = new Vector2(musicVolume * 100f - 40f, musicSlider2Transform.anchoredPosition.y);
     }
     
     private void Update() {
@@ -123,14 +129,15 @@ public class Options : MonoBehaviour {
 
         switch (index) {
             case 0:
-                Vector3 sfxSliderPos = sfxSliderTransform.anchoredPosition;
+                Vector3 sfxSliderPos = sfxSlider1Transform.anchoredPosition;
 
                 sfxVolume = sfxSliderPos.x / 100f;
 
                 if (Input.GetAxis(volumeAxis) < 0 && (sfxSliderPos.x > minPos)) {
                     sfxSliderPos.x--;
 
-                    sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    sfxSlider1Transform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    //sfxSlider2Transform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
 
                     movedSfxSlider = true;
                 }
@@ -138,7 +145,8 @@ public class Options : MonoBehaviour {
                 if (Input.GetAxis(volumeAxis) > 0 && (sfxSliderPos.x < maxPos)) {
                     sfxSliderPos.x++;
                     
-                    sfxSliderTransform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    sfxSlider1Transform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
+                    //sfxSlider2Transform.anchoredPosition = new Vector3(sfxSliderPos.x, sfxSliderPos.y, sfxSliderPos.z);
 
                     movedSfxSlider = true;
 
@@ -153,20 +161,22 @@ public class Options : MonoBehaviour {
 
                 break;
             case 1:
-                Vector3 musicSliderPos = musicSliderTransform.anchoredPosition;
+                Vector3 musicSliderPos = musicSlider1Transform.anchoredPosition;
 
                 musicVolume = musicSliderPos.x / 100f;
 
                 if (Input.GetAxis(volumeAxis) < 0 && (musicSliderPos.x > minPos)) {
                     musicSliderPos.x--;
                     
-                    musicSliderTransform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    musicSlider1Transform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    //musicSlider2Transform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
                 }
 
                 if (Input.GetAxis(volumeAxis) > 0 && (musicSliderPos.x < maxPos)) {
                     musicSliderPos.x++;
                     
-                    musicSliderTransform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    musicSlider1Transform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
+                    //musicSlider2Transform.anchoredPosition = new Vector3(musicSliderPos.x, musicSliderPos.y, musicSliderPos.z);
                 }
 
                 _music.setVolume(musicVolume);
