@@ -105,7 +105,7 @@ public class CharacterSelection : MonoBehaviour {
 
     public void ToggleUp()
     {
-        //arrowUp.onClick.Invoke();
+        arrowUp.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
@@ -131,7 +131,7 @@ public class CharacterSelection : MonoBehaviour {
     
     public void ToggleDown()
     {
-        //arrowDown.onClick.Invoke();
+        arrowDown.onClick.Invoke();
         characterList[index].SetActive(false);
 
         //Set the index to be free, so other players can choose it.
