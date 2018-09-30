@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Chicken : MonoBehaviour {
-    [SerializeField] private float _wanderDistance;
+    [SerializeField] private float _wanderDistance = 5f;
 
     private float _numberInTower;
     private Tower _tower;
@@ -57,6 +57,8 @@ public class Chicken : MonoBehaviour {
     private GameObject _player;
 
     private string _flyBackLayer;
+
+    private bool _offBoard = false;
 
     public Chicken(int numberInTower, float yPos)
     {
@@ -199,6 +201,12 @@ public class Chicken : MonoBehaviour {
             _isGrounded = false;
 
             originatingPlayer = null;
+        }
+
+        if (!_offBoard && transform.position.y < -1f) {
+            _offBoard = true;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_scream", _mainCamera.transform.position);
         }
     }
 
