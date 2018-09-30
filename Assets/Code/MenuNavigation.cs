@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MenuNavigation : MonoBehaviour {
 
-    public Camera camera;
-
     public GameObject[] buttons;
     public int index;
 

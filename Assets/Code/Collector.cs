@@ -24,7 +24,6 @@ public class Collector : MonoBehaviour {
     public GameObject FloatingCollectorPointText;
 
     private Animator anim;
-    private CharacterController controller;
     private Camera _mainCamera;
 
     [SerializeField]
@@ -45,7 +44,6 @@ public class Collector : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		newDestination = path[0].transform.position;
-        controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
         
         _mainCamera = Camera.main;
@@ -132,14 +130,10 @@ public class Collector : MonoBehaviour {
 
 	private void Move()
 	{
-
-		bool doRotation = false;
-
-
-
+        bool doRotation = false;
+        
 		if (Vector3.Distance(transform.position, newDestination) < 0.5f)
         {
-
             if (i == path.Length - 1)
             {
                 
@@ -175,7 +169,8 @@ public class Collector : MonoBehaviour {
 
 		Vector3 relativePos = newDestination - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
-		if(doRotation)
+
+		if (doRotation)
 		{
 			if (goClockWise)
         		transform.rotation = rotation;

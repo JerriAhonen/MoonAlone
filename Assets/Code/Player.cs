@@ -24,7 +24,6 @@ public class Player : MonoBehaviour {
 
     private CharacterController _controller;
 	private Animator _animControl;
-    private MeshRenderer _renderer;
     public CharacterSelection cs;
 
     public string _pickUpLayer = "PickUp";
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour {
     private bool _throwFar = false;
     private GameObject _enemy;
     private Vector3 _throwDirection;
-    private bool _animFinished = false;
 
     public string horizontal;
     public string vertical;
@@ -68,7 +66,6 @@ public class Player : MonoBehaviour {
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
-        _renderer = GetComponent<MeshRenderer>();
         _tower = GetComponent<Tower>();
 		_animControl = gameObject.GetComponentInChildren<Animator>();
 

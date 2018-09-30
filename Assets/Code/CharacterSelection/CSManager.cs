@@ -14,8 +14,6 @@ public class CSManager : MonoBehaviour {
 
     public bool canPlayWithOnePlayer;
 
-    private Camera _mainCamera;
-
     private int _startTime;
     public string cancelButton = "Cancel";
     public bool isStarted = false;
@@ -34,8 +32,6 @@ public class CSManager : MonoBehaviour {
     void Start () {
         if(GameObject.Find("MainMenu") != null)
             menuMusic = GameObject.Find("MainMenu").GetComponent<MainMenu>().menuMusic;
-
-        _mainCamera = Camera.main;
 
         if (gameRulesScreen == null) {
             gameRulesScreen = GameObject.Find("SplashScreenCanvas");

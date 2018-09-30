@@ -21,7 +21,6 @@ public class Options : MonoBehaviour {
 
     private Camera _mainCamera;
 
-    private FMOD.Studio.Bus _master;
     private FMOD.Studio.Bus _sfx;
     private FMOD.Studio.Bus _music;
 
@@ -45,7 +44,6 @@ public class Options : MonoBehaviour {
     void Start () {
         _mainCamera = Camera.main;
 
-        _master = FMODUnity.RuntimeManager.GetBus("bus:/");
         _sfx = FMODUnity.RuntimeManager.GetBus("bus:/Sfx");
         _music = FMODUnity.RuntimeManager.GetBus("bus:/Music");
 

@@ -15,7 +15,7 @@ public class TestGameManager : MonoBehaviour
     public bool[] scenes = new bool[5];
     public int[] playerScores = new int[4];
 
-    public Camera camera;                                                       // The Main Camera
+    public Camera mainCamera;                                                       // The Main Camera
     public Transform cameraPosMainMenu;                                         // Pos of camera during menu
     public Transform cameraPosCharacterSelection;                               // Pos of camera during char selection
     public Transform cameraPosRound;                                            // Pos of camera during round
@@ -49,7 +49,7 @@ public class TestGameManager : MonoBehaviour
 
     private void Start()
     {
-        camera.GetComponent<CameraController>().MoveCamera(cameraPosMainMenu);  // Start from the main menu
+        mainCamera.GetComponent<CameraController>().MoveCamera(cameraPosMainMenu);  // Start from the main menu
 
         menuNavigation.enabled = true;
 
@@ -75,7 +75,7 @@ public class TestGameManager : MonoBehaviour
             // MAIN MENU
 
             DisablePlayerControls();
-            camera.GetComponent<CameraController>().MoveCamera( cameraPosMainMenu );
+            mainCamera.GetComponent<CameraController>().MoveCamera( cameraPosMainMenu );
             menuNavigation.enabled = true;
             EnableOrDisableCS(false);
 
@@ -108,7 +108,7 @@ public class TestGameManager : MonoBehaviour
 
             EnableOrDisableCS(true);
 
-            camera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
+            mainCamera.GetComponent<CameraController>().MoveCamera( cameraPosCharacterSelection );
             //Add animators (?)
             Debug.Log("CS not ready.");
             if (readyCount >= NumOfPlayersNeededToStartGame_DEBUG && noPlayerCount == (4 - readyCount))
@@ -144,7 +144,7 @@ public class TestGameManager : MonoBehaviour
         {
             // ROUND
 
-            camera.GetComponent<CameraController>().MoveCamera( cameraPosRound );
+            mainCamera.GetComponent<CameraController>().MoveCamera( cameraPosRound );
             
             //CountDownTimer(3, false);           //Timer before round start, no cancelling
             StartGame(readyCount);
@@ -206,7 +206,7 @@ public class TestGameManager : MonoBehaviour
         {
             // GAME OVER
 
-            camera.GetComponent<CameraController>().MoveCamera( cameraPosGameOver );
+            mainCamera.GetComponent<CameraController>().MoveCamera( cameraPosGameOver );
             // Display who won
             CountDownTimer(10, false);
             GameOver();
