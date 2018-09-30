@@ -106,9 +106,9 @@ public class Tower : MonoBehaviour {
         {
             
                 GameObject chicken = tower[i];
-                Vector3 pos = new Vector3(transform.position.x,
-                                                    chicken.transform.position.y,
-                                                    transform.position.z);
+                //Vector3 pos = new Vector3(transform.position.x,
+                //                                    chicken.transform.position.y,
+                //                                    transform.position.z);
 
                 //oldPos[i] = pos;    //Save the position for clamping the next round of movement
                 Vector3 newPos = Vector3.zero;

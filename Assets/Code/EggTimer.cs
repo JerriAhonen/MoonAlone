@@ -7,7 +7,7 @@ public class EggTimer : MonoBehaviour {
     public float speed;
 
     public float shakeSpeed;
-    private float shakeTime;
+    //private float shakeTime;
 
     public bool shakeRight = true;
     public bool shakeLeft = false;
@@ -15,7 +15,7 @@ public class EggTimer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        shakeTime = 0.01f;
+        //shakeTime = 0.01f;
         animControl = GetComponentInParent<Animator>();
 	}
 	
@@ -30,14 +30,12 @@ public class EggTimer : MonoBehaviour {
         else {
             Shake();
         }
-        
 
         //Debug.Log(time);
 	}
 
     void Rotate()
     {
-       
         transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 
