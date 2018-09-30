@@ -1346,15 +1346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wanderDistance: 5
-  _turnSpeed: 2
-  originatingPlayer: {fileID: 0}
-  isThrown: 0
-  isFalling: 0
   _groundLayer: Ground
   _pickUpLayer: PickUp
   _terrainLayer: Terrain
-  mood: 1
-  spottedPlayer: 0
+  _mood: 1
 --- !u!135 &135624006044331924
 SphereCollider:
   m_ObjectHideFlags: 1

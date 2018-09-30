@@ -86,14 +86,10 @@ public class Options : MonoBehaviour {
 
         switch (index) {
             case 0:
-                //selector.transform.position = optionOnePos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
-                //selector.transform.position = optionOnePos;
                 sfxArrow.SetActive(true);
                 musicArrow.SetActive(false);
                 break;
             case 1:
-                //selector.transform.position = optionTwoPos;
-                //selector.transform.position = optionTwoPos;   JOKU INDIKAATTORI MIKÄ SLIDER VALITTUNA
                 sfxArrow.SetActive(false);
                 musicArrow.SetActive(true);
                 break;

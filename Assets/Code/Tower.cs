@@ -144,7 +144,7 @@ public class Tower : MonoBehaviour {
         // Possibility to put all chickens face the same way
         // Quaternion forward = Quaternion.LookRotation(transform.forward);
 
-        mood = chickenObj.GetComponent<Chicken>().mood;
+        mood = chickenObj.GetComponent<Chicken>().Mood;
 
         switch (mood) {
             case 0:
@@ -201,7 +201,7 @@ public class Tower : MonoBehaviour {
             clonePosition = removedChicken.transform.position;
         }
 
-        mood = removedChicken.GetComponent<Chicken>().mood;
+        mood = removedChicken.GetComponent<Chicken>().Mood;
 
         switch(mood) {
             case 0:

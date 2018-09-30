@@ -78,7 +78,7 @@ public class ChickenSpawner : MonoBehaviour {
         
         GameObject cloneChicken = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
 
-        cloneChicken.GetComponent<Chicken>().mood = mood;
+        cloneChicken.GetComponent<Chicken>().Mood = mood;
 
         cloneChicken.GetComponent<Chicken>().IsFalling = true;
 

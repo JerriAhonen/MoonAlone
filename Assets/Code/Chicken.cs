@@ -72,7 +72,16 @@ public class Chicken : MonoBehaviour {
     private float _offset = 0.5f;
     private Vector3 _followOffset = new Vector3(1,0,0);
 
-    public int mood;    //0 = Fearful, 1 = Loving, 2 = Chill
+    [SerializeField] private int _mood;    //0 = Fearful, 1 = Loving, 2 = Chill
+
+    public int Mood {
+        get {
+            return _mood;
+        }
+        set {
+            _mood = value;
+        }
+    }
 
     private bool _spottedPlayer = false;
 
@@ -125,7 +134,7 @@ public class Chicken : MonoBehaviour {
         _moveTime += Time.deltaTime;
         _reactionTime += Time.deltaTime;
 
-        if (_spottedPlayer && mood == 1) {
+        if (_spottedPlayer && _mood == 1) {
             _newPos = _player.transform.position;
 
             _distance = Vector3.Distance(_newPos, transform.position);
@@ -133,7 +142,7 @@ public class Chicken : MonoBehaviour {
 
         if (!_isInTower && !_isThrown && !_isFalling)
         {
-            switch (mood)
+            switch (_mood)
             {
                 case 0:     //0 = Fearful
                     if (_spottedPlayer) {
@@ -278,7 +287,7 @@ public class Chicken : MonoBehaviour {
         _spottedPlayer = true;
         _reactionTime = 0f;
 
-        switch (mood) {
+        switch (_mood) {
             case 0:
                 _fearParticles.Play();
                 _newPos = transform.position - player.transform.position;
