@@ -21,7 +21,13 @@ public class Chicken : MonoBehaviour {
 
     private Vector3 _newPos = Vector3.zero;
 
-    public GameObject originatingPlayer;
+    private GameObject _originatingPlayer;
+
+    public GameObject OriginatingPlayer {
+        get {
+            return _originatingPlayer;
+        }
+    }
 
     private float _gravity;
     private float _launchAngle;
@@ -30,8 +36,24 @@ public class Chicken : MonoBehaviour {
     private Vector3 _verticalTrajectory;
     private Vector3 _horizontalTrajectory;
 
-    public bool isThrown = false;
-    public bool isFalling = false;
+    private bool _isThrown = false;
+
+    public bool IsThrown {
+        get {
+            return _isThrown;
+        }
+    }
+
+    private bool _isFalling = false;
+
+    public bool IsFalling {
+        get {
+            return _isFalling;
+        }
+        set {
+            _isFalling = value;
+        }
+    }
 
     [SerializeField] private string _groundLayer;
     [SerializeField] private string _pickUpLayer;
@@ -51,12 +73,22 @@ public class Chicken : MonoBehaviour {
     private Vector3 _followOffset = new Vector3(1,0,0);
 
     public int mood;    //0 = Fearful, 1 = Loving, 2 = Chill
-    public bool spottedPlayer = false;
+
+    private bool _spottedPlayer = false;
+
+    public bool SpottedPlayer {
+        get {
+            return _spottedPlayer;
+        }
+    }
+
     private float _movementSpeed;
 
     private GameObject _player;
 
     private string _flyBackLayer;
+
+    private float _distance;
 
     private bool _offBoard = false;
 
@@ -87,30 +119,28 @@ public class Chicken : MonoBehaviour {
 
         _reactionTimer = 2f;
     }
-
-    float distance;
-
+    
     private void Update()
     {
         _moveTime += Time.deltaTime;
         _reactionTime += Time.deltaTime;
 
-        if (spottedPlayer && mood == 1) {
+        if (_spottedPlayer && mood == 1) {
             _newPos = _player.transform.position;
 
-            distance = Vector3.Distance(_newPos, transform.position);
+            _distance = Vector3.Distance(_newPos, transform.position);
         }
 
-        if (!_isInTower && !isThrown && !isFalling)
+        if (!_isInTower && !_isThrown && !_isFalling)
         {
             switch (mood)
             {
                 case 0:     //0 = Fearful
-                    if (spottedPlayer) {
+                    if (_spottedPlayer) {
                         _movementSpeed = 4f;
 
                         if (_reactionTime > _reactionTimer) {
-                            spottedPlayer = false;      // CAN YOU BREAK AND GO TO ELSE??
+                            _spottedPlayer = false;      // CAN YOU BREAK AND GO TO ELSE??
                         }
                     } else {
                         if (_moveTime > _movementTimer) {
@@ -129,9 +159,9 @@ public class Chicken : MonoBehaviour {
 
                     break;
                 case 1:     //1 = Loving
-                    if (spottedPlayer) {
-                        if (distance < 0f || distance > 3f) {
-                            spottedPlayer = false;
+                    if (_spottedPlayer) {
+                        if (_distance < 0f || _distance > 3f) {
+                            _spottedPlayer = false;
 
                             _loveParticles.Stop();
                         }
@@ -169,7 +199,7 @@ public class Chicken : MonoBehaviour {
             }
         }
 
-        if (isThrown || isFalling) {
+        if (_isThrown || _isFalling) {
             if (_featherParticles.isStopped || _trailParticles.isStopped) {
                 _featherParticles.Play();
                 _trailParticles.Play();
@@ -185,8 +215,8 @@ public class Chicken : MonoBehaviour {
         }
 
         if (_isGrounded) {
-            isThrown = false;
-            isFalling = false;
+            _isThrown = false;
+            _isFalling = false;
 
             _flyTime = 0;
 
@@ -200,7 +230,7 @@ public class Chicken : MonoBehaviour {
 
             _isGrounded = false;
 
-            originatingPlayer = null;
+            _originatingPlayer = null;
         }
 
         if (!_offBoard && transform.position.y < -1f) {
@@ -211,7 +241,7 @@ public class Chicken : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (isThrown || isFalling) {
+        if (_isThrown || _isFalling) {
             Fly();
         }
     }
@@ -243,9 +273,9 @@ public class Chicken : MonoBehaviour {
         }
     }
 
-    public void SpottedPlayer(GameObject player) {
+    public void SpotPlayer(GameObject player) {
         this._player = player;
-        spottedPlayer = true;
+        _spottedPlayer = true;
         _reactionTime = 0f;
 
         switch (mood) {
@@ -290,7 +320,7 @@ public class Chicken : MonoBehaviour {
     {
         this._tower = tower;
         this._isInTower = isInTower;
-        originatingPlayer = towerOwner;
+        _originatingPlayer = towerOwner;
     }
 
     // The chicken flies through the air either when thrown or falling.
@@ -307,7 +337,7 @@ public class Chicken : MonoBehaviour {
     // Set the parameters for flight either when thrown or falling.
     public void SetFlight(bool toBeThrown, bool flyFar, GameObject originatingPlayer) {
         // Remember who threw you or whose tower you fell from.
-        this.originatingPlayer = originatingPlayer;
+        this._originatingPlayer = originatingPlayer;
         
         // NOTE! Rocket launch curved trajectory chickens can be achieved by using minus gravity!
         _gravity = 50f;
@@ -321,7 +351,7 @@ public class Chicken : MonoBehaviour {
                 _launchVelocity = 17f;
             }
 
-            isThrown = true;
+            _isThrown = true;
         } else {
             _launchAngle = 10f;
             _launchVelocity = 8f;
@@ -330,7 +360,7 @@ public class Chicken : MonoBehaviour {
             // Trying to make the Rigidbodies NOT react with their own forces proved difficult.
             GetComponent<Rigidbody>().drag = 3f;
 
-            isFalling = true;
+            _isFalling = true;
         }
 
         StartCoroutine(IgnoreTower(GetComponent<Rigidbody>()));
@@ -361,17 +391,17 @@ public class Chicken : MonoBehaviour {
             if (collisionObject.GetComponent<Chicken>() != null) {
                 Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
 
-                if (collidingChicken.isThrown && (collidingChicken.originatingPlayer != originatingPlayer)) {
+                if (collidingChicken._isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
                         GetComponentInParent<Player>().isHit = true;
 
-                        GetComponentInParent<Tower>().Scatter(originatingPlayer);
+                        GetComponentInParent<Tower>().Scatter(_originatingPlayer);
                     }
                 }
             }
         }
 
-        if (isFalling || isThrown) {
+        if (_isFalling || _isThrown) {
             GameObject collisionObject = collision.gameObject;
 
             if (collisionObject.layer == LayerMask.NameToLayer(_pickUpLayer)) {

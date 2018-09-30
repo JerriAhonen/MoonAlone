@@ -12,7 +12,6 @@ public class LightBall : MonoBehaviour {
     public int playerModel;
 
     public ParticleSystem[] ps;
-    
 
     float startTime;
     bool goToRoutingPoint;
@@ -20,29 +19,20 @@ public class LightBall : MonoBehaviour {
     private void Awake()
     {
         ps = GetComponentsInChildren<ParticleSystem>(true);
-        Debug.Log("Found the particle systems for lightball");
+        //Debug.Log("Found the particle systems for lightball");
     }
 
     private void OnEnable()
     {
         startTime = Time.time;
         goToRoutingPoint = true;
-
-        
-        
-        
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void Update()
     {
         MoveLightBall();
 
-        // Chage the color according to playermodel
+        // Change the color according to playermodel
         var main = ps[1].main;
         switch (playerModel)
         {
@@ -69,7 +59,6 @@ public class LightBall : MonoBehaviour {
         {
             transform.position = Vector3.Slerp(startPos, routingPoint, progress / 0.5f);
 
-
             if (Vector3.Distance(transform.position, routingPoint) <= 1f)
             {
                 goToRoutingPoint = false;
@@ -81,9 +70,6 @@ public class LightBall : MonoBehaviour {
         {
             transform.position = Vector3.Slerp(secondStartPos, target.position, progress / 0.5f);
         }
-
-
-
 
         if (transform.position == target.position)
         {

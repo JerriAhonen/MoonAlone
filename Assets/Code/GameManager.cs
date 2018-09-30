@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour {
                 foreach(GameObject chicken in _startChickens)
                 {
                     chicken.gameObject.SetActive(true);
-                    chicken.GetComponent<Chicken>().isFalling = true;
+                    chicken.GetComponent<Chicken>().IsFalling = true;
                 }
                 _startChickensEnabled = true;
                 EnablePlayerScripts(true);

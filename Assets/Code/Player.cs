@@ -354,9 +354,9 @@ public class Player : MonoBehaviour {
             
             // If the hit object is a chicken and it is not thrown or falling, set that object for pick up.
             if (hit.gameObject.GetComponent<Chicken>() != null) {
-                if (!hit.gameObject.GetComponent<Chicken>().isThrown 
+                if (!hit.gameObject.GetComponent<Chicken>().IsThrown 
                         && 
-                    !hit.gameObject.GetComponent<Chicken>().isFalling) {
+                    !hit.gameObject.GetComponent<Chicken>().IsFalling) {
                         chicken = hit.gameObject;
                 }
             }
@@ -377,8 +377,8 @@ public class Player : MonoBehaviour {
             if (collider.gameObject.GetComponent<Chicken>() != null) {
                 Chicken detectedChicken = collider.gameObject.GetComponent<Chicken>();
 
-                if (!detectedChicken.isThrown && !detectedChicken.isFalling && detectedChicken.mood != 2 && !detectedChicken.spottedPlayer) {
-                    detectedChicken.SpottedPlayer(gameObject);
+                if (!detectedChicken.IsThrown && !detectedChicken.IsFalling && detectedChicken.mood != 2 && !detectedChicken.SpottedPlayer) {
+                    detectedChicken.SpotPlayer(gameObject);
                 }
             }
         }

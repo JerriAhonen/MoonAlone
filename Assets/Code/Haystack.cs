@@ -19,9 +19,9 @@ public class Haystack : MonoBehaviour {
         {
             if (collision.gameObject.GetComponent<Chicken>() != null)
             {
-                if (collision.gameObject.GetComponent<Chicken>().isThrown 
+                if (collision.gameObject.GetComponent<Chicken>().IsThrown 
                     && 
-                    collision.gameObject.GetComponent<Chicken>().originatingPlayer != null)
+                    collision.gameObject.GetComponent<Chicken>().OriginatingPlayer != null)
                 {
                     Destroy(_haystack.gameObject);
 

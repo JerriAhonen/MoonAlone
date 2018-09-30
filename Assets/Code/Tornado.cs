@@ -71,7 +71,7 @@ public class Tornado : MonoBehaviour {
             GameObject collisionObject = collision.gameObject;
 
             // Basically only chickens on the ground get affected.
-            if (collisionObject.GetComponent<Chicken>() != null && collisionObject.GetComponent<Chicken>().originatingPlayer == null) {
+            if (collisionObject.GetComponent<Chicken>() != null && collisionObject.GetComponent<Chicken>().OriginatingPlayer == null) {
                 collisionObject.GetComponent<Chicken>().SetFlight(true, false, null);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw_cartoon", _mainCamera.transform.position);
             }

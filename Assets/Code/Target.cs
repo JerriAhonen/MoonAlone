@@ -21,7 +21,7 @@ public class Target : MonoBehaviour {
         {
             if (collision.gameObject.GetComponent<Chicken>() != null)
             {
-                if (collision.gameObject.GetComponent<Chicken>().isThrown)
+                if (collision.gameObject.GetComponent<Chicken>().IsThrown)
                 {
                     Destroy(_target.gameObject);
 

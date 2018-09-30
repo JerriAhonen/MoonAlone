@@ -106,7 +106,7 @@ public class Collector : MonoBehaviour {
         if (collisionObject.GetComponent<Chicken>() != null) 
 	    {
 			Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
-			if (!collidingChicken.isThrown || (collidingChicken.originatingPlayer == null))
+			if (!collidingChicken.IsThrown || (collidingChicken.OriginatingPlayer == null))
 			{
 				Destroy(collision.gameObject);
 
@@ -115,7 +115,7 @@ public class Collector : MonoBehaviour {
                 return;
 			}
 					
-		originatingPlayer = collidingChicken.originatingPlayer;
+		originatingPlayer = collidingChicken.OriginatingPlayer;
 		receivedChicken = true;
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
