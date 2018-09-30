@@ -18,7 +18,6 @@ public class Collector : MonoBehaviour {
     private bool _isMoving = true;
     private float _intervalTime;
     
-
 	GameObject _originatingPlayer;
 	private bool _receivedChicken;
     public GameObject floatingCollectorPointText;

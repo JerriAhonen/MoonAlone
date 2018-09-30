@@ -402,7 +402,7 @@ public class Chicken : MonoBehaviour {
 
                 if (collidingChicken._isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
-                        GetComponentInParent<Player>().isHit = true;
+                        GetComponentInParent<Player>().IsHit = true;
 
                         GetComponentInParent<Tower>().Scatter(_originatingPlayer);
                     }

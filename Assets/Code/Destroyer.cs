@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour {
 
-	public string _pickUpLayer = "PickUp";
-	public GameObject mainCamera;
+    [SerializeField] private string _pickUpLayer = "PickUp";
 
-    public ChickenSpawner spawner;
+	private GameObject _mainCamera;
+
+    private ChickenSpawner _spawner;
 
 	// Use this for initialization
 	void Start () {
-        mainCamera = Camera.main.gameObject;
-
-        spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
+        _spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
 	}
 
     void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.layer == LayerMask.NameToLayer(_pickUpLayer)){
 			Destroy(col.gameObject);
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/ChickenThrowScream", mainCamera.transform.position);
 
-            spawner.SpawnChicken();
+            _spawner.SpawnChicken();
 		}
 	}
 }

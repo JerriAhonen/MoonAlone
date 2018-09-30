@@ -59,7 +59,7 @@ public class Tornado : MonoBehaviour {
             GameObject collisionObject = collision.gameObject;
 
             if (collisionObject.GetComponent<Player>() != null) {
-                collisionObject.GetComponent<Player>().isHit = true;
+                collisionObject.GetComponent<Player>().IsHit = true;
 
                 if (collisionObject.GetComponent<Tower>() != null) {
                     collisionObject.GetComponent<Tower>().Scatter(collision.gameObject);

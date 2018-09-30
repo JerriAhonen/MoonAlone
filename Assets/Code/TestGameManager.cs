@@ -366,17 +366,17 @@ public class TestGameManager : MonoBehaviour
             if (players[i].activeSelf) {
                 //If the player has 0 chickens, score = 0
                 if ( players[i].GetComponent<Tower>().chickenCount == 0) {
-                    players[i].GetComponent<Player>().score = 0;
+                    players[i].GetComponent<Player>().Score = 0;
                 }
                 // Else, give score according to ranking and player count
                 else if (players[i].GetComponent<Tower>().chickenCount == scores[3]) {
-                    players[i].GetComponent<Player>().score = readyCount - 1;
+                    players[i].GetComponent<Player>().Score = readyCount - 1;
                 } else if (players[i].GetComponent<Tower>().chickenCount == scores[2]) {
-                    players[i].GetComponent<Player>().score = readyCount - 2;
+                    players[i].GetComponent<Player>().Score = readyCount - 2;
                 } else if (players[i].GetComponent<Tower>().chickenCount == scores[1]) {
-                    players[i].GetComponent<Player>().score = readyCount - 3;
+                    players[i].GetComponent<Player>().Score = readyCount - 3;
                 } else if (players[i].GetComponent<Tower>().chickenCount == scores[0]) {
-                    players[i].GetComponent<Player>().score = readyCount - 4;
+                    players[i].GetComponent<Player>().Score = readyCount - 4;
                 }
             }
         }
@@ -384,7 +384,7 @@ public class TestGameManager : MonoBehaviour
         //Add round score to playerscore
         for (int i = 0; i < playerScores.Length; i++)
         {
-            playerScores[i] += players[i].GetComponent<Player>().score;
+            playerScores[i] += players[i].GetComponent<Player>().Score;
         }
     }
 }

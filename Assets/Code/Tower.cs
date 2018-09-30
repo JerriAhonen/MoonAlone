@@ -88,7 +88,7 @@ public class Tower : MonoBehaviour {
     {
         //------------------------------------------------------------------------------------------------\\
 
-        if (player.isMoving)
+        if (player.IsMoving)
         {
             riskOfCollapse += 0.1f * Time.deltaTime;
         }
@@ -114,7 +114,7 @@ public class Tower : MonoBehaviour {
                 Vector3 newPos = Vector3.zero;
 
 
-                if (player.isMoving)                //The tower should tilt more, if the player is moving
+                if (player.IsMoving)                //The tower should tilt more, if the player is moving
                 {
                     //TODO: Tower tilting/swaying incrementally as the player moves or the tower height augments 
 
@@ -267,7 +267,7 @@ public class Tower : MonoBehaviour {
                                                 chicken.transform.position.y, 
                                                 transform.position.z);
 
-            if (player.isMoving) {           // If the player is moving, add tilt to the tower.
+            if (player.IsMoving) {           // If the player is moving, add tilt to the tower.
                 if(timer < maxTilt){        // increase tilt until maximum
                     timer += Time.deltaTime;
                     chickenOffsetZMultiplier += chickenOffsetZMultiplierAdder;

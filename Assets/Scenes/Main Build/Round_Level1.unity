@@ -6452,27 +6452,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  setMovementSpeed: 8.5
-  movementSpeed: 8.5
-  turningSpeed: 800
-  gravity: 10
-  jumpForce: 5
-  verticalVelocity: 0
-  downwardsFallMultiplier: 2.5
-  isMoving: 0
-  score: 0
-  chicken: {fileID: 0}
-  cs: {fileID: 0}
+  _setMovementSpeed: 8.5
+  _turningSpeed: 800
+  _gravity: 10
+  _jumpForce: 5
+  _verticalVelocity: 0
+  _downwardsFallMultiplier: 2.5
   _pickUpLayer: PickUp
   _playerLayer: Player
-  horizontal: Horizontal_P4
-  vertical: Vertical_P4
-  fireShortButton: FireShort_P4
-  fireLongButton: FireLong_P4
-  isHit: 0
-  isIncapacitated: 0
-  playerCamera: {fileID: 800264224}
-  shakeTime: 0.2
+  _horizontal: Horizontal_P4
+  _vertical: Vertical_P4
+  _fireShortButton: FireShort_P4
+  _fireLongButton: FireLong_P4
+  _playerCamera: {fileID: 800264224}
+  _shakeTime: 0.2
 --- !u!1 &430589208
 GameObject:
   m_ObjectHideFlags: 0
@@ -11027,27 +11020,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  setMovementSpeed: 8.5
-  movementSpeed: 8.5
-  turningSpeed: 800
-  gravity: 10
-  jumpForce: 5
-  verticalVelocity: 0
-  downwardsFallMultiplier: 2.5
-  isMoving: 0
-  score: 0
-  chicken: {fileID: 0}
-  cs: {fileID: 0}
+  _setMovementSpeed: 8.5
+  _turningSpeed: 800
+  _gravity: 10
+  _jumpForce: 5
+  _verticalVelocity: 0
+  _downwardsFallMultiplier: 2.5
   _pickUpLayer: PickUp
   _playerLayer: Player
-  horizontal: Horizontal_P1
-  vertical: Vertical_P1
-  fireShortButton: FireShort_P1
-  fireLongButton: FireLong_P1
-  isHit: 0
-  isIncapacitated: 0
-  playerCamera: {fileID: 800264224}
-  shakeTime: 0.2
+  _horizontal: Horizontal_P1
+  _vertical: Vertical_P1
+  _fireShortButton: FireShort_P1
+  _fireLongButton: FireLong_P1
+  _playerCamera: {fileID: 800264224}
+  _shakeTime: 0.2
 --- !u!1 &810174769
 GameObject:
   m_ObjectHideFlags: 0
@@ -14162,27 +14148,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  setMovementSpeed: 8.5
-  movementSpeed: 8.5
-  turningSpeed: 800
-  gravity: 10
-  jumpForce: 5
-  verticalVelocity: 0
-  downwardsFallMultiplier: 2.5
-  isMoving: 0
-  score: 0
-  chicken: {fileID: 0}
-  cs: {fileID: 0}
+  _setMovementSpeed: 8.5
+  _turningSpeed: 800
+  _gravity: 10
+  _jumpForce: 5
+  _verticalVelocity: 0
+  _downwardsFallMultiplier: 2.5
   _pickUpLayer: PickUp
   _playerLayer: Player
-  horizontal: Horizontal_P2
-  vertical: Vertical_P2
-  fireShortButton: FireShort_P2
-  fireLongButton: FireLong_P2
-  isHit: 0
-  isIncapacitated: 0
-  playerCamera: {fileID: 800264224}
-  shakeTime: 0.2
+  _horizontal: Horizontal_P2
+  _vertical: Vertical_P2
+  _fireShortButton: FireShort_P2
+  _fireLongButton: FireLong_P2
+  _playerCamera: {fileID: 800264224}
+  _shakeTime: 0.2
 --- !u!1001 &1005320544
 Prefab:
   m_ObjectHideFlags: 0
@@ -18855,27 +18834,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAnimations: 0
-  setMovementSpeed: 8.5
-  movementSpeed: 8.5
-  turningSpeed: 800
-  gravity: 10
-  jumpForce: 5
-  verticalVelocity: 0
-  downwardsFallMultiplier: 2.5
-  isMoving: 0
-  score: 0
-  chicken: {fileID: 0}
-  cs: {fileID: 0}
+  _setMovementSpeed: 8.5
+  _turningSpeed: 800
+  _gravity: 10
+  _jumpForce: 5
+  _verticalVelocity: 0
+  _downwardsFallMultiplier: 2.5
   _pickUpLayer: PickUp
   _playerLayer: Player
-  horizontal: Horizontal_P3
-  vertical: Vertical_P3
-  fireShortButton: FireShort_P3
-  fireLongButton: FireLong_P3
-  isHit: 0
-  isIncapacitated: 0
-  playerCamera: {fileID: 800264224}
-  shakeTime: 0.2
+  _horizontal: Horizontal_P3
+  _vertical: Vertical_P3
+  _fireShortButton: FireShort_P3
+  _fireLongButton: FireLong_P3
+  _playerCamera: {fileID: 800264224}
+  _shakeTime: 0.2
 --- !u!1 &1093908984
 GameObject:
   m_ObjectHideFlags: 0
@@ -24083,8 +24055,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickUpLayer: PickUp
-  mainCamera: {fileID: 0}
-  spawner: {fileID: 0}
 --- !u!65 &1480347370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33357,16 +33327,15 @@ MonoBehaviour:
   - {fileID: 372834587}
   - {fileID: 560623613}
   - {fileID: 810174769}
-  prefabLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
+  _prefabLoving: {fileID: 1326638799298456, guid: 69ac22467450b924689f99e2da701619,
     type: 2}
-  prefabFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
+  _prefabFearful: {fileID: 1856093599825542, guid: 7a42a85b345dd6141a848c3b36506c22,
     type: 2}
-  prefabChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
+  _prefabChill: {fileID: 1032634404758268, guid: d74c35a03959c7d4d8db5df787505c15,
     type: 2}
-  prefabToSpawn: {fileID: 0}
-  spawnTimer: 1.5
-  speed: 30
-  amountToSpawn: 500
+  _spawnTimer: 1.5
+  _speed: 30
+  _amountToSpawn: 500
 --- !u!4 &1947688975
 Transform:
   m_ObjectHideFlags: 0

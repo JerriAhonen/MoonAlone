@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class ChickenSpawner : MonoBehaviour {
 
-    public GameObject[] spawnerRoute = new GameObject[4];
-    public GameObject prefabLoving;
-    public GameObject prefabFearful;
-    public GameObject prefabChill;
-    public GameObject prefabToSpawn;
-    public float spawnTimer;
-    public float speed;
+    [SerializeField] private GameObject[] spawnerRoute = new GameObject[4];
+    [SerializeField] private GameObject _prefabLoving;
+    [SerializeField] private GameObject _prefabFearful;
+    [SerializeField] private GameObject _prefabChill;
+
+    private GameObject _prefabToSpawn;
+
+    [SerializeField] private float _spawnTimer;
+    [SerializeField] private float _speed;
 
     [Tooltip ("Amount of chickens to spawn")]
-    public int amountToSpawn;
-    private int chickensSpawned;
+    [SerializeField] private int _amountToSpawn;
 
+    private int chickensSpawned;
     private float timer;
     private int i = 0;
     
-    Vector3 newDestination;
+    private Vector3 newDestination;
 
     private GameObject mainCamera;
 
     // Use this for initialization
     void Start () {
         newDestination = spawnerRoute[0].transform.position;
-        timer = spawnTimer;
+        timer = _spawnTimer;
         mainCamera = GameObject.Find("Main Camera");
     }
 	
@@ -47,14 +49,14 @@ public class ChickenSpawner : MonoBehaviour {
             newDestination = spawnerRoute[i].transform.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, newDestination, _speed * Time.deltaTime);
         timer -= Time.deltaTime;
 
-        if(timer < 0 && chickensSpawned < amountToSpawn)
+        if(timer < 0 && chickensSpawned < _amountToSpawn)
         {
             SpawnChicken();
             chickensSpawned++;
-            timer = spawnTimer;
+            timer = _spawnTimer;
         }
 	}
 
@@ -65,18 +67,18 @@ public class ChickenSpawner : MonoBehaviour {
         if (Random.value > 0.8)         //20% chance chill
         {
             mood = 2;
-            prefabToSpawn = prefabChill;
+            _prefabToSpawn = _prefabChill;
         } else if(Random.value > 0.6)    //20% chance loving
           {
             mood = 1;
-            prefabToSpawn = prefabLoving;
+            _prefabToSpawn = _prefabLoving;
         } else                            //60% chance fearful
           {
             mood = 0;
-            prefabToSpawn = prefabFearful;
+            _prefabToSpawn = _prefabFearful;
         }
         
-        GameObject cloneChicken = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        GameObject cloneChicken = Instantiate(_prefabToSpawn, transform.position, Quaternion.identity);
 
         cloneChicken.GetComponent<Chicken>().Mood = mood;
 

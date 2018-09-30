@@ -6,28 +6,45 @@ public class Player : MonoBehaviour {
 
     public bool debugAnimations = false;
 
-    public float setMovementSpeed;
-    public float movementSpeed;
-    public float turningSpeed = 800.0f;
-    public float gravity = 16.0f;
-    public float jumpForce = 8.0f;
-    public float verticalVelocity;
-    public float downwardsFallMultiplier;
-    private int currentAnimationParam = 0;
-    public bool isMoving;
-    public int score;
+    [SerializeField] private float _setMovementSpeed;
+    private float _movementSpeed;
 
-    private Vector3 movement;
+    [SerializeField] private float _turningSpeed = 800.0f;
+    [SerializeField] private float _gravity = 10.0f;
+    [SerializeField] private float _jumpForce = 5.0f;
+    [SerializeField] private float _verticalVelocity;
+    [SerializeField] private float _downwardsFallMultiplier;
+
+    private int _currentAnimationParam = 0;
+    private bool _isMoving;
+
+    public bool IsMoving {
+        get {
+            return _isMoving;
+        }
+    }
+
+    private int _score;
+
+    public int Score {
+        get {
+            return _score;
+        }
+        set {
+            _score = value;
+        }
+    }
+
+    private Vector3 _movement;
 
     private Tower _tower;
-    public GameObject chicken;
+    private GameObject _chicken;
 
     private CharacterController _controller;
 	private Animator _animControl;
-    public CharacterSelection cs;
 
-    public string _pickUpLayer = "PickUp";
-    public string _playerLayer = "Player";
+    [SerializeField] private string _pickUpLayer = "PickUp";
+    [SerializeField] private string _playerLayer = "Player";
 
     private float _pressTime = 0;
     private float _animTimer;
@@ -37,14 +54,24 @@ public class Player : MonoBehaviour {
     private GameObject _enemy;
     private Vector3 _throwDirection;
 
-    public string horizontal;
-    public string vertical;
-    public string fireShortButton;
-    public string fireLongButton;
-    //public string jumpButton = "Jump_P1";
+    [SerializeField] private string _horizontal;
+    [SerializeField] private string _vertical;
+    [SerializeField] private string _fireShortButton;
+    [SerializeField] private string _fireLongButton;
+    //[SerializeField] private string _jumpButton = "Jump_P1";
 
-    public bool isHit = false;
-    public bool isIncapacitated = false;
+    private bool _isHit = false;
+
+    public bool IsHit {
+        get {
+            return _isHit;
+        }
+        set {
+            _isHit = value;
+        }
+    }
+
+    private bool _isIncapacitated = false;
 
     private GameObject _hitEffect;
     private GameObject _hitBirdEffect;
@@ -55,11 +82,12 @@ public class Player : MonoBehaviour {
     private bool _throwNow = false;
 
     private Camera _mainCamera;
-    public Camera playerCamera;
-    public float shakeTime = 0.1f;
-    float timeStop = 0;
-    float shakeAmount = 0.1f;
-    Vector3 originPosition;
+    [SerializeField] private Camera _playerCamera;
+    [SerializeField] private float _shakeTime = 0.2f;
+
+    private float _timeStop = 0;
+    private float _shakeAmount = 0.1f;
+    private Vector3 _originPosition;
 
     private FMOD.Studio.EventInstance _run;
 
@@ -74,7 +102,7 @@ public class Player : MonoBehaviour {
         _chargeEffect = transform.Find("ChargeShot").gameObject;
 
         _mainCamera = Camera.main;
-        movementSpeed = setMovementSpeed;
+        _movementSpeed = _setMovementSpeed;
 
         _run = FMODUnity.RuntimeManager.CreateInstance("event:/Player Sounds/player_run");
     }
@@ -84,28 +112,28 @@ public class Player : MonoBehaviour {
         if (_animControl == null)
             _animControl = gameObject.GetComponentInChildren<Animator>();
 
-        if (!isIncapacitated) {
+        if (!_isIncapacitated) {
             
             if (_tower.chickenCount > 5)
             {
-                movementSpeed = setMovementSpeed - ((_tower.chickenCount - 5) / 4);
+                _movementSpeed = _setMovementSpeed - ((_tower.chickenCount - 5) / 4);
             }
             
             Move();
 
             // If a pickuppable chicken has collided with the player.
-            if (chicken != null) {
+            if (_chicken != null) {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_pickup", _mainCamera.transform.position);
 
-                _tower.AddChicken(gameObject, chicken);
-                Destroy(chicken);
+                _tower.AddChicken(gameObject, _chicken);
+                Destroy(_chicken);
             }
 
             if (_tower.chickenCount > 0) {
                 Throw();
             }
 
-            if (isHit) {
+            if (_isHit) {
                 PlayAnimation(4);
 
                 StartCoroutine(GetHit());
@@ -124,28 +152,28 @@ public class Player : MonoBehaviour {
             _readyToThrow = true;
         }
         
-        if (Time.time < timeStop)
+        if (Time.time < _timeStop)
         {
             Vector3 rand = Random.insideUnitSphere;
-            _mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
-            playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
+            _mainCamera.transform.localPosition = _originPosition + rand * _shakeAmount;
+            _playerCamera.transform.localPosition = _originPosition + rand * _shakeAmount;
         }
     }
 
     private void LateUpdate() {
-        if(isMoving && _isWindingUp) {
+        if(_isMoving && _isWindingUp) {
             PlayAnimation(6);
         }
 
-        if(isMoving && !_isWindingUp) {
+        if(_isMoving && !_isWindingUp) {
             PlayAnimation(1);
         }
 
-        if(!isMoving && _isWindingUp) {
+        if(!_isMoving && _isWindingUp) {
             PlayAnimation(5);
         }
 
-        if(!isMoving && !_isWindingUp) {
+        if(!_isMoving && !_isWindingUp) {
             PlayAnimation(0);
         }
         
@@ -162,12 +190,12 @@ public class Player : MonoBehaviour {
 
     void Throw()
     {
-        if (Input.GetButtonDown(fireShortButton) && _readyToThrow && !isIncapacitated && !Input.GetButton(fireLongButton)) {
+        if (Input.GetButtonDown(_fireShortButton) && _readyToThrow && !_isIncapacitated && !Input.GetButton(_fireLongButton)) {
             _throwFar = false;
             _throwNow = true;
-        } else if (!Input.GetButton(fireShortButton)) {
+        } else if (!Input.GetButton(_fireShortButton)) {
             // Initialize press time with the moment in time the fire button was pressed down.
-            if (Input.GetButtonDown(fireLongButton) && _readyToThrow && !isIncapacitated) {
+            if (Input.GetButtonDown(_fireLongButton) && _readyToThrow && !_isIncapacitated) {
                 _pressTime = Time.time;
 
                 _chargeEffect.SetActive(true);
@@ -176,7 +204,7 @@ public class Player : MonoBehaviour {
             }
 
             // Calculate how long the fire button was pressed.
-            if (Input.GetButtonUp(fireLongButton) && _readyToThrow && _isWindingUp) {
+            if (Input.GetButtonUp(_fireLongButton) && _readyToThrow && _isWindingUp) {
 
                 _chargeEffect.SetActive(false);
 
@@ -232,8 +260,8 @@ public class Player : MonoBehaviour {
 
         ShakeNow();
 
-        isHit = false;
-        isIncapacitated = true;
+        _isHit = false;
+        _isIncapacitated = true;
 
         ResetPlayer();
 
@@ -244,20 +272,20 @@ public class Player : MonoBehaviour {
 
         _hitEffect.SetActive(false);
         _hitBirdEffect.SetActive(false);
-        isIncapacitated = false;
+        _isIncapacitated = false;
 
         PlayAnimation(0);
 
-        movementSpeed = setMovementSpeed;
+        _movementSpeed = _setMovementSpeed;
     }
 
     public void ShakeNow() {
-        originPosition = _mainCamera.transform.position;
-        timeStop = Time.time + shakeTime;
+        _originPosition = _mainCamera.transform.position;
+        _timeStop = Time.time + _shakeTime;
     }
 
     public void ResetPlayer() {
-        isMoving = false;
+        _isMoving = false;
 
         _chargeEffect.SetActive(false);
         _isWindingUp = false;
@@ -274,18 +302,18 @@ public class Player : MonoBehaviour {
 
     void Move()
     {
-        float moveHorizontal = Input.GetAxis(horizontal);                       // Horizontal Input
-        float moveVertical = Input.GetAxis(vertical);                           // Vertical Input
+        float moveHorizontal = Input.GetAxis(_horizontal);                       // Horizontal Input
+        float moveVertical = Input.GetAxis(_vertical);                           // Vertical Input
         //bool jump = Input.GetButtonDown(jumpButton);                            // Jump Input
 
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
-            isMoving = false;
+            _isMoving = false;
 
             _run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		}
 		else 
 		{
-            isMoving = true;
+            _isMoving = true;
 
             FMOD.Studio.PLAYBACK_STATE state;
             _run.getPlaybackState(out state);
@@ -296,17 +324,17 @@ public class Player : MonoBehaviour {
 
         Jump(false);                                                             // New Jump() Method
 
-        Vector3 verticalMovement = new Vector3(0, verticalVelocity, 0);         // Get vertical movement in Vector3 form
+        Vector3 verticalMovement = new Vector3(0, _verticalVelocity, 0);         // Get vertical movement in Vector3 form
 
-        movement = new Vector3(moveHorizontal, 0.0f, moveVertical);             // Get the movement Vector3
-        movement = Vector3.ClampMagnitude(movement, 1.0f);                      // Eliminate faster diagonal movement
+        _movement = new Vector3(moveHorizontal, 0.0f, moveVertical);             // Get the movement Vector3
+        _movement = Vector3.ClampMagnitude(_movement, 1.0f);                      // Eliminate faster diagonal movement
 
         //Only Update the player's rotation if he's moving. This way we keep the rotation.
         if (moveHorizontal != 0 || moveVertical != 0)
         {
             Rotate();
         }
-        _controller.Move(movement * movementSpeed * Time.deltaTime);             // Move player on X and Z
+        _controller.Move(_movement * _movementSpeed * Time.deltaTime);             // Move player on X and Z
         _controller.Move(verticalMovement * Time.deltaTime);                     // Move player on Y
     }
 
@@ -316,33 +344,33 @@ public class Player : MonoBehaviour {
         {
             if (_tower.chickenCount > 5)                                         // Check if not too many chickens
             {
-                verticalVelocity = jumpForce / 4f;                              // Decrease jump height
+                _verticalVelocity = _jumpForce / 4f;                              // Decrease jump height
                 Debug.Log("Cannot Jump, too many chicken!");
             }
             else
             {
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Jump", mainCamera.transform.position);
 
-                verticalVelocity = jumpForce;
+                _verticalVelocity = _jumpForce;
                 PlayAnimation(2);                                               // Play Jump animation
             }
         }
 
-        if (verticalVelocity > -50)                                              // No need to go smaller than this
+        if (_verticalVelocity > -50)                                              // No need to go smaller than this
          {
-            verticalVelocity -= gravity * Time.deltaTime;                       // Always decrease verticalVelocity
+            _verticalVelocity -= _gravity * Time.deltaTime;                       // Always decrease verticalVelocity
 
-            if (verticalVelocity < 0)                                           // Fall faster than go up
+            if (_verticalVelocity < 0)                                           // Fall faster than go up
             {
-                 verticalVelocity -= gravity * downwardsFallMultiplier * Time.deltaTime;
+                 _verticalVelocity -= _gravity * _downwardsFallMultiplier * Time.deltaTime;
             }
         }
     }
 
     void Rotate()
     {
-        float step = turningSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movement), step);
+        float step = _turningSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(_movement), step);
     }
 
     // If player hits something on the pick up layer, do things.
@@ -354,7 +382,7 @@ public class Player : MonoBehaviour {
                 if (!hit.gameObject.GetComponent<Chicken>().IsThrown 
                         && 
                     !hit.gameObject.GetComponent<Chicken>().IsFalling) {
-                        chicken = hit.gameObject;
+                        _chicken = hit.gameObject;
                 }
             }
             
@@ -395,12 +423,12 @@ public class Player : MonoBehaviour {
     {
         //Debug.Log("Set animation to " + param);
 
-        if (_animControl != null && param != currentAnimationParam)
+        if (_animControl != null && param != _currentAnimationParam)
         {
             
             _animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
             
-            currentAnimationParam = param;
+            _currentAnimationParam = param;
 
             if (debugAnimations) 
             {
