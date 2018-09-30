@@ -2,70 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chicken : MonoBehaviour
-{
-    public float numberInTower;
-    private Tower tower;
-    public float yPos;
-    public float wanderDistance;
-    public float turningSpeed;
-    public bool isMoving;
-    public bool isInTower;
+public class Chicken : MonoBehaviour {
+    [SerializeField] private float _wanderDistance;
 
-	public Animator animControl;
+    private float _numberInTower;
+    private Tower _tower;
+    private float _yPos;
+
+    private bool _isMoving;
+    private bool _isInTower;
+
+	private Animator _animControl;
     
-    private float moveTime;
-    private float reactionTime;
-    private float movementTimer = 5f;
-    private float reactionTimer;
+    private float _moveTime;
+    private float _reactionTime;
+    private float _movementTimer = 5f;
+    private float _reactionTimer;
 
-    private Vector3 newPos = Vector3.zero;
+    private Vector3 _newPos = Vector3.zero;
 
-    public GameObject _originatingPlayer;
+    public GameObject originatingPlayer;
+
     private float _gravity;
     private float _launchAngle;
     private float _launchVelocity;
     private float _flyTime;
     private Vector3 _verticalTrajectory;
     private Vector3 _horizontalTrajectory;
+
     public bool isThrown = false;
     public bool isFalling = false;
-    public string _groundLayer;
-    public string _pickUpLayer;
-    public string _terrainLayer;
-    public bool _isGrounded = false;
 
-    public Camera mainCamera;
+    [SerializeField] private string _groundLayer;
+    [SerializeField] private string _pickUpLayer;
+    [SerializeField] private string _terrainLayer;
+
+    private bool _isGrounded = false;
+
+    private Camera _mainCamera;
+
     private ParticleSystem _featherParticles;
     private ParticleSystem _trailParticles;
     private ParticleSystem _cloudParticles;
     private ParticleSystem _loveParticles;
     private ParticleSystem _fearParticles;
 
-    private float offset = 0.5f;
+    private float _offset = 0.5f;
     private Vector3 _followOffset = new Vector3(1,0,0);
 
     public int mood;    //0 = Fearful, 1 = Loving, 2 = Chill
     public bool spottedPlayer = false;
-    public float movementSpeed;
+    private float _movementSpeed;
 
-    public GameObject player;
+    private GameObject _player;
 
     private string _flyBackLayer;
 
     public Chicken(int numberInTower, float yPos)
     {
-        this.numberInTower = numberInTower;
-        this.yPos = yPos;
+        this._numberInTower = numberInTower;
+        this._yPos = yPos;
 
         //TODO: Possibly Instantiate the chickens here.
     }
 
     private void Start()
     {
-        newPos = transform.position;
-		animControl = gameObject.GetComponent<Animator>();
-        mainCamera = Camera.main;
+        _newPos = transform.position;
+		_animControl = gameObject.GetComponent<Animator>();
+        _mainCamera = Camera.main;
 
         _groundLayer = "Ground";
         _pickUpLayer = "PickUp";
@@ -78,46 +83,46 @@ public class Chicken : MonoBehaviour
         _loveParticles = transform.Find("Hearts").GetComponent<ParticleSystem>();
         _fearParticles = transform.Find("AlertParticle").GetComponent<ParticleSystem>();
 
-        reactionTimer = 2f;
+        _reactionTimer = 2f;
     }
 
     float distance;
 
     private void Update()
     {
-        moveTime += Time.deltaTime;
-        reactionTime += Time.deltaTime;
+        _moveTime += Time.deltaTime;
+        _reactionTime += Time.deltaTime;
 
         if (spottedPlayer && mood == 1) {
-            newPos = player.transform.position;
+            _newPos = _player.transform.position;
 
-            distance = Vector3.Distance(newPos, transform.position);
+            distance = Vector3.Distance(_newPos, transform.position);
         }
 
-        if (!isInTower && !isThrown && !isFalling)
+        if (!_isInTower && !isThrown && !isFalling)
         {
             switch (mood)
             {
                 case 0:     //0 = Fearful
                     if (spottedPlayer) {
-                        movementSpeed = 4f;
+                        _movementSpeed = 4f;
 
-                        if (reactionTime > reactionTimer) {
+                        if (_reactionTime > _reactionTimer) {
                             spottedPlayer = false;      // CAN YOU BREAK AND GO TO ELSE??
                         }
                     } else {
-                        if (moveTime > movementTimer) {
-                            CalculateRandomLocation(wanderDistance);
-                            moveTime = 0f;
-                            movementTimer = Random.Range(5, 10);
+                        if (_moveTime > _movementTimer) {
+                            CalculateRandomLocation(_wanderDistance);
+                            _moveTime = 0f;
+                            _movementTimer = Random.Range(5, 10);
 
-                            animControl.SetInteger("AnimParam", 0);
+                            _animControl.SetInteger("AnimParam", 0);
 
-                            movementSpeed = 0.5f;
+                            _movementSpeed = 0.5f;
                         }
                     }
 
-                    Wander(newPos, movementSpeed);
+                    Wander(_newPos, _movementSpeed);
                     Rotate();
 
                     break;
@@ -127,38 +132,36 @@ public class Chicken : MonoBehaviour
                             spottedPlayer = false;
 
                             _loveParticles.Stop();
-
-                            //movementSpeed = 0.5f;
                         }
                     } else {
-                        if (moveTime > movementTimer) {
-                            CalculateRandomLocation(wanderDistance);
-                            moveTime = 0f;
-                            movementTimer = Random.Range(5, 10);
+                        if (_moveTime > _movementTimer) {
+                            CalculateRandomLocation(_wanderDistance);
+                            _moveTime = 0f;
+                            _movementTimer = Random.Range(5, 10);
 
-                            animControl.SetInteger("AnimParam", 0);
+                            _animControl.SetInteger("AnimParam", 0);
 
-                            movementSpeed = 0.5f;
+                            _movementSpeed = 0.5f;
                         }
                     }
 
-                    Wander(newPos, movementSpeed);
+                    Wander(_newPos, _movementSpeed);
                     Rotate();
                     
                     break;
                 case 2:     //2 = Chill
-                    if (moveTime > movementTimer) {
-                        CalculateRandomLocation(wanderDistance);
-                        moveTime = 0f;
-                        movementTimer = Random.Range(5, 10);
+                    if (_moveTime > _movementTimer) {
+                        CalculateRandomLocation(_wanderDistance);
+                        _moveTime = 0f;
+                        _movementTimer = Random.Range(5, 10);
 
-                        movementSpeed = 0.5f;
+                        _movementSpeed = 0.5f;
                     }
 
-                    Wander(newPos, movementSpeed);
+                    Wander(_newPos, _movementSpeed);
                     Rotate();
 
-                    animControl.SetInteger("AnimParam", 0);
+                    _animControl.SetInteger("AnimParam", 0);
 
                     break;
             }
@@ -170,12 +173,12 @@ public class Chicken : MonoBehaviour
                 _trailParticles.Play();
             }
 
-			animControl.SetInteger ("AnimParam", 1);
+			_animControl.SetInteger ("AnimParam", 1);
         }
 
-		if (isInTower) {
-			animControl.SetInteger ("AnimParam", 2);
-            if (tower != null)
+		if (_isInTower) {
+			_animControl.SetInteger ("AnimParam", 2);
+            if (_tower != null)
                 MovementInTower();
         }
 
@@ -195,7 +198,7 @@ public class Chicken : MonoBehaviour
 
             _isGrounded = false;
 
-            _originatingPlayer = null;
+            originatingPlayer = null;
         }
     }
 
@@ -205,15 +208,15 @@ public class Chicken : MonoBehaviour
         }
     }
 
-    public void Wander(Vector3 movement, float speed)
+    private void Wander(Vector3 movement, float speed)
     {
         transform.position = Vector3.MoveTowards(transform.position, movement, speed * Time.deltaTime);
     }
 
 
-    void Rotate()
+    private void Rotate()
     {
-        Vector3 direction = (newPos - transform.position).normalized;
+        Vector3 direction = (_newPos - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
@@ -228,39 +231,39 @@ public class Chicken : MonoBehaviour
             && transform.position.z + z > -12f
             && transform.position.z + z < 12f)
         {
-            newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
+            _newPos = new Vector3(transform.position.x + x, 1f, transform.position.z + z);
         }
     }
 
     public void SpottedPlayer(GameObject player) {
-        this.player = player;
+        this._player = player;
         spottedPlayer = true;
-        reactionTime = 0f;
+        _reactionTime = 0f;
 
         switch (mood) {
             case 0:
                 _fearParticles.Play();
-                newPos = transform.position - player.transform.position;
+                _newPos = transform.position - player.transform.position;
 
-                animControl.SetInteger("AnimParam", 3);
+                _animControl.SetInteger("AnimParam", 3);
                 break;
             case 1:
                 _loveParticles.Play();
 
-                movementSpeed = 3f;
+                _movementSpeed = 3f;
 
-                animControl.SetInteger("AnimParam", 3);
+                _animControl.SetInteger("AnimParam", 3);
                 break;
         }
     }
 
     public void MovementInTower() 
     {
-        if (tower.GetChickenUnderneath(this.gameObject) == null) {
+        if (_tower.GetChickenUnderneath(this.gameObject) == null) {
             return;
         }
 
-        GameObject chickenUnderneath = tower.GetChickenUnderneath(this.gameObject);
+        GameObject chickenUnderneath = _tower.GetChickenUnderneath(this.gameObject);
 
         // Apply that offset to get a target position.
         Vector3 targetPosition = chickenUnderneath.transform.localPosition + _followOffset;
@@ -277,13 +280,13 @@ public class Chicken : MonoBehaviour
 
     public void SetTower(Tower tower, bool isInTower, GameObject towerOwner)
     {
-        this.tower = tower;
-        this.isInTower = isInTower;
-        _originatingPlayer = towerOwner;
+        this._tower = tower;
+        this._isInTower = isInTower;
+        originatingPlayer = towerOwner;
     }
 
     // The chicken flies through the air either when thrown or falling.
-    void Fly() {
+    private void Fly() {
         // Set flight's vertical trajectory. Gravity affects the vertical trajectory at every point in fly time.
         _verticalTrajectory.y = _launchVelocity * Mathf.Sin(_launchAngle * Mathf.Deg2Rad) - _gravity * _flyTime;
         // Time spent in flight always increases.
@@ -296,7 +299,7 @@ public class Chicken : MonoBehaviour
     // Set the parameters for flight either when thrown or falling.
     public void SetFlight(bool toBeThrown, bool flyFar, GameObject originatingPlayer) {
         // Remember who threw you or whose tower you fell from.
-        _originatingPlayer = originatingPlayer;
+        this.originatingPlayer = originatingPlayer;
         
         // NOTE! Rocket launch curved trajectory chickens can be achieved by using minus gravity!
         _gravity = 50f;
@@ -344,17 +347,17 @@ public class Chicken : MonoBehaviour
         // If a tower chicken collides with a thrown chicken and the thrown chicken
         // did not originate from the player whose tower the chicken is in, scatter 
         // chickens.
-        if (isInTower) {
+        if (_isInTower) {
             GameObject collisionObject = collision.gameObject;
 
             if (collisionObject.GetComponent<Chicken>() != null) {
                 Chicken collidingChicken = collisionObject.GetComponent<Chicken>();
 
-                if (collidingChicken.isThrown && (collidingChicken._originatingPlayer != _originatingPlayer)) {
+                if (collidingChicken.isThrown && (collidingChicken.originatingPlayer != originatingPlayer)) {
                     if (GetComponentInParent<Tower>() != null) {
                         GetComponentInParent<Player>().isHit = true;
 
-                        GetComponentInParent<Tower>().Scatter(_originatingPlayer);
+                        GetComponentInParent<Tower>().Scatter(originatingPlayer);
                     }
                 }
             }

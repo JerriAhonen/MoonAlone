@@ -6,40 +6,42 @@ public class Tornado : MonoBehaviour {
 
     private float time;
     private float movementTimer = 1;
-    public float wanderDistance;
+
+    [SerializeField]
+    private float wanderDistance;
 
     private Vector3 newPos = Vector3.zero;
 
     private Camera _mainCamera;
 
-    public Transform tornadoPath;
-    private List<Transform> tornadoPoints;
-
     // Use this for initialization
-    void Start () {
+    private void Start () {
         newPos = transform.position;
 
         _mainCamera = Camera.main;
-
-        foreach (Transform child in tornadoPath) {
-            //tornadoPoints.Add(child);
-        }
     }
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
         time += Time.deltaTime;
 
         if (time > movementTimer) {
-            CalculateRandomLocation(wanderDistance);
-            time = 0f;
-            movementTimer = Random.Range(1, 3);
+            SetMovement();
         }
 
         Wander(newPos);
     }
 
-    public void Wander(Vector3 movement) {
+    private void SetMovement() {
+        do {
+            CalculateRandomLocation(wanderDistance);
+        } while (newPos.z > 6f);
+
+        time = 0f;
+        movementTimer = Random.Range(1, 3);
+    }
+
+    private void Wander(Vector3 movement) {
         transform.position = Vector3.MoveTowards(transform.position, movement, 2f * Time.deltaTime);
     }
 
@@ -65,13 +67,13 @@ public class Tornado : MonoBehaviour {
             }
         }
 
-        if(collision.gameObject.layer == LayerMask.NameToLayer("PickUp")) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("PickUp")) {
             GameObject collisionObject = collision.gameObject;
 
             // Basically only chickens on the ground get affected.
-            if (collisionObject.GetComponent<Chicken>() != null && collisionObject.GetComponent<Chicken>()._originatingPlayer == null) {
+            if (collisionObject.GetComponent<Chicken>() != null && collisionObject.GetComponent<Chicken>().originatingPlayer == null) {
                 collisionObject.GetComponent<Chicken>().SetFlight(true, false, null);
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", _mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw_cartoon", _mainCamera.transform.position);
             }
         }
     }

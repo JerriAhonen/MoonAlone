@@ -19,12 +19,12 @@ public class Player : MonoBehaviour {
 
     private Vector3 movement;
 
-    public Tower tower;
+    private Tower _tower;
     public GameObject chicken;
 
-    public CharacterController controller;
-	public Animator animControl;
-    public MeshRenderer renderer;
+    private CharacterController _controller;
+	private Animator _animControl;
+    private MeshRenderer _renderer;
     public CharacterSelection cs;
 
     public string _pickUpLayer = "PickUp";
@@ -45,66 +45,66 @@ public class Player : MonoBehaviour {
     public string fireLongButton;
     //public string jumpButton = "Jump_P1";
 
-    //public GameObject mainCamera;
-
     public bool isHit = false;
     public bool isIncapacitated = false;
-    public GameObject hitEffect;
-    public GameObject hitBirdEffect;
-    public GameObject chargeEffect;
+
+    private GameObject _hitEffect;
+    private GameObject _hitBirdEffect;
+    private GameObject _chargeEffect;
 
     private bool _isWindingUp = false;
     private bool _isThrowing = false;
     private bool _throwNow = false;
 
-    public Camera mainCamera;
+    private Camera _mainCamera;
     public Camera playerCamera;
     public float shakeTime = 0.1f;
     float timeStop = 0;
     float shakeAmount = 0.1f;
     Vector3 originPosition;
 
-    private FMOD.Studio.EventInstance run;
+    private FMOD.Studio.EventInstance _run;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
-        renderer = GetComponent<MeshRenderer>();
-        tower = GetComponent<Tower>();
-		animControl = gameObject.GetComponentInChildren<Animator>();
-        //mainCamera = GameObject.Find("Main Camera");
-        hitEffect = transform.Find("Hit").gameObject;
-        hitBirdEffect = transform.Find("Rotating chickens").gameObject;
-        chargeEffect = transform.Find("ChargeShot").gameObject;
-        mainCamera = Camera.main;
+        _controller = GetComponent<CharacterController>();
+        _renderer = GetComponent<MeshRenderer>();
+        _tower = GetComponent<Tower>();
+		_animControl = gameObject.GetComponentInChildren<Animator>();
+
+        _hitEffect = transform.Find("Hit").gameObject;
+        _hitBirdEffect = transform.Find("Rotating chickens").gameObject;
+        _chargeEffect = transform.Find("ChargeShot").gameObject;
+
+        _mainCamera = Camera.main;
         movementSpeed = setMovementSpeed;
 
-        run = FMODUnity.RuntimeManager.CreateInstance("event:/Player Sounds/player_run");
+        _run = FMODUnity.RuntimeManager.CreateInstance("event:/Player Sounds/player_run");
     }
 
     void Update()
     {
-        if (animControl == null)
-            animControl = gameObject.GetComponentInChildren<Animator>();
+        if (_animControl == null)
+            _animControl = gameObject.GetComponentInChildren<Animator>();
 
         if (!isIncapacitated) {
             
-            if (tower.chickenCount > 5)
+            if (_tower.chickenCount > 5)
             {
-                movementSpeed = setMovementSpeed - ((tower.chickenCount - 5) / 4);
+                movementSpeed = setMovementSpeed - ((_tower.chickenCount - 5) / 4);
             }
             
             Move();
 
             // If a pickuppable chicken has collided with the player.
             if (chicken != null) {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_pickup", mainCamera.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Chicken Sounds/chicken_pickup", _mainCamera.transform.position);
 
-                tower.AddChicken(gameObject, chicken);
+                _tower.AddChicken(gameObject, chicken);
                 Destroy(chicken);
             }
 
-            if (tower.chickenCount > 0) {
+            if (_tower.chickenCount > 0) {
                 Throw();
             }
 
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour {
         if (Time.time < timeStop)
         {
             Vector3 rand = Random.insideUnitSphere;
-            mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
+            _mainCamera.transform.localPosition = originPosition + rand * shakeAmount;
             playerCamera.transform.localPosition = originPosition + rand * shakeAmount;
         }
     }
@@ -153,13 +153,13 @@ public class Player : MonoBehaviour {
         }
         
         // Makes sure throw animation doesn't get stuck.
-        if(!_isThrowing && _isWindingUp && (tower.chickenCount == 0)) {
+        if(!_isThrowing && _isWindingUp && (_tower.chickenCount == 0)) {
             _isWindingUp = false;
         }
 
         // Makes sure charge effect doesn't get stuck as active.
-        if(chargeEffect.activeInHierarchy && (tower.chickenCount == 0)) {
-            chargeEffect.SetActive(false);
+        if(_chargeEffect.activeInHierarchy && (_tower.chickenCount == 0)) {
+            _chargeEffect.SetActive(false);
         }
     }
 
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour {
             if (Input.GetButtonDown(fireLongButton) && _readyToThrow && !isIncapacitated) {
                 _pressTime = Time.time;
 
-                chargeEffect.SetActive(true);
+                _chargeEffect.SetActive(true);
 
                 _isWindingUp = true;
             }
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour {
             // Calculate how long the fire button was pressed.
             if (Input.GetButtonUp(fireLongButton) && _readyToThrow && _isWindingUp) {
 
-                chargeEffect.SetActive(false);
+                _chargeEffect.SetActive(false);
 
                 _isWindingUp = false;
 
@@ -219,10 +219,10 @@ public class Player : MonoBehaviour {
             }
 
             // Remove chicken from the tower to be thrown.
-            tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
+            _tower.RemoveChicken(_throwDirection, true, _throwFar, gameObject);
 
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw", mainCamera.transform.position);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw_cartoon", mainCamera.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_throw_cartoon", _mainCamera.transform.position);
 
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Throw", mainCamera.transform.position);
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Other Sounds/Throw", mainCamera.transform.position);
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator GetHit() {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_hit", mainCamera.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Action Sounds/action_hit", _mainCamera.transform.position);
         //FMODUnity.RuntimeManager.PlayOneShot("event:/Player Sounds/Hit1", mainCamera.transform.position);
 
         ShakeNow();
@@ -240,13 +240,13 @@ public class Player : MonoBehaviour {
 
         ResetPlayer();
 
-        hitEffect.SetActive(true);
-        hitBirdEffect.SetActive(true);
+        _hitEffect.SetActive(true);
+        _hitBirdEffect.SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
-        hitEffect.SetActive(false);
-        hitBirdEffect.SetActive(false);
+        _hitEffect.SetActive(false);
+        _hitBirdEffect.SetActive(false);
         isIncapacitated = false;
 
         PlayAnimation(0);
@@ -255,14 +255,14 @@ public class Player : MonoBehaviour {
     }
 
     public void ShakeNow() {
-        originPosition = mainCamera.transform.position;
+        originPosition = _mainCamera.transform.position;
         timeStop = Time.time + shakeTime;
     }
 
     public void ResetPlayer() {
         isMoving = false;
 
-        chargeEffect.SetActive(false);
+        _chargeEffect.SetActive(false);
         _isWindingUp = false;
 
         _throwFar = false;
@@ -272,7 +272,7 @@ public class Player : MonoBehaviour {
         _readyToThrow = true;
         _throwTimer = 0f;
 
-        run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     void Move()
@@ -284,17 +284,17 @@ public class Player : MonoBehaviour {
 		if (moveHorizontal == 0 && moveVertical == 0) {                          // If player not moving
             isMoving = false;
 
-            run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _run.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		}
 		else 
 		{
             isMoving = true;
 
             FMOD.Studio.PLAYBACK_STATE state;
-            run.getPlaybackState(out state);
+            _run.getPlaybackState(out state);
 
             if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                run.start();
+                _run.start();
         }
 
         Jump(false);                                                             // New Jump() Method
@@ -309,15 +309,15 @@ public class Player : MonoBehaviour {
         {
             Rotate();
         }
-        controller.Move(movement * movementSpeed * Time.deltaTime);             // Move player on X and Z
-        controller.Move(verticalMovement * Time.deltaTime);                     // Move player on Y
+        _controller.Move(movement * movementSpeed * Time.deltaTime);             // Move player on X and Z
+        _controller.Move(verticalMovement * Time.deltaTime);                     // Move player on Y
     }
 
     void Jump(bool jump)
     {
-        if (jump && controller.isGrounded)
+        if (jump && _controller.isGrounded)
         {
-            if (tower.chickenCount > 5)                                         // Check if not too many chickens
+            if (_tower.chickenCount > 5)                                         // Check if not too many chickens
             {
                 verticalVelocity = jumpForce / 4f;                              // Decrease jump height
                 Debug.Log("Cannot Jump, too many chicken!");
@@ -398,10 +398,10 @@ public class Player : MonoBehaviour {
     {
         //Debug.Log("Set animation to " + param);
 
-        if (animControl != null && param != currentAnimationParam)
+        if (_animControl != null && param != currentAnimationParam)
         {
             
-            animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
+            _animControl.SetInteger("AnimParam", param);                     // Set AnimParam to param
             
             currentAnimationParam = param;
 
