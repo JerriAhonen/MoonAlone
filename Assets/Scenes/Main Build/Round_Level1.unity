@@ -7936,9 +7936,9 @@ MonoBehaviour:
   - {fileID: 756704509}
   scoreManager: {fileID: 479314069}
   speed: 2.5
-  FloatingCollectorPointText: {fileID: 1405261520976566, guid: 4dc9461185a273c43a513cba3ab2aa84,
+  floatingCollectorPointText: {fileID: 1405261520976566, guid: 4dc9461185a273c43a513cba3ab2aa84,
     type: 2}
-  lightBallPool: {fileID: 346845860}
+  _lightBallPool: {fileID: 346845860}
   spawner: {fileID: 0}
   scoreBoards:
   - {fileID: 1754765712}

@@ -9,26 +9,26 @@ public class Collector : MonoBehaviour {
 
 	public GameObject[] path = new GameObject[4];
 	public ScoreManager scoreManager;
-    private GameManager gameManager;
+    private GameManager _gameManager;
 
-    Vector3 newDestination;
-	private bool goClockWise = true;
+    Vector3 _newDestination;
+	private bool _goClockWise = true;
 	public float speed;
-	private int i = 0;
-    private bool isMoving = true;
-    private float intervalTime;
+	private int _i = 0;
+    private bool _isMoving = true;
+    private float _intervalTime;
     
 
-	GameObject originatingPlayer;
-	private bool receivedChicken;
-    public GameObject FloatingCollectorPointText;
+	GameObject _originatingPlayer;
+	private bool _receivedChicken;
+    public GameObject floatingCollectorPointText;
 
-    private Animator anim;
-    private CharacterController controller;
+    private Animator _anim;
+    private CharacterController _controller;
     private Camera _mainCamera;
 
     [SerializeField]
-    private LightBallPooling lightBallPool;
+    private LightBallPooling _lightBallPool;
 
     public ChickenSpawner spawner;
 
@@ -38,56 +38,58 @@ public class Collector : MonoBehaviour {
     public GameObject shutDownSmoke;
     public GameObject hooverParticle;
     public GameObject noChickensSign;
-    private int playerModel;
+    private int _playerModel;
 
     public Vector3 RandomizeIntensity = new Vector3(5f, 5f, 5f);
 
     // Use this for initialization
     void Start () {
-		newDestination = path[0].transform.position;
-        controller = GetComponent<CharacterController>();
-        anim = gameObject.GetComponentInChildren<Animator>();
+		_newDestination = path[0].transform.position;
+        _controller = GetComponent<CharacterController>();
+        _anim = gameObject.GetComponentInChildren<Animator>();
         
         _mainCamera = Camera.main;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         spawner = GameObject.Find("ChickenSpawner").GetComponent<ChickenSpawner>();
         hooverParticle.SetActive(true);
         shutDownSmoke.SetActive(false);
         noChickensSign.SetActive(false);
-        intervalTime = Random.Range(20.0f, 30.0f);
+        _intervalTime = Random.Range(20.0f, 30.0f);
     }
 
     // Update is called once per frame
     void Update ()
     {
-        intervalDebugText.text = "ShutDown interval: " + intervalTime.ToString("0.00");
+        intervalDebugText.text = "ShutDown interval: " + _intervalTime.ToString("0.00");
 
-        if (isMoving)
+        if (_isMoving)
         {
             Move();
         }
         ShutDown();
-        if (receivedChicken)
+        if (_receivedChicken)
 		{
 			TakeChicken();
-            if (FloatingCollectorPointText)
+            if (floatingCollectorPointText)
             {
                 ShowFloatingText();
             }
-			receivedChicken = false;
+			_receivedChicken = false;
 		}
 		
 	}
 
     private void ShowFloatingText()
     {
-        Instantiate(FloatingCollectorPointText, transform.position, Quaternion.identity, transform);
+        GameObject go = Instantiate(floatingCollectorPointText, transform.position, Quaternion.identity, transform);
+        FloatingCollectorPointText fcpt = go.GetComponent<FloatingCollectorPointText>();
+        fcpt.playerModel = _gameManager.players[GetPlayerNum() - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
     }
 
 	private void TakeChicken()
 	{
-		scoreManager.AddChickenToCollector(originatingPlayer);
+		scoreManager.AddChickenToCollector(_originatingPlayer);
 	}
 
 	/// <summary>
@@ -97,7 +99,7 @@ public class Collector : MonoBehaviour {
 	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision collision)
 	{
-        if(!isMoving)
+        if(!_isMoving)
         {
             return;
         }
@@ -115,8 +117,8 @@ public class Collector : MonoBehaviour {
                 return;
 			}
 					
-		originatingPlayer = collidingChicken.OriginatingPlayer;
-		receivedChicken = true;
+		_originatingPlayer = collidingChicken.OriginatingPlayer;
+		_receivedChicken = true;
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Environment Sounds/env_collector_suck", _mainCamera.transform.position);
 
@@ -132,103 +134,103 @@ public class Collector : MonoBehaviour {
 
 	private void Move()
 	{
-
 		bool doRotation = false;
-
-
-
-		if (Vector3.Distance(transform.position, newDestination) < 0.5f)
+        
+		if (Vector3.Distance(transform.position, _newDestination) < 0.5f)
         {
 
-            if (i == path.Length - 1)
+            if (_i == path.Length - 1)
             {
                 
-                goClockWise = false;
+                _goClockWise = false;
 				doRotation = false;
             }
-			else if (i == 0)
+			else if (_i == 0)
 			{
                 
-                goClockWise = true;
+                _goClockWise = true;
 				doRotation = false;
 			}
 			else 
 			{
 				doRotation = true;
 			}
-            if (goClockWise) //left
+            if (_goClockWise) //left
             {
-                anim.SetInteger("AnimParam", 0);
+                _anim.SetInteger("AnimParam", 0);
                 
-                i++;
+                _i++;
             } 
-			else if(!goClockWise) // right
+			else if(!_goClockWise) // right
 			{
-                anim.SetInteger("AnimParam", 1);
-                i--;
+                _anim.SetInteger("AnimParam", 1);
+                _i--;
 			}
 
-            newDestination = path[i].transform.position;
+            _newDestination = path[_i].transform.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, newDestination, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _newDestination, speed * Time.deltaTime);
 
-		Vector3 relativePos = newDestination - transform.position;
+		Vector3 relativePos = _newDestination - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
 		if(doRotation)
 		{
-			if (goClockWise)
+			if (_goClockWise)
         		transform.rotation = rotation;
 			else
 				transform.rotation = Quaternion.Inverse(rotation);
 		}
 		
 	}
+
     private void ShutDown()
     {
-        intervalTime -= Time.deltaTime;
+        _intervalTime -= Time.deltaTime;
 
-        if(intervalTime <= 0)
+        if(_intervalTime <= 0)
         {
-            if (!isMoving)
+            if (!_isMoving)
             {
                 Invoke("SetIsMovingTrue", 2.2f);
-                intervalTime = Random.Range(20.0f, 30.0f);
-                anim.SetTrigger("Restart");
+                _intervalTime = Random.Range(20.0f, 30.0f);
+                _anim.SetTrigger("Restart");
                 hooverParticle.SetActive(true);
                 shutDownSmoke.SetActive(false);
             }
             else
             {
-                isMoving = false;
-                intervalTime = Random.Range(6.0f, 8.0f);
-                anim.SetTrigger("ShutDown");
+                _isMoving = false;
+                _intervalTime = Random.Range(6.0f, 8.0f);
+                _anim.SetTrigger("ShutDown");
                 hooverParticle.SetActive(false);
                 shutDownSmoke.SetActive(true);
                 noChickensSign.SetActive(true);
             }
         }
     }
+
     private void SetIsMovingTrue()
     {
-        isMoving = true;
+        _isMoving = true;
         noChickensSign.SetActive(false);
     }
+
     private int GetPlayerNum()
     {
-        if (originatingPlayer.transform.name == "P1")
+        if (_originatingPlayer.transform.name == "P1")
         {
             return 1;
         }
-        else if (originatingPlayer.transform.name == "P2")
+        else if (_originatingPlayer.transform.name == "P2")
         {
             return 2;
         }
-        else if (originatingPlayer.transform.name == "P3")
+        else if (_originatingPlayer.transform.name == "P3")
         {
             return 3;
         }
-        else if (originatingPlayer.transform.name == "P4")
+        else if (_originatingPlayer.transform.name == "P4")
         {
             return 4;
         }
@@ -255,7 +257,7 @@ public class Collector : MonoBehaviour {
     {
         GameObject result = null;
 
-        result = lightBallPool.GetPooledObject();
+        result = _lightBallPool.GetPooledObject();
 
         // If the pooled object was found, return that. Otherwise just return null.
         if (result != null)
@@ -273,8 +275,8 @@ public class Collector : MonoBehaviour {
             lightBall.target = scoreBoards[playerNum - 1].transform;
 
             // Determine the color of the lightball
-            playerModel = gameManager.players[GetPlayerNum() - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
-            lightBall.playerModel = playerModel;
+            _playerModel = _gameManager.players[GetPlayerNum() - 1].GetComponentInChildren<EnablePlayerModel>().GetModelIndex();
+            lightBall.playerModel = _playerModel;
 
             //If the LightBall's target is on the left of the score board, use Left Routing Point. Else use the right. 
             if (playerNum == 1 || playerNum == 2)
@@ -300,6 +302,6 @@ public class Collector : MonoBehaviour {
 
     public bool ReturnLightBall(LightBall lightBall)
     {
-        return lightBallPool.ReturnObject(lightBall.gameObject);
+        return _lightBallPool.ReturnObject(lightBall.gameObject);
     }
 }
