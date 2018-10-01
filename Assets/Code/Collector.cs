@@ -192,7 +192,7 @@ public class Collector : MonoBehaviour {
             if (!_isMoving)
             {
                 Invoke("SetIsMovingTrue", 2.2f);
-                _intervalTime = Random.Range(20.0f, 30.0f);
+                _intervalTime = Random.Range(10.0f, 20.0f); // Change these to define the UPTIME of the chicken collector.
                 _anim.SetTrigger("Restart");
                 hooverParticle.SetActive(true);
                 shutDownSmoke.SetActive(false);
@@ -200,7 +200,7 @@ public class Collector : MonoBehaviour {
             else
             {
                 _isMoving = false;
-                _intervalTime = Random.Range(6.0f, 8.0f);
+                _intervalTime = Random.Range(6.0f, 8.0f); // Change these to define the DOWNTIME of the chicken collector.
                 _anim.SetTrigger("ShutDown");
                 hooverParticle.SetActive(false);
                 shutDownSmoke.SetActive(true);
