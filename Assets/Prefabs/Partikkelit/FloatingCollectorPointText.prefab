@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114751432463773594}
   - component: {fileID: 114184800383730966}
   - component: {fileID: 111497667957896096}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FloatingCollectorPointText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 0e3c378b5c4af8647af3b6c1b65484e0, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 0e3c378b5c4af8647af3b6c1b65484e0, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -101,6 +102,8 @@ MonoBehaviour:
   destroyTime: 3
   offset: {x: 0, y: 2, z: 0}
   RandomizeIntensity: {x: 0.5, y: 0, z: 0}
+  playerModel: 0
+  textMeshPro: {fileID: 0}
 --- !u!114 &114751432463773594
 MonoBehaviour:
   m_ObjectHideFlags: 1
