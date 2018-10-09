@@ -98,8 +98,10 @@ public class RoundScore : MonoBehaviour {
                     numberSet = true;
                 }
                 ScrollNumbers();
-
-                meshPro.text = "P1: " + currentNumber.ToString("0") + "p";
+                // DOUBLE SPACE AFTER PLAYER NUMBER BECAUSE OTHERWISE PLAYER GETTING 1P 
+                // THE 1 CLIPS UP (AND FIXING THE SCRIPT TO SEPARATE PLAYER NUMBER AND 
+                // SCORE WOULD SUCK ASS RIGHT NOW)
+                meshPro.text = "P1:  " + currentNumber.ToString("0") + "p";
                 break;
             case 2:
 
@@ -111,7 +113,7 @@ public class RoundScore : MonoBehaviour {
                 }
                 ScrollNumbers();
 
-                meshPro.text = "P2: " + currentNumber.ToString("0") + "p";
+                meshPro.text = "P2:  " + currentNumber.ToString("0") + "p";
                 break;
             case 3:
                 if (!numberSet)
@@ -121,7 +123,7 @@ public class RoundScore : MonoBehaviour {
                     numberSet = true;
                 }
                 ScrollNumbers();
-                meshPro.text = "P3: " + currentNumber.ToString("0") + "p";
+                meshPro.text = "P3:  " + currentNumber.ToString("0") + "p";
                 break;
             case 4:
                 if (!numberSet)
@@ -131,7 +133,7 @@ public class RoundScore : MonoBehaviour {
                     numberSet = true;
                 }
                 ScrollNumbers();
-                meshPro.text = "P4: " + currentNumber.ToString("0") + "p";
+                meshPro.text = "P4:  " + currentNumber.ToString("0") + "p";
                 //meshPro.text = "P4: " + gameManager.playerScores[3].ToString() + "p";
                 break;
         }
