@@ -1346,15 +1346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wanderDistance: 5
-  _turnSpeed: 2
-  originatingPlayer: {fileID: 0}
-  isThrown: 0
-  isFalling: 0
   _groundLayer: Ground
   _pickUpLayer: PickUp
   _terrainLayer: Terrain
-  mood: 0
-  spottedPlayer: 0
+  _mood: 0
 --- !u!135 &135331234438409476
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4906,7 +4901,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 375750594
+  randomSeed: -713709575
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4996,7 +4991,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.93468565, g: 1, b: 0.32352942, a: 1}
+      maxColor: {r: 0.93468565, g: 1, b: 0.109, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
